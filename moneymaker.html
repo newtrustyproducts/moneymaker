@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MoneyMaker7867 — Free Money Management Tool</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Bebas+Neue&display=swap" rel="stylesheet">
+<style>
+:root {
+  --gold: #F0B429;
+  --gold-dark: #B7881C;
+  --bg: #0A0A0A;
+  --card: #111111;
+  --card2: #161616;
+  --border: #222222;
+  --text: #F0EDE6;
+  --muted: #666;
+  --green: #22C55E;
+  --red: #EF4444;
+  --amber: #F59E0B;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { background: var(--bg); color: var(--text); font-family: 'Space Grotesk', sans-serif; min-height: 100vh; overflow-x: hidden; }
+
+/* HERO */
+.hero { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 2rem; position: relative; overflow: hidden; }
+.hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(240,180,41,0.12) 0%, transparent 70%); pointer-events: none; }
+.hero-tag { font-size: 12px; letter-spacing: 0.2em; color: var(--gold); background: rgba(240,180,41,0.1); border: 1px solid rgba(240,180,41,0.2); padding: 6px 16px; border-radius: 99px; display: inline-block; margin-bottom: 24px; text-transform: uppercase; }
+.hero-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(3.5rem, 10vw, 7rem); line-height: 0.95; letter-spacing: 0.02em; margin-bottom: 16px; }
+.hero-title span { color: var(--gold); }
+.hero-sub { font-size: clamp(1rem, 2.5vw, 1.2rem); color: var(--muted); max-width: 480px; line-height: 1.6; margin-bottom: 40px; }
+.hero-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(34,197,94,0.1); border: 1px solid rgba(34,197,94,0.25); color: var(--green); font-size: 13px; padding: 8px 18px; border-radius: 99px; margin-bottom: 40px; }
+.hero-badge::before { content: ''; width: 8px; height: 8px; border-radius: 50%; background: var(--green); animation: pulse 2s infinite; }
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+.scroll-hint { position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 6px; color: var(--muted); font-size: 12px; letter-spacing: 0.1em; }
+.scroll-arrow { width: 20px; height: 20px; border-right: 1.5px solid var(--muted); border-bottom: 1.5px solid var(--muted); transform: rotate(45deg); animation: bounce 1.5s infinite; }
+@keyframes bounce { 0%,100%{transform:rotate(45deg) translateY(0)} 50%{transform:rotate(45deg) translateY(4px)} }
+
+/* SECTIONS */
+section { max-width: 700px; margin: 0 auto; padding: 4rem 1.5rem; }
+.section-label { font-size: 11px; letter-spacing: 0.2em; color: var(--gold); text-transform: uppercase; margin-bottom: 12px; }
+.section-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(2rem, 5vw, 3rem); letter-spacing: 0.03em; margin-bottom: 8px; }
+.section-sub { color: var(--muted); font-size: 15px; line-height: 1.6; margin-bottom: 2rem; }
+
+/* STEPS */
+.steps { display: flex; flex-direction: column; gap: 16px; }
+.step { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 1.25rem 1.5rem; display: flex; align-items: center; gap: 16px; transition: border-color 0.3s; }
+.step.done { border-color: var(--green); }
+.step-num { width: 40px; height: 40px; border-radius: 50%; border: 1.5px solid var(--border); display: flex; align-items: center; justify-content: center; font-family: 'Bebas Neue', sans-serif; font-size: 1.2rem; color: var(--gold); flex-shrink: 0; transition: all 0.3s; }
+.step.done .step-num { background: var(--green); border-color: var(--green); color: #000; }
+.step-content { flex: 1; }
+.step-title { font-weight: 600; font-size: 15px; margin-bottom: 4px; }
+.step-desc { font-size: 13px; color: var(--muted); }
+.step-btn { display: inline-flex; align-items: center; gap: 6px; margin-top: 10px; padding: 8px 16px; border-radius: 99px; font-size: 13px; font-weight: 600; border: none; cursor: pointer; transition: all 0.2s; text-decoration: none; }
+.btn-gold { background: var(--gold); color: #000; }
+.btn-gold:hover { background: #FFD166; transform: translateY(-1px); }
+.btn-insta { background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045); color: #fff; }
+.btn-insta:hover { opacity: 0.9; transform: translateY(-1px); }
+.btn-yt { background: #FF0000; color: #fff; }
+.btn-yt:hover { opacity: 0.9; transform: translateY(-1px); }
+.check-mark { display: inline-flex; align-items: center; gap: 6px; margin-top: 10px; font-size: 13px; color: var(--green); font-weight: 500; }
+
+/* CONFIRM BUTTONS */
+.confirm-btn { background: transparent; border: 1px solid var(--border); color: var(--muted); padding: 6px 14px; border-radius: 99px; font-size: 12px; cursor: pointer; margin-top: 8px; transition: all 0.2s; font-family: 'Space Grotesk', sans-serif; }
+.confirm-btn:hover { border-color: var(--green); color: var(--green); }
+
+/* LOCK */
+.lock-section { background: var(--card); border: 1px solid var(--border); border-radius: 20px; padding: 2rem; text-align: center; margin-top: 2rem; position: relative; overflow: hidden; }
+.lock-icon { font-size: 3rem; margin-bottom: 12px; filter: grayscale(0.3); }
+.lock-title { font-family: 'Bebas Neue', sans-serif; font-size: 2rem; letter-spacing: 0.05em; margin-bottom: 8px; }
+.lock-sub { color: var(--muted); font-size: 14px; }
+.progress-bar-wrap { background: var(--border); border-radius: 99px; height: 6px; margin: 1.5rem 0 0.5rem; overflow: hidden; }
+.progress-bar { height: 100%; background: var(--gold); border-radius: 99px; transition: width 0.5s ease; }
+.progress-text { font-size: 12px; color: var(--muted); }
+
+/* TOOL */
+.tool-wrap { display: none; }
+.tool-wrap.unlocked { display: block; }
+.tool-header { text-align: center; padding: 2rem 1.5rem 0; }
+.tool-card { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 1.25rem 1.5rem; margin-bottom: 12px; }
+.tool-section-title { font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold); margin-bottom: 16px; font-weight: 600; }
+.slider-row { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+.slider-label { font-size: 13px; color: var(--muted); min-width: 140px; }
+input[type=range] { flex: 1; -webkit-appearance: none; height: 4px; border-radius: 99px; background: var(--border); outline: none; }
+input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; width: 16px; height: 16px; border-radius: 50%; background: var(--gold); cursor: pointer; border: 2px solid var(--bg); }
+.slider-val { font-size: 13px; font-weight: 600; min-width: 80px; text-align: right; color: var(--text); }
+select { background: var(--card2); color: var(--text); border: 1px solid var(--border); border-radius: 8px; padding: 6px 10px; font-size: 13px; font-family: 'Space Grotesk', sans-serif; outline: none; }
+.metrics { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 10px; margin-bottom: 12px; }
+.metric-box { background: var(--card2); border: 1px solid var(--border); border-radius: 12px; padding: 12px 14px; }
+.metric-label { font-size: 11px; color: var(--muted); margin-bottom: 6px; }
+.metric-val { font-size: 18px; font-weight: 700; }
+.green { color: var(--green); }
+.red { color: var(--red); }
+.amber { color: var(--amber); }
+.gold { color: var(--gold); }
+.trade-row { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 13px; }
+.trade-row:last-child { border-bottom: none; }
+.badge { font-size: 11px; padding: 2px 8px; border-radius: 99px; font-weight: 600; }
+.badge-buy { background: rgba(34,197,94,0.15); color: var(--green); }
+.badge-sell { background: rgba(239,68,68,0.15); color: var(--red); }
+.rule-item { display: flex; align-items: flex-start; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--border); }
+.rule-item:last-child { border-bottom: none; }
+.rule-dot { width: 8px; height: 8px; border-radius: 50%; margin-top: 6px; flex-shrink: 0; }
+.rule-dot.warn { background: var(--amber); }
+.rule-dot.ok { background: var(--green); }
+.rule-text { font-size: 13px; line-height: 1.5; }
+.rule-sub { font-size: 12px; color: var(--muted); margin-top: 3px; }
+.summary-row { display: flex; justify-content: space-between; font-size: 13px; padding: 6px 0; border-bottom: 1px solid var(--border); }
+.summary-row:last-child { border-bottom: none; }
+.summary-row span:first-child { color: var(--muted); }
+.summary-row span:last-child { font-weight: 600; }
+
+/* FOOTER */
+footer { text-align: center; padding: 3rem 1.5rem; color: var(--muted); font-size: 12px; border-top: 1px solid var(--border); }
+footer a { color: var(--gold); text-decoration: none; }
+
+/* DIVIDER */
+.divider { height: 1px; background: var(--border); margin: 1rem 0; }
+
+/* UNLOCK ANIM */
+@keyframes unlockPop { 0%{transform:scale(0.9);opacity:0} 60%{transform:scale(1.05)} 100%{transform:scale(1);opacity:1} }
+.tool-wrap.unlocked { animation: unlockPop 0.5s ease; }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-tag">Free Tool — Traders Ke Liye</div>
+  <h1 class="hero-title">MONEY<br><span>MANAGER</span><br>PRO</h1>
+  <p class="hero-sub">Professional money management tool — stock traders ke liye. Capital protect karo, risk control karo, profit badhao.</p>
+  <div class="hero-badge">100% Free — Sirf 3 Steps Mein Access Karo</div>
+  <div class="scroll-hint">
+    <span>NICHE DEKHO</span>
+    <div class="scroll-arrow"></div>
+  </div>
+</div>
+
+<!-- STEPS SECTION -->
+<section>
+  <div class="section-label">Free Access</div>
+  <h2 class="section-title">3 Steps — Tool Unlock Karo</h2>
+  <p class="section-sub">Sirf teen kaam karo — tool lifetime ke liye free mein milega. Koi payment nahi.</p>
+
+  <div class="steps">
+
+    <!-- STEP 1 -->
+    <div class="step" id="step1-card">
+      <div class="step-num" id="num1">1</div>
+      <div class="step-content">
+        <div class="step-title">Dhan App Se Demat Account Kholo</div>
+        <div class="step-desc">Hamari referral link se free mein Dhan account open karo. India ka best trading platform.</div>
+        <a class="step-btn btn-gold" href="https://join.dhan.co/?invite=OKHPS62291" target="_blank" onclick="markStep(1)">
+          🏦 Dhan Account Kholo
+        </a>
+        <div id="confirm1" style="display:none">
+          <button class="confirm-btn" onclick="confirmStep(1)">✓ Maine account khol liya</button>
+        </div>
+        <div class="check-mark" id="done1" style="display:none">✅ Account open ho gaya!</div>
+      </div>
+    </div>
+
+    <!-- STEP 2 -->
+    <div class="step" id="step2-card">
+      <div class="step-num" id="num2">2</div>
+      <div class="step-content">
+        <div class="step-title">Instagram Pe Follow Karo</div>
+        <div class="step-desc">@mone_ymaker7867 ko follow karo — daily trading tips aur signals milte rahenge.</div>
+        <a class="step-btn btn-insta" href="https://www.instagram.com/mone_ymaker7867/" target="_blank" onclick="markStep(2)">
+          📸 Instagram Follow Karo
+        </a>
+        <div id="confirm2" style="display:none">
+          <button class="confirm-btn" onclick="confirmStep(2)">✓ Maine follow kar liya</button>
+        </div>
+        <div class="check-mark" id="done2" style="display:none">✅ Follow ho gaya!</div>
+      </div>
+    </div>
+
+    <!-- STEP 3 -->
+    <div class="step" id="step3-card">
+      <div class="step-num" id="num3">3</div>
+      <div class="step-content">
+        <div class="step-title">YouTube Pe Subscribe Karo</div>
+        <div class="step-desc">@mone_ymaker7867 — free trading videos, strategies aur scanner tutorials.</div>
+        <a class="step-btn btn-yt" href="https://www.youtube.com/@mone_ymaker7867" target="_blank" onclick="markStep(3)">
+          ▶ YouTube Subscribe Karo
+        </a>
+        <div id="confirm3" style="display:none">
+          <button class="confirm-btn" onclick="confirmStep(3)">✓ Maine subscribe kar liya</button>
+        </div>
+        <div class="check-mark" id="done3" style="display:none">✅ Subscribe ho gaya!</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- LOCK BOX -->
+  <div class="lock-section" id="lock-box">
+    <div class="lock-icon">🔒</div>
+    <div class="lock-title">Tool Locked Hai</div>
+    <div class="lock-sub">Upar teeno steps complete karo — tool automatically unlock ho jaayega</div>
+    <div class="progress-bar-wrap">
+      <div class="progress-bar" id="progress-bar" style="width:0%"></div>
+    </div>
+    <div class="progress-text" id="progress-text">0 / 3 steps complete</div>
+  </div>
+</section>
+
+<!-- TOOL — LOCKED BY DEFAULT -->
+<div class="tool-wrap" id="tool-section">
+  <div class="tool-header">
+    <div class="section-label">Unlocked!</div>
+    <h2 class="section-title" style="text-align:center">💰 Money Manager Pro</h2>
+    <p style="color:var(--muted);font-size:14px;text-align:center;margin-bottom:2rem">Sliders adjust karo — sab automatically calculate hoga</p>
+  </div>
+
+  <section style="padding-top:0">
+
+    <!-- INPUTS -->
+    <div class="tool-card">
+      <div class="tool-section-title">Capital & Risk Setup</div>
+
+      <div class="slider-row">
+        <span class="slider-label">Total Capital</span>
+        <input type="range" min="50000" max="500000" step="10000" value="100000" id="capital" oninput="calc()">
+        <span class="slider-val" id="cap-out">₹1,00,000</span>
+      </div>
+      <div class="slider-row">
+        <span class="slider-label">Max stocks ek saath</span>
+        <input type="range" min="1" max="15" step="1" value="5" id="stocks" oninput="calc()">
+        <span class="slider-val" id="stocks-out">5</span>
+      </div>
+      <div class="slider-row">
+        <span class="slider-label">Risk per trade</span>
+        <input type="range" min="0.5" max="3" step="0.5" value="1" id="risk" oninput="calc()">
+        <span class="slider-val" id="risk-out">1%</span>
+      </div>
+      <div class="slider-row">
+        <span class="slider-label">Stop Loss %</span>
+        <input type="range" min="0.3" max="2" step="0.1" value="0.5" id="sl" oninput="calc()">
+        <span class="slider-val" id="sl-out">0.5%</span>
+      </div>
+      <div class="slider-row" style="margin-bottom:0">
+        <span class="slider-label">Target (Risk:Reward)</span>
+        <select id="rr" onchange="calc()">
+          <option value="1.5">1 : 1.5</option>
+          <option value="2" selected>1 : 2</option>
+          <option value="2.5">1 : 2.5</option>
+          <option value="3">1 : 3</option>
+        </select>
+        <span class="slider-val green" id="rr-out">1:2</span>
+      </div>
+    </div>
+
+    <!-- METRICS -->
+    <div class="metrics">
+      <div class="metric-box">
+        <div class="metric-label">Per trade amount</div>
+        <div class="metric-val gold" id="per-trade">₹20,000</div>
+      </div>
+      <div class="metric-box">
+        <div class="metric-label">Max loss / trade</div>
+        <div class="metric-val red" id="max-loss">₹1,000</div>
+      </div>
+      <div class="metric-box">
+        <div class="metric-label">Target / trade</div>
+        <div class="metric-val green" id="target">₹2,000</div>
+      </div>
+      <div class="metric-box">
+        <div class="metric-label">Daily loss limit</div>
+        <div class="metric-val red" id="daily-loss">₹2,000</div>
+      </div>
+      <div class="metric-box">
+        <div class="metric-label">Best case (all hit)</div>
+        <div class="metric-val green" id="best-case">₹10,000</div>
+      </div>
+      <div class="metric-box">
+        <div class="metric-label">Qty (₹500 stock)</div>
+        <div class="metric-val" id="qty">40 shares</div>
+      </div>
+    </div>
+
+    <!-- TRADE PLANNER -->
+    <div class="tool-card">
+      <div class="tool-section-title">Daily Trade Planner</div>
+      <div id="trade-rows"></div>
+      <div class="divider"></div>
+      <div class="summary-row">
+        <span>Agar saare targets hit hoin</span>
+        <span class="green" id="s-best">+₹10,000</span>
+      </div>
+      <div class="summary-row">
+        <span>Agar saare SL hit hoin (worst)</span>
+        <span class="red" id="s-worst">-₹5,000</span>
+      </div>
+      <div class="summary-row">
+        <span>Daily loss limit — trading band karo</span>
+        <span class="amber" id="s-limit">-₹2,000</span>
+      </div>
+    </div>
+
+    <!-- RULES -->
+    <div class="tool-card">
+      <div class="tool-section-title">Golden Rules — Hamesha Follow Karo</div>
+      <div class="rule-item">
+        <div class="rule-dot warn"></div>
+        <div>
+          <div class="rule-text">Max <strong id="r-stocks">5</strong> stocks ek saath — zyada mat lo</div>
+          <div class="rule-sub">Concentration risk badh jaata hai</div>
+        </div>
+      </div>
+      <div class="rule-item">
+        <div class="rule-dot warn"></div>
+        <div>
+          <div class="rule-text">Daily loss limit hit hote hi trading BAND karo</div>
+          <div class="rule-sub" id="r-daily">Limit: ₹2,000 — uske baad screen se door ho jao</div>
+        </div>
+      </div>
+      <div class="rule-item">
+        <div class="rule-dot ok"></div>
+        <div>
+          <div class="rule-text">Nifty direction 9:20 pe confirm karo</div>
+          <div class="rule-sub">Nifty green → sirf BUY | Nifty red → sirf SELL</div>
+        </div>
+      </div>
+      <div class="rule-item">
+        <div class="rule-dot ok"></div>
+        <div>
+          <div class="rule-text">SL hamesha entry ke saath lagao — baad mein nahi</div>
+          <div class="rule-sub" id="r-sl">Current SL: 0.5% — immediately set karo</div>
+        </div>
+      </div>
+      <div class="rule-item">
+        <div class="rule-dot ok"></div>
+        <div>
+          <div class="rule-text">3:15 PM pe saare positions close karo</div>
+          <div class="rule-sub">Koi overnight position nahi — kal fresh start</div>
+        </div>
+      </div>
+      <div class="rule-item">
+        <div class="rule-dot warn"></div>
+        <div>
+          <div class="rule-text">Lagaataar 3 loss ke baad — aaj trading band</div>
+          <div class="rule-sub">Emotional trading sabse bada dushman hai</div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <p>Made with love for traders 🇮🇳</p>
+  <p style="margin-top:8px">
+    <a href="https://www.instagram.com/mone_ymaker7867/" target="_blank">@mone_ymaker7867</a> &nbsp;·&nbsp;
+    <a href="https://www.youtube.com/@mone_ymaker7867" target="_blank">YouTube</a> &nbsp;·&nbsp;
+    <a href="https://join.dhan.co/?invite=OKHPS62291" target="_blank">Dhan Account</a>
+  </p>
+  <p style="margin-top:8px;font-size:11px">Disclaimer: Ye tool sirf educational purpose ke liye hai. Trading mein risk hota hai.</p>
+</footer>
+
+<script>
+var stepsClicked = [false, false, false];
+var stepsConfirmed = [false, false, false];
+
+function markStep(n) {
+  stepsClicked[n-1] = true;
+  setTimeout(function() {
+    document.getElementById('confirm' + n).style.display = 'block';
+  }, 1500);
+}
+
+function confirmStep(n) {
+  stepsConfirmed[n-1] = true;
+  document.getElementById('confirm' + n).style.display = 'none';
+  document.getElementById('done' + n).style.display = 'flex';
+  document.getElementById('step' + n + '-card').classList.add('done');
+  document.getElementById('num' + n).textContent = '✓';
+  updateProgress();
+}
+
+function updateProgress() {
+  var done = stepsConfirmed.filter(Boolean).length;
+  var pct = (done / 3) * 100;
+  document.getElementById('progress-bar').style.width = pct + '%';
+  document.getElementById('progress-text').textContent = done + ' / 3 steps complete';
+
+  if (done === 3) {
+    setTimeout(function() {
+      document.getElementById('lock-box').style.display = 'none';
+      var tool = document.getElementById('tool-section');
+      tool.classList.add('unlocked');
+      tool.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      calc();
+    }, 600);
+  }
+}
+
+function fmt(n) { return '₹' + Math.round(n).toLocaleString('en-IN'); }
+
+function calc() {
+  var cap   = +document.getElementById('capital').value;
+  var nStk  = +document.getElementById('stocks').value;
+  var risk  = +document.getElementById('risk').value;
+  var sl    = +document.getElementById('sl').value;
+  var rr    = +document.getElementById('rr').value;
+
+  document.getElementById('cap-out').textContent    = fmt(cap);
+  document.getElementById('stocks-out').textContent = nStk;
+  document.getElementById('risk-out').textContent   = risk + '%';
+  document.getElementById('sl-out').textContent     = sl.toFixed(1) + '%';
+  document.getElementById('rr-out').textContent     = '1:' + rr;
+
+  var perTrade   = cap / nStk;
+  var maxLoss    = cap * (risk / 100);
+  var tgt        = maxLoss * rr;
+  var dailyLimit = maxLoss * 2;
+  var qty        = Math.floor(perTrade / 500);
+
+  document.getElementById('per-trade').textContent  = fmt(perTrade);
+  document.getElementById('max-loss').textContent   = fmt(maxLoss);
+  document.getElementById('target').textContent     = fmt(tgt);
+  document.getElementById('daily-loss').textContent = fmt(dailyLimit);
+  document.getElementById('qty').textContent        = qty + ' shares';
+  document.getElementById('best-case').textContent  = '+' + fmt(tgt * nStk);
+  document.getElementById('s-best').textContent     = '+' + fmt(tgt * nStk);
+  document.getElementById('s-worst').textContent    = '-' + fmt(maxLoss * nStk);
+  document.getElementById('s-limit').textContent    = '-' + fmt(dailyLimit);
+  document.getElementById('r-stocks').textContent   = nStk;
+  document.getElementById('r-daily').textContent    = 'Limit: ' + fmt(dailyLimit) + ' — uske baad screen se door ho jao';
+  document.getElementById('r-sl').textContent       = 'Current SL: ' + sl.toFixed(1) + '% — immediately set karo';
+
+  var syms = ['HDFCBANK','SBIN','AXISBANK','INFY','ADANIPORTS','RELIANCE','TATAMOTORS','WIPRO','BAJFINANCE','MARUTI','ICICIBANK','KOTAKBANK','LT','SUNPHARMA','TITAN'];
+  var rows = '';
+  for (var i = 0; i < Math.min(nStk, syms.length); i++) {
+    var entry = 600 + i * 80;
+    var slPx  = (entry * (1 - sl/100)).toFixed(1);
+    var tgtPx = (entry * (1 + (sl/100)*rr)).toFixed(1);
+    var q     = Math.floor(perTrade / entry);
+    var profit = (q * entry * (sl/100) * rr).toFixed(0);
+    rows += '<div class="trade-row">' +
+      '<span>' + syms[i] + ' <span class="badge badge-buy">BUY</span></span>' +
+      '<span style="color:var(--muted);font-size:12px">SL:₹' + slPx + ' · Tgt:₹' + tgtPx + ' · Qty:' + q + '</span>' +
+      '<span class="green">+₹' + parseInt(profit).toLocaleString('en-IN') + '</span>' +
+    '</div>';
+  }
+  document.getElementById('trade-rows').innerHTML = rows;
+}
+</script>
+</body>
+</html>
