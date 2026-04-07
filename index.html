@@ -825,7 +825,6 @@ function fetchResults() {
     })
     .catch(function() {
       document.getElementById('scan-time').textContent = 'Scanner band hai';
-      document.getElementById('auto-msg').textContent  = 'scanner_pc.py aur server.py chalao — tab results aayenge';
       document.getElementById('live-dot').classList.remove('live');
     });
 }
