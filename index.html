@@ -500,13 +500,15 @@ function doLogin() {
     btn.disabled = false;
     document.getElementById('li-loading').style.display = 'none';
     if (d.success) {
-      ok.textContent = '✅ Login successful!';
+      ok.textContent = '✅ Login ho gaya! Tool khul raha hai...';
       ok.style.display = 'block';
       sessionStorage.setItem('mm_user', u);
       setTimeout(function() {
-        document.getElementById('login-screen').classList.remove('show');
+        // Sab messages hide karo
+        ok.style.display  = 'none';
+        err.style.display = 'none';
         showTool(u);
-      }, 800);
+      }, 1200);
     } else {
       showErr(err, '❌ ' + d.message);
     }
@@ -514,7 +516,7 @@ function doLogin() {
   .catch(function(){
     btn.disabled = false;
     document.getElementById('li-loading').style.display = 'none';
-    showErr(err, 'Connection error! Internet check karo.');
+    showErr(err, '❌ Apps Script se connect nahi ho paya! Internet check karo.');
   });
 }
 
@@ -529,26 +531,38 @@ document.addEventListener('keydown', function(e) {
 // ==========================================
 function doLogout() {
   sessionStorage.removeItem('mm_user');
+  if (fetchInterval) clearInterval(fetchInterval);
   document.getElementById('tool').classList.remove('show');
   document.getElementById('main-page').style.display = 'none';
+  document.getElementById('login-screen').style.display = '';
   document.getElementById('login-screen').classList.add('show');
   document.getElementById('li-user').value = '';
   document.getElementById('li-pass').value = '';
+  document.getElementById('li-err').style.display = 'none';
+  document.getElementById('li-ok').style.display  = 'none';
+  window.scrollTo({top:0, behavior:'smooth'});
 }
 
 // ==========================================
 // SHOW TOOL
 // ==========================================
+var fetchInterval = null;
 function showTool(username) {
-  document.getElementById('main-page').style.display = 'none';
+  // Sab hide karo
+  document.getElementById('main-page').style.display  = 'none';
+  document.getElementById('login-screen').style.display = 'none';
   document.getElementById('login-screen').classList.remove('show');
+  // Tool dikhao
   document.getElementById('welcome-msg').textContent = 'Welcome, ' + username + '!';
   var t = document.getElementById('tool');
   t.classList.add('show');
-  window.scrollTo(0,0);
+  // Mobile pe scroll to top
+  setTimeout(function() { window.scrollTo({top:0, behavior:'smooth'}); }, 100);
   calc();
+  // Pehle clear karo purana interval
+  if (fetchInterval) clearInterval(fetchInterval);
   fetchResults();
-  setInterval(fetchResults, 30000);
+  fetchInterval = setInterval(fetchResults, 30000);
 }
 
 // ==========================================
@@ -594,7 +608,8 @@ function fetchResults() {
     document.getElementById('auto-msg').textContent = 'Auto-refresh: har 30 sec · ' + new Date().toLocaleTimeString('en-IN');
   })
   .catch(function(){
-    document.getElementById('scan-time').textContent = 'Scanner band hai';
+    document.getElementById('scan-time').textContent = 'Scanner se connect nahi hua';
+    document.getElementById('auto-msg').textContent  = 'scanner_pc.py chalao → GitHub push → yahan dikhega';
     document.getElementById('live-dot').classList.remove('live');
   });
 }
