@@ -141,7 +141,7 @@ footer a{color:var(--gold);text-decoration:none;}
 <body>
 
 <!-- ============ LOGIN SCREEN ============ -->
-<div class="login-screen show" id="login-screen">
+<div class="login-screen" id="login-screen">
   <div class="login-card">
     <div class="login-logo">MM PRO</div>
     <div class="login-sub">Apna account mein login karo</div>
@@ -300,6 +300,7 @@ footer a{color:var(--gold);text-decoration:none;}
         <div class="slider-row"><span class="slider-label">Max stocks ek saath</span><input type="range" min="1" max="15" step="1" value="5" id="stocks" oninput="calc()"><span class="slider-val" id="stocks-out">5</span></div>
         <div class="slider-row"><span class="slider-label">Risk per trade</span><input type="range" min="0.5" max="3" step="0.5" value="1" id="risk" oninput="calc()"><span class="slider-val" id="risk-out">1%</span></div>
         <div class="slider-row"><span class="slider-label">Stop Loss %</span><input type="range" min="0.3" max="2" step="0.1" value="0.5" id="sl" oninput="calc()"><span class="slider-val" id="sl-out">0.5%</span></div>
+        <div class="slider-row"><span class="slider-label">Stock price (₹)</span><input type="range" min="50" max="5000" step="50" value="500" id="stock-price" oninput="calc()"><span class="slider-val gold-c" id="sp-out">₹500</span></div>
         <div class="slider-row" style="margin-bottom:0"><span class="slider-label">Risk : Reward</span><select id="rr" onchange="calc()"><option value="1.5">1:1.5</option><option value="2" selected>1:2</option><option value="2.5">1:2.5</option><option value="3">1:3</option></select><span class="slider-val green" id="rr-out">1:2</span></div>
       </div>
       <div class="metrics">
@@ -355,17 +356,16 @@ footer a{color:var(--gold);text-decoration:none;}
 var APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyWV5W1YmhQZp8DouYpTSHOgomMgBdMZEXcmYrCHKGLLBJKX94gowTYfG1iJmKwAngA/exec";
 // ==========================================
 
-// ==========================================
-// INIT
+// BUG 5 FIX: interval store karo taaki logout pe clear ho sake
+var fetchInterval = null;
 // ==========================================
 window.onload = function() {
   var sess = sessionStorage.getItem('mm_user');
   if (sess) {
-    // Already logged in — seedha tool dikhao
-    document.getElementById('login-screen').classList.remove('show');
     showTool(sess);
+  } else {
+    document.getElementById('login-screen').classList.add('show');
   }
-  // Nahi logged in — login screen already show hai (HTML mein class hai)
 };
 
 function goToRegister() {
@@ -388,6 +388,11 @@ function clicked(n) {
 }
 
 function confirm_step(n) {
+  // BUG 4 FIX: pehle check karo ki user ne actually link click kiya tha
+  if (!clicked_steps[n-1]) {
+    alert('Pehle upar wala button click karo, phir "Ho gaya" dabao!');
+    return;
+  }
   done_steps[n-1] = true;
   document.getElementById('c'+n).style.display = 'none';
   document.getElementById('d'+n).style.display = 'inline-flex';
@@ -480,6 +485,25 @@ function doRegister() {
 // ==========================================
 // LOGIN
 // ==========================================
+// MOBILE CORS FIX: JSONP wrapper for Apps Script
+function appsScriptGet(params, callback) {
+  var cbName = 'mm_cb_' + Date.now();
+  var url = APPS_SCRIPT_URL + '?' + params + '&callback=' + cbName;
+  window[cbName] = function(data) {
+    delete window[cbName];
+    document.body.removeChild(script);
+    callback(null, data);
+  };
+  var script = document.createElement('script');
+  script.src = url;
+  script.onerror = function() {
+    delete window[cbName];
+    document.body.removeChild(script);
+    callback(new Error('network'));
+  };
+  document.body.appendChild(script);
+}
+
 function doLogin() {
   var u = document.getElementById('li-user').value.trim().toLowerCase();
   var p = document.getElementById('li-pass').value;
@@ -494,30 +518,36 @@ function doLogin() {
   btn.disabled = true;
   document.getElementById('li-loading').style.display = 'block';
 
+  // Pehle normal fetch try karo, fail hone pe JSONP use karo (mobile fix)
   fetch(APPS_SCRIPT_URL + '?action=login&username=' + encodeURIComponent(u) + '&password=' + encodeURIComponent(p))
   .then(function(r){return r.json();})
-  .then(function(d){
+  .then(function(d){ handleLoginResponse(d, btn); })
+  .catch(function(){
+    // MOBILE CORS FIX: fetch fail hua — JSONP try karo
+    appsScriptGet('action=login&username=' + encodeURIComponent(u) + '&password=' + encodeURIComponent(p),
+    function(e, d) {
+      btn.disabled = false;
+      document.getElementById('li-loading').style.display = 'none';
+      if (e || !d) { showErr(document.getElementById('li-err'), 'Connection error! Internet check karo.'); return; }
+      handleLoginResponse(d, btn);
+    });
+  });
+
+  function handleLoginResponse(d, btn) {
     btn.disabled = false;
     document.getElementById('li-loading').style.display = 'none';
     if (d.success) {
-      ok.textContent = '✅ Login ho gaya! Tool khul raha hai...';
+      ok.textContent = '✅ Login successful!';
       ok.style.display = 'block';
       sessionStorage.setItem('mm_user', u);
       setTimeout(function() {
-        // Sab messages hide karo
-        ok.style.display  = 'none';
-        err.style.display = 'none';
+        document.getElementById('login-screen').classList.remove('show');
         showTool(u);
-      }, 1200);
+      }, 800);
     } else {
       showErr(err, '❌ ' + d.message);
     }
-  })
-  .catch(function(){
-    btn.disabled = false;
-    document.getElementById('li-loading').style.display = 'none';
-    showErr(err, '❌ Apps Script se connect nahi ho paya! Internet check karo.');
-  });
+  }
 }
 
 // Enter key
@@ -530,38 +560,30 @@ document.addEventListener('keydown', function(e) {
 // LOGOUT
 // ==========================================
 function doLogout() {
+  // BUG 5 FIX: logout pe interval band karo
+  if (fetchInterval) { clearInterval(fetchInterval); fetchInterval = null; }
   sessionStorage.removeItem('mm_user');
-  if (fetchInterval) clearInterval(fetchInterval);
   document.getElementById('tool').classList.remove('show');
   document.getElementById('main-page').style.display = 'none';
-  document.getElementById('login-screen').style.display = '';
   document.getElementById('login-screen').classList.add('show');
   document.getElementById('li-user').value = '';
   document.getElementById('li-pass').value = '';
-  document.getElementById('li-err').style.display = 'none';
-  document.getElementById('li-ok').style.display  = 'none';
-  window.scrollTo({top:0, behavior:'smooth'});
 }
 
 // ==========================================
 // SHOW TOOL
 // ==========================================
-var fetchInterval = null;
 function showTool(username) {
-  // Sab hide karo
-  document.getElementById('main-page').style.display  = 'none';
-  document.getElementById('login-screen').style.display = 'none';
+  document.getElementById('main-page').style.display = 'none';
   document.getElementById('login-screen').classList.remove('show');
-  // Tool dikhao
   document.getElementById('welcome-msg').textContent = 'Welcome, ' + username + '!';
   var t = document.getElementById('tool');
   t.classList.add('show');
-  // Mobile pe scroll to top
-  setTimeout(function() { window.scrollTo({top:0, behavior:'smooth'}); }, 100);
+  window.scrollTo(0,0);
   calc();
-  // Pehle clear karo purana interval
-  if (fetchInterval) clearInterval(fetchInterval);
   fetchResults();
+  // BUG 5 FIX: pehle wala interval clear karo, phir naya lagao
+  if (fetchInterval) clearInterval(fetchInterval);
   fetchInterval = setInterval(fetchResults, 30000);
 }
 
@@ -595,7 +617,8 @@ function fetchResults() {
   .then(function(r){return r.json();})
   .then(function(data){
     document.getElementById('live-dot').classList.add('live');
-    document.getElementById('scan-time').textContent = 'Last scan: ' + data.scan_time;
+    var phase = data.phase ? ' · Phase ' + data.phase + (data.phase==1?' (Pre-Open)':' (Live)') : '';
+    document.getElementById('scan-time').textContent = 'Last scan: ' + data.scan_time + phase;
     document.getElementById('scan-date').textContent = data.date + '  |  ₹' + data.min_price + '–₹' + data.max_price;
     document.getElementById('buy-title').textContent  = '📈 BULLISH (' + data.buy.length + ')';
     document.getElementById('sell-title').textContent = '📉 BEARISH (' + data.sell.length + ')';
@@ -608,8 +631,7 @@ function fetchResults() {
     document.getElementById('auto-msg').textContent = 'Auto-refresh: har 30 sec · ' + new Date().toLocaleTimeString('en-IN');
   })
   .catch(function(){
-    document.getElementById('scan-time').textContent = 'Scanner se connect nahi hua';
-    document.getElementById('auto-msg').textContent  = 'scanner_pc.py chalao → GitHub push → yahan dikhega';
+    document.getElementById('scan-time').textContent = 'Scanner band hai';
     document.getElementById('live-dot').classList.remove('live');
   });
 }
@@ -624,12 +646,15 @@ function calc(){
   var risk=+document.getElementById('risk').value;
   var sl=+document.getElementById('sl').value;
   var rr=+document.getElementById('rr').value;
+  // BUG FIX (Minor): stock price ab dynamic hai, hardcoded 500 nahi
+  var sp=+document.getElementById('stock-price').value;
   document.getElementById('cap-out').textContent=fmt(cap);
   document.getElementById('stocks-out').textContent=nStk;
   document.getElementById('risk-out').textContent=risk+'%';
   document.getElementById('sl-out').textContent=sl.toFixed(1)+'%';
   document.getElementById('rr-out').textContent='1:'+rr;
-  var pt=cap/nStk,ml=cap*(risk/100),tgt=ml*rr,daily=ml*2,qty=Math.floor(pt/500);
+  document.getElementById('sp-out').textContent=fmt(sp);
+  var pt=cap/nStk,ml=cap*(risk/100),tgt=ml*rr,daily=ml*2,qty=Math.floor(pt/sp);
   document.getElementById('per-trade').textContent=fmt(pt);
   document.getElementById('max-loss').textContent=fmt(ml);
   document.getElementById('target').textContent=fmt(tgt);
