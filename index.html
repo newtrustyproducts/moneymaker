@@ -1,425 +1,632 @@
-# ==========================================
-# STOCK SCANNER — 100% FREE (yfinance only)
-# Results → results.json → GitHub → Vercel
-# ==========================================
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MoneyMaker7867 — Free Money Management Tool</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Bebas+Neue&display=swap" rel="stylesheet">
+<style>
+:root{--gold:#F0B429;--bg:#0A0A0A;--card:#111111;--card2:#161616;--border:#222222;--text:#F0EDE6;--muted:#555;--green:#22C55E;--red:#EF4444;--amber:#F59E0B;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--bg);color:var(--text);font-family:'Space Grotesk',sans-serif;overflow-x:hidden;}
 
-import os
-BASE_DIR      = os.path.dirname(os.path.abspath(__file__))
-CSV_FILE      = os.path.join(BASE_DIR, "stocks.csv")
-CACHE_FILE    = os.path.join(BASE_DIR, "cache.json")
-RESULTS_FILE  = os.path.join(BASE_DIR, "results.json")
+/* HERO */
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:2rem;position:relative;}
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 50% at 50% 0%,rgba(240,180,41,.10) 0%,transparent 70%);pointer-events:none;}
+.hero-tag{font-size:11px;letter-spacing:.2em;color:var(--gold);background:rgba(240,180,41,.1);border:1px solid rgba(240,180,41,.2);padding:6px 16px;border-radius:99px;display:inline-block;margin-bottom:24px;text-transform:uppercase;}
+.hero-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(3.5rem,10vw,7rem);line-height:.95;margin-bottom:16px;}
+.hero-title span{color:var(--gold);}
+.hero-sub{font-size:clamp(.95rem,2vw,1.1rem);color:var(--muted);max-width:440px;line-height:1.7;margin-bottom:36px;}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.2);color:var(--green);font-size:13px;padding:8px 18px;border-radius:99px;}
+.hero-badge::before{content:'';width:7px;height:7px;border-radius:50%;background:var(--green);animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+.scroll-hint{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:6px;color:var(--muted);font-size:11px;letter-spacing:.1em;}
+.arrow{width:18px;height:18px;border-right:1.5px solid var(--muted);border-bottom:1.5px solid var(--muted);transform:rotate(45deg);animation:bounce 1.5s infinite;}
+@keyframes bounce{0%,100%{transform:rotate(45deg) translateY(0)}50%{transform:rotate(45deg) translateY(5px)}}
 
-MARKET_OPEN  = "09:15"
-MARKET_CLOSE = "15:30"
+/* LAYOUT */
+section{max-width:680px;margin:0 auto;padding:4rem 1.5rem;}
+.sec-label{font-size:11px;letter-spacing:.2em;color:var(--gold);text-transform:uppercase;margin-bottom:10px;}
+.sec-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(2rem,5vw,2.8rem);margin-bottom:8px;}
+.sec-sub{color:var(--muted);font-size:14px;line-height:1.6;margin-bottom:2rem;}
 
-# ==========================================
-# ⚙️  GITHUB CONFIG — YAHAN FILL KARO
-# ==========================================
-GITHUB_TOKEN  = "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"   # ← tera token
-GITHUB_REPO   = "newtrustyproducts/moneymaker"   # ← e.g. "salim/moneymaker"
-GITHUB_BRANCH = "main"
-# ==========================================
+/* STEPS */
+.steps{display:flex;flex-direction:column;gap:14px;}
+.step{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:1.2rem 1.5rem;display:flex;align-items:center;gap:16px;transition:border-color .4s;}
+.step.done{border-color:rgba(34,197,94,.4);}
+.step-num{width:38px;height:38px;border-radius:50%;border:1.5px solid var(--border);display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:1.1rem;color:var(--gold);flex-shrink:0;transition:all .3s;}
+.step.done .step-num{background:var(--green);border-color:var(--green);color:#000;font-family:'Space Grotesk',sans-serif;font-weight:700;}
+.step-body{flex:1;}
+.step-title{font-weight:600;font-size:14px;margin-bottom:3px;}
+.step-desc{font-size:12px;color:var(--muted);line-height:1.5;}
+.step-actions{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:10px;}
+.sbtn{display:inline-flex;align-items:center;gap:6px;padding:7px 14px;border-radius:99px;font-size:12px;font-weight:600;border:none;cursor:pointer;text-decoration:none;transition:all .2s;font-family:'Space Grotesk',sans-serif;}
+.sbtn-gold{background:var(--gold);color:#000;}
+.sbtn-gold:hover{background:#FFD166;}
+.sbtn-insta{background:linear-gradient(135deg,#833ab4,#fd1d1d,#fcb045);color:#fff;}
+.sbtn-yt{background:#FF0000;color:#fff;}
+.sbtn-confirm{background:transparent;border:1px solid var(--border);color:var(--muted);}
+.sbtn-confirm:hover{border-color:var(--green);color:var(--green);}
+.done-badge{display:inline-flex;align-items:center;gap:5px;font-size:12px;color:var(--green);font-weight:600;}
 
-import yfinance as yf
-import json
-import pandas as pd
-import urllib.request
-import base64
-from datetime import datetime, timedelta
-import time
+/* PROGRESS */
+.lock-box{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:2rem;text-align:center;margin-top:1.5rem;}
+.lock-ico{font-size:2.5rem;margin-bottom:10px;}
+.lock-title{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;margin-bottom:6px;}
+.lock-sub{color:var(--muted);font-size:13px;}
+.prog-wrap{background:var(--border);border-radius:99px;height:5px;margin:1.2rem 0 .4rem;overflow:hidden;}
+.prog-bar{height:100%;background:var(--gold);border-radius:99px;transition:width .5s ease;}
+.prog-text{font-size:12px;color:var(--muted);}
 
-print("=" * 52)
-print("   🚀 STOCK SCANNER — FREE MODE")
-print("=" * 52)
-print("  DATA    → yfinance (FREE!)")
-print("  OUTPUT  → results.json → GitHub → Vercel LIVE!")
-print("=" * 52)
+/* FORMS */
+.auth-card{background:var(--card);border:1px solid rgba(240,180,41,.25);border-radius:18px;padding:2rem;margin-top:1.5rem;display:none;}
+.auth-card.show{display:block;animation:popIn .4s ease;}
+.auth-title{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;color:var(--gold);margin-bottom:4px;text-align:center;}
+.auth-sub{color:var(--muted);font-size:13px;text-align:center;margin-bottom:1.5rem;}
+.inp-wrap{display:flex;flex-direction:column;gap:10px;margin-bottom:1.2rem;}
+.inp{background:var(--card2);border:1px solid var(--border);border-radius:10px;padding:10px 14px;font-size:14px;color:var(--text);font-family:'Space Grotesk',sans-serif;outline:none;width:100%;}
+.inp:focus{border-color:var(--gold);}
+.msg{font-size:12px;padding:8px 12px;border-radius:8px;margin-bottom:10px;display:none;}
+.msg.err{background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.3);color:var(--red);}
+.msg.ok{background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.3);color:var(--green);}
+.btn-primary{background:var(--gold);color:#000;border:none;border-radius:10px;padding:11px 24px;font-size:14px;font-weight:700;cursor:pointer;width:100%;font-family:'Space Grotesk',sans-serif;transition:all .2s;}
+.btn-primary:hover{background:#FFD166;}
+.btn-primary:disabled{opacity:.5;cursor:not-allowed;}
+.loading-text{font-size:12px;color:var(--muted);text-align:center;margin-top:8px;}
 
-# ==========================================
-# WEEKEND CHECK
-# ==========================================
-def is_trading_day():
-    day = datetime.today().weekday()
-    if day == 5:
-        print("\n  📅 Aaj SATURDAY hai — Market band!")
-        return False
-    if day == 6:
-        print("\n  📅 Aaj SUNDAY hai — Market band!")
-        return False
-    return True
+/* LOGIN SCREEN */
+.login-screen{display:none;min-height:100vh;align-items:center;justify-content:center;padding:2rem;}
+.login-screen.show{display:flex;}
+.login-card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:2.5rem 2rem;width:100%;max-width:380px;text-align:center;}
+.login-logo{font-family:'Bebas Neue',sans-serif;font-size:2.5rem;color:var(--gold);margin-bottom:4px;}
+.login-sub{font-size:13px;color:var(--muted);margin-bottom:1.5rem;}
+.logout-btn{background:transparent;border:1px solid var(--border);color:var(--muted);border-radius:8px;padding:6px 14px;font-size:12px;cursor:pointer;font-family:'Space Grotesk',sans-serif;transition:all .2s;margin-top:12px;}
+.logout-btn:hover{border-color:var(--red);color:var(--red);}
+.new-acc-btn{background:transparent;border:none;color:var(--muted);font-size:12px;cursor:pointer;font-family:'Space Grotesk',sans-serif;margin-top:8px;text-decoration:underline;}
 
-if not is_trading_day():
-    exit()
+/* TOOL */
+.tool-section{display:none;}
+.tool-section.show{display:block;animation:popIn .5s ease;}
+@keyframes popIn{from{opacity:0;transform:scale(.97)}to{opacity:1;transform:scale(1)}}
+.tabs{display:flex;gap:6px;margin-bottom:1.5rem;}
+.tab{flex:1;padding:10px;border:1px solid var(--border);border-radius:10px;background:var(--card);color:var(--muted);font-size:13px;font-weight:600;cursor:pointer;text-align:center;transition:all .2s;font-family:'Space Grotesk',sans-serif;}
+.tab.active{border-color:var(--gold);color:var(--gold);background:rgba(240,180,41,.06);}
+.panel{display:none;}
+.panel.active{display:block;}
+.tcard{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1.2rem 1.4rem;margin-bottom:12px;}
+.card-title{font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:14px;font-weight:600;}
+.scan-status{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;}
+.scan-time{font-size:12px;color:var(--muted);}
+.scan-dot{display:inline-flex;align-items:center;gap:6px;font-size:12px;}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--muted);}
+.dot.live{background:var(--green);animation:pulse 2s infinite;}
+.signal-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px;}
+.signal-box{background:var(--card2);border:1px solid var(--border);border-radius:10px;padding:10px 12px;}
+.signal-box-title{font-size:11px;font-weight:600;margin-bottom:8px;}
+.signal-box-title.buy{color:var(--green);}
+.signal-box-title.sell{color:var(--red);}
+.signal-item{display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid var(--border);font-size:12px;}
+.signal-item:last-child{border-bottom:none;}
+.signal-item .sym{font-weight:600;}
+.signal-item .price{color:var(--muted);}
+.no-signal{font-size:12px;color:var(--muted);padding:8px 0;text-align:center;}
+.refresh-btn{width:100%;padding:8px;background:transparent;border:1px solid var(--border);color:var(--muted);border-radius:8px;font-size:12px;cursor:pointer;transition:all .2s;font-family:'Space Grotesk',sans-serif;margin-top:8px;}
+.refresh-btn:hover{border-color:var(--gold);color:var(--gold);}
+.slider-row{display:flex;align-items:center;gap:10px;margin-bottom:12px;}
+.slider-label{font-size:12px;color:var(--muted);min-width:130px;}
+input[type=range]{flex:1;-webkit-appearance:none;height:3px;border-radius:99px;background:var(--border);outline:none;}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:15px;height:15px;border-radius:50%;background:var(--gold);cursor:pointer;border:2px solid var(--bg);}
+.slider-val{font-size:12px;font-weight:700;min-width:72px;text-align:right;}
+select{background:var(--card2);color:var(--text);border:1px solid var(--border);border-radius:8px;padding:5px 8px;font-size:12px;font-family:'Space Grotesk',sans-serif;outline:none;}
+.metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-bottom:12px;}
+.metric-box{background:var(--card2);border:1px solid var(--border);border-radius:10px;padding:10px 12px;}
+.metric-label{font-size:10px;color:var(--muted);margin-bottom:5px;}
+.metric-val{font-size:16px;font-weight:700;}
+.green{color:var(--green);}.red{color:var(--red);}.amber{color:var(--amber);}.gold-c{color:var(--gold);}
+.sum-row{display:flex;justify-content:space-between;font-size:12px;padding:5px 0;border-bottom:1px solid var(--border);}
+.sum-row:last-child{border-bottom:none;}
+.sum-row span:first-child{color:var(--muted);}
+.sum-row span:last-child{font-weight:700;}
+.rule-item{display:flex;align-items:flex-start;gap:10px;padding:9px 0;border-bottom:1px solid var(--border);}
+.rule-item:last-child{border-bottom:none;}
+.rdot{width:7px;height:7px;border-radius:50%;margin-top:5px;flex-shrink:0;}
+.rdot.warn{background:var(--amber);}.rdot.ok{background:var(--green);}
+.rule-text{font-size:13px;line-height:1.5;}
+.rule-sub{font-size:11px;color:var(--muted);margin-top:2px;}
+.tool-header-bar{display:flex;justify-content:space-between;align-items:center;margin-bottom:1.5rem;}
+footer{text-align:center;padding:3rem 1.5rem;color:var(--muted);font-size:12px;border-top:1px solid var(--border);}
+footer a{color:var(--gold);text-decoration:none;}
+</style>
+</head>
+<body>
 
-# ==========================================
-# PRICE RANGE INPUT
-# ==========================================
-print("\n💰 Aaj ka price range set karo:")
-while True:
-    try:
-        MIN_PRICE = float(input("   Min price (₹): "))
-        MAX_PRICE = float(input("   Max price (₹): "))
-        if MIN_PRICE >= MAX_PRICE:
-            print("   ❌ Min price, Max se kam hona chahiye!")
-            continue
-        break
-    except ValueError:
-        print("   ❌ Sirf number daalo!")
+<!-- ============ LOGIN SCREEN ============ -->
+<div class="login-screen show" id="login-screen">
+  <div class="login-card">
+    <div class="login-logo">MM PRO</div>
+    <div class="login-sub">Apna account mein login karo</div>
+    <div class="inp-wrap">
+      <input class="inp" type="text" id="li-user" placeholder="Username" autocomplete="username">
+      <input class="inp" type="password" id="li-pass" placeholder="Password" autocomplete="current-password">
+    </div>
+    <div class="msg err" id="li-err"></div>
+    <div class="msg ok" id="li-ok"></div>
+    <button class="btn-primary" id="li-btn" onclick="doLogin()">Login Karo →</button>
+    <div class="loading-text" id="li-loading" style="display:none">⏳ Verify ho raha hai...</div>
+    <br>
+    <button class="new-acc-btn" onclick="goToRegister()">Naya account banana hai? 3 steps karo →</button>
+  </div>
+</div>
 
-print(f"\n✅ Price range: ₹{MIN_PRICE} to ₹{MAX_PRICE}")
-print("=" * 52)
+<!-- ============ MAIN PAGE (Hero + Steps) ============ -->
+<div id="main-page" style="display:none">
+<div class="hero">
+  <div class="hero-tag">Traders Ke Liye — 100% Free</div>
+  <h1 class="hero-title">MONEY<br><span>MANAGER</span><br>PRO</h1>
+  <p class="hero-sub">Live scanner signals + professional money management — ek jagah. Capital protect karo, risk control karo.</p>
+  <div class="hero-badge">Free Access — Sirf 3 Steps Mein</div>
+  <div class="scroll-hint"><span>NICHE DEKHO</span><div class="arrow"></div></div>
+</div>
 
-# ==========================================
-# STOCKS LOAD
-# ==========================================
-stocks_df = pd.read_csv(CSV_FILE)
-print(f"✅ {len(stocks_df)} stocks loaded!")
-print("=" * 52)
+<section>
+  <div class="sec-label">Free Access</div>
+  <h2 class="sec-title">3 Steps — Tool Unlock Karo</h2>
+  <p class="sec-sub">Sirf ek baar karo — phir username + password se kisi bhi device pe login karo.</p>
 
-# ==========================================
-# CACHE
-# ==========================================
-def save_cache(cache):
-    today = datetime.today().strftime("%Y-%m-%d")
-    with open(CACHE_FILE, "w") as f:
-        json.dump({"date": today, "cache": cache}, f)
-    print(f"💾 Cache saved!")
+  <div class="steps">
+    <div class="step" id="s1">
+      <div class="step-num" id="n1">1</div>
+      <div class="step-body">
+        <div class="step-title">Dhan App Se Demat Account Kholo</div>
+        <div class="step-desc">Referral link se free mein Dhan account open karo.</div>
+        <div class="step-actions">
+          <a class="sbtn sbtn-gold" href="https://join.dhan.co/?invite=OKHPS62291" target="_blank" onclick="clicked(1)">🏦 Dhan Account Kholo</a>
+          <button class="sbtn sbtn-confirm" id="c1" style="display:none" onclick="confirm_step(1)">✓ Ho gaya</button>
+          <span class="done-badge" id="d1" style="display:none">✅ Done!</span>
+        </div>
+      </div>
+    </div>
 
-def load_cache():
-    today = datetime.today().strftime("%Y-%m-%d")
-    if not os.path.exists(CACHE_FILE):
-        return None
-    try:
-        with open(CACHE_FILE) as f:
-            data = json.load(f)
-        if data.get("date") == today:
-            print(f"✅ Aaj ka cache mila! ({len(data['cache'])} stocks)")
-            return data["cache"]
-        else:
-            print(f"⚠️  Cache purana — Phase 1 chalega")
-            return None
-    except:
-        return None
+    <div class="step" id="s2">
+      <div class="step-num" id="n2">2</div>
+      <div class="step-body">
+        <div class="step-title">Instagram Pe Follow Karo</div>
+        <div class="step-desc">@mone_ymaker7867 — daily tips aur scanner results.</div>
+        <div class="step-actions">
+          <a class="sbtn sbtn-insta" href="https://www.instagram.com/mone_ymaker7867/" target="_blank" onclick="clicked(2)">📸 Follow Karo</a>
+          <button class="sbtn sbtn-confirm" id="c2" style="display:none" onclick="confirm_step(2)">✓ Ho gaya</button>
+          <span class="done-badge" id="d2" style="display:none">✅ Done!</span>
+        </div>
+      </div>
+    </div>
 
-# ==========================================
-# RESULTS SAVE — Local
-# ==========================================
-def save_results(buy_list, sell_list, scan_time):
-    results = {
-        "scan_time" : scan_time,
-        "date"      : datetime.today().strftime("%d %b %Y"),
-        "min_price" : MIN_PRICE,
-        "max_price" : MAX_PRICE,
-        "buy"       : [{"symbol": s, "price": p} for s, p in buy_list],
-        "sell"      : [{"symbol": s, "price": p} for s, p in sell_list],
+    <div class="step" id="s3">
+      <div class="step-num" id="n3">3</div>
+      <div class="step-body">
+        <div class="step-title">YouTube Pe Subscribe Karo</div>
+        <div class="step-desc">@mone_ymaker7867 — free trading tutorials aur strategies.</div>
+        <div class="step-actions">
+          <a class="sbtn sbtn-yt" href="https://www.youtube.com/@mone_ymaker7867" target="_blank" onclick="clicked(3)">▶ Subscribe Karo</a>
+          <button class="sbtn sbtn-confirm" id="c3" style="display:none" onclick="confirm_step(3)">✓ Ho gaya</button>
+          <span class="done-badge" id="d3" style="display:none">✅ Done!</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- LOCK BOX -->
+  <div class="lock-box" id="lock-box">
+    <div class="lock-ico">🔒</div>
+    <div class="lock-title">Tool Locked Hai</div>
+    <div class="lock-sub">Teeno steps complete karo — phir account banao</div>
+    <div class="prog-wrap"><div class="prog-bar" id="prog" style="width:0%"></div></div>
+    <div class="prog-text" id="prog-text">0 / 3 complete</div>
+  </div>
+
+  <!-- REGISTER FORM — 3 steps ke baad show hoga -->
+  <div class="auth-card" id="reg-form">
+    <div class="lock-ico" style="text-align:center">🔓</div>
+    <div class="auth-title">Account Banao!</div>
+    <div class="auth-sub">Ek baar set karo — phir kisi bhi device se login karo</div>
+    <div class="inp-wrap">
+      <input class="inp" type="text" id="reg-user" placeholder="Username (min 4 characters)" autocomplete="off" oninput="checkUser()">
+      <div class="msg err" id="reg-user-err"></div>
+      <input class="inp" type="password" id="reg-pass" placeholder="Password (min 6 characters)" autocomplete="new-password">
+      <input class="inp" type="password" id="reg-pass2" placeholder="Password dobara daalo" autocomplete="new-password">
+      <div class="msg err" id="reg-err"></div>
+      <div class="msg ok" id="reg-ok"></div>
+    </div>
+    <button class="btn-primary" id="reg-btn" onclick="doRegister()">Account Banao & Tool Kholo →</button>
+    <div class="loading-text" id="reg-loading" style="display:none">⏳ Account ban raha hai...</div>
+  </div>
+</section>
+</div>
+
+<!-- ============ TOOL ============ -->
+<div class="tool-section" id="tool">
+  <section style="padding-top:2rem">
+    <div class="tool-header-bar">
+      <div>
+        <div class="sec-label" id="welcome-msg">Welcome!</div>
+        <h2 class="sec-title" style="margin-bottom:0">Money Manager Pro</h2>
+      </div>
+      <button class="logout-btn" onclick="doLogout()">Logout</button>
+    </div>
+
+    <div class="tabs">
+      <button class="tab active" onclick="switchTab('scanner')">📊 Signals</button>
+      <button class="tab" onclick="switchTab('calc')">💰 Calculator</button>
+      <button class="tab" onclick="switchTab('rules')">📋 Rules</button>
+    </div>
+
+    <!-- SCANNER -->
+    <div class="panel active" id="panel-scanner">
+      <div class="tcard">
+        <div class="scan-status">
+          <div class="card-title" style="margin-bottom:0">Live Signals</div>
+          <div class="scan-dot">
+            <div class="dot" id="live-dot"></div>
+            <span class="scan-time" id="scan-time">Fetch ho raha hai...</span>
+          </div>
+        </div>
+        <div style="font-size:11px;color:var(--muted);margin-bottom:12px" id="scan-date"></div>
+        <div class="signal-grid">
+          <div class="signal-box">
+            <div class="signal-box-title buy" id="buy-title">📈 BULLISH (0)</div>
+            <div id="buy-list"><div class="no-signal">Scanner se results ka wait karo</div></div>
+          </div>
+          <div class="signal-box">
+            <div class="signal-box-title sell" id="sell-title">📉 BEARISH (0)</div>
+            <div id="sell-list"><div class="no-signal">Scanner se results ka wait karo</div></div>
+          </div>
+        </div>
+        <div style="font-size:11px;color:var(--muted);text-align:center;margin-bottom:6px" id="auto-msg">Har 30 sec mein auto-refresh</div>
+        <button class="refresh-btn" onclick="fetchResults()">🔄 Abhi Refresh Karo</button>
+      </div>
+      <div class="tcard" style="font-size:12px;color:var(--muted);line-height:1.8">
+        <div class="card-title">Kaise Use Karein</div>
+        📈 Bullish = Strong uptrend — BUY consider karo<br>
+        📉 Bearish = Weak stocks — SELL/avoid karo<br>
+        Nifty green ho tab Bullish signals zyada reliable hote hain<br>
+        Hamesha SL lagao entry ke saath
+      </div>
+    </div>
+
+    <!-- CALCULATOR -->
+    <div class="panel" id="panel-calc">
+      <div class="tcard">
+        <div class="card-title">Capital & Risk Setup</div>
+        <div class="slider-row"><span class="slider-label">Total Capital</span><input type="range" min="50000" max="500000" step="10000" value="100000" id="capital" oninput="calc()"><span class="slider-val gold-c" id="cap-out">₹1,00,000</span></div>
+        <div class="slider-row"><span class="slider-label">Max stocks ek saath</span><input type="range" min="1" max="15" step="1" value="5" id="stocks" oninput="calc()"><span class="slider-val" id="stocks-out">5</span></div>
+        <div class="slider-row"><span class="slider-label">Risk per trade</span><input type="range" min="0.5" max="3" step="0.5" value="1" id="risk" oninput="calc()"><span class="slider-val" id="risk-out">1%</span></div>
+        <div class="slider-row"><span class="slider-label">Stop Loss %</span><input type="range" min="0.3" max="2" step="0.1" value="0.5" id="sl" oninput="calc()"><span class="slider-val" id="sl-out">0.5%</span></div>
+        <div class="slider-row" style="margin-bottom:0"><span class="slider-label">Risk : Reward</span><select id="rr" onchange="calc()"><option value="1.5">1:1.5</option><option value="2" selected>1:2</option><option value="2.5">1:2.5</option><option value="3">1:3</option></select><span class="slider-val green" id="rr-out">1:2</span></div>
+      </div>
+      <div class="metrics">
+        <div class="metric-box"><div class="metric-label">Per trade</div><div class="metric-val gold-c" id="per-trade">₹20,000</div></div>
+        <div class="metric-box"><div class="metric-label">Max loss/trade</div><div class="metric-val red" id="max-loss">₹1,000</div></div>
+        <div class="metric-box"><div class="metric-label">Target/trade</div><div class="metric-val green" id="target">₹2,000</div></div>
+        <div class="metric-box"><div class="metric-label">Daily limit</div><div class="metric-val red" id="daily-loss">₹2,000</div></div>
+        <div class="metric-box"><div class="metric-label">Best case</div><div class="metric-val green" id="best-case">+₹10,000</div></div>
+        <div class="metric-box"><div class="metric-label">Qty (₹500 stock)</div><div class="metric-val" id="qty">40</div></div>
+      </div>
+      <div class="tcard">
+        <div class="card-title">Summary</div>
+        <div class="sum-row"><span>Saare targets hit hon toh</span><span class="green" id="s-best">+₹10,000</span></div>
+        <div class="sum-row"><span>Saare SL hit hon toh</span><span class="red" id="s-worst">-₹5,000</span></div>
+        <div class="sum-row"><span>Daily stop trading limit</span><span class="amber" id="s-limit">-₹2,000</span></div>
+      </div>
+    </div>
+
+    <!-- RULES -->
+    <div class="panel" id="panel-rules">
+      <div class="tcard">
+        <div class="card-title">Golden Rules</div>
+        <div class="rule-item"><div class="rdot warn"></div><div><div class="rule-text">Max <strong id="r-stocks">5</strong> stocks ek saath — zyada mat lo</div><div class="rule-sub">Concentration risk badh jaata hai</div></div></div>
+        <div class="rule-item"><div class="rdot warn"></div><div><div class="rule-text">Daily loss limit hit hote hi trading BAND karo</div><div class="rule-sub" id="r-daily">Limit: ₹2,000 — phir screen se door ho jao</div></div></div>
+        <div class="rule-item"><div class="rdot ok"></div><div><div class="rule-text">Nifty direction 9:20 pe confirm karo</div><div class="rule-sub">Green → Bullish lo · Red → Bearish lo</div></div></div>
+        <div class="rule-item"><div class="rdot ok"></div><div><div class="rule-text">SL hamesha entry ke saath lagao</div><div class="rule-sub">Bracket Order use karo — automatic SL</div></div></div>
+        <div class="rule-item"><div class="rdot ok"></div><div><div class="rule-text">3:15 PM pe saare positions close karo</div><div class="rule-sub">Koi overnight position nahi — kal fresh start</div></div></div>
+        <div class="rule-item"><div class="rdot warn"></div><div><div class="rule-text">Lagaataar 3 loss ke baad — aaj trading band</div><div class="rule-sub">Emotional trading sabse bada dushman hai</div></div></div>
+        <div class="rule-item"><div class="rdot warn"></div><div><div class="rule-text">News events pe trade mat karo</div><div class="rule-sub">Budget, RBI, results — high volatility mein signals unreliable</div></div></div>
+        <div class="rule-item"><div class="rdot ok"></div><div><div class="rule-text">Profit mein SL trailing karo</div><div class="rule-sub">1% move ke baad SL ko breakeven pe le aao</div></div></div>
+        <div class="rule-item"><div class="rdot ok"></div><div><div class="rule-text">Volume confirm karo entry se pehle</div><div class="rule-sub">Kam volume wale stocks mein entry nahi</div></div></div>
+        <div class="rule-item"><div class="rdot warn"></div><div><div class="rule-text">Monday subah pehle 15 min wait karo</div><div class="rule-sub">Gap up/down settle hone do</div></div></div>
+      </div>
+    </div>
+
+  </section>
+</div>
+
+<footer>
+  <p>Made for Indian traders 🇮🇳</p>
+  <p style="margin-top:8px">
+    <a href="https://www.instagram.com/mone_ymaker7867/" target="_blank">Instagram</a> &nbsp;·&nbsp;
+    <a href="https://www.youtube.com/@mone_ymaker7867" target="_blank">YouTube</a> &nbsp;·&nbsp;
+    <a href="https://join.dhan.co/?invite=OKHPS62291" target="_blank">Dhan Account</a>
+  </p>
+  <p style="margin-top:8px;font-size:11px;color:#333">Trading mein risk hota hai — sirf informed decisions lo.</p>
+</footer>
+
+<script>
+// ==========================================
+// ⚙️  YAHAN APNA APPS SCRIPT URL DAALO
+// ==========================================
+var APPS_SCRIPT_URL = "YOUR_APPS_SCRIPT_URL_YAHAN";
+// ==========================================
+
+// ==========================================
+// INIT
+// ==========================================
+window.onload = function() {
+  var sess = sessionStorage.getItem('mm_user');
+  if (sess) {
+    // Already logged in — seedha tool dikhao
+    document.getElementById('login-screen').classList.remove('show');
+    showTool(sess);
+  }
+  // Nahi logged in — login screen already show hai (HTML mein class hai)
+};
+
+function goToRegister() {
+  document.getElementById('login-screen').classList.remove('show');
+  document.getElementById('main-page').style.display = 'block';
+  window.scrollTo(0,0);
+}
+
+// ==========================================
+// 3 STEP SYSTEM
+// ==========================================
+var clicked_steps = [false,false,false];
+var done_steps    = [false,false,false];
+
+function clicked(n) {
+  clicked_steps[n-1] = true;
+  setTimeout(function() {
+    document.getElementById('c'+n).style.display = 'inline-flex';
+  }, 1500);
+}
+
+function confirm_step(n) {
+  done_steps[n-1] = true;
+  document.getElementById('c'+n).style.display = 'none';
+  document.getElementById('d'+n).style.display = 'inline-flex';
+  document.getElementById('s'+n).classList.add('done');
+  document.getElementById('n'+n).textContent = '✓';
+  update_progress();
+}
+
+function update_progress() {
+  var done = done_steps.filter(Boolean).length;
+  document.getElementById('prog').style.width = (done/3*100) + '%';
+  document.getElementById('prog-text').textContent = done + ' / 3 complete';
+  if (done === 3) {
+    setTimeout(function() {
+      document.getElementById('lock-box').style.display = 'none';
+      document.getElementById('reg-form').classList.add('show');
+      document.getElementById('reg-form').scrollIntoView({behavior:'smooth',block:'center'});
+    }, 500);
+  }
+}
+
+// ==========================================
+// USERNAME CHECK
+// ==========================================
+var checkTimer;
+function checkUser() {
+  clearTimeout(checkTimer);
+  var u = document.getElementById('reg-user').value.trim();
+  var err = document.getElementById('reg-user-err');
+  err.style.display = 'none';
+  if (u.length < 4) return;
+  checkTimer = setTimeout(function() {
+    fetch(APPS_SCRIPT_URL + '?action=check&username=' + encodeURIComponent(u))
+      .then(function(r){return r.json();})
+      .then(function(d){
+        if (!d.available) {
+          err.textContent = '❌ ' + d.message;
+          err.style.display = 'block';
+        }
+      }).catch(function(){});
+  }, 600);
+}
+
+// ==========================================
+// REGISTER
+// ==========================================
+function doRegister() {
+  var u  = document.getElementById('reg-user').value.trim().toLowerCase();
+  var p  = document.getElementById('reg-pass').value;
+  var p2 = document.getElementById('reg-pass2').value;
+  var err = document.getElementById('reg-err');
+  var ok  = document.getElementById('reg-ok');
+  err.style.display = 'none';
+  ok.style.display  = 'none';
+
+  if (u.length < 4) { showErr(err, 'Username kam se kam 4 characters ka hona chahiye'); return; }
+  if (p.length < 6) { showErr(err, 'Password kam se kam 6 characters ka hona chahiye'); return; }
+  if (p !== p2)     { showErr(err, 'Dono passwords match nahi kar rahe!'); return; }
+
+  var btn = document.getElementById('reg-btn');
+  btn.disabled = true;
+  document.getElementById('reg-loading').style.display = 'block';
+
+  fetch(APPS_SCRIPT_URL, {
+    method: 'POST',
+    body: JSON.stringify({username: u, password: p})
+  })
+  .then(function(r){return r.json();})
+  .then(function(d){
+    btn.disabled = false;
+    document.getElementById('reg-loading').style.display = 'none';
+    if (d.success) {
+      ok.textContent = '✅ ' + d.message;
+      ok.style.display = 'block';
+      setTimeout(function() {
+        sessionStorage.setItem('mm_user', u);
+        showTool(u);
+      }, 1000);
+    } else {
+      showErr(err, d.message);
     }
-    with open(RESULTS_FILE, "w") as f:
-        json.dump(results, f, indent=2)
-    print(f"📊 results.json saved locally!")
-    return results
+  })
+  .catch(function(){
+    btn.disabled = false;
+    document.getElementById('reg-loading').style.display = 'none';
+    showErr(err, 'Connection error! Internet check karo.');
+  });
+}
 
-# ==========================================
-# GITHUB PUSH — Vercel ke liye ⭐ NEW
-# ==========================================
-def push_to_github(results):
-    try:
-        content    = json.dumps(results, indent=2)
-        b64content = base64.b64encode(content.encode()).decode()
-        api_url    = f"https://api.github.com/repos/{GITHUB_REPO}/contents/results.json"
-        headers    = {
-            "Authorization": f"token {GITHUB_TOKEN}",
-            "Content-Type" : "application/json",
-            "User-Agent"   : "MoneyMaker-Scanner"
-        }
+// ==========================================
+// LOGIN
+// ==========================================
+function doLogin() {
+  var u = document.getElementById('li-user').value.trim().toLowerCase();
+  var p = document.getElementById('li-pass').value;
+  var err = document.getElementById('li-err');
+  var ok  = document.getElementById('li-ok');
+  err.style.display = 'none';
+  ok.style.display  = 'none';
 
-        # Pehle existing file ka SHA lo (update ke liye zaroori)
-        sha = None
-        try:
-            req = urllib.request.Request(api_url, headers=headers)
-            with urllib.request.urlopen(req) as r:
-                sha = json.loads(r.read())["sha"]
-        except:
-            pass  # File nahi hai toh naya create hoga
+  if (!u || !p) { showErr(err, 'Username aur Password dono daalo!'); return; }
 
-        payload = {
-            "message" : f"scan update {results['scan_time']}",
-            "content" : b64content,
-            "branch"  : GITHUB_BRANCH
-        }
-        if sha:
-            payload["sha"] = sha
+  var btn = document.getElementById('li-btn');
+  btn.disabled = true;
+  document.getElementById('li-loading').style.display = 'block';
 
-        data    = json.dumps(payload).encode()
-        req     = urllib.request.Request(api_url, data=data, headers=headers, method="PUT")
-        with urllib.request.urlopen(req) as r:
-            status = r.getcode()
+  fetch(APPS_SCRIPT_URL + '?action=login&username=' + encodeURIComponent(u) + '&password=' + encodeURIComponent(p))
+  .then(function(r){return r.json();})
+  .then(function(d){
+    btn.disabled = false;
+    document.getElementById('li-loading').style.display = 'none';
+    if (d.success) {
+      ok.textContent = '✅ Login successful!';
+      ok.style.display = 'block';
+      sessionStorage.setItem('mm_user', u);
+      setTimeout(function() {
+        document.getElementById('login-screen').classList.remove('show');
+        showTool(u);
+      }, 800);
+    } else {
+      showErr(err, '❌ ' + d.message);
+    }
+  })
+  .catch(function(){
+    btn.disabled = false;
+    document.getElementById('li-loading').style.display = 'none';
+    showErr(err, 'Connection error! Internet check karo.');
+  });
+}
 
-        if status in [200, 201]:
-            print(f"✅ GitHub push ho gaya! Vercel 30 sec mein update hoga!")
-        else:
-            print(f"⚠️  GitHub push issue: status {status}")
+// Enter key
+document.addEventListener('keydown', function(e) {
+  if (e.key !== 'Enter') return;
+  if (document.getElementById('login-screen').classList.contains('show')) doLogin();
+});
 
-    except Exception as e:
-        print(f"⚠️  GitHub push fail: {e} (local results.json theek hai)")
+// ==========================================
+// LOGOUT
+// ==========================================
+function doLogout() {
+  sessionStorage.removeItem('mm_user');
+  document.getElementById('tool').classList.remove('show');
+  document.getElementById('main-page').style.display = 'none';
+  document.getElementById('login-screen').classList.add('show');
+  document.getElementById('li-user').value = '';
+  document.getElementById('li-pass').value = '';
+}
 
-# ==========================================
-# SMART DATE HELPERS
-# ==========================================
-def get_smart_dates(index):
-    today       = pd.Timestamp(datetime.today().date())
-    idx         = pd.DatetimeIndex(index).tz_localize(None).sort_values()
-    this_mon    = today - timedelta(days=today.weekday())
-    month_start = today.replace(day=1)
+// ==========================================
+// SHOW TOOL
+// ==========================================
+function showTool(username) {
+  document.getElementById('main-page').style.display = 'none';
+  document.getElementById('login-screen').classList.remove('show');
+  document.getElementById('welcome-msg').textContent = 'Welcome, ' + username + '!';
+  var t = document.getElementById('tool');
+  t.classList.add('show');
+  window.scrollTo(0,0);
+  calc();
+  fetchResults();
+  setInterval(fetchResults, 30000);
+}
 
-    pdc = idx[idx < today][-1]        if len(idx[idx < today])        > 0 else idx[-1]
-    pwc = idx[idx < this_mon][-1]     if len(idx[idx < this_mon])     > 0 else idx[0]
-    wo  = idx[idx >= this_mon][0]     if len(idx[idx >= this_mon])    > 0 else idx[-1]
-    mo  = idx[idx >= month_start][0]  if len(idx[idx >= month_start]) > 0 else idx[-1]
-    pmc = idx[idx < month_start][-1]  if len(idx[idx < month_start])  > 0 else idx[0]
+// ==========================================
+// HELPERS
+// ==========================================
+function showErr(el, msg) {
+  el.textContent = msg;
+  el.style.display = 'block';
+}
 
-    return pwc, wo, mo, pmc, pdc
+// ==========================================
+// TABS
+// ==========================================
+function switchTab(name) {
+  var names = ['scanner','calc','rules'];
+  document.querySelectorAll('.tab').forEach(function(t,i) {
+    t.classList.toggle('active', names[i] === name);
+  });
+  document.querySelectorAll('.panel').forEach(function(p) {
+    p.classList.remove('active');
+  });
+  document.getElementById('panel-'+name).classList.add('active');
+}
 
-# ==========================================
-# PHASE 1 — yfinance cache
-# ==========================================
-def build_cache():
-    print(f"\n⚡ PHASE 1 — yfinance se data download...")
-    print(f"   ⏱  2-3 min mein complete!\n")
+// ==========================================
+// SCANNER FETCH
+// ==========================================
+function fetchResults() {
+  fetch('https://raw.githubusercontent.com/newtrustyproducts/moneymaker/main/results.json?t=' + Date.now())
+  .then(function(r){return r.json();})
+  .then(function(data){
+    document.getElementById('live-dot').classList.add('live');
+    document.getElementById('scan-time').textContent = 'Last scan: ' + data.scan_time;
+    document.getElementById('scan-date').textContent = data.date + '  |  ₹' + data.min_price + '–₹' + data.max_price;
+    document.getElementById('buy-title').textContent  = '📈 BULLISH (' + data.buy.length + ')';
+    document.getElementById('sell-title').textContent = '📉 BEARISH (' + data.sell.length + ')';
+    document.getElementById('buy-list').innerHTML = data.buy.length === 0
+      ? '<div class="no-signal">Koi Bullish signal nahi</div>'
+      : data.buy.map(function(s){return '<div class="signal-item"><span class="sym">'+s.symbol+'</span><span class="price">₹'+s.price+'</span></div>';}).join('');
+    document.getElementById('sell-list').innerHTML = data.sell.length === 0
+      ? '<div class="no-signal">Koi Bearish signal nahi</div>'
+      : data.sell.map(function(s){return '<div class="signal-item"><span class="sym">'+s.symbol+'</span><span class="price">₹'+s.price+'</span></div>';}).join('');
+    document.getElementById('auto-msg').textContent = 'Auto-refresh: har 30 sec · ' + new Date().toLocaleTimeString('en-IN');
+  })
+  .catch(function(){
+    document.getElementById('scan-time').textContent = 'Scanner band hai';
+    document.getElementById('live-dot').classList.remove('live');
+  });
+}
 
-    symbols = stocks_df["symbol"].tolist()
-    yf_syms = [s + ".NS" for s in symbols]
-    start   = (datetime.today() - timedelta(days=90)).strftime("%Y-%m-%d")
-    end     = (datetime.today() + timedelta(days=1)).strftime("%Y-%m-%d")
-
-    print(f"📥 {len(yf_syms)} stocks download ho rahi hain...")
-    try:
-        raw = yf.download(
-            tickers=yf_syms, start=start, end=end,
-            interval="1d", group_by="ticker",
-            auto_adjust=True, progress=False, threads=True
-        )
-    except Exception as e:
-        print(f"❌ Download error: {e}")
-        return None
-
-    try:
-        pwc, wo, mo, pmc, pdc = get_smart_dates(raw.index)
-        print(f"\n📅 PWC:{pwc.date()} WO:{wo.date()} MO:{mo.date()} PMC:{pmc.date()} PDC:{pdc.date()}")
-        today_ts = pd.Timestamp(datetime.today().date())
-    except Exception as e:
-        print(f"❌ Date error: {e}")
-        return None
-
-    def get_val(sym_ns, target_ts, field="Close"):
-        try:
-            if sym_ns in raw.columns.get_level_values(0):
-                col = raw[sym_ns][[field]]
-            else:
-                return 0
-            col.index = pd.to_datetime(col.index).tz_localize(None)
-            subset = col[col.index >= target_ts]
-            if subset.empty:
-                subset = col[col.index <= target_ts]
-                if subset.empty: return 0
-                val = subset[field].iloc[-1]
-                return 0 if (val != val) else round(float(val), 2)
-            val = subset[field].iloc[0]
-            return 0 if (val != val) else round(float(val), 2)
-        except:
-            return 0
-
-    cache    = {}
-    ok_count = 0
-    total    = len(stocks_df)
-
-    for idx_row, row in enumerate(stocks_df.itertuples(), 1):
-        symbol = row.symbol
-        sec_id = str(row.security_id)
-        sym_ns = symbol + ".NS"
-
-        today_open = 0  # 9:15 ke baad fetch hoga
-        pwc_val    = get_val(sym_ns, pwc,      "Close")
-        wo_val     = get_val(sym_ns, wo,       "Open")
-        mo_val     = get_val(sym_ns, mo,       "Open")
-        pmc_val    = get_val(sym_ns, pmc,      "Close")
-        pdc_val    = get_val(sym_ns, pdc,      "Close")
-
-        cache[sec_id] = {
-            "symbol": symbol, "today_open": today_open,
-            "pwc": pwc_val, "wo": wo_val,
-            "mo": mo_val, "pmc": pmc_val, "pdc": pdc_val,
-        }
-
-        ok = "✅" if all([today_open, pwc_val, wo_val, mo_val, pmc_val, pdc_val]) else "⚠️"
-        if all([today_open, pwc_val, wo_val, mo_val, pmc_val, pdc_val]):
-            ok_count += 1
-
-        print(f"  [{idx_row}/{total}] {symbol:<15} {ok} | "
-              f"Open:{today_open} PWC:{pwc_val} WO:{wo_val} "
-              f"MO:{mo_val} PMC:{pmc_val} PDC:{pdc_val}")
-
-    print(f"\n✅ Phase 1 done! {ok_count}/{total} stocks ready!")
-    return cache
-
-
-# ==========================================
-# TODAY OPEN — 9:15 ke baad yfinance se
-# ==========================================
-def fetch_today_open(cache):
-    print(f"\n⚡ Today Open fetch ho raha hai (yfinance intraday)...")
-    symbols = stocks_df["symbol"].tolist()
-    yf_syms = [s + ".NS" for s in symbols]
-    filled  = 0
-    try:
-        raw_intra = yf.download(
-            tickers     = yf_syms,
-            period      = "1d",
-            interval    = "1m",
-            group_by    = "ticker",
-            auto_adjust = True,
-            progress    = False,
-            threads     = True
-        )
-        for idx_row, row in enumerate(stocks_df.itertuples(), 1):
-            symbol = row.symbol
-            sec_id = str(row.security_id)
-            sym_ns = symbol + ".NS"
-            try:
-                if sym_ns in raw_intra.columns.get_level_values(0):
-                    col = raw_intra[sym_ns][["Open"]]
-                else:
-                    continue
-                col.index = pd.to_datetime(col.index).tz_localize(None)
-                if col.empty:
-                    continue
-                val = col["Open"].iloc[0]
-                if val == val and val > 0:  # NaN check
-                    cache[sec_id]["today_open"] = round(float(val), 2)
-                    filled += 1
-            except:
-                pass
-    except Exception as e:
-        print(f"⚠️  Intraday fetch error: {e}")
-    print(f"✅ Today Open: {filled} stocks filled!")
-    return cache
-
-# ==========================================
-# 9:15 WAIT
-# ==========================================
-def wait_for_market():
-    time_str = datetime.now().strftime("%H:%M")
-    if time_str >= MARKET_OPEN:
-        print(f"\n🟢 Market already open ({time_str})")
-        return
-    print(f"\n⏳ 9:15 AM ka wait ho raha hai...")
-    while True:
-        time_str = datetime.now().strftime("%H:%M")
-        if time_str >= MARKET_OPEN:
-            print(f"\n🟢 {time_str} — Market open!")
-            break
-        print(f"   ⏳ {time_str} | 9:15 ka wait...", end="\r")
-        time.sleep(15)
-
-# ==========================================
-# SCAN — GitHub push ke saath
-# ==========================================
-first_scan_done = [False]
-
-def run_scan(cache):
-    time_str = datetime.now().strftime("%H:%M")
-    if time_str > MARKET_CLOSE:
-        return None
-
-    print(f"\n{'='*52}")
-    print(f"🔍 SCAN: {time_str}  |  ₹{MIN_PRICE} - ₹{MAX_PRICE}")
-    print(f"{'='*52}")
-
-    # Pehli baar today_open fetch karo
-    if not first_scan_done[0]:
-        fetch_today_open(cache)
-        first_scan_done[0] = True
-
-    buy_list  = []
-    sell_list = []
-
-    for sec_id, data in cache.items():
-        try:
-            symbol     = data["symbol"]
-            today_open = data["today_open"]
-            pwc        = data["pwc"]
-            wo         = data["wo"]
-            mo         = data["mo"]
-            pmc        = data["pmc"]
-            pdc        = data["pdc"]
-
-            if today_open == 0 or not (MIN_PRICE <= today_open <= MAX_PRICE):
-                continue
-            if not all([today_open, pwc, wo, mo, pmc, pdc]):
-                continue
-
-            if (today_open > pwc and today_open >= wo and today_open >= mo
-                    and today_open > pmc and today_open > pdc):
-                buy_list.append((symbol, today_open))
-            elif (today_open < pwc and today_open <= wo and today_open <= mo
-                    and today_open < pmc and today_open < pdc):
-                sell_list.append((symbol, today_open))
-        except:
-            pass
-
-    buy_list  = sorted(buy_list,  key=lambda x: x[1])
-    sell_list = sorted(sell_list, key=lambda x: x[1], reverse=True)
-
-    print(f"\n  ✅ BUY LIST ({len(buy_list)} stocks)")
-    print(f"  {'─'*38}")
-    if buy_list:
-        for sym, price in buy_list:
-            print(f"    ✅  {sym:<20} ₹{price}")
-    else:
-        print("    — Koi BUY signal nahi —")
-
-    print(f"\n  🔴 SELL LIST ({len(sell_list)} stocks)")
-    print(f"  {'─'*38}")
-    if sell_list:
-        for sym, price in sell_list:
-            print(f"    🔴  {sym:<20} ₹{price}")
-    else:
-        print("    — Koi SELL signal nahi —")
-
-    print(f"\n  ⏱  Next scan 5 min mein...")
-    print(f"{'='*52}")
-
-    # Save locally + Push to GitHub
-    results = save_results(buy_list, sell_list, time_str)
-    push_to_github(results)
-
-    return 300
-
-# ==========================================
-# MAIN
-# ==========================================
-cache = load_cache()
-if cache is None:
-    cache = build_cache()
-    if cache:
-        save_cache(cache)
-    else:
-        print("❌ Cache build failed!")
-        exit()
-
-wait_for_market()
-
-print("\n🚀 Scanning shuru! Har 5 min mein GitHub update.")
-print("=" * 52)
-
-while True:
-    time_str = datetime.now().strftime("%H:%M")
-    if time_str > MARKET_CLOSE:
-        print(f"\n🌙 {time_str} — Market band! Kal dobara chalana.")
-        break
-    scan_start = time.time()
-    wait       = run_scan(cache)
-    if wait is None:
-        break
-    elapsed   = time.time() - scan_start
-    remaining = max(0, 300 - elapsed)
-    time.sleep(remaining)
+// ==========================================
+// CALCULATOR
+// ==========================================
+function fmt(n){return '₹'+Math.round(n).toLocaleString('en-IN');}
+function calc(){
+  var cap=+document.getElementById('capital').value;
+  var nStk=+document.getElementById('stocks').value;
+  var risk=+document.getElementById('risk').value;
+  var sl=+document.getElementById('sl').value;
+  var rr=+document.getElementById('rr').value;
+  document.getElementById('cap-out').textContent=fmt(cap);
+  document.getElementById('stocks-out').textContent=nStk;
+  document.getElementById('risk-out').textContent=risk+'%';
+  document.getElementById('sl-out').textContent=sl.toFixed(1)+'%';
+  document.getElementById('rr-out').textContent='1:'+rr;
+  var pt=cap/nStk,ml=cap*(risk/100),tgt=ml*rr,daily=ml*2,qty=Math.floor(pt/500);
+  document.getElementById('per-trade').textContent=fmt(pt);
+  document.getElementById('max-loss').textContent=fmt(ml);
+  document.getElementById('target').textContent=fmt(tgt);
+  document.getElementById('daily-loss').textContent=fmt(daily);
+  document.getElementById('best-case').textContent='+'+fmt(tgt*nStk);
+  document.getElementById('qty').textContent=qty+' shares';
+  document.getElementById('s-best').textContent='+'+fmt(tgt*nStk);
+  document.getElementById('s-worst').textContent='-'+fmt(ml*nStk);
+  document.getElementById('s-limit').textContent='-'+fmt(daily);
+  document.getElementById('r-stocks').textContent=nStk;
+  document.getElementById('r-daily').textContent='Limit: '+fmt(daily)+' — uske baad screen se door ho jao';
+}
+</script>
+</body>
+</html>
