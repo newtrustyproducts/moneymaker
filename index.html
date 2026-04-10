@@ -285,13 +285,10 @@ footer a{color:var(--gold);text-decoration:none;}
       </div>
       <div class="tcard" style="font-size:12px;color:var(--muted);line-height:1.8">
         <div class="card-title">Kaise Use Karein</div>
-        📈 Bullish = Strong uptrend — consider karo<br>
-        📉 Bearish = Strong downtrend — consider karo<br>
+        📈 Bullish = Strong uptrend — BUY consider karo<br>
+        📉 Bearish = Weak stocks — SELL/avoid karo<br>
         Nifty green ho tab Bullish signals zyada reliable hote hain<br>
-        Nifty red ho tab Bearish signals zyada reliable hote hain<br>
-        Hamesha SL lagao entry ke saath<br>
-        <br>
-        with love from moneymaker 7867
+        Hamesha SL lagao entry ke saath
       </div>
     </div>
 
@@ -356,7 +353,7 @@ footer a{color:var(--gold);text-decoration:none;}
 // ==========================================
 // ⚙️  YAHAN APNA APPS SCRIPT URL DAALO
 // ==========================================
-var APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyWV5W1YmhQZp8DouYpTSHOgomMgBdMZEXcmYrCHKGLLBJKX94gowTYfG1iJmKwAngA/exec";
+var APPS_SCRIPT_URL = "/api/auth";
 // ==========================================
 
 // BUG 5 FIX: interval store karo taaki logout pe clear ho sake
@@ -470,6 +467,8 @@ function doRegister() {
     if (d.success) {
       ok.textContent = '✅ ' + d.message;
       ok.style.display = 'block';
+      // Local mein bhi save karo — mobile ke liye
+      try { localStorage.setItem('mm_cred_' + u, p); } catch(e){}
       setTimeout(function() {
         sessionStorage.setItem('mm_user', u);
         showTool(u);
@@ -488,25 +487,6 @@ function doRegister() {
 // ==========================================
 // LOGIN
 // ==========================================
-// MOBILE CORS FIX: JSONP wrapper for Apps Script
-function appsScriptGet(params, callback) {
-  var cbName = 'mm_cb_' + Date.now();
-  var url = APPS_SCRIPT_URL + '?' + params + '&callback=' + cbName;
-  window[cbName] = function(data) {
-    delete window[cbName];
-    document.body.removeChild(script);
-    callback(null, data);
-  };
-  var script = document.createElement('script');
-  script.src = url;
-  script.onerror = function() {
-    delete window[cbName];
-    document.body.removeChild(script);
-    callback(new Error('network'));
-  };
-  document.body.appendChild(script);
-}
-
 function doLogin() {
   var u = document.getElementById('li-user').value.trim().toLowerCase();
   var p = document.getElementById('li-pass').value;
@@ -521,36 +501,49 @@ function doLogin() {
   btn.disabled = true;
   document.getElementById('li-loading').style.display = 'block';
 
-  // Pehle normal fetch try karo, fail hone pe JSONP use karo (mobile fix)
-  fetch(APPS_SCRIPT_URL + '?action=login&username=' + encodeURIComponent(u) + '&password=' + encodeURIComponent(p))
-  .then(function(r){return r.json();})
-  .then(function(d){ handleLoginResponse(d, btn); })
-  .catch(function(){
-    // MOBILE CORS FIX: fetch fail hua — JSONP try karo
-    appsScriptGet('action=login&username=' + encodeURIComponent(u) + '&password=' + encodeURIComponent(p),
-    function(e, d) {
-      btn.disabled = false;
-      document.getElementById('li-loading').style.display = 'none';
-      if (e || !d) { showErr(document.getElementById('li-err'), 'Connection error! Internet check karo.'); return; }
-      handleLoginResponse(d, btn);
-    });
-  });
-
-  function handleLoginResponse(d, btn) {
+  function loginSuccess() {
     btn.disabled = false;
     document.getElementById('li-loading').style.display = 'none';
-    if (d.success) {
-      ok.textContent = '✅ Login successful!';
-      ok.style.display = 'block';
-      sessionStorage.setItem('mm_user', u);
-      setTimeout(function() {
-        document.getElementById('login-screen').classList.remove('show');
-        showTool(u);
-      }, 800);
-    } else {
-      showErr(err, '❌ ' + d.message);
-    }
+    ok.textContent = '✅ Login successful!';
+    ok.style.display = 'block';
+    sessionStorage.setItem('mm_user', u);
+    setTimeout(function() {
+      document.getElementById('login-screen').classList.remove('show');
+      showTool(u);
+    }, 800);
   }
+
+  function loginFail(msg) {
+    btn.disabled = false;
+    document.getElementById('li-loading').style.display = 'none';
+    showErr(err, msg || '❌ Username ya Password galat hai!');
+  }
+
+  // Pehle Apps Script try karo
+  fetch(APPS_SCRIPT_URL + '?action=login&username=' + encodeURIComponent(u) + '&password=' + encodeURIComponent(p))
+  .then(function(r) { return r.json(); })
+  .then(function(d) {
+    if (d.success) {
+      // Local mein save karo future ke liye
+      try { localStorage.setItem('mm_cred_' + u, p); } catch(e){}
+      loginSuccess();
+    } else {
+      loginFail('❌ ' + d.message);
+    }
+  })
+  .catch(function() {
+    // MOBILE FIX: Apps Script fail hua — local credentials check karo
+    try {
+      var saved = localStorage.getItem('mm_cred_' + u);
+      if (saved && saved === p) {
+        loginSuccess();
+      } else {
+        loginFail('Connection error! Internet check karo ya dobara try karo.');
+      }
+    } catch(e) {
+      loginFail('Connection error! Internet check karo.');
+    }
+  });
 }
 
 // Enter key
