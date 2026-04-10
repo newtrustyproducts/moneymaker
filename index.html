@@ -110,6 +110,21 @@ section{max-width:680px;margin:0 auto;padding:4rem 1.5rem;}
 .signal-item .sym{font-weight:600;}
 .signal-item .price{color:var(--muted);}
 .no-signal{font-size:12px;color:var(--muted);padding:8px 0;text-align:center;}
+.signal-item{cursor:pointer;border-radius:6px;padding:5px 6px;transition:background .2s;}
+.signal-item:hover,.signal-item.selected{background:rgba(240,180,41,.12);border-bottom:1px solid rgba(240,180,41,.2);}
+.selected-stock-card{background:rgba(240,180,41,.08);border:1px solid rgba(240,180,41,.3);border-radius:12px;padding:12px 14px;margin-bottom:14px;display:none;}
+.selected-stock-card.show{display:block;}
+.ssc-title{font-size:11px;color:var(--gold);font-weight:600;letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px;}
+.ssc-row{display:flex;justify-content:space-between;align-items:center;}
+.ssc-sym{font-size:18px;font-weight:700;color:var(--text);}
+.ssc-price{font-size:14px;color:var(--gold);font-weight:600;}
+.ssc-type{font-size:11px;padding:3px 10px;border-radius:99px;font-weight:600;margin-top:6px;display:inline-block;}
+.ssc-type.bull{background:rgba(34,197,94,.15);color:var(--green);}
+.ssc-type.bear{background:rgba(239,68,68,.15);color:var(--red);}
+.trade-calc{margin-top:12px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;}
+.tc-box{background:var(--card2);border-radius:8px;padding:8px 10px;text-align:center;}
+.tc-label{font-size:10px;color:var(--muted);margin-bottom:3px;}
+.tc-val{font-size:13px;font-weight:700;}
 .refresh-btn{width:100%;padding:8px;background:transparent;border:1px solid var(--border);color:var(--muted);border-radius:8px;font-size:12px;cursor:pointer;transition:all .2s;font-family:'Space Grotesk',sans-serif;margin-top:8px;}
 .refresh-btn:hover{border-color:var(--gold);color:var(--gold);}
 .slider-row{display:flex;align-items:center;gap:10px;margin-bottom:12px;}
@@ -298,6 +313,23 @@ footer a{color:var(--gold);text-decoration:none;}
 
     <!-- CALCULATOR -->
     <div class="panel" id="panel-calc">
+      <!-- Selected stock card -->
+      <div class="selected-stock-card" id="ssc">
+        <div class="ssc-title">📊 Selected Stock</div>
+        <div class="ssc-row">
+          <span class="ssc-sym" id="ssc-sym">—</span>
+          <span class="ssc-price" id="ssc-price">₹0</span>
+        </div>
+        <span class="ssc-type" id="ssc-type"></span>
+        <div class="trade-calc">
+          <div class="tc-box"><div class="tc-label">Entry</div><div class="tc-val gold-c" id="tc-entry">—</div></div>
+          <div class="tc-box"><div class="tc-label">Stop Loss</div><div class="tc-val red" id="tc-sl">—</div></div>
+          <div class="tc-box"><div class="tc-label">Target</div><div class="tc-val green" id="tc-tgt">—</div></div>
+          <div class="tc-box"><div class="tc-label">Max Loss</div><div class="tc-val red" id="tc-loss">—</div></div>
+          <div class="tc-box"><div class="tc-label">Profit</div><div class="tc-val green" id="tc-profit">—</div></div>
+          <div class="tc-box"><div class="tc-label">Qty</div><div class="tc-val" id="tc-qty">—</div></div>
+        </div>
+      </div>
       <div class="tcard">
         <div class="card-title">Capital & Risk Setup</div>
         <div class="slider-row"><span class="slider-label">Total Capital</span><input type="range" min="50000" max="500000" step="10000" value="100000" id="capital" oninput="calc()"><span class="slider-val gold-c" id="cap-out">₹1,00,000</span></div>
@@ -624,10 +656,10 @@ function fetchResults() {
     document.getElementById('sell-title').textContent = '📉 BEARISH (' + data.sell.length + ')';
     document.getElementById('buy-list').innerHTML = data.buy.length === 0
       ? '<div class="no-signal">Koi Bullish signal nahi</div>'
-      : data.buy.map(function(s){return '<div class="signal-item"><span class="sym">'+s.symbol+'</span><span class="price">₹'+s.price+'</span></div>';}).join('');
+      : data.buy.map(function(s){return '<div class="signal-item" onclick="selectStock(\''+s.symbol+'\','+s.price+',\'bull\')"><span class="sym">'+s.symbol+'</span><span class="price">₹'+s.price+'</span></div>';}).join('');
     document.getElementById('sell-list').innerHTML = data.sell.length === 0
       ? '<div class="no-signal">Koi Bearish signal nahi</div>'
-      : data.sell.map(function(s){return '<div class="signal-item"><span class="sym">'+s.symbol+'</span><span class="price">₹'+s.price+'</span></div>';}).join('');
+      : data.sell.map(function(s){return '<div class="signal-item" onclick="selectStock(\''+s.symbol+'\','+s.price+',\'bear\')"><span class="sym">'+s.symbol+'</span><span class="price">₹'+s.price+'</span></div>';}).join('');
     document.getElementById('auto-msg').textContent = 'Auto-refresh: har 30 sec · ' + new Date().toLocaleTimeString('en-IN');
   })
   .catch(function(){
@@ -640,6 +672,53 @@ function fetchResults() {
 // CALCULATOR
 // ==========================================
 function fmt(n){return '₹'+Math.round(n).toLocaleString('en-IN');}
+
+// ==========================================
+// STOCK SELECT — Scanner se Calculator pe
+// ==========================================
+function selectStock(sym, price, type) {
+  // Highlight selected
+  document.querySelectorAll('.signal-item').forEach(function(el){ el.classList.remove('selected'); });
+  event.currentTarget.classList.add('selected');
+
+  // Calculator mein stock price set karo
+  var sp = document.getElementById('stock-price');
+  sp.value = Math.min(Math.max(price, 50), 5000);
+  calc();
+
+  // Selected stock card show karo
+  var card = document.getElementById('ssc');
+  card.classList.add('show');
+  document.getElementById('ssc-sym').textContent = sym;
+  document.getElementById('ssc-price').textContent = '₹' + price;
+  var typeEl = document.getElementById('ssc-type');
+  typeEl.textContent = type === 'bull' ? '📈 BULLISH' : '📉 BEARISH';
+  typeEl.className = 'ssc-type ' + type;
+
+  // Trade calculator
+  var cap   = +document.getElementById('capital').value;
+  var nStk  = +document.getElementById('stocks').value;
+  var risk  = +document.getElementById('risk').value;
+  var sl    = +document.getElementById('sl').value;
+  var rr    = +document.getElementById('rr').value;
+  var pt    = cap / nStk;
+  var qty   = Math.floor(pt / price);
+  var slAmt = price * (sl / 100);
+  var slPx  = type === 'bull' ? price - slAmt : price + slAmt;
+  var tgtPx = type === 'bull' ? price + (slAmt * rr) : price - (slAmt * rr);
+  var loss  = qty * slAmt;
+  var profit= qty * slAmt * rr;
+
+  document.getElementById('tc-entry').textContent  = '₹' + price;
+  document.getElementById('tc-sl').textContent     = '₹' + slPx.toFixed(2);
+  document.getElementById('tc-tgt').textContent    = '₹' + tgtPx.toFixed(2);
+  document.getElementById('tc-loss').textContent   = fmt(loss);
+  document.getElementById('tc-profit').textContent = fmt(profit);
+  document.getElementById('tc-qty').textContent    = qty + ' shares';
+
+  // Calculator tab pe switch karo
+  switchTab('calc');
+}
 function calc(){
   var cap=+document.getElementById('capital').value;
   var nStk=+document.getElementById('stocks').value;
