@@ -1,10 +1,14 @@
 {
-  "scan_time": "07:12",
+  "scan_time": "09:08",
   "phase": 1,
   "date": "10 Apr 2026",
   "min_price": 250.0,
   "max_price": 7500.0,
   "buy": [
+    {
+      "symbol": "NAZARA",
+      "price": 250.83
+    },
     {
       "symbol": "CUB",
       "price": 252.47
@@ -14,16 +18,12 @@
       "price": 254.93
     },
     {
-      "symbol": "JSWINFRA",
-      "price": 256.7
+      "symbol": "RALLIS",
+      "price": 255.47
     },
     {
       "symbol": "MANAPPURAM",
       "price": 262.95
-    },
-    {
-      "symbol": "JWL",
-      "price": 268.91
     },
     {
       "symbol": "PCBL",
@@ -34,10 +34,6 @@
       "price": 271.37
     },
     {
-      "symbol": "LTF",
-      "price": 272.18
-    },
-    {
       "symbol": "RVNL",
       "price": 272.83
     },
@@ -46,20 +42,20 @@
       "price": 274.24
     },
     {
-      "symbol": "TARIL",
-      "price": 277.15
-    },
-    {
       "symbol": "BHEL",
       "price": 277.2
     },
     {
-      "symbol": "ANGELONE",
-      "price": 281.8
+      "symbol": "GOCOLORS",
+      "price": 278.8
     },
     {
-      "symbol": "RAILTEL",
-      "price": 282.41
+      "symbol": "RELAXO",
+      "price": 281.15
+    },
+    {
+      "symbol": "ANGELONE",
+      "price": 281.8
     },
     {
       "symbol": "FEDERALBNK",
@@ -74,6 +70,10 @@
       "price": 286.91
     },
     {
+      "symbol": "HLEGLAS",
+      "price": 294.0
+    },
+    {
       "symbol": "M&MFIN",
       "price": 296.1
     },
@@ -84,6 +84,10 @@
     {
       "symbol": "ITI",
       "price": 297.39
+    },
+    {
+      "symbol": "SHOPERSTOP",
+      "price": 300.0
     },
     {
       "symbol": "ITC",
@@ -98,56 +102,64 @@
       "price": 308.0
     },
     {
-      "symbol": "AFCONS",
-      "price": 310.65
-    },
-    {
       "symbol": "EXIDEIND",
       "price": 311.25
     },
     {
-      "symbol": "COHANCE",
-      "price": 316.85
+      "symbol": "SUNTECK",
+      "price": 314.3
     },
     {
       "symbol": "RBLBANK",
       "price": 317.7
     },
     {
-      "symbol": "SWANCORP",
-      "price": 323.75
+      "symbol": "VIPIND",
+      "price": 318.65
     },
     {
-      "symbol": "TATACAP",
-      "price": 326.15
+      "symbol": "GUJGASLTD",
+      "price": 319.7
     },
     {
-      "symbol": "HONASA",
-      "price": 332.35
+      "symbol": "KRBL",
+      "price": 325.95
     },
     {
-      "symbol": "TMPV",
-      "price": 333.25
+      "symbol": "VGUARD",
+      "price": 328.15
     },
     {
       "symbol": "ABCAPITAL",
       "price": 334.55
     },
     {
-      "symbol": "IGIL",
-      "price": 337.0
+      "symbol": "FDC",
+      "price": 340.6
+    },
+    {
+      "symbol": "MAHLIFE",
+      "price": 341.4
+    },
+    {
+      "symbol": "JKPAPER",
+      "price": 344.55
     },
     {
       "symbol": "RECLTD",
       "price": 346.8
     },
     {
+      "symbol": "AARTIDRUGS",
+      "price": 357.65
+    },
+    {
       "symbol": "HINDPETRO",
       "price": 358.0
     },
     {
-      "symbol": "BLUEJET",
-      "price": 369.9
+      "symbol": "RAYMOND",
+      "price": 366.75
     },
     {
       "symbol": "KOTAKBANK",
@@ -166,6 +178,10 @@
       "price": 380.25
     },
     {
+      "symbol": "MANYAVAR",
+      "price": 387.25
+    },
+    {
       "symbol": "GICRE",
       "price": 389.05
     },
@@ -174,12 +190,12 @@
       "price": 394.7
     },
     {
-      "symbol": "POONAWALLA",
-      "price": 401.75
+      "symbol": "CSBBANK",
+      "price": 395.55
     },
     {
-      "symbol": "LTFOODS",
-      "price": 405.15
+      "symbol": "POONAWALLA",
+      "price": 401.75
     },
     {
       "symbol": "NATIONALUM",
@@ -194,10 +210,6 @@
       "price": 418.95
     },
     {
-      "symbol": "JKTYRE",
-      "price": 421.1
-    },
-    {
       "symbol": "AARTIIND",
       "price": 421.55
     },
@@ -210,24 +222,20 @@
       "price": 423.3
     },
     {
-      "symbol": "THELEELA",
-      "price": 424.95
-    },
-    {
-      "symbol": "TMCV",
-      "price": 425.6
-    },
-    {
-      "symbol": "ELECON",
-      "price": 425.85
-    },
-    {
       "symbol": "PFC",
       "price": 428.05
     },
     {
+      "symbol": "GNFC",
+      "price": 428.5
+    },
+    {
       "symbol": "DABUR",
       "price": 429.4
+    },
+    {
+      "symbol": "SUPRAJIT",
+      "price": 431.75
     },
     {
       "symbol": "USHAMART",
@@ -266,56 +274,60 @@
       "price": 446.1
     },
     {
-      "symbol": "NEWGEN",
-      "price": 457.2
+      "symbol": "ROSSARI",
+      "price": 446.5
     },
     {
-      "symbol": "HSCL",
-      "price": 464.8
+      "symbol": "BORORENEW",
+      "price": 450.2
     },
     {
-      "symbol": "ABDL",
-      "price": 466.55
+      "symbol": "METROPOLIS",
+      "price": 456.9
     },
     {
       "symbol": "DELHIVERY",
       "price": 469.85
     },
     {
-      "symbol": "AADHARHFC",
-      "price": 472.0
+      "symbol": "TTKPRESTIG",
+      "price": 470.8
     },
     {
-      "symbol": "HEXT",
-      "price": 475.4
+      "symbol": "TANLA",
+      "price": 473.75
     },
     {
-      "symbol": "ANANTRAJ",
-      "price": 476.75
+      "symbol": "CIEINDIA",
+      "price": 479.6
     },
     {
       "symbol": "CONCOR",
       "price": 482.25
     },
     {
-      "symbol": "ZYDUSWELL",
-      "price": 489.5
+      "symbol": "ROUTE",
+      "price": 483.75
     },
     {
-      "symbol": "INDGN",
-      "price": 490.25
+      "symbol": "ZYDUSWELL",
+      "price": 489.5
     },
     {
       "symbol": "ELGIEQUIP",
       "price": 499.6
     },
     {
-      "symbol": "LENSKART",
-      "price": 514.4
+      "symbol": "VARROC",
+      "price": 499.7
     },
     {
       "symbol": "MINDACORP",
       "price": 514.4
+    },
+    {
+      "symbol": "SFL",
+      "price": 516.6
     },
     {
       "symbol": "HINDCOPPER",
@@ -324,10 +336,6 @@
     {
       "symbol": "SONACOMS",
       "price": 523.05
-    },
-    {
-      "symbol": "RKFORGE",
-      "price": 531.25
     },
     {
       "symbol": "IRCTC",
@@ -342,10 +350,6 @@
       "price": 541.95
     },
     {
-      "symbol": "SARDAEN",
-      "price": 546.65
-    },
-    {
       "symbol": "VTL",
       "price": 549.85
     },
@@ -358,16 +362,8 @@
       "price": 554.1
     },
     {
-      "symbol": "TENNIND",
-      "price": 555.95
-    },
-    {
       "symbol": "HINDZINC",
       "price": 558.5
-    },
-    {
-      "symbol": "TATATECH",
-      "price": 558.9
     },
     {
       "symbol": "HEG",
@@ -378,28 +374,32 @@
       "price": 562.95
     },
     {
+      "symbol": "JUSTDIAL",
+      "price": 566.55
+    },
+    {
       "symbol": "KEC",
       "price": 578.2
-    },
-    {
-      "symbol": "NAVA",
-      "price": 594.45
-    },
-    {
-      "symbol": "CEMPRO",
-      "price": 604.3
-    },
-    {
-      "symbol": "GMDCLTD",
-      "price": 604.35
     },
     {
       "symbol": "JBMA",
       "price": 604.95
     },
     {
-      "symbol": "HDBFS",
-      "price": 619.1
+      "symbol": "ACI",
+      "price": 608.55
+    },
+    {
+      "symbol": "JKLAKSHMI",
+      "price": 614.5
+    },
+    {
+      "symbol": "GUJALKALI",
+      "price": 618.1
+    },
+    {
+      "symbol": "VMART",
+      "price": 628.75
     },
     {
       "symbol": "INDHOTEL",
@@ -434,20 +434,12 @@
       "price": 662.0
     },
     {
-      "symbol": "GALLANTT",
-      "price": 665.5
-    },
-    {
       "symbol": "SBICARD",
       "price": 668.9
     },
     {
       "symbol": "INTELLECT",
       "price": 671.7
-    },
-    {
-      "symbol": "CHOICEIN",
-      "price": 686.15
     },
     {
       "symbol": "CAMS",
@@ -462,10 +454,6 @@
       "price": 701.2
     },
     {
-      "symbol": "TITAGARH",
-      "price": 708.6
-    },
-    {
       "symbol": "KPITTECH",
       "price": 716.05
     },
@@ -474,24 +462,24 @@
       "price": 716.85
     },
     {
-      "symbol": "ANTHEM",
-      "price": 720.25
+      "symbol": "APLLTD",
+      "price": 720.15
     },
     {
       "symbol": "CGPOWER",
       "price": 720.6
     },
     {
-      "symbol": "HBLENGINE",
-      "price": 722.55
+      "symbol": "CENTURYPLY",
+      "price": 735.95
     },
     {
       "symbol": "VEDL",
       "price": 737.0
     },
     {
-      "symbol": "ARE&M",
-      "price": 740.15
+      "symbol": "SYMPHONY",
+      "price": 740.85
     },
     {
       "symbol": "CHALET",
@@ -506,8 +494,16 @@
       "price": 761.15
     },
     {
+      "symbol": "SUNDRMFAST",
+      "price": 780.85
+    },
+    {
       "symbol": "LODHA",
       "price": 789.55
+    },
+    {
+      "symbol": "INDIGOPNTS",
+      "price": 789.7
     },
     {
       "symbol": "LICI",
@@ -518,27 +514,15 @@
       "price": 797.7
     },
     {
-      "symbol": "JYOTICNC",
-      "price": 808.0
-    },
-    {
       "symbol": "INDUSINDBK",
       "price": 814.55
     },
     {
-      "symbol": "ATHERENERG",
-      "price": 820.25
-    },
-    {
-      "symbol": "SIGNATURE",
-      "price": 820.8
-    },
-    {
-      "symbol": "EIDPARRY",
+      "symbol": "SHYAMMETL",
       "price": 830.7
     },
     {
-      "symbol": "SHYAMMETL",
+      "symbol": "EIDPARRY",
       "price": 830.7
     },
     {
@@ -562,12 +546,20 @@
       "price": 855.25
     },
     {
+      "symbol": "MEDPLUS",
+      "price": 855.75
+    },
+    {
       "symbol": "ASAHIINDIA",
       "price": 858.75
     },
     {
       "symbol": "KPRMILL",
       "price": 859.75
+    },
+    {
+      "symbol": "KSB",
+      "price": 860.4
     },
     {
       "symbol": "FACT",
@@ -578,8 +570,8 @@
       "price": 862.95
     },
     {
-      "symbol": "ACE",
-      "price": 865.85
+      "symbol": "POLYPLEX",
+      "price": 869.35
     },
     {
       "symbol": "GODREJIND",
@@ -588,6 +580,10 @@
     {
       "symbol": "JUBLPHARMA",
       "price": 879.0
+    },
+    {
+      "symbol": "GMMPFAUDLR",
+      "price": 890.1
     },
     {
       "symbol": "CYIENT",
@@ -602,16 +598,16 @@
       "price": 903.25
     },
     {
-      "symbol": "GABRIEL",
-      "price": 907.2
-    },
-    {
       "symbol": "NAM-INDIA",
       "price": 908.65
     },
     {
       "symbol": "MAPMYINDIA",
       "price": 924.4
+    },
+    {
+      "symbol": "BIRLACORPN",
+      "price": 931.2
     },
     {
       "symbol": "INDIANB",
@@ -622,20 +618,8 @@
       "price": 949.65
     },
     {
-      "symbol": "PREMIERENE",
-      "price": 956.45
-    },
-    {
       "symbol": "AUBANK",
       "price": 963.0
-    },
-    {
-      "symbol": "SCHNEIDER",
-      "price": 966.8
-    },
-    {
-      "symbol": "ABSLAMC",
-      "price": 967.75
     },
     {
       "symbol": "VIJAYA",
@@ -654,12 +638,24 @@
       "price": 996.3
     },
     {
+      "symbol": "METROBRAND",
+      "price": 996.6
+    },
+    {
       "symbol": "360ONE",
       "price": 998.1
     },
     {
       "symbol": "NAUKRI",
       "price": 1002.4
+    },
+    {
+      "symbol": "EPIGRAL",
+      "price": 1023.25
+    },
+    {
+      "symbol": "SHARDACROP",
+      "price": 1033.7
     },
     {
       "symbol": "MGL",
@@ -690,10 +686,6 @@
       "price": 1063.35
     },
     {
-      "symbol": "TECHNOE",
-      "price": 1074.0
-    },
-    {
       "symbol": "TATACONSUM",
       "price": 1078.0
     },
@@ -722,12 +714,16 @@
       "price": 1131.3
     },
     {
+      "symbol": "AETHER",
+      "price": 1133.8
+    },
+    {
       "symbol": "KPIL",
       "price": 1143.0
     },
     {
-      "symbol": "TBOTEK",
-      "price": 1160.7
+      "symbol": "TEAMLEASE",
+      "price": 1189.1
     },
     {
       "symbol": "JINDALSTEL",
@@ -744,6 +740,10 @@
     {
       "symbol": "NESTLEIND",
       "price": 1228.7
+    },
+    {
+      "symbol": "LUXIND",
+      "price": 1232.3
     },
     {
       "symbol": "CREDITACC",
@@ -774,12 +774,8 @@
       "price": 1281.3
     },
     {
-      "symbol": "ABREL",
-      "price": 1289.4
-    },
-    {
-      "symbol": "NUVAMA",
-      "price": 1294.8
+      "symbol": "AVANTIFEED",
+      "price": 1286.0
     },
     {
       "symbol": "SOBHA",
@@ -806,16 +802,12 @@
       "price": 1347.4
     },
     {
+      "symbol": "ALKYLAMINE",
+      "price": 1363.9
+    },
+    {
       "symbol": "ERIS",
       "price": 1364.1
-    },
-    {
-      "symbol": "WOCKPHARMA",
-      "price": 1369.7
-    },
-    {
-      "symbol": "RRKABEL",
-      "price": 1386.2
     },
     {
       "symbol": "ACC",
@@ -850,10 +842,6 @@
       "price": 1447.4
     },
     {
-      "symbol": "KIRLOSENG",
-      "price": 1457.9
-    },
-    {
       "symbol": "TECHM",
       "price": 1461.6
     },
@@ -866,12 +854,8 @@
       "price": 1471.0
     },
     {
-      "symbol": "IKS",
-      "price": 1477.3
-    },
-    {
-      "symbol": "LLOYDSME",
-      "price": 1487.0
+      "symbol": "GRINDWELL",
+      "price": 1492.4
     },
     {
       "symbol": "POLICYBZR",
@@ -882,24 +866,20 @@
       "price": 1495.9
     },
     {
-      "symbol": "GRAVITA",
-      "price": 1508.0
-    },
-    {
-      "symbol": "BHARTIHEXA",
-      "price": 1530.6
-    },
-    {
       "symbol": "CHOLAFIN",
       "price": 1533.1
     },
     {
-      "symbol": "ZENTEC",
-      "price": 1533.2
+      "symbol": "SAFARI",
+      "price": 1561.8
     },
     {
       "symbol": "CHOLAHLDNG",
       "price": 1581.2
+    },
+    {
+      "symbol": "SKFINDIA",
+      "price": 1585.6
     },
     {
       "symbol": "BEML",
@@ -910,12 +890,12 @@
       "price": 1607.4
     },
     {
-      "symbol": "OBEROIRLTY",
-      "price": 1653.5
+      "symbol": "MASTEK",
+      "price": 1609.6
     },
     {
-      "symbol": "CAPLIPOINT",
-      "price": 1662.0
+      "symbol": "OBEROIRLTY",
+      "price": 1653.5
     },
     {
       "symbol": "GODREJPROP",
@@ -946,8 +926,8 @@
       "price": 1768.6
     },
     {
-      "symbol": "CARTRADE",
-      "price": 1816.2
+      "symbol": "GALAXYSURF",
+      "price": 1810.4
     },
     {
       "symbol": "BHARTIARTL",
@@ -1002,6 +982,10 @@
       "price": 2269.6
     },
     {
+      "symbol": "RATNAMANI",
+      "price": 2320.6
+    },
+    {
       "symbol": "GLAXO",
       "price": 2359.7
     },
@@ -1014,20 +998,12 @@
       "price": 2385.3
     },
     {
-      "symbol": "DOMS",
-      "price": 2396.5
-    },
-    {
       "symbol": "MAZDOCK",
       "price": 2435.5
     },
     {
       "symbol": "HDFCAMC",
       "price": 2515.0
-    },
-    {
-      "symbol": "GRSE",
-      "price": 2523.6
     },
     {
       "symbol": "TCS",
@@ -1050,10 +1026,6 @@
       "price": 2743.3
     },
     {
-      "symbol": "ENRIN",
-      "price": 2767.7
-    },
-    {
       "symbol": "PIIND",
       "price": 2880.7
     },
@@ -1070,14 +1042,6 @@
       "price": 3222.5
     },
     {
-      "symbol": "WAAREEENER",
-      "price": 3232.3
-    },
-    {
-      "symbol": "ICICIAMC",
-      "price": 3251.1
-    },
-    {
       "symbol": "BSE",
       "price": 3257.4
     },
@@ -1086,16 +1050,16 @@
       "price": 3309.6
     },
     {
-      "symbol": "NETWEB",
-      "price": 3340.1
-    },
-    {
       "symbol": "DATAPATTNS",
       "price": 3369.4
     },
     {
       "symbol": "TIMKEN",
       "price": 3453.6
+    },
+    {
+      "symbol": "SANOFI",
+      "price": 3463.5
     },
     {
       "symbol": "MUTHOOTFIN",
@@ -1110,12 +1074,12 @@
       "price": 3544.0
     },
     {
-      "symbol": "ANANDRATHI",
-      "price": 3553.7
-    },
-    {
       "symbol": "TVSMOTOR",
       "price": 3727.1
+    },
+    {
+      "symbol": "INGERRAND",
+      "price": 3797.6
     },
     {
       "symbol": "TRENT",
@@ -1130,16 +1094,16 @@
       "price": 3896.2
     },
     {
-      "symbol": "GVT&D",
-      "price": 3911.3
-    },
-    {
       "symbol": "CRISIL",
       "price": 3922.3
     },
     {
       "symbol": "HAL",
       "price": 4032.9
+    },
+    {
+      "symbol": "MTARTECH",
+      "price": 4158.5
     },
     {
       "symbol": "KEI",
@@ -1158,8 +1122,12 @@
       "price": 4452.0
     },
     {
-      "symbol": "LTM",
+      "symbol": "LTIM",
       "price": 4572.0
+    },
+    {
+      "symbol": "FINEORG",
+      "price": 4586.0
     },
     {
       "symbol": "BAYERCROP",
@@ -1172,6 +1140,10 @@
     {
       "symbol": "CUMMINSIND",
       "price": 4907.4
+    },
+    {
+      "symbol": "CERA",
+      "price": 5033.7
     },
     {
       "symbol": "BLUEDART",
@@ -1232,10 +1204,6 @@
       "price": 2399.8
     },
     {
-      "symbol": "PIRAMALFIN",
-      "price": 1719.0
-    },
-    {
       "symbol": "UBL",
       "price": 1467.2
     },
@@ -1252,12 +1220,12 @@
       "price": 1391.2
     },
     {
-      "symbol": "ONESOURCE",
-      "price": 1375.7
-    },
-    {
       "symbol": "RELIANCE",
       "price": 1330.0
+    },
+    {
+      "symbol": "VINATIORGA",
+      "price": 1267.0
     },
     {
       "symbol": "DRREDDY",
@@ -1280,12 +1248,12 @@
       "price": 459.7
     },
     {
-      "symbol": "JUBLFOOD",
-      "price": 427.85
+      "symbol": "WESTLIFE",
+      "price": 456.7
     },
     {
-      "symbol": "JAINREC",
-      "price": 422.5
+      "symbol": "JUBLFOOD",
+      "price": 427.85
     },
     {
       "symbol": "BIOCON",
