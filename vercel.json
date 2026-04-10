@@ -1,6 +1,5 @@
 {
   "rewrites": [
-    { "source": "/", "destination": "/moneymaker.html" },
-    { "source": "/moneymaker", "destination": "/moneymaker.html" }
+    { "source": "/", "destination": "/moneymaker.html" }
   ]
 }
