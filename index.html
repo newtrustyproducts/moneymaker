@@ -283,7 +283,7 @@ footer a{color:var(--gold);text-decoration:none;}
     </div>
 
     <div class="tabs">
-      <button class="tab active" onclick="switchTab('scanner')">📊 Signals</button>
+      <button class="tab active" onclick="switchTab('scanner')">📊 Stocks</button>
       <button class="tab" onclick="switchTab('calc')">💰 Calculator</button>
       <button class="tab" onclick="switchTab('rules')">📋 Rules</button>
     </div>
@@ -292,7 +292,7 @@ footer a{color:var(--gold);text-decoration:none;}
     <div class="panel active" id="panel-scanner">
       <div class="tcard">
         <div class="scan-status">
-          <div class="card-title" style="margin-bottom:0">Live Signals</div>
+          <div class="card-title" style="margin-bottom:0">Live Stocks</div>
           <div class="scan-dot">
             <div class="dot" id="live-dot"></div>
             <span class="scan-time" id="scan-time">Fetch ho raha hai...</span>
@@ -359,7 +359,7 @@ footer a{color:var(--gold);text-decoration:none;}
 
         <!-- Results grid -->
         <div class="trade-calc" style="margin-top:10px">
-          <div class="tc-box"><div class="tc-label">Support</div><div class="tc-val red" id="tc-sup">—</div></div>
+          <div class="tc-box"><div class="tc-label" id="tc-sup-label">Support</div><div class="tc-val red" id="tc-sup">—</div></div>
           <div class="tc-box"><div class="tc-label">Qty</div><div class="tc-val gold-c" id="tc-qty">—</div></div>
           <div class="tc-box"><div class="tc-label">Min Risk</div><div class="tc-val red" id="tc-loss">—</div></div>
           <div class="tc-box"><div class="tc-label">Min Profit</div><div class="tc-val green" id="tc-profit">—</div></div>
@@ -696,10 +696,10 @@ function fetchResults() {
     document.getElementById('sell-title').textContent = '📉 BEARISH (' + data.sell.length + ')';
     document.getElementById('buy-list').innerHTML = data.buy.length === 0
       ? '<div class="no-signal">Koi Bullish signal nahi</div>'
-      : data.buy.map(function(s){return '<div class="signal-item" onclick="selectStock(\''+s.symbol+'\','+s.price+',\'bull\')"><span class="sym">'+s.symbol+'</span><span class="price">₹'+s.price+'</span></div>';}).join('');
+      : data.buy.map(function(s){return '<div class="signal-item" onclick="selectStock(\''+s.symbol+'\','+s.price+',\'bull\')"><span class="sym">'+s.symbol+'</span><span class="price" style="color:var(--green)">₹'+s.price+'</span></div>';}).join('');
     document.getElementById('sell-list').innerHTML = data.sell.length === 0
       ? '<div class="no-signal">Koi Bearish signal nahi</div>'
-      : data.sell.map(function(s){return '<div class="signal-item" onclick="selectStock(\''+s.symbol+'\','+s.price+',\'bear\')"><span class="sym">'+s.symbol+'</span><span class="price">₹'+s.price+'</span></div>';}).join('');
+      : data.sell.map(function(s){return '<div class="signal-item" onclick="selectStock(\''+s.symbol+'\','+s.price+',\'bear\')"><span class="sym">'+s.symbol+'</span><span class="price" style="color:var(--red)">₹'+s.price+'</span></div>';}).join('');
     document.getElementById('auto-msg').textContent = 'Auto-refresh: har 30 sec · ' + new Date().toLocaleTimeString('en-IN');
     // Global mein save karo — stock select pe levels dikhane ke liye
     window._scanData = data;
@@ -800,6 +800,9 @@ function recalcStock() {
   var minProfit      = Math.round(qty * profitPerShare);
 
   // Update UI
+  // Label: Buy = Support, Sell = Resistance
+  var supLabel = document.getElementById('tc-sup-label');
+  if (supLabel) supLabel.textContent = type === 'bull' ? 'Support' : 'Resistance';
   document.getElementById('tc-sup').textContent    = '₹' + supPx.toFixed(2);
   document.getElementById('tc-qty').textContent    = qty + ' shares';
   document.getElementById('tc-loss').textContent   = '₹' + minRisk.toLocaleString('en-IN');
