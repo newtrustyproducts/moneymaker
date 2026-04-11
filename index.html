@@ -335,13 +335,34 @@ footer a{color:var(--gold);text-decoration:none;}
           <span class="ssc-price" id="ssc-price">₹0</span>
         </div>
         <span class="ssc-type" id="ssc-type"></span>
-        <div class="trade-calc">
-          <div class="tc-box"><div class="tc-label">Entry</div><div class="tc-val gold-c" id="tc-entry">—</div></div>
-          <div class="tc-box"><div class="tc-label">Stop Loss</div><div class="tc-val red" id="tc-sl">—</div></div>
-          <div class="tc-box"><div class="tc-label">Target</div><div class="tc-val green" id="tc-tgt">—</div></div>
-          <div class="tc-box"><div class="tc-label">Max Loss</div><div class="tc-val red" id="tc-loss">—</div></div>
-          <div class="tc-box"><div class="tc-label">Profit</div><div class="tc-val green" id="tc-profit">—</div></div>
-          <div class="tc-box"><div class="tc-label">Qty</div><div class="tc-val" id="tc-qty">—</div></div>
+
+        <!-- Capital + Margin inputs -->
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px;">
+          <div>
+            <div class="tc-label" style="margin-bottom:4px">Capital (₹)</div>
+            <input type="number" id="ssc-capital" value="100000" min="1000" step="1000"
+              style="width:100%;background:var(--card2);border:1px solid var(--border);border-radius:8px;padding:7px 10px;font-size:13px;color:var(--text);font-family:Space Grotesk,sans-serif;"
+              oninput="recalcStock()">
+          </div>
+          <div>
+            <div class="tc-label" style="margin-bottom:4px">Margin</div>
+            <select id="ssc-margin" onchange="recalcStock()"
+              style="width:100%;background:var(--card2);border:1px solid var(--border);border-radius:8px;padding:7px 10px;font-size:13px;color:var(--text);font-family:Space Grotesk,sans-serif;">
+              <option value="1">No Margin (1x)</option>
+              <option value="2">2x Margin</option>
+              <option value="3">3x Margin</option>
+              <option value="4">4x Margin</option>
+              <option value="5">5x Margin</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Results grid -->
+        <div class="trade-calc" style="margin-top:10px">
+          <div class="tc-box"><div class="tc-label">Support</div><div class="tc-val red" id="tc-sup">—</div></div>
+          <div class="tc-box"><div class="tc-label">Qty</div><div class="tc-val gold-c" id="tc-qty">—</div></div>
+          <div class="tc-box"><div class="tc-label">Min Risk</div><div class="tc-val red" id="tc-loss">—</div></div>
+          <div class="tc-box"><div class="tc-label">Min Profit</div><div class="tc-val green" id="tc-profit">—</div></div>
         </div>
         <div class="levels-wrap" id="levels-wrap" style="display:none">
           <div class="levels-title res" id="levels-title">🎯 RESISTANCE LEVELS</div>
@@ -702,55 +723,36 @@ function selectStock(sym, price, type) {
   document.querySelectorAll('.signal-item').forEach(function(el){ el.classList.remove('selected'); });
   event.currentTarget.classList.add('selected');
 
-  // Calculator mein stock price set karo
-  var sp = document.getElementById('stock-price');
-  sp.value = Math.min(Math.max(price, 50), 5000);
-  calc();
+  // Global mein store karo
+  window._selSym   = sym;
+  window._selPrice = price;
+  window._selType  = type;
 
   // Selected stock card show karo
   var card = document.getElementById('ssc');
   card.classList.add('show');
-  document.getElementById('ssc-sym').textContent = sym;
+  document.getElementById('ssc-sym').textContent   = sym;
   document.getElementById('ssc-price').textContent = '₹' + price;
   var typeEl = document.getElementById('ssc-type');
   typeEl.textContent = type === 'bull' ? '📈 BULLISH' : '📉 BEARISH';
-  typeEl.className = 'ssc-type ' + type;
+  typeEl.className   = 'ssc-type ' + type;
 
-  // Trade calculator
-  var cap   = +document.getElementById('capital').value;
-  var nStk  = +document.getElementById('stocks').value;
-  var risk  = +document.getElementById('risk').value;
-  var sl    = +document.getElementById('sl').value;
-  var rr    = +document.getElementById('rr').value;
-  var pt    = cap / nStk;
-  var qty   = Math.floor(pt / price);
-  var slAmt = price * (sl / 100);
-  var slPx  = type === 'bull' ? price - slAmt : price + slAmt;
-  var tgtPx = type === 'bull' ? price + (slAmt * rr) : price - (slAmt * rr);
-  var loss  = qty * slAmt;
-  var profit= qty * slAmt * rr;
+  // Capital from main calculator
+  var cap = +document.getElementById('capital').value;
+  document.getElementById('ssc-capital').value = cap;
 
-  document.getElementById('tc-entry').textContent  = '₹' + price;
-  document.getElementById('tc-sl').textContent     = '₹' + slPx.toFixed(2);
-  document.getElementById('tc-tgt').textContent    = '₹' + tgtPx.toFixed(2);
-  document.getElementById('tc-loss').textContent   = fmt(loss);
-  document.getElementById('tc-profit').textContent = fmt(profit);
-  document.getElementById('tc-qty').textContent    = qty + ' shares';
-
-  // Levels show karo (from scanner data)
-  var levelsWrap = document.getElementById('levels-wrap');
-  var levelsGrid = document.getElementById('levels-grid');
+  // Levels show karo
+  var levelsWrap  = document.getElementById('levels-wrap');
+  var levelsGrid  = document.getElementById('levels-grid');
   var levelsTitle = document.getElementById('levels-title');
-
   if (window._scanData) {
-    var arr = type === 'bull' ? window._scanData.buy : window._scanData.sell;
+    var arr  = type === 'bull' ? window._scanData.buy : window._scanData.sell;
     var stock = arr.find(function(x){ return x.symbol === sym; });
     var lvlKey = type === 'bull' ? 'resistance' : 'support';
-
     if (stock && stock[lvlKey]) {
       levelsWrap.style.display = 'block';
-      levelsTitle.textContent = type === 'bull' ? '🎯 RESISTANCE LEVELS' : '🛡️ SUPPORT LEVELS';
-      levelsTitle.className = 'levels-title ' + (type === 'bull' ? 'res' : 'sup');
+      levelsTitle.textContent  = type === 'bull' ? '🎯 RESISTANCE LEVELS' : '🛡️ SUPPORT LEVELS';
+      levelsTitle.className    = 'levels-title ' + (type === 'bull' ? 'res' : 'sup');
       var cls = type === 'bull' ? 'res' : 'sup';
       levelsGrid.innerHTML = stock[lvlKey].map(function(l){
         return '<div class="level-box '+cls+'">'
@@ -758,13 +760,50 @@ function selectStock(sym, price, type) {
           + '<div class="level-price">₹'+l.price+'</div>'
           + '</div>';
       }).join('');
-    } else {
-      levelsWrap.style.display = 'none';
-    }
+    } else { levelsWrap.style.display = 'none'; }
   }
 
-  // Calculator tab pe switch karo
+  recalcStock();
   switchTab('calc');
+}
+
+function recalcStock() {
+  var price  = window._selPrice;
+  var type   = window._selType;
+  if (!price) return;
+
+  var cap    = +document.getElementById('ssc-capital').value || 100000;
+  var margin = +document.getElementById('ssc-margin').value  || 1;
+
+  // Effective buying power with margin
+  var buyingPower = cap * margin;
+
+  // Qty based on buying power
+  var qty = Math.floor(buyingPower / price);
+
+  // Support = PDC-2% for buy, PDC+2% for sell
+  var supportPct = 0.02;
+  var supPx = type === 'bull'
+    ? (price * (1 - supportPct))
+    : (price * (1 + supportPct));
+  supPx = Math.round(supPx * 100) / 100;
+
+  // Min Risk = qty * (price - support) for bull
+  var riskPerShare = Math.abs(price - supPx);
+  var minRisk      = Math.round(qty * riskPerShare);
+
+  // Min Profit = R1 level - price (first resistance = PDC+1%)
+  var r1Px       = type === 'bull'
+    ? (price * 1.01)
+    : (price * 0.99);
+  var profitPerShare = Math.abs(r1Px - price);
+  var minProfit      = Math.round(qty * profitPerShare);
+
+  // Update UI
+  document.getElementById('tc-sup').textContent    = '₹' + supPx.toFixed(2);
+  document.getElementById('tc-qty').textContent    = qty + ' shares';
+  document.getElementById('tc-loss').textContent   = '₹' + minRisk.toLocaleString('en-IN');
+  document.getElementById('tc-profit').textContent = '₹' + minProfit.toLocaleString('en-IN');
 }
 function calc(){
   var cap=+document.getElementById('capital').value;
