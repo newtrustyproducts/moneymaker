@@ -1,9 +1,103 @@
 {
-  "scan_time": "05:53",
+  "scan_time": "05:57",
   "phase": 1,
   "date": "11 Apr 2026",
   "min_price": 250.0,
-  "max_price": 750.0,
-  "buy": [],
+  "max_price": 2500.0,
+  "buy": [
+    {
+      "symbol": "EPIGRAL",
+      "price": 1098.3,
+      "resistance": [
+        {
+          "pct": 1,
+          "price": 1109.28,
+          "label": "R1 (+1%)"
+        },
+        {
+          "pct": 2,
+          "price": 1120.27,
+          "label": "R2 (+2%)"
+        },
+        {
+          "pct": 3,
+          "price": 1131.25,
+          "label": "R3 (+3%)"
+        },
+        {
+          "pct": 4,
+          "price": 1142.23,
+          "label": "R4 (+4%)"
+        },
+        {
+          "pct": 5,
+          "price": 1153.21,
+          "label": "R5 (+5%)"
+        }
+      ]
+    },
+    {
+      "symbol": "ADANIENSOL",
+      "price": 1157.9,
+      "resistance": [
+        {
+          "pct": 1,
+          "price": 1169.48,
+          "label": "R1 (+1%)"
+        },
+        {
+          "pct": 2,
+          "price": 1181.06,
+          "label": "R2 (+2%)"
+        },
+        {
+          "pct": 3,
+          "price": 1192.64,
+          "label": "R3 (+3%)"
+        },
+        {
+          "pct": 4,
+          "price": 1204.22,
+          "label": "R4 (+4%)"
+        },
+        {
+          "pct": 5,
+          "price": 1215.8,
+          "label": "R5 (+5%)"
+        }
+      ]
+    },
+    {
+      "symbol": "KPIL",
+      "price": 1183.3,
+      "resistance": [
+        {
+          "pct": 1,
+          "price": 1195.13,
+          "label": "R1 (+1%)"
+        },
+        {
+          "pct": 2,
+          "price": 1206.97,
+          "label": "R2 (+2%)"
+        },
+        {
+          "pct": 3,
+          "price": 1218.8,
+          "label": "R3 (+3%)"
+        },
+        {
+          "pct": 4,
+          "price": 1230.63,
+          "label": "R4 (+4%)"
+        },
+        {
+          "pct": 5,
+          "price": 1242.46,
+          "label": "R5 (+5%)"
+        }
+      ]
+    }
+  ],
   "sell": []
 }
