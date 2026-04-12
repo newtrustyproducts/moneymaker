@@ -168,6 +168,44 @@ footer a{color:var(--gold);text-decoration:none;}
 </style>																									
 </head>																									
 <body>																									
+<!-- ============ SEBI WARNING PAGE ============ -->																									
+<div class="warn-screen" id="warn-screen">																									
+<div class="warn-card">																									
+<div class="warn-top">																									
+<span class="warn-badge">Risk Disclosure</span>																									
+<span class="warn-sebi">SEBI Mandated</span>																									
+</div>																									
+<div class="warn-title">Trade Responsibly in Futures &amp; Options</div>																									
+<div style="font-size:12px;color:var(--red);font-weight:700;margin-bottom:12px;text-transform:uppercase;letter-spacing:.06em;">Risk Disclosures on Derivatives:</div>																									
+<ul class="warn-list">																									
+<li>9 out of 10 individual traders in Equity, Futures and Options segment, incurred net losses.</li>																									
+<li>On an average, loss makers registered net trading loss close to &#8377;50,000.</li>																									
+<li>Over and above the net trading losses incurred, loss makers expended an additional 28% of net trading losses as transaction costs.</li>																									
+<li>Those making net trading profits, incurred between 15% to 50% of such profits as transaction cost.</li>																									
+</ul>																									
+<div class="warn-source"><strong style="color:var(--muted);font-weight:600;">Source:</strong> SEBI study dated January 25, 2023 on "Analysis of Profit and Loss of Individual Traders dealing in equity Futures and Options (F&amp;O) Segment", wherein Aggregate Level findings are based on annual Profit/Loss incurred by individual traders in equity F&amp;O during FY 2021-22.</div>																									
+<div class="warn-proceed">Proceed Ahead to Trade</div>																									
+<button class="warn-btn" onclick="acceptWarning()">I Understand — Proceed &#8594;</button>																									
+</div>																									
+</div>																									
+																									
+<!-- ============ LOGIN SCREEN ============ -->																									
+<div class="login-screen" id="login-screen">																									
+<div class="login-card">																									
+<div class="login-logo">MM PRO</div>																									
+<div class="login-sub">Apna account mein login karo</div>																									
+<div class="inp-wrap">																									
+<input class="inp" type="text" id="li-user" placeholder="Username" autocomplete="username">																									
+<input class="inp" type="password" id="li-pass" placeholder="Password" autocomplete="current-password">																									
+</div>																									
+<div class="msg err" id="li-err"></div>																									
+<div class="msg ok" id="li-ok"></div>																									
+<button class="btn-primary" id="li-btn" onclick="doLogin()">Login Karo →</button>																									
+<div class="loading-text" id="li-loading" style="display:none">⏳ Verify ho raha hai...</div>																									
+<br>																									
+<button class="new-acc-btn" onclick="goToRegister()">Naya account banana hai? 3 steps karo →</button>																									
+</div>																									
+</div>																									
 																									
 <!-- ============ LOGIN SCREEN ============ -->																									
 <div class="login-screen" id="login-screen">																									
@@ -283,7 +321,7 @@ footer a{color:var(--gold);text-decoration:none;}
 </div>																									
 																									
 <div class="tabs">																									
-<button class="tab active" onclick="switchTab('scanner')">📊 Signals</button>																									
+<button class="tab active" onclick="switchTab('scanner')">📊 Stocks</button>																									
 <button class="tab" onclick="switchTab('calc')">💰 Calculator</button>																									
 <button class="tab" onclick="switchTab('rules')">📋 Rules</button>																									
 </div>																									
@@ -292,7 +330,7 @@ footer a{color:var(--gold);text-decoration:none;}
 <div class="panel active" id="panel-scanner">																									
 <div class="tcard">																									
 <div class="scan-status">																									
-<div class="card-title" style="margin-bottom:0">Live Signals</div>																									
+<div class="card-title" style="margin-bottom:0">Live Stocks</div>																									
 <div class="scan-dot">																									
 <div class="dot" id="live-dot"></div>																									
 <span class="scan-time" id="scan-time">Fetch ho raha hai...</span>																									
@@ -359,7 +397,7 @@ style="width:100%;background:var(--card2);border:1px solid var(--border);border-
 																									
 <!-- Results grid -->																									
 <div class="trade-calc" style="margin-top:10px">																									
-<div class="tc-box"><div class="tc-label">Support</div><div class="tc-val red" id="tc-sup">—</div></div>																									
+<div class="tc-box"><div class="tc-label" id="tc-sup-label">Support</div><div class="tc-val red" id="tc-sup">—</div></div>																									
 <div class="tc-box"><div class="tc-label">Qty</div><div class="tc-val gold-c" id="tc-qty">—</div></div>																									
 <div class="tc-box"><div class="tc-label">Min Risk</div><div class="tc-val red" id="tc-loss">—</div></div>																									
 <div class="tc-box"><div class="tc-label">Min Profit</div><div class="tc-val green" id="tc-profit">—</div></div>																									
@@ -696,10 +734,10 @@ document.getElementById('buy-title').textContent  = '📈 BULLISH (' + data.buy.
 document.getElementById('sell-title').textContent = '📉 BEARISH (' + data.sell.length + ')';																									
 document.getElementById('buy-list').innerHTML = data.buy.length === 0																									
 ? '<div class="no-signal">Koi Bullish signal nahi</div>'																									
-: data.buy.map(function(s){return '<div class="signal-item" onclick="selectStock(\''+s.symbol+'\','+s.price+',\'bull\')"><span class="sym">'+s.symbol+'</span><span class="price">₹'+s.price+'</span></div>';}).join('');																									
+: data.buy.map(function(s){return '<div class="signal-item" onclick="selectStock(\''+s.symbol+'\','+s.price+',\'bull\')"><span class="sym">'+s.symbol+'</span><span class="price" style="color:var(--green)">₹'+s.price+'</span></div>';}).join('');																									
 document.getElementById('sell-list').innerHTML = data.sell.length === 0																									
 ? '<div class="no-signal">Koi Bearish signal nahi</div>'																									
-: data.sell.map(function(s){return '<div class="signal-item" onclick="selectStock(\''+s.symbol+'\','+s.price+',\'bear\')"><span class="sym">'+s.symbol+'</span><span class="price">₹'+s.price+'</span></div>';}).join('');																									
+: data.sell.map(function(s){return '<div class="signal-item" onclick="selectStock(\''+s.symbol+'\','+s.price+',\'bear\')"><span class="sym">'+s.symbol+'</span><span class="price" style="color:var(--red)">₹'+s.price+'</span></div>';}).join('');																									
 document.getElementById('auto-msg').textContent = 'Auto-refresh: har 30 sec · ' + new Date().toLocaleTimeString('en-IN');																									
 // Global mein save karo — stock select pe levels dikhane ke liye																									
 window._scanData = data;																									
@@ -800,6 +838,9 @@ var profitPerShare = Math.abs(r1Px - price);
 var minProfit      = Math.round(qty * profitPerShare);																									
 																									
 // Update UI																									
+// Label: Buy = Support, Sell = Resistance																									
+var supLabel = document.getElementById('tc-sup-label');																									
+if (supLabel) supLabel.textContent = type === 'bull' ? 'Support' : 'Resistance';																									
 document.getElementById('tc-sup').textContent    = '₹' + supPx.toFixed(2);																									
 document.getElementById('tc-qty').textContent    = qty + ' shares';																									
 document.getElementById('tc-loss').textContent   = '₹' + minRisk.toLocaleString('en-IN');																									
