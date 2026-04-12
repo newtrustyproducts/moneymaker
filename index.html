@@ -1,725 +1,878 @@
-<!DOCTYPE html>
-<html lang="hi">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MoneyMaker7867 — Free Money Management Tool</title>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Bebas+Neue&display=swap" rel="stylesheet">
-<style>
-:root{--gold:#F0B429;--bg:#0A0A0A;--card:#111111;--card2:#161616;--border:#222222;--text:#F0EDE6;--muted:#555;--green:#22C55E;--red:#EF4444;--amber:#F59E0B;}
-*{box-sizing:border-box;margin:0;padding:0;}
-body{background:var(--bg);color:var(--text);font-family:'Space Grotesk',sans-serif;overflow-x:hidden;}
-
-/* HERO */
-.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:2rem;position:relative;}
-.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 50% at 50% 0%,rgba(240,180,41,.10) 0%,transparent 70%);pointer-events:none;}
-.hero-tag{font-size:11px;letter-spacing:.2em;color:var(--gold);background:rgba(240,180,41,.1);border:1px solid rgba(240,180,41,.2);padding:6px 16px;border-radius:99px;display:inline-block;margin-bottom:24px;text-transform:uppercase;}
-.hero-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(3.5rem,10vw,7rem);line-height:.95;margin-bottom:16px;}
-.hero-title span{color:var(--gold);}
-.hero-sub{font-size:clamp(.95rem,2vw,1.1rem);color:var(--muted);max-width:440px;line-height:1.7;margin-bottom:36px;}
-.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.2);color:var(--green);font-size:13px;padding:8px 18px;border-radius:99px;}
-.hero-badge::before{content:'';width:7px;height:7px;border-radius:50%;background:var(--green);animation:pulse 2s infinite;}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
-.scroll-hint{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:6px;color:var(--muted);font-size:11px;letter-spacing:.1em;}
-.arrow{width:18px;height:18px;border-right:1.5px solid var(--muted);border-bottom:1.5px solid var(--muted);transform:rotate(45deg);animation:bounce 1.5s infinite;}
-@keyframes bounce{0%,100%{transform:rotate(45deg) translateY(0)}50%{transform:rotate(45deg) translateY(5px)}}
-
-/* LAYOUT */
-section{max-width:680px;margin:0 auto;padding:4rem 1.5rem;}
-.sec-label{font-size:11px;letter-spacing:.2em;color:var(--gold);text-transform:uppercase;margin-bottom:10px;}
-.sec-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(2rem,5vw,2.8rem);margin-bottom:8px;}
-.sec-sub{color:var(--muted);font-size:14px;line-height:1.6;margin-bottom:2rem;}
-
-/* STEPS */
-.steps{display:flex;flex-direction:column;gap:14px;}
-.step{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:1.2rem 1.5rem;display:flex;align-items:center;gap:16px;transition:border-color .4s;}
-.step.done{border-color:rgba(34,197,94,.4);}
-.step-num{width:38px;height:38px;border-radius:50%;border:1.5px solid var(--border);display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:1.1rem;color:var(--gold);flex-shrink:0;transition:all .3s;}
-.step.done .step-num{background:var(--green);border-color:var(--green);color:#000;font-family:'Space Grotesk',sans-serif;font-weight:700;}
-.step-body{flex:1;}
-.step-title{font-weight:600;font-size:14px;margin-bottom:3px;}
-.step-desc{font-size:12px;color:var(--muted);line-height:1.5;}
-.step-actions{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:10px;}
-.sbtn{display:inline-flex;align-items:center;gap:6px;padding:7px 14px;border-radius:99px;font-size:12px;font-weight:600;border:none;cursor:pointer;text-decoration:none;transition:all .2s;font-family:'Space Grotesk',sans-serif;}
-.sbtn-gold{background:var(--gold);color:#000;}
-.sbtn-gold:hover{background:#FFD166;}
-.sbtn-insta{background:linear-gradient(135deg,#833ab4,#fd1d1d,#fcb045);color:#fff;}
-.sbtn-yt{background:#FF0000;color:#fff;}
-.sbtn-confirm{background:transparent;border:1px solid var(--border);color:var(--muted);}
-.sbtn-confirm:hover{border-color:var(--green);color:var(--green);}
-.done-badge{display:inline-flex;align-items:center;gap:5px;font-size:12px;color:var(--green);font-weight:600;}
-
-/* PROGRESS */
-.lock-box{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:2rem;text-align:center;margin-top:1.5rem;}
-.lock-ico{font-size:2.5rem;margin-bottom:10px;}
-.lock-title{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;margin-bottom:6px;}
-.lock-sub{color:var(--muted);font-size:13px;}
-.prog-wrap{background:var(--border);border-radius:99px;height:5px;margin:1.2rem 0 .4rem;overflow:hidden;}
-.prog-bar{height:100%;background:var(--gold);border-radius:99px;transition:width .5s ease;}
-.prog-text{font-size:12px;color:var(--muted);}
-
-/* FORMS */
-.auth-card{background:var(--card);border:1px solid rgba(240,180,41,.25);border-radius:18px;padding:2rem;margin-top:1.5rem;display:none;}
-.auth-card.show{display:block;animation:popIn .4s ease;}
-.auth-title{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;color:var(--gold);margin-bottom:4px;text-align:center;}
-.auth-sub{color:var(--muted);font-size:13px;text-align:center;margin-bottom:1.5rem;}
-.inp-wrap{display:flex;flex-direction:column;gap:10px;margin-bottom:1.2rem;}
-.inp{background:var(--card2);border:1px solid var(--border);border-radius:10px;padding:10px 14px;font-size:14px;color:var(--text);font-family:'Space Grotesk',sans-serif;outline:none;width:100%;}
-.inp:focus{border-color:var(--gold);}
-.msg{font-size:12px;padding:8px 12px;border-radius:8px;margin-bottom:10px;display:none;}
-.msg.err{background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.3);color:var(--red);}
-.msg.ok{background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.3);color:var(--green);}
-.btn-primary{background:var(--gold);color:#000;border:none;border-radius:10px;padding:11px 24px;font-size:14px;font-weight:700;cursor:pointer;width:100%;font-family:'Space Grotesk',sans-serif;transition:all .2s;}
-.btn-primary:hover{background:#FFD166;}
-.btn-primary:disabled{opacity:.5;cursor:not-allowed;}
-.loading-text{font-size:12px;color:var(--muted);text-align:center;margin-top:8px;}
-
-/* LOGIN SCREEN */
-.login-screen{display:none;min-height:100vh;align-items:center;justify-content:center;padding:2rem;}
-.login-screen.show{display:flex;}
-.login-card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:2.5rem 2rem;width:100%;max-width:380px;text-align:center;}
-.login-logo{font-family:'Bebas Neue',sans-serif;font-size:2.5rem;color:var(--gold);margin-bottom:4px;}
-.login-sub{font-size:13px;color:var(--muted);margin-bottom:1.5rem;}
-.logout-btn{background:transparent;border:1px solid var(--border);color:var(--muted);border-radius:8px;padding:6px 14px;font-size:12px;cursor:pointer;font-family:'Space Grotesk',sans-serif;transition:all .2s;margin-top:12px;}
-.logout-btn:hover{border-color:var(--red);color:var(--red);}
-.new-acc-btn{background:transparent;border:none;color:var(--muted);font-size:12px;cursor:pointer;font-family:'Space Grotesk',sans-serif;margin-top:8px;text-decoration:underline;}
-
-/* TOOL */
-.tool-section{display:none;}
-.tool-section.show{display:block;animation:popIn .5s ease;}
-@keyframes popIn{from{opacity:0;transform:scale(.97)}to{opacity:1;transform:scale(1)}}
-.tabs{display:flex;gap:6px;margin-bottom:1.5rem;}
-.tab{flex:1;padding:10px;border:1px solid var(--border);border-radius:10px;background:var(--card);color:var(--muted);font-size:13px;font-weight:600;cursor:pointer;text-align:center;transition:all .2s;font-family:'Space Grotesk',sans-serif;}
-.tab.active{border-color:var(--gold);color:var(--gold);background:rgba(240,180,41,.06);}
-.panel{display:none;}
-.panel.active{display:block;}
-.tcard{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1.2rem 1.4rem;margin-bottom:12px;}
-.card-title{font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:14px;font-weight:600;}
-.scan-status{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;}
-.scan-time{font-size:12px;color:var(--muted);}
-.scan-dot{display:inline-flex;align-items:center;gap:6px;font-size:12px;}
-.dot{width:7px;height:7px;border-radius:50%;background:var(--muted);}
-.dot.live{background:var(--green);animation:pulse 2s infinite;}
-.signal-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px;}
-.signal-box{background:var(--card2);border:1px solid var(--border);border-radius:10px;padding:10px 12px;}
-.signal-box-title{font-size:11px;font-weight:600;margin-bottom:8px;}
-.signal-box-title.buy{color:var(--green);}
-.signal-box-title.sell{color:var(--red);}
-.signal-item{display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid var(--border);font-size:12px;}
-.signal-item:last-child{border-bottom:none;}
-.signal-item .sym{font-weight:600;}
-.signal-item .price{color:var(--muted);}
-.no-signal{font-size:12px;color:var(--muted);padding:8px 0;text-align:center;}
-.refresh-btn{width:100%;padding:8px;background:transparent;border:1px solid var(--border);color:var(--muted);border-radius:8px;font-size:12px;cursor:pointer;transition:all .2s;font-family:'Space Grotesk',sans-serif;margin-top:8px;}
-.refresh-btn:hover{border-color:var(--gold);color:var(--gold);}
-.slider-row{display:flex;align-items:center;gap:10px;margin-bottom:12px;}
-.slider-label{font-size:12px;color:var(--muted);min-width:130px;}
-input[type=range]{flex:1;-webkit-appearance:none;height:3px;border-radius:99px;background:var(--border);outline:none;}
-input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:15px;height:15px;border-radius:50%;background:var(--gold);cursor:pointer;border:2px solid var(--bg);}
-.slider-val{font-size:12px;font-weight:700;min-width:72px;text-align:right;}
-select{background:var(--card2);color:var(--text);border:1px solid var(--border);border-radius:8px;padding:5px 8px;font-size:12px;font-family:'Space Grotesk',sans-serif;outline:none;}
-.metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-bottom:12px;}
-.metric-box{background:var(--card2);border:1px solid var(--border);border-radius:10px;padding:10px 12px;}
-.metric-label{font-size:10px;color:var(--muted);margin-bottom:5px;}
-.metric-val{font-size:16px;font-weight:700;}
-.green{color:var(--green);}.red{color:var(--red);}.amber{color:var(--amber);}.gold-c{color:var(--gold);}
-.sum-row{display:flex;justify-content:space-between;font-size:12px;padding:5px 0;border-bottom:1px solid var(--border);}
-.sum-row:last-child{border-bottom:none;}
-.sum-row span:first-child{color:var(--muted);}
-.sum-row span:last-child{font-weight:700;}
-.rule-item{display:flex;align-items:flex-start;gap:10px;padding:9px 0;border-bottom:1px solid var(--border);}
-.rule-item:last-child{border-bottom:none;}
-.rdot{width:7px;height:7px;border-radius:50%;margin-top:5px;flex-shrink:0;}
-.rdot.warn{background:var(--amber);}.rdot.ok{background:var(--green);}
-.rule-text{font-size:13px;line-height:1.5;}
-.rule-sub{font-size:11px;color:var(--muted);margin-top:2px;}
-.tool-header-bar{display:flex;justify-content:space-between;align-items:center;margin-bottom:1.5rem;}
-
-/* WARNING PAGE */
-.warn-screen{display:none;min-height:100vh;align-items:center;justify-content:center;padding:1.5rem;background:var(--bg);}
-.warn-screen.show{display:flex;}
-.warn-card{background:var(--card);border:1px solid rgba(239,68,68,.3);border-radius:20px;padding:2rem 1.8rem;width:100%;max-width:480px;}
-.warn-top{display:flex;align-items:center;gap:10px;margin-bottom:20px;}
-.warn-badge{background:rgba(239,68,68,.12);border:1px solid rgba(239,68,68,.3);color:var(--red);font-size:11px;font-weight:700;letter-spacing:.12em;padding:5px 14px;border-radius:99px;text-transform:uppercase;}
-.warn-sebi{font-size:11px;color:var(--muted);}
-.warn-title{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;color:#fff;font-weight:700;margin-bottom:16px;line-height:1.2;}
-.warn-list{list-style:none;padding:0;margin-bottom:20px;}
-.warn-list li{display:flex;gap:10px;font-size:13px;color:#fff;font-weight:700;line-height:1.6;padding:8px 0;border-bottom:1px solid var(--border);}
-.warn-list li:last-child{border-bottom:none;}
-.warn-list li::before{content:"•";color:var(--red);font-size:16px;flex-shrink:0;margin-top:1px;}
-.warn-source{font-size:10px;color:var(--muted);line-height:1.6;margin-bottom:20px;padding:10px 12px;background:var(--card2);border-radius:8px;border:1px solid var(--border);}
-.warn-proceed{font-size:13px;color:#fff;font-weight:700;text-align:center;margin-bottom:16px;letter-spacing:.04em;}
-.warn-btn{width:100%;background:var(--red);color:#fff;border:none;border-radius:12px;padding:14px 24px;font-size:15px;font-weight:700;cursor:pointer;font-family:"Space Grotesk",sans-serif;transition:all .2s;letter-spacing:.04em;}
-.warn-btn:hover{background:#dc2626;}
-/* SEBI FOOTER */
-.sebi-footer{background:rgba(239,68,68,.06);border:1px solid rgba(239,68,68,.15);border-radius:10px;padding:12px 14px;margin-top:12px;}
-.sebi-footer-text{font-size:11px;line-height:1.7;}
-
-footer{text-align:center;padding:3rem 1.5rem;color:var(--muted);font-size:12px;border-top:1px solid var(--border);}
-footer a{color:var(--gold);text-decoration:none;}
-</style>
-</head>
-<body>
-
-<!-- ============ SEBI WARNING PAGE ============ -->
-<div class="warn-screen" id="warn-screen">
-  <div class="warn-card">
-    <div class="warn-top">
-      <span class="warn-badge">Risk Disclosure</span>
-      <span class="warn-sebi">SEBI Mandated</span>
-    </div>
-    <div class="warn-title">Trade Responsibly in Futures &amp; Options</div>
-    <div style="font-size:12px;color:var(--red);font-weight:700;margin-bottom:12px;text-transform:uppercase;letter-spacing:.06em;">Risk Disclosures on Derivatives:</div>
-    <ul class="warn-list">
-      <li>9 out of 10 individual traders in Equity, Futures and Options segment, incurred net losses.</li>
-      <li>On an average, loss makers registered net trading loss close to &#8377;50,000.</li>
-      <li>Over and above the net trading losses incurred, loss makers expended an additional 28% of net trading losses as transaction costs.</li>
-      <li>Those making net trading profits, incurred between 15% to 50% of such profits as transaction cost.</li>
-    </ul>
-    <div class="warn-source"><strong style="color:var(--muted);font-weight:600;">Source:</strong> SEBI study dated January 25, 2023 on "Analysis of Profit and Loss of Individual Traders dealing in equity Futures and Options (F&amp;O) Segment", wherein Aggregate Level findings are based on annual Profit/Loss incurred by individual traders in equity F&amp;O during FY 2021-22.</div>
-    <div class="warn-proceed">Proceed Ahead to Trade</div>
-    <button class="warn-btn" onclick="acceptWarning()">I Understand — Proceed &#8594;</button>
-  </div>
-</div>
-
-<!-- ============ LOGIN SCREEN ============ -->
-<div class="login-screen" id="login-screen">
-  <div class="login-card">
-    <div class="login-logo">MM PRO</div>
-    <div class="login-sub">Apna account mein login karo</div>
-    <div class="inp-wrap">
-      <input class="inp" type="text" id="li-user" placeholder="Username" autocomplete="username">
-      <input class="inp" type="password" id="li-pass" placeholder="Password" autocomplete="current-password">
-    </div>
-    <div class="msg err" id="li-err"></div>
-    <div class="msg ok" id="li-ok"></div>
-    <button class="btn-primary" id="li-btn" onclick="doLogin()">Login Karo →</button>
-    <div class="loading-text" id="li-loading" style="display:none">⏳ Verify ho raha hai...</div>
-    <br>
-    <button class="new-acc-btn" onclick="goToRegister()">Naya account banana hai? 3 steps karo →</button>
-  </div>
-</div>
-
-<!-- ============ MAIN PAGE (Hero + Steps) ============ -->
-<div id="main-page" style="display:none">
-<div class="hero">
-  <div class="hero-tag">Traders Ke Liye — 100% Free</div>
-  <h1 class="hero-title">MONEY<br><span>MANAGER</span><br>PRO</h1>
-  <p class="hero-sub">Live scanner signals + professional money management — ek jagah. Capital protect karo, risk control karo.</p>
-  <div class="hero-badge">Free Access — Sirf 3 Steps Mein</div>
-  <div class="scroll-hint"><span>NICHE DEKHO</span><div class="arrow"></div></div>
-</div>
-
-<section>
-  <div class="sec-label">Free Access</div>
-  <h2 class="sec-title">3 Steps — Tool Unlock Karo</h2>
-  <p class="sec-sub">Sirf ek baar karo — phir username + password se kisi bhi device pe login karo.</p>
-
-  <div class="steps">
-    <div class="step" id="s1">
-      <div class="step-num" id="n1">1</div>
-      <div class="step-body">
-        <div class="step-title">Dhan App Se Demat Account Kholo</div>
-        <div class="step-desc">Referral link se free mein Dhan account open karo.</div>
-        <div class="step-actions">
-          <a class="sbtn sbtn-gold" href="https://join.dhan.co/?invite=OKHPS62291" target="_blank" onclick="clicked(1)">🏦 Dhan Account Kholo</a>
-          <button class="sbtn sbtn-confirm" id="c1" style="display:none" onclick="confirm_step(1)">✓ Ho gaya</button>
-          <span class="done-badge" id="d1" style="display:none">✅ Done!</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="step" id="s2">
-      <div class="step-num" id="n2">2</div>
-      <div class="step-body">
-        <div class="step-title">Instagram Pe Follow Karo</div>
-        <div class="step-desc">@mone_ymaker7867 — daily tips aur scanner results.</div>
-        <div class="step-actions">
-          <a class="sbtn sbtn-insta" href="https://www.instagram.com/mone_ymaker7867/" target="_blank" onclick="clicked(2)">📸 Follow Karo</a>
-          <button class="sbtn sbtn-confirm" id="c2" style="display:none" onclick="confirm_step(2)">✓ Ho gaya</button>
-          <span class="done-badge" id="d2" style="display:none">✅ Done!</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="step" id="s3">
-      <div class="step-num" id="n3">3</div>
-      <div class="step-body">
-        <div class="step-title">YouTube Pe Subscribe Karo</div>
-        <div class="step-desc">@mone_ymaker7867 — free trading tutorials aur strategies.</div>
-        <div class="step-actions">
-          <a class="sbtn sbtn-yt" href="https://www.youtube.com/@mone_ymaker7867" target="_blank" onclick="clicked(3)">▶ Subscribe Karo</a>
-          <button class="sbtn sbtn-confirm" id="c3" style="display:none" onclick="confirm_step(3)">✓ Ho gaya</button>
-          <span class="done-badge" id="d3" style="display:none">✅ Done!</span>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <!-- LOCK BOX -->
-  <div class="lock-box" id="lock-box">
-    <div class="lock-ico">🔒</div>
-    <div class="lock-title">Tool Locked Hai</div>
-    <div class="lock-sub">Teeno steps complete karo — phir account banao</div>
-    <div class="prog-wrap"><div class="prog-bar" id="prog" style="width:0%"></div></div>
-    <div class="prog-text" id="prog-text">0 / 3 complete</div>
-  </div>
-
-  <!-- REGISTER FORM — 3 steps ke baad show hoga -->
-  <div class="auth-card" id="reg-form">
-    <div class="lock-ico" style="text-align:center">🔓</div>
-    <div class="auth-title">Account Banao!</div>
-    <div class="auth-sub">Ek baar set karo — phir kisi bhi device se login karo</div>
-    <div class="inp-wrap">
-      <input class="inp" type="text" id="reg-user" placeholder="Username (min 4 characters)" autocomplete="off" oninput="checkUser()">
-      <div class="msg err" id="reg-user-err"></div>
-      <input class="inp" type="password" id="reg-pass" placeholder="Password (min 6 characters)" autocomplete="new-password">
-      <input class="inp" type="password" id="reg-pass2" placeholder="Password dobara daalo" autocomplete="new-password">
-      <div class="msg err" id="reg-err"></div>
-      <div class="msg ok" id="reg-ok"></div>
-    </div>
-    <button class="btn-primary" id="reg-btn" onclick="doRegister()">Account Banao & Tool Kholo →</button>
-    <div class="loading-text" id="reg-loading" style="display:none">⏳ Account ban raha hai...</div>
-  </div>
-</section>
-</div>
-
-<!-- ============ TOOL ============ -->
-<div class="tool-section" id="tool">
-  <section style="padding-top:2rem">
-    <div class="tool-header-bar">
-      <div>
-        <div class="sec-label" id="welcome-msg">Welcome!</div>
-        <h2 class="sec-title" style="margin-bottom:0">Money Manager Pro</h2>
-      </div>
-      <button class="logout-btn" onclick="doLogout()">Logout</button>
-    </div>
-
-    <div class="tabs">
-      <button class="tab active" onclick="switchTab('scanner')">📊 Signals</button>
-      <button class="tab" onclick="switchTab('calc')">💰 Calculator</button>
-      <button class="tab" onclick="switchTab('rules')">📋 Rules</button>
-    </div>
-
-    <!-- SCANNER -->
-    <div class="panel active" id="panel-scanner">
-      <div class="tcard">
-        <div class="scan-status">
-          <div class="card-title" style="margin-bottom:0">Live Signals</div>
-          <div class="scan-dot">
-            <div class="dot" id="live-dot"></div>
-            <span class="scan-time" id="scan-time">Fetch ho raha hai...</span>
-          </div>
-        </div>
-        <div style="font-size:11px;color:var(--muted);margin-bottom:12px" id="scan-date"></div>
-        <div class="signal-grid">
-          <div class="signal-box">
-            <div class="signal-box-title buy" id="buy-title">📈 BULLISH (0)</div>
-            <div id="buy-list"><div class="no-signal">Scanner se results ka wait karo</div></div>
-          </div>
-          <div class="signal-box">
-            <div class="signal-box-title sell" id="sell-title">📉 BEARISH (0)</div>
-            <div id="sell-list"><div class="no-signal">Scanner se results ka wait karo</div></div>
-          </div>
-        </div>
-        <div style="font-size:11px;color:var(--muted);text-align:center;margin-bottom:6px" id="auto-msg">Har 30 sec mein auto-refresh</div>
-        <button class="refresh-btn" onclick="fetchResults()">🔄 Abhi Refresh Karo</button>
-      </div>
-      <div class="tcard" style="font-size:12px;color:var(--muted);line-height:1.8">
-        <div class="card-title">Kaise Use Karein</div>
-        📈 Bullish = Strong uptrend — BUY consider karo<br>
-        📉 Bearish = Weak stocks — SELL/avoid karo<br>
-        Nifty green ho tab Bullish signals zyada reliable hote hain<br>
-        Hamesha SL lagao entry ke saath
-      </div>
-
-      <!-- SEBI Warning Footer -->
-      <div class="sebi-footer">
-        <div class="sebi-footer-text">
-          <strong style="color:#fff;font-size:12px;">&#9888;&#65039; Risk Disclosures on Derivatives:</strong><br>
-          <span style="color:#fff;font-weight:700;">&#8226; 9 out of 10 individual traders in Equity, Futures and Options Segment, incurred net losses.<br>
-          &#8226; On an average, loss makers registered net trading loss close to &#8377;50,000.<br>
-          &#8226; Over and above the net trading losses incurred, loss makers expended an additional 28% of net trading losses as transaction costs.<br>
-          &#8226; Those making net trading profits, incurred between 15% to 50% of such profits as transaction cost.</span><br><br>
-          <strong style="color:#fff;font-size:13px;">I am NOT a SEBI Registered Investment Advisor. This content is for educational purposes only. Please consult your financial advisor before making any investment. Stock market investments are subject to market risks.</strong>
-        </div>
-      </div>
-    </div>
-
-    <!-- CALCULATOR -->
-    <div class="panel" id="panel-calc">
-      <div class="tcard">
-        <div class="card-title">Capital & Risk Setup</div>
-        <div class="slider-row"><span class="slider-label">Total Capital</span><input type="range" min="50000" max="500000" step="10000" value="100000" id="capital" oninput="calc()"><span class="slider-val gold-c" id="cap-out">₹1,00,000</span></div>
-        <div class="slider-row"><span class="slider-label">Max stocks ek saath</span><input type="range" min="1" max="15" step="1" value="5" id="stocks" oninput="calc()"><span class="slider-val" id="stocks-out">5</span></div>
-        <div class="slider-row"><span class="slider-label">Risk per trade</span><input type="range" min="0.5" max="3" step="0.5" value="1" id="risk" oninput="calc()"><span class="slider-val" id="risk-out">1%</span></div>
-        <div class="slider-row"><span class="slider-label">Stop Loss %</span><input type="range" min="0.3" max="2" step="0.1" value="0.5" id="sl" oninput="calc()"><span class="slider-val" id="sl-out">0.5%</span></div>
-        <div class="slider-row" style="margin-bottom:0"><span class="slider-label">Risk : Reward</span><select id="rr" onchange="calc()"><option value="1.5">1:1.5</option><option value="2" selected>1:2</option><option value="2.5">1:2.5</option><option value="3">1:3</option></select><span class="slider-val green" id="rr-out">1:2</span></div>
-      </div>
-      <div class="metrics">
-        <div class="metric-box"><div class="metric-label">Per trade</div><div class="metric-val gold-c" id="per-trade">₹20,000</div></div>
-        <div class="metric-box"><div class="metric-label">Max loss/trade</div><div class="metric-val red" id="max-loss">₹1,000</div></div>
-        <div class="metric-box"><div class="metric-label">Target/trade</div><div class="metric-val green" id="target">₹2,000</div></div>
-        <div class="metric-box"><div class="metric-label">Daily limit</div><div class="metric-val red" id="daily-loss">₹2,000</div></div>
-        <div class="metric-box"><div class="metric-label">Best case</div><div class="metric-val green" id="best-case">+₹10,000</div></div>
-        <div class="metric-box"><div class="metric-label">Qty (₹500 stock)</div><div class="metric-val" id="qty">40</div></div>
-      </div>
-      <div class="tcard">
-        <div class="card-title">Summary</div>
-        <div class="sum-row"><span>Saare targets hit hon toh</span><span class="green" id="s-best">+₹10,000</span></div>
-        <div class="sum-row"><span>Saare SL hit hon toh</span><span class="red" id="s-worst">-₹5,000</span></div>
-        <div class="sum-row"><span>Daily stop trading limit</span><span class="amber" id="s-limit">-₹2,000</span></div>
-      </div>
-
-      <!-- SEBI Warning Footer -->
-      <div class="sebi-footer">
-        <div class="sebi-footer-text">
-          <strong style="color:#fff;font-size:12px;">&#9888;&#65039; Risk Disclosures on Derivatives:</strong><br>
-          <span style="color:#fff;font-weight:700;">&#8226; 9 out of 10 individual traders in Equity, Futures and Options Segment, incurred net losses.<br>
-          &#8226; On an average, loss makers registered net trading loss close to &#8377;50,000.<br>
-          &#8226; Over and above the net trading losses incurred, loss makers expended an additional 28% of net trading losses as transaction costs.<br>
-          &#8226; Those making net trading profits, incurred between 15% to 50% of such profits as transaction cost.</span><br><br>
-          <strong style="color:#fff;font-size:13px;">I am NOT a SEBI Registered Investment Advisor. This content is for educational purposes only. Please consult your financial advisor before making any investment. Stock market investments are subject to market risks.</strong>
-        </div>
-      </div>
-    </div>
-
-    <!-- RULES -->
-    <div class="panel" id="panel-rules">
-      <div class="tcard">
-        <div class="card-title">Golden Rules</div>
-        <div class="rule-item"><div class="rdot warn"></div><div><div class="rule-text">Max <strong id="r-stocks">5</strong> stocks ek saath — zyada mat lo</div><div class="rule-sub">Concentration risk badh jaata hai</div></div></div>
-        <div class="rule-item"><div class="rdot warn"></div><div><div class="rule-text">Daily loss limit hit hote hi trading BAND karo</div><div class="rule-sub" id="r-daily">Limit: ₹2,000 — phir screen se door ho jao</div></div></div>
-        <div class="rule-item"><div class="rdot ok"></div><div><div class="rule-text">Nifty direction 9:20 pe confirm karo</div><div class="rule-sub">Green → Bullish lo · Red → Bearish lo</div></div></div>
-        <div class="rule-item"><div class="rdot ok"></div><div><div class="rule-text">SL hamesha entry ke saath lagao</div><div class="rule-sub">Bracket Order use karo — automatic SL</div></div></div>
-        <div class="rule-item"><div class="rdot ok"></div><div><div class="rule-text">3:15 PM pe saare positions close karo</div><div class="rule-sub">Koi overnight position nahi — kal fresh start</div></div></div>
-        <div class="rule-item"><div class="rdot warn"></div><div><div class="rule-text">Lagaataar 3 loss ke baad — aaj trading band</div><div class="rule-sub">Emotional trading sabse bada dushman hai</div></div></div>
-        <div class="rule-item"><div class="rdot warn"></div><div><div class="rule-text">News events pe trade mat karo</div><div class="rule-sub">Budget, RBI, results — high volatility mein signals unreliable</div></div></div>
-        <div class="rule-item"><div class="rdot ok"></div><div><div class="rule-text">Profit mein SL trailing karo</div><div class="rule-sub">1% move ke baad SL ko breakeven pe le aao</div></div></div>
-        <div class="rule-item"><div class="rdot ok"></div><div><div class="rule-text">Volume confirm karo entry se pehle</div><div class="rule-sub">Kam volume wale stocks mein entry nahi</div></div></div>
-        <div class="rule-item"><div class="rdot warn"></div><div><div class="rule-text">Monday subah pehle 15 min wait karo</div><div class="rule-sub">Gap up/down settle hone do</div></div></div>
-      </div>
-
-      <!-- SEBI Warning Footer -->
-      <div class="sebi-footer">
-        <div class="sebi-footer-text">
-          <strong style="color:#fff;font-size:12px;">&#9888;&#65039; Risk Disclosures on Derivatives:</strong><br>
-          <span style="color:#fff;font-weight:700;">&#8226; 9 out of 10 individual traders in Equity, Futures and Options Segment, incurred net losses.<br>
-          &#8226; On an average, loss makers registered net trading loss close to &#8377;50,000.<br>
-          &#8226; Over and above the net trading losses incurred, loss makers expended an additional 28% of net trading losses as transaction costs.<br>
-          &#8226; Those making net trading profits, incurred between 15% to 50% of such profits as transaction cost.</span><br><br>
-          <strong style="color:#fff;font-size:13px;">I am NOT a SEBI Registered Investment Advisor. This content is for educational purposes only. Please consult your financial advisor before making any investment. Stock market investments are subject to market risks.</strong>
-        </div>
-      </div>
-    </div>
-
-  </section>
-</div>
-
-<footer>
-  <p>Made for Indian traders 🇮🇳</p>
-  <p style="margin-top:8px">
-    <a href="https://www.instagram.com/mone_ymaker7867/" target="_blank">Instagram</a> &nbsp;·&nbsp;
-    <a href="https://www.youtube.com/@mone_ymaker7867" target="_blank">YouTube</a> &nbsp;·&nbsp;
-    <a href="https://join.dhan.co/?invite=OKHPS62291" target="_blank">Dhan Account</a>
-  </p>
-  <p style="margin-top:8px;font-size:11px;color:#333">Trading mein risk hota hai — sirf informed decisions lo.</p>
-</footer>
-
-<script>
-// ==========================================
-// ⚙️  YAHAN APNA APPS SCRIPT URL DAALO
-// ==========================================
-var APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyWV5W1YmhQZp8DouYpTSHOgomMgBdMZEXcmYrCHKGLLBJKX94gowTYfG1iJmKwAngA/exec";
-// ==========================================
-
-// ==========================================
-// INIT
-// ==========================================
-window.onload = function() {
-  var warned = sessionStorage.getItem('mm_warned');
-  if (!warned) {
-    document.getElementById('warn-screen').classList.add('show');
-  } else {
-    var sess = sessionStorage.getItem('mm_user');
-    if (sess) {
-      showTool(sess);
-    } else {
-      document.getElementById('login-screen').classList.add('show');
-    }
-  }
-};
-
-function acceptWarning() {
-  sessionStorage.setItem('mm_warned', '1');
-  document.getElementById('warn-screen').classList.remove('show');
-  var sess = sessionStorage.getItem('mm_user');
-  if (sess) {
-    showTool(sess);
-  } else {
-    document.getElementById('login-screen').classList.add('show');
-  }
-}
-
-function goToRegister() {
-  document.getElementById('login-screen').classList.remove('show');
-  document.getElementById('main-page').style.display = 'block';
-  window.scrollTo(0,0);
-}
-
-// ==========================================
-// 3 STEP SYSTEM
-// ==========================================
-var clicked_steps = [false,false,false];
-var done_steps    = [false,false,false];
-
-function clicked(n) {
-  clicked_steps[n-1] = true;
-  setTimeout(function() {
-    document.getElementById('c'+n).style.display = 'inline-flex';
-  }, 1500);
-}
-
-function confirm_step(n) {
-  done_steps[n-1] = true;
-  document.getElementById('c'+n).style.display = 'none';
-  document.getElementById('d'+n).style.display = 'inline-flex';
-  document.getElementById('s'+n).classList.add('done');
-  document.getElementById('n'+n).textContent = '✓';
-  update_progress();
-}
-
-function update_progress() {
-  var done = done_steps.filter(Boolean).length;
-  document.getElementById('prog').style.width = (done/3*100) + '%';
-  document.getElementById('prog-text').textContent = done + ' / 3 complete';
-  if (done === 3) {
-    setTimeout(function() {
-      document.getElementById('lock-box').style.display = 'none';
-      document.getElementById('reg-form').classList.add('show');
-      document.getElementById('reg-form').scrollIntoView({behavior:'smooth',block:'center'});
-    }, 500);
-  }
-}
-
-// ==========================================
-// USERNAME CHECK
-// ==========================================
-var checkTimer;
-function checkUser() {
-  clearTimeout(checkTimer);
-  var u = document.getElementById('reg-user').value.trim();
-  var err = document.getElementById('reg-user-err');
-  err.style.display = 'none';
-  if (u.length < 4) return;
-  checkTimer = setTimeout(function() {
-    fetch(APPS_SCRIPT_URL + '?action=check&username=' + encodeURIComponent(u))
-      .then(function(r){return r.json();})
-      .then(function(d){
-        if (!d.available) {
-          err.textContent = '❌ ' + d.message;
-          err.style.display = 'block';
-        }
-      }).catch(function(){});
-  }, 600);
-}
-
-// ==========================================
-// REGISTER
-// ==========================================
-function doRegister() {
-  var u  = document.getElementById('reg-user').value.trim().toLowerCase();
-  var p  = document.getElementById('reg-pass').value;
-  var p2 = document.getElementById('reg-pass2').value;
-  var err = document.getElementById('reg-err');
-  var ok  = document.getElementById('reg-ok');
-  err.style.display = 'none';
-  ok.style.display  = 'none';
-
-  if (u.length < 4) { showErr(err, 'Username kam se kam 4 characters ka hona chahiye'); return; }
-  if (p.length < 6) { showErr(err, 'Password kam se kam 6 characters ka hona chahiye'); return; }
-  if (p !== p2)     { showErr(err, 'Dono passwords match nahi kar rahe!'); return; }
-
-  var btn = document.getElementById('reg-btn');
-  btn.disabled = true;
-  document.getElementById('reg-loading').style.display = 'block';
-
-  fetch(APPS_SCRIPT_URL, {
-    method: 'POST',
-    body: JSON.stringify({username: u, password: p})
-  })
-  .then(function(r){return r.json();})
-  .then(function(d){
-    btn.disabled = false;
-    document.getElementById('reg-loading').style.display = 'none';
-    if (d.success) {
-      ok.textContent = '✅ ' + d.message;
-      ok.style.display = 'block';
-      setTimeout(function() {
-        sessionStorage.setItem('mm_user', u);
-        showTool(u);
-      }, 1000);
-    } else {
-      showErr(err, d.message);
-    }
-  })
-  .catch(function(){
-    btn.disabled = false;
-    document.getElementById('reg-loading').style.display = 'none';
-    showErr(err, 'Connection error! Internet check karo.');
-  });
-}
-
-// ==========================================
-// LOGIN
-// ==========================================
-function doLogin() {
-  var u = document.getElementById('li-user').value.trim().toLowerCase();
-  var p = document.getElementById('li-pass').value;
-  var err = document.getElementById('li-err');
-  var ok  = document.getElementById('li-ok');
-  err.style.display = 'none';
-  ok.style.display  = 'none';
-
-  if (!u || !p) { showErr(err, 'Username aur Password dono daalo!'); return; }
-
-  var btn = document.getElementById('li-btn');
-  btn.disabled = true;
-  document.getElementById('li-loading').style.display = 'block';
-
-  fetch(APPS_SCRIPT_URL + '?action=login&username=' + encodeURIComponent(u) + '&password=' + encodeURIComponent(p))
-  .then(function(r){return r.json();})
-  .then(function(d){
-    btn.disabled = false;
-    document.getElementById('li-loading').style.display = 'none';
-    if (d.success) {
-      ok.textContent = '✅ Login successful!';
-      ok.style.display = 'block';
-      sessionStorage.setItem('mm_user', u);
-      setTimeout(function() {
-        document.getElementById('login-screen').classList.remove('show');
-        showTool(u);
-      }, 800);
-    } else {
-      showErr(err, '❌ ' + d.message);
-    }
-  })
-  .catch(function(){
-    btn.disabled = false;
-    document.getElementById('li-loading').style.display = 'none';
-    showErr(err, 'Connection error! Internet check karo.');
-  });
-}
-
-// Enter key
-document.addEventListener('keydown', function(e) {
-  if (e.key !== 'Enter') return;
-  if (document.getElementById('login-screen').classList.contains('show')) doLogin();
-});
-
-// ==========================================
-// LOGOUT
-// ==========================================
-function doLogout() {
-  sessionStorage.removeItem('mm_user');
-  document.getElementById('tool').classList.remove('show');
-  document.getElementById('main-page').style.display = 'none';
-  document.getElementById('login-screen').classList.add('show');
-  document.getElementById('li-user').value = '';
-  document.getElementById('li-pass').value = '';
-}
-
-// ==========================================
-// SHOW TOOL
-// ==========================================
-function showTool(username) {
-  document.getElementById('main-page').style.display = 'none';
-  document.getElementById('login-screen').classList.remove('show');
-  document.getElementById('welcome-msg').textContent = 'Welcome, ' + username + '!';
-  var t = document.getElementById('tool');
-  t.classList.add('show');
-  window.scrollTo(0,0);
-  calc();
-  fetchResults();
-  setInterval(fetchResults, 30000);
-}
-
-// ==========================================
-// HELPERS
-// ==========================================
-function showErr(el, msg) {
-  el.textContent = msg;
-  el.style.display = 'block';
-}
-
-// ==========================================
-// TABS
-// ==========================================
-function switchTab(name) {
-  var names = ['scanner','calc','rules'];
-  document.querySelectorAll('.tab').forEach(function(t,i) {
-    t.classList.toggle('active', names[i] === name);
-  });
-  document.querySelectorAll('.panel').forEach(function(p) {
-    p.classList.remove('active');
-  });
-  document.getElementById('panel-'+name).classList.add('active');
-}
-
-// ==========================================
-// SCANNER FETCH
-// ==========================================
-function fetchResults() {
-  fetch('https://raw.githubusercontent.com/newtrustyproducts/moneymaker/main/results.json?t=' + Date.now())
-  .then(function(r){return r.json();})
-  .then(function(data){
-    document.getElementById('live-dot').classList.add('live');
-    document.getElementById('scan-time').textContent = 'Last scan: ' + data.scan_time;
-    document.getElementById('scan-date').textContent = data.date + '  |  ₹' + data.min_price + '–₹' + data.max_price;
-    document.getElementById('buy-title').textContent  = '📈 BULLISH (' + data.buy.length + ')';
-    document.getElementById('sell-title').textContent = '📉 BEARISH (' + data.sell.length + ')';
-    document.getElementById('buy-list').innerHTML = data.buy.length === 0
-      ? '<div class="no-signal">Koi Bullish signal nahi</div>'
-      : data.buy.map(function(s){return '<div class="signal-item"><span class="sym">'+s.symbol+'</span><span class="price">₹'+s.price+'</span></div>';}).join('');
-    document.getElementById('sell-list').innerHTML = data.sell.length === 0
-      ? '<div class="no-signal">Koi Bearish signal nahi</div>'
-      : data.sell.map(function(s){return '<div class="signal-item"><span class="sym">'+s.symbol+'</span><span class="price">₹'+s.price+'</span></div>';}).join('');
-    document.getElementById('auto-msg').textContent = 'Auto-refresh: har 30 sec · ' + new Date().toLocaleTimeString('en-IN');
-  })
-  .catch(function(){
-    document.getElementById('scan-time').textContent = 'Scanner band hai';
-    document.getElementById('live-dot').classList.remove('live');
-  });
-}
-
-// ==========================================
-// CALCULATOR
-// ==========================================
-function fmt(n){return '₹'+Math.round(n).toLocaleString('en-IN');}
-function calc(){
-  var cap=+document.getElementById('capital').value;
-  var nStk=+document.getElementById('stocks').value;
-  var risk=+document.getElementById('risk').value;
-  var sl=+document.getElementById('sl').value;
-  var rr=+document.getElementById('rr').value;
-  document.getElementById('cap-out').textContent=fmt(cap);
-  document.getElementById('stocks-out').textContent=nStk;
-  document.getElementById('risk-out').textContent=risk+'%';
-  document.getElementById('sl-out').textContent=sl.toFixed(1)+'%';
-  document.getElementById('rr-out').textContent='1:'+rr;
-  var pt=cap/nStk,ml=cap*(risk/100),tgt=ml*rr,daily=ml*2,qty=Math.floor(pt/500);
-  document.getElementById('per-trade').textContent=fmt(pt);
-  document.getElementById('max-loss').textContent=fmt(ml);
-  document.getElementById('target').textContent=fmt(tgt);
-  document.getElementById('daily-loss').textContent=fmt(daily);
-  document.getElementById('best-case').textContent='+'+fmt(tgt*nStk);
-  document.getElementById('qty').textContent=qty+' shares';
-  document.getElementById('s-best').textContent='+'+fmt(tgt*nStk);
-  document.getElementById('s-worst').textContent='-'+fmt(ml*nStk);
-  document.getElementById('s-limit').textContent='-'+fmt(daily);
-  document.getElementById('r-stocks').textContent=nStk;
-  document.getElementById('r-daily').textContent='Limit: '+fmt(daily)+' — uske baad screen se door ho jao';
-}
-</script>
-</body>
-</html>
+<!DOCTYPE html>	
+<html lang="hi">	
+<head>	
+<meta charset="UTF-8">	
+<meta name="viewport" content="width=device-width, initial-scale=1.0">	
+<title>MoneyMaker7867 — Free Money Management Tool</title>	
+<style>	
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Bebas+Neue&display=swap');	
+</style>	
+<style>	
+:root{--gold:#F0B429;--bg:#0A0A0A;--card:#111111;--card2:#161616;--border:#222222;--text:#F0EDE6;--muted:#555;--green:#22C55E;--red:#EF4444;--amber:#F59E0B;}	
+*{box-sizing:border-box;margin:0;padding:0;}	
+body{background:var(--bg);color:var(--text);font-family:'Space Grotesk',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;overflow-x:hidden;}	
+	
+/* HERO */	
+.hero{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:2rem;position:relative;}	
+.hero::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 50% at 50% 0%,rgba(240,180,41,.10) 0%,transparent 70%);pointer-events:none;}	
+.hero-tag{font-size:11px;letter-spacing:.2em;color:var(--gold);background:rgba(240,180,41,.1);border:1px solid rgba(240,180,41,.2);padding:6px 16px;border-radius:99px;display:inline-block;margin-bottom:24px;text-transform:uppercase;}	
+.hero-title{font-family:'Bebas Neue','Arial Black',Impact,sans-serif;font-size:clamp(3.5rem,10vw,7rem);line-height:.95;margin-bottom:16px;}	
+.hero-title span{color:var(--gold);}	
+.hero-sub{font-size:clamp(.95rem,2vw,1.1rem);color:var(--muted);max-width:440px;line-height:1.7;margin-bottom:36px;}	
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(34,197,94,.08);border:1px solid rgba(34,197,94,.2);color:var(--green);font-size:13px;padding:8px 18px;border-radius:99px;}	
+.hero-badge::before{content:'';width:7px;height:7px;border-radius:50%;background:var(--green);animation:pulse 2s infinite;}	
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}	
+.scroll-hint{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:6px;color:var(--muted);font-size:11px;letter-spacing:.1em;}	
+.arrow{width:18px;height:18px;border-right:1.5px solid var(--muted);border-bottom:1.5px solid var(--muted);transform:rotate(45deg);animation:bounce 1.5s infinite;}	
+@keyframes bounce{0%,100%{transform:rotate(45deg) translateY(0)}50%{transform:rotate(45deg) translateY(5px)}}	
+	
+/* LAYOUT */	
+section{max-width:680px;margin:0 auto;padding:4rem 1.5rem;}	
+.sec-label{font-size:11px;letter-spacing:.2em;color:var(--gold);text-transform:uppercase;margin-bottom:10px;}	
+.sec-title{font-family:'Bebas Neue','Arial Black',Impact,sans-serif;font-size:clamp(2rem,5vw,2.8rem);margin-bottom:8px;}	
+.sec-sub{color:var(--muted);font-size:14px;line-height:1.6;margin-bottom:2rem;}	
+	
+/* STEPS */	
+.steps{display:flex;flex-direction:column;gap:14px;}	
+.step{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:1.2rem 1.5rem;display:flex;align-items:center;gap:16px;transition:border-color .4s;}	
+.step.done{border-color:rgba(34,197,94,.4);}	
+.step-num{width:38px;height:38px;border-radius:50%;border:1.5px solid var(--border);display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue','Arial Black',Impact,sans-serif;font-size:1.1rem;color:var(--gold);flex-shrink:0;transition:all .3s;}	
+.step.done .step-num{background:var(--green);border-color:var(--green);color:#000;font-family:'Space Grotesk',sans-serif;font-weight:700;}	
+.step-body{flex:1;}	
+.step-title{font-weight:600;font-size:14px;margin-bottom:3px;}	
+.step-desc{font-size:12px;color:var(--muted);line-height:1.5;}	
+.step-actions{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin-top:10px;}	
+.sbtn{display:inline-flex;align-items:center;gap:6px;padding:7px 14px;border-radius:99px;font-size:12px;font-weight:600;border:none;cursor:pointer;text-decoration:none;transition:all .2s;font-family:'Space Grotesk',sans-serif;}	
+.sbtn-gold{background:var(--gold);color:#000;}	
+.sbtn-gold:hover{background:#FFD166;}	
+.sbtn-insta{background:linear-gradient(135deg,#833ab4,#fd1d1d,#fcb045);color:#fff;}	
+.sbtn-yt{background:#FF0000;color:#fff;}	
+.sbtn-confirm{background:transparent;border:1px solid var(--border);color:var(--muted);}	
+.sbtn-confirm:hover{border-color:var(--green);color:var(--green);}	
+.done-badge{display:inline-flex;align-items:center;gap:5px;font-size:12px;color:var(--green);font-weight:600;}	
+	
+/* PROGRESS */	
+.lock-box{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:2rem;text-align:center;margin-top:1.5rem;}	
+.lock-ico{font-size:2.5rem;margin-bottom:10px;}	
+.lock-title{font-family:'Bebas Neue','Arial Black',Impact,sans-serif;font-size:1.8rem;margin-bottom:6px;}	
+.lock-sub{color:var(--muted);font-size:13px;}	
+.prog-wrap{background:var(--border);border-radius:99px;height:5px;margin:1.2rem 0 .4rem;overflow:hidden;}	
+.prog-bar{height:100%;background:var(--gold);border-radius:99px;transition:width .5s ease;}	
+.prog-text{font-size:12px;color:var(--muted);}	
+	
+/* FORMS */	
+.auth-card{background:var(--card);border:1px solid rgba(240,180,41,.25);border-radius:18px;padding:2rem;margin-top:1.5rem;display:none;}	
+.auth-card.show{display:block;animation:popIn .4s ease;}	
+.auth-title{font-family:'Bebas Neue','Arial Black',Impact,sans-serif;font-size:1.6rem;color:var(--gold);margin-bottom:4px;text-align:center;}	
+.auth-sub{color:var(--muted);font-size:13px;text-align:center;margin-bottom:1.5rem;}	
+.inp-wrap{display:flex;flex-direction:column;gap:10px;margin-bottom:1.2rem;}	
+.inp{background:var(--card2);border:1px solid var(--border);border-radius:10px;padding:10px 14px;font-size:14px;color:var(--text);font-family:'Space Grotesk',sans-serif;outline:none;width:100%;}	
+.inp:focus{border-color:var(--gold);}	
+.msg{font-size:12px;padding:8px 12px;border-radius:8px;margin-bottom:10px;display:none;}	
+.msg.err{background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.3);color:var(--red);}	
+.msg.ok{background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.3);color:var(--green);}	
+.btn-primary{background:var(--gold);color:#000;border:none;border-radius:10px;padding:11px 24px;font-size:14px;font-weight:700;cursor:pointer;width:100%;font-family:'Space Grotesk',sans-serif;transition:all .2s;}	
+.btn-primary:hover{background:#FFD166;}	
+.btn-primary:disabled{opacity:.5;cursor:not-allowed;}	
+.loading-text{font-size:12px;color:var(--muted);text-align:center;margin-top:8px;}	
+	
+/* LOGIN SCREEN */	
+.login-screen{display:none;min-height:100vh;align-items:center;justify-content:center;padding:2rem;}	
+.login-screen.show{display:flex;}	
+.login-card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:2.5rem 2rem;width:100%;max-width:380px;text-align:center;}	
+.login-logo{font-family:'Bebas Neue','Arial Black',Impact,sans-serif;font-size:2.5rem;color:var(--gold);margin-bottom:4px;}	
+.login-sub{font-size:13px;color:var(--muted);margin-bottom:1.5rem;}	
+.logout-btn{background:transparent;border:1px solid var(--border);color:var(--muted);border-radius:8px;padding:6px 14px;font-size:12px;cursor:pointer;font-family:'Space Grotesk',sans-serif;transition:all .2s;margin-top:12px;}	
+.logout-btn:hover{border-color:var(--red);color:var(--red);}	
+.new-acc-btn{background:transparent;border:none;color:var(--muted);font-size:12px;cursor:pointer;font-family:'Space Grotesk',sans-serif;margin-top:8px;text-decoration:underline;}	
+	
+/* TOOL */	
+.tool-section{display:none;}	
+.tool-section.show{display:block;animation:popIn .5s ease;}	
+@keyframes popIn{from{opacity:0;transform:scale(.97)}to{opacity:1;transform:scale(1)}}	
+.tabs{display:flex;gap:6px;margin-bottom:1.5rem;}	
+.tab{flex:1;padding:10px;border:1px solid var(--border);border-radius:10px;background:var(--card);color:var(--muted);font-size:13px;font-weight:600;cursor:pointer;text-align:center;transition:all .2s;font-family:'Space Grotesk',sans-serif;}	
+.tab.active{border-color:var(--gold);color:var(--gold);background:rgba(240,180,41,.06);}	
+.panel{display:none;}	
+.panel.active{display:block;}	
+.tcard{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:1.2rem 1.4rem;margin-bottom:12px;}	
+.card-title{font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:14px;font-weight:600;}	
+.scan-status{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;}	
+.scan-time{font-size:12px;color:var(--muted);}	
+.scan-dot{display:inline-flex;align-items:center;gap:6px;font-size:12px;}	
+.dot{width:7px;height:7px;border-radius:50%;background:var(--muted);}	
+.dot.live{background:var(--green);animation:pulse 2s infinite;}	
+.signal-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px;}	
+.signal-box{background:var(--card2);border:1px solid var(--border);border-radius:10px;padding:10px 12px;}	
+.signal-box-title{font-size:11px;font-weight:600;margin-bottom:8px;}	
+.signal-box-title.buy{color:var(--green);}	
+.signal-box-title.sell{color:var(--red);}	
+.signal-item{display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid var(--border);font-size:12px;}	
+.signal-item:last-child{border-bottom:none;}	
+.signal-item .sym{font-weight:600;}	
+.signal-item .price{color:var(--muted);}	
+.no-signal{font-size:12px;color:var(--muted);padding:8px 0;text-align:center;}	
+.signal-item{cursor:pointer;border-radius:6px;padding:5px 6px;transition:background .2s;}	
+.signal-item:hover,.signal-item.selected{background:rgba(240,180,41,.12);border-bottom:1px solid rgba(240,180,41,.2);}	
+.selected-stock-card{background:rgba(240,180,41,.08);border:1px solid rgba(240,180,41,.3);border-radius:12px;padding:12px 14px;margin-bottom:14px;display:none;}	
+.selected-stock-card.show{display:block;}	
+.ssc-title{font-size:11px;color:var(--gold);font-weight:600;letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px;}	
+.ssc-row{display:flex;justify-content:space-between;align-items:center;}	
+.ssc-sym{font-size:18px;font-weight:700;color:var(--text);}	
+.ssc-price{font-size:14px;color:var(--gold);font-weight:600;}	
+.ssc-type{font-size:11px;padding:3px 10px;border-radius:99px;font-weight:600;margin-top:6px;display:inline-block;}	
+.ssc-type.bull{background:rgba(34,197,94,.15);color:var(--green);}	
+.ssc-type.bear{background:rgba(239,68,68,.15);color:var(--red);}	
+.trade-calc{margin-top:12px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;}	
+.tc-box{background:var(--card2);border-radius:8px;padding:8px 10px;text-align:center;}	
+.tc-label{font-size:10px;color:var(--muted);margin-bottom:3px;}	
+.tc-val{font-size:13px;font-weight:700;}	
+.refresh-btn{width:100%;padding:8px;background:transparent;border:1px solid var(--border);color:var(--muted);border-radius:8px;font-size:12px;cursor:pointer;transition:all .2s;font-family:'Space Grotesk',sans-serif;margin-top:8px;}	
+.refresh-btn:hover{border-color:var(--gold);color:var(--gold);}	
+.slider-row{display:flex;align-items:center;gap:10px;margin-bottom:12px;}	
+.slider-label{font-size:12px;color:var(--muted);min-width:130px;}	
+input[type=range]{flex:1;-webkit-appearance:none;height:3px;border-radius:99px;background:var(--border);outline:none;}	
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:15px;height:15px;border-radius:50%;background:var(--gold);cursor:pointer;border:2px solid var(--bg);}	
+.slider-val{font-size:12px;font-weight:700;min-width:72px;text-align:right;}	
+select{background:var(--card2);color:var(--text);border:1px solid var(--border);border-radius:8px;padding:5px 8px;font-size:12px;font-family:'Space Grotesk',sans-serif;outline:none;}	
+.metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-bottom:12px;}	
+.metric-box{background:var(--card2);border:1px solid var(--border);border-radius:10px;padding:10px 12px;}	
+.metric-label{font-size:10px;color:var(--muted);margin-bottom:5px;}	
+.metric-val{font-size:16px;font-weight:700;}	
+.green{color:var(--green);}.red{color:var(--red);}.amber{color:var(--amber);}.gold-c{color:var(--gold);}	
+.sum-row{display:flex;justify-content:space-between;font-size:12px;padding:5px 0;border-bottom:1px solid var(--border);}	
+.sum-row:last-child{border-bottom:none;}	
+.sum-row span:first-child{color:var(--muted);}	
+.sum-row span:last-child{font-weight:700;}	
+.rule-item{display:flex;align-items:flex-start;gap:10px;padding:9px 0;border-bottom:1px solid var(--border);}	
+.rule-item:last-child{border-bottom:none;}	
+.rdot{width:7px;height:7px;border-radius:50%;margin-top:5px;flex-shrink:0;}	
+.rdot.warn{background:var(--amber);}.rdot.ok{background:var(--green);}	
+.rule-text{font-size:13px;line-height:1.5;}	
+.rule-sub{font-size:11px;color:var(--muted);margin-top:2px;}	
+.tool-header-bar{display:flex;justify-content:space-between;align-items:center;margin-bottom:1.5rem;}	
+.levels-wrap{margin-top:12px;}	
+.levels-title{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px;}	
+.levels-title.res{color:var(--red);}	
+.levels-title.sup{color:var(--green);}	
+.levels-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;}	
+.level-box{border-radius:8px;padding:7px 4px;text-align:center;}	
+.level-box.res{background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.2);}	
+.level-box.sup{background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.2);}	
+.level-lbl{font-size:9px;font-weight:600;margin-bottom:3px;}	
+.level-lbl.res{color:var(--red);}	
+.level-lbl.sup{color:var(--green);}	
+.level-price{font-size:11px;font-weight:700;color:var(--text);}	
+footer{text-align:center;padding:3rem 1.5rem;color:var(--muted);font-size:12px;border-top:1px solid var(--border);}	
+footer a{color:var(--gold);text-decoration:none;}	
+</style>	
+</head>	
+<body>	
+<!-- ============ SEBI WARNING PAGE ============ -->	
+<div class="warn-screen" id="warn-screen">	
+<div class="warn-card">	
+<div class="warn-top">	
+<span class="warn-badge">Risk Disclosure</span>	
+<span class="warn-sebi">SEBI Mandated</span>	
+</div>	
+<div class="warn-title">Trade Responsibly in Futures &amp; Options</div>	
+<div style="font-size:12px;color:var(--red);font-weight:700;margin-bottom:12px;text-transform:uppercase;letter-spacing:.06em;">Risk Disclosures on Derivatives:</div>	
+<ul class="warn-list">	
+<li>9 out of 10 individual traders in Equity, Futures and Options segment, incurred net losses.</li>	
+<li>On an average, loss makers registered net trading loss close to &#8377;50,000.</li>	
+<li>Over and above the net trading losses incurred, loss makers expended an additional 28% of net trading losses as transaction costs.</li>	
+<li>Those making net trading profits, incurred between 15% to 50% of such profits as transaction cost.</li>	
+</ul>	
+<div class="warn-source"><strong style="color:var(--muted);font-weight:600;">Source:</strong> SEBI study dated January 25, 2023 on "Analysis of Profit and Loss of Individual Traders dealing in equity Futures and Options (F&amp;O) Segment", wherein Aggregate Level findings are based on annual Profit/Loss incurred by individual traders in equity F&amp;O during FY 2021-22.</div>	
+<div class="warn-proceed">Proceed Ahead to Trade</div>	
+<button class="warn-btn" onclick="acceptWarning()">I Understand — Proceed &#8594;</button>	
+</div>	
+</div>	
+	
+<!-- ============ LOGIN SCREEN ============ -->	
+<div class="login-screen" id="login-screen">	
+<div class="login-card">	
+<div class="login-logo">MM PRO</div>	
+<div class="login-sub">Apna account mein login karo</div>	
+<div class="inp-wrap">	
+<input class="inp" type="text" id="li-user" placeholder="Username" autocomplete="username">	
+<input class="inp" type="password" id="li-pass" placeholder="Password" autocomplete="current-password">	
+</div>	
+<div class="msg err" id="li-err"></div>	
+<div class="msg ok" id="li-ok"></div>	
+<button class="btn-primary" id="li-btn" onclick="doLogin()">Login Karo →</button>	
+<div class="loading-text" id="li-loading" style="display:none">⏳ Verify ho raha hai...</div>	
+<br>	
+<button class="new-acc-btn" onclick="goToRegister()">Naya account banana hai? 3 steps karo →</button>	
+</div>	
+</div>	
+	
+<!-- ============ LOGIN SCREEN ============ -->	
+<div class="login-screen" id="login-screen">	
+<div class="login-card">	
+<div class="login-logo">MM PRO</div>	
+<div class="login-sub">Apna account mein login karo</div>	
+<div class="inp-wrap">	
+<input class="inp" type="text" id="li-user" placeholder="Username" autocomplete="username">	
+<input class="inp" type="password" id="li-pass" placeholder="Password" autocomplete="current-password">	
+</div>	
+<div class="msg err" id="li-err"></div>	
+<div class="msg ok" id="li-ok"></div>	
+<button class="btn-primary" id="li-btn" onclick="doLogin()">Login Karo →</button>	
+<div class="loading-text" id="li-loading" style="display:none">⏳ Verify ho raha hai...</div>	
+<br>	
+<button class="new-acc-btn" onclick="goToRegister()">Naya account banana hai? 3 steps karo →</button>	
+</div>	
+</div>	
+	
+<!-- ============ MAIN PAGE (Hero + Steps) ============ -->	
+<div id="main-page" style="display:none">	
+<div class="hero">	
+<div class="hero-tag">Traders Ke Liye — 100% Free</div>	
+<h1 class="hero-title">MONEY<br><span>MANAGER</span><br>PRO</h1>	
+<p class="hero-sub">Live scanner signals + professional money management — ek jagah. Capital protect karo, risk control karo.</p>	
+<div class="hero-badge">Free Access — Sirf 3 Steps Mein</div>	
+<div class="scroll-hint"><span>NICHE DEKHO</span><div class="arrow"></div></div>	
+</div>	
+	
+<section>	
+<div class="sec-label">Free Access</div>	
+<h2 class="sec-title">3 Steps — Tool Unlock Karo</h2>	
+<p class="sec-sub">Sirf ek baar karo — phir username + password se kisi bhi device pe login karo.</p>	
+	
+<div class="steps">	
+<div class="step" id="s1">	
+<div class="step-num" id="n1">1</div>	
+<div class="step-body">	
+<div class="step-title">Dhan App Se Demat Account Kholo</div>	
+<div class="step-desc">Referral link se free mein Dhan account open karo.</div>	
+<div class="step-actions">	
+<a class="sbtn sbtn-gold" href="https://join.dhan.co/?invite=OKHPS62291" target="_blank" onclick="clicked(1)">🏦 Dhan Account Kholo</a>	
+<button class="sbtn sbtn-confirm" id="c1" style="display:none" onclick="confirm_step(1)">✓ Ho gaya</button>	
+<span class="done-badge" id="d1" style="display:none">✅ Done!</span>	
+</div>	
+</div>	
+</div>	
+	
+<div class="step" id="s2">	
+<div class="step-num" id="n2">2</div>	
+<div class="step-body">	
+<div class="step-title">Instagram Pe Follow Karo</div>	
+<div class="step-desc">@mone_ymaker7867 — daily tips aur scanner results.</div>	
+<div class="step-actions">	
+<a class="sbtn sbtn-insta" href="https://www.instagram.com/mone_ymaker7867/" target="_blank" onclick="clicked(2)">📸 Follow Karo</a>	
+<button class="sbtn sbtn-confirm" id="c2" style="display:none" onclick="confirm_step(2)">✓ Ho gaya</button>	
+<span class="done-badge" id="d2" style="display:none">✅ Done!</span>	
+</div>	
+</div>	
+</div>	
+	
+<div class="step" id="s3">	
+<div class="step-num" id="n3">3</div>	
+<div class="step-body">	
+<div class="step-title">YouTube Pe Subscribe Karo</div>	
+<div class="step-desc">@mone_ymaker7867 — free trading tutorials aur strategies.</div>	
+<div class="step-actions">	
+<a class="sbtn sbtn-yt" href="https://www.youtube.com/@mone_ymaker7867" target="_blank" onclick="clicked(3)">▶ Subscribe Karo</a>	
+<button class="sbtn sbtn-confirm" id="c3" style="display:none" onclick="confirm_step(3)">✓ Ho gaya</button>	
+<span class="done-badge" id="d3" style="display:none">✅ Done!</span>	
+</div>	
+</div>	
+</div>	
+</div>	
+	
+<!-- LOCK BOX -->	
+<div class="lock-box" id="lock-box">	
+<div class="lock-ico">🔒</div>	
+<div class="lock-title">Tool Locked Hai</div>	
+<div class="lock-sub">Teeno steps complete karo — phir account banao</div>	
+<div class="prog-wrap"><div class="prog-bar" id="prog" style="width:0%"></div></div>	
+<div class="prog-text" id="prog-text">0 / 3 complete</div>	
+</div>	
+	
+<!-- REGISTER FORM — 3 steps ke baad show hoga -->	
+<div class="auth-card" id="reg-form">	
+<div class="lock-ico" style="text-align:center">🔓</div>	
+<div class="auth-title">Account Banao!</div>	
+<div class="auth-sub">Ek baar set karo — phir kisi bhi device se login karo</div>	
+<div class="inp-wrap">	
+<input class="inp" type="text" id="reg-user" placeholder="Username (min 4 characters)" autocomplete="off" oninput="checkUser()">	
+<div class="msg err" id="reg-user-err"></div>	
+<input class="inp" type="password" id="reg-pass" placeholder="Password (min 6 characters)" autocomplete="new-password">	
+<input class="inp" type="password" id="reg-pass2" placeholder="Password dobara daalo" autocomplete="new-password">	
+<div class="msg err" id="reg-err"></div>	
+<div class="msg ok" id="reg-ok"></div>	
+</div>	
+<button class="btn-primary" id="reg-btn" onclick="doRegister()">Account Banao & Tool Kholo →</button>	
+<div class="loading-text" id="reg-loading" style="display:none">⏳ Account ban raha hai...</div>	
+</div>	
+</section>	
+</div>	
+	
+<!-- ============ TOOL ============ -->	
+<div class="tool-section" id="tool" style="display:none">	
+<section style="padding-top:2rem">	
+<div class="tool-header-bar">	
+<div>	
+<div class="sec-label" id="welcome-msg">Welcome!</div>	
+<h2 class="sec-title" style="margin-bottom:0">Money Manager Pro</h2>	
+</div>	
+<button class="logout-btn" onclick="doLogout()">Logout</button>	
+</div>	
+	
+<div class="tabs">	
+<button class="tab active" onclick="switchTab('scanner')">📊 Stocks</button>	
+<button class="tab" onclick="switchTab('calc')">💰 Calculator</button>	
+<button class="tab" onclick="switchTab('rules')">📋 Rules</button>	
+</div>	
+	
+<!-- SCANNER -->	
+<div class="panel active" id="panel-scanner">	
+<div class="tcard">	
+<div class="scan-status">	
+<div class="card-title" style="margin-bottom:0">Live Stocks</div>	
+<div class="scan-dot">	
+<div class="dot" id="live-dot"></div>	
+<span class="scan-time" id="scan-time">Fetch ho raha hai...</span>	
+</div>	
+</div>	
+<div style="font-size:11px;color:var(--muted);margin-bottom:12px" id="scan-date"></div>	
+<div class="signal-grid">	
+<div class="signal-box">	
+<div class="signal-box-title buy" id="buy-title">📈 BULLISH (0)</div>	
+<div id="buy-list"><div class="no-signal">Scanner se results ka wait karo</div></div>	
+</div>	
+<div class="signal-box">	
+<div class="signal-box-title sell" id="sell-title">📉 BEARISH (0)</div>	
+<div id="sell-list"><div class="no-signal">Scanner se results ka wait karo</div></div>	
+</div>	
+</div>	
+<div style="font-size:11px;color:var(--muted);text-align:center;margin-bottom:6px" id="auto-msg">Har 30 sec mein auto-refresh</div>	
+<button class="refresh-btn" onclick="fetchResults()">🔄 Abhi Refresh Karo</button>	
+</div>	
+<div class="tcard" style="font-size:12px;color:var(--muted);line-height:1.8">	
+<div class="card-title">Kaise Use Karein</div>	
+📈 Bullish = Strong uptrend — consider karo<br>	
+📉 Bearish = Strong Downtrend — consider karo<br>	
+Nifty green ho tab Bullish signals zyada reliable hote hain<br>	
+Nifty red ho tab Bearish signals zyada reliable hote hain<br>	
+Hamesha SL lagao entry ke saath	
+<div style="margin-top:14px;text-align:center;font-size:13px;font-weight:700;letter-spacing:.08em;color:#F0B429;">	
+🇮🇳 With Love from MONE_YMAKER7867 🇮🇳	
+</div>	
+</div>	
+</div>	
+	
+<!-- CALCULATOR -->	
+<div class="panel" id="panel-calc">	
+<!-- Selected stock card -->	
+<div class="selected-stock-card" id="ssc">	
+<div class="ssc-title">📊 Selected Stock</div>	
+<div class="ssc-row">	
+<span class="ssc-sym" id="ssc-sym">—</span>	
+<span class="ssc-price" id="ssc-price">₹0</span>	
+</div>	
+<span class="ssc-type" id="ssc-type"></span>	
+	
+<!-- Capital + Margin inputs -->	
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px;">	
+<div>	
+<div class="tc-label" style="margin-bottom:4px">Capital (₹)</div>	
+<input type="number" id="ssc-capital" value="100000" min="1000" step="1000"	
+style="width:100%;background:var(--card2);border:1px solid var(--border);border-radius:8px;padding:7px 10px;font-size:13px;color:var(--text);font-family:Space Grotesk,sans-serif;"	
+oninput="recalcStock()">	
+</div>	
+<div>	
+<div class="tc-label" style="margin-bottom:4px">Margin</div>	
+<select id="ssc-margin" onchange="recalcStock()"	
+style="width:100%;background:var(--card2);border:1px solid var(--border);border-radius:8px;padding:7px 10px;font-size:13px;color:var(--text);font-family:Space Grotesk,sans-serif;">	
+<option value="1">No Margin (1x)</option>	
+<option value="2">2x Margin</option>	
+<option value="3">3x Margin</option>	
+<option value="4">4x Margin</option>	
+<option value="5">5x Margin</option>	
+</select>	
+</div>	
+</div>	
+	
+<!-- Results grid -->	
+<div class="trade-calc" style="margin-top:10px">	
+<div class="tc-box"><div class="tc-label" id="tc-sup-label">Support</div><div class="tc-val red" id="tc-sup">—</div></div>	
+<div class="tc-box"><div class="tc-label">Qty</div><div class="tc-val gold-c" id="tc-qty">—</div></div>	
+<div class="tc-box"><div class="tc-label">Min Risk</div><div class="tc-val red" id="tc-loss">—</div></div>	
+<div class="tc-box"><div class="tc-label">Min Profit</div><div class="tc-val green" id="tc-profit">—</div></div>	
+</div>	
+<div class="levels-wrap" id="levels-wrap" style="display:none">	
+<div class="levels-title res" id="levels-title">🎯 RESISTANCE LEVELS</div>	
+<div class="levels-grid" id="levels-grid"></div>	
+</div>	
+</div>	
+<div class="tcard">	
+<div class="card-title">Capital & Risk Setup</div>	
+<div class="slider-row"><span class="slider-label">Total Capital</span><input type="range" min="50000" max="500000" step="10000" value="100000" id="capital" oninput="calc()"><span class="slider-val gold-c" id="cap-out">₹1,00,000</span></div>	
+<div class="slider-row"><span class="slider-label">Max stocks ek saath</span><input type="range" min="1" max="15" step="1" value="5" id="stocks" oninput="calc()"><span class="slider-val" id="stocks-out">5</span></div>	
+<div class="slider-row"><span class="slider-label">Risk per trade</span><input type="range" min="0.5" max="3" step="0.5" value="1" id="risk" oninput="calc()"><span class="slider-val" id="risk-out">1%</span></div>	
+<div class="slider-row"><span class="slider-label">Stop Loss %</span><input type="range" min="0.3" max="2" step="0.1" value="0.5" id="sl" oninput="calc()"><span class="slider-val" id="sl-out">0.5%</span></div>	
+<div class="slider-row"><span class="slider-label">Stock price (₹)</span><input type="range" min="50" max="5000" step="50" value="500" id="stock-price" oninput="calc()"><span class="slider-val gold-c" id="sp-out">₹500</span></div>	
+<div class="slider-row" style="margin-bottom:0"><span class="slider-label">Risk : Reward</span><select id="rr" onchange="calc()"><option value="1.5">1:1.5</option><option value="2" selected>1:2</option><option value="2.5">1:2.5</option><option value="3">1:3</option></select><span class="slider-val green" id="rr-out">1:2</span></div>	
+</div>	
+<div class="metrics">	
+<div class="metric-box"><div class="metric-label">Per trade</div><div class="metric-val gold-c" id="per-trade">₹20,000</div></div>	
+<div class="metric-box"><div class="metric-label">Max loss/trade</div><div class="metric-val red" id="max-loss">₹1,000</div></div>	
+<div class="metric-box"><div class="metric-label">Target/trade</div><div class="metric-val green" id="target">₹2,000</div></div>	
+<div class="metric-box"><div class="metric-label">Daily limit</div><div class="metric-val red" id="daily-loss">₹2,000</div></div>	
+<div class="metric-box"><div class="metric-label">Best case</div><div class="metric-val green" id="best-case">+₹10,000</div></div>	
+<div class="metric-box"><div class="metric-label">Qty (₹500 stock)</div><div class="metric-val" id="qty">40</div></div>	
+</div>	
+<div class="tcard">	
+<div class="card-title">Summary</div>	
+<div class="sum-row"><span>Saare targets hit hon toh</span><span class="green" id="s-best">+₹10,000</span></div>	
+<div class="sum-row"><span>Saare SL hit hon toh</span><span class="red" id="s-worst">-₹5,000</span></div>	
+<div class="sum-row"><span>Daily stop trading limit</span><span class="amber" id="s-limit">-₹2,000</span></div>	
+</div>	
+</div>	
+	
+<!-- RULES -->	
+<div class="panel" id="panel-rules">	
+<div class="tcard">	
+<div class="card-title">Golden Rules</div>	
+<div class="rule-item"><div class="rdot warn"></div><div><div class="rule-text">Max <strong id="r-stocks">5</strong> stocks ek saath — zyada mat lo</div><div class="rule-sub">Concentration risk badh jaata hai</div></div></div>	
+<div class="rule-item"><div class="rdot warn"></div><div><div class="rule-text">Daily loss limit hit hote hi trading BAND karo</div><div class="rule-sub" id="r-daily">Limit: ₹2,000 — phir screen se door ho jao</div></div></div>	
+<div class="rule-item"><div class="rdot ok"></div><div><div class="rule-text">Nifty direction 9:20 pe confirm karo</div><div class="rule-sub">Green → Bullish lo · Red → Bearish lo</div></div></div>	
+<div class="rule-item"><div class="rdot ok"></div><div><div class="rule-text">SL hamesha entry ke saath lagao</div><div class="rule-sub">Bracket Order use karo — automatic SL</div></div></div>	
+<div class="rule-item"><div class="rdot ok"></div><div><div class="rule-text">3:15 PM pe saare positions close karo</div><div class="rule-sub">Koi overnight position nahi — kal fresh start</div></div></div>	
+<div class="rule-item"><div class="rdot warn"></div><div><div class="rule-text">Lagaataar 3 loss ke baad — aaj trading band</div><div class="rule-sub">Emotional trading sabse bada dushman hai</div></div></div>	
+<div class="rule-item"><div class="rdot warn"></div><div><div class="rule-text">News events pe trade mat karo</div><div class="rule-sub">Budget, RBI, results — high volatility mein signals unreliable</div></div></div>	
+<div class="rule-item"><div class="rdot ok"></div><div><div class="rule-text">Profit mein SL trailing karo</div><div class="rule-sub">1% move ke baad SL ko breakeven pe le aao</div></div></div>	
+<div class="rule-item"><div class="rdot ok"></div><div><div class="rule-text">Volume confirm karo entry se pehle</div><div class="rule-sub">Kam volume wale stocks mein entry nahi</div></div></div>	
+<div class="rule-item"><div class="rdot warn"></div><div><div class="rule-text">Monday subah pehle 15 min wait karo</div><div class="rule-sub">Gap up/down settle hone do</div></div></div>	
+</div>	
+</div>	
+	
+</section>	
+</div>	
+	
+<footer>	
+<p>Made for Indian traders 🇮🇳</p>	
+<p style="margin-top:8px">	
+<a href="https://www.instagram.com/mone_ymaker7867/" target="_blank">Instagram</a> &nbsp;·&nbsp;	
+<a href="https://www.youtube.com/@mone_ymaker7867" target="_blank">YouTube</a> &nbsp;·&nbsp;	
+<a href="https://join.dhan.co/?invite=OKHPS62291" target="_blank">Dhan Account</a>	
+</p>	
+<p style="margin-top:8px;font-size:11px;color:#333">Trading mein risk hota hai — sirf informed decisions lo.</p>	
+</footer>	
+	
+<script>	
+// ==========================================	
+// ⚙️  YAHAN APNA APPS SCRIPT URL DAALO	
+// ==========================================	
+var APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyWV5W1YmhQZp8DouYpTSHOgomMgBdMZEXcmYrCHKGLLBJKX94gowTYfG1iJmKwAngA/exec";	
+// ==========================================	
+	
+// BUG 5 FIX: interval store karo taaki logout pe clear ho sake	
+var fetchInterval = null;	
+// ==========================================	
+document.addEventListener("DOMContentLoaded", function() {	
+var sess = sessionStorage.getItem('mm_user');	
+if (sess) {	
+showTool(sess);	
+} else {	
+document.getElementById('login-screen').classList.add('show');	
+}	
+});	
+	
+function goToRegister() {	
+document.getElementById('login-screen').classList.remove('show');	
+document.getElementById('main-page').style.display = 'block';	
+window.scrollTo(0,0);	
+}	
+	
+// ==========================================	
+// 3 STEP SYSTEM	
+// ==========================================	
+var clicked_steps = [false,false,false];	
+var done_steps    = [false,false,false];	
+	
+function clicked(n) {	
+clicked_steps[n-1] = true;	
+setTimeout(function() {	
+document.getElementById('c'+n).style.display = 'inline-flex';	
+}, 1500);	
+}	
+	
+function confirm_step(n) {	
+// BUG 4 FIX: pehle check karo ki user ne actually link click kiya tha	
+if (!clicked_steps[n-1]) {	
+alert('Pehle upar wala button click karo, phir "Ho gaya" dabao!');	
+return;	
+}	
+done_steps[n-1] = true;	
+document.getElementById('c'+n).style.display = 'none';	
+document.getElementById('d'+n).style.display = 'inline-flex';	
+document.getElementById('s'+n).classList.add('done');	
+document.getElementById('n'+n).textContent = '✓';	
+update_progress();	
+}	
+	
+function update_progress() {	
+var done = done_steps.filter(Boolean).length;	
+document.getElementById('prog').style.width = (done/3*100) + '%';	
+document.getElementById('prog-text').textContent = done + ' / 3 complete';	
+if (done === 3) {	
+setTimeout(function() {	
+document.getElementById('lock-box').style.display = 'none';	
+document.getElementById('reg-form').classList.add('show');	
+document.getElementById('reg-form').scrollIntoView({behavior:'smooth',block:'center'});	
+}, 500);	
+}	
+}	
+	
+// ==========================================	
+// USERNAME CHECK	
+// ==========================================	
+var checkTimer;	
+function checkUser() {	
+clearTimeout(checkTimer);	
+var u = document.getElementById('reg-user').value.trim();	
+var err = document.getElementById('reg-user-err');	
+err.style.display = 'none';	
+if (u.length < 4) return;	
+checkTimer = setTimeout(function() {	
+fetch(APPS_SCRIPT_URL + '?action=check&username=' + encodeURIComponent(u))	
+.then(function(r){return r.json();})	
+.then(function(d){	
+if (!d.available) {	
+err.textContent = '❌ ' + d.message;	
+err.style.display = 'block';	
+}	
+}).catch(function(){});	
+}, 600);	
+}	
+	
+// ==========================================	
+// REGISTER	
+// ==========================================	
+function doRegister() {	
+var u  = document.getElementById('reg-user').value.trim().toLowerCase();	
+var p  = document.getElementById('reg-pass').value;	
+var p2 = document.getElementById('reg-pass2').value;	
+var err = document.getElementById('reg-err');	
+var ok  = document.getElementById('reg-ok');	
+err.style.display = 'none';	
+ok.style.display  = 'none';	
+	
+if (u.length < 4) { showErr(err, 'Username kam se kam 4 characters ka hona chahiye'); return; }	
+if (p.length < 6) { showErr(err, 'Password kam se kam 6 characters ka hona chahiye'); return; }	
+if (p !== p2)     { showErr(err, 'Dono passwords match nahi kar rahe!'); return; }	
+	
+var btn = document.getElementById('reg-btn');	
+btn.disabled = true;	
+document.getElementById('reg-loading').style.display = 'block';	
+	
+fetch(APPS_SCRIPT_URL, {	
+method: 'POST',	
+body: JSON.stringify({username: u, password: p})	
+})	
+.then(function(r){return r.json();})	
+.then(function(d){	
+btn.disabled = false;	
+document.getElementById('reg-loading').style.display = 'none';	
+if (d.success) {	
+ok.textContent = '✅ ' + d.message;	
+ok.style.display = 'block';	
+// Local mein bhi save karo — mobile ke liye	
+try { localStorage.setItem('mm_cred_' + u, p); } catch(e){}	
+setTimeout(function() {	
+sessionStorage.setItem('mm_user', u);	
+showTool(u);	
+}, 1000);	
+} else {	
+showErr(err, d.message);	
+}	
+})	
+.catch(function(){	
+btn.disabled = false;	
+document.getElementById('reg-loading').style.display = 'none';	
+showErr(err, 'Connection error! Internet check karo.');	
+});	
+}	
+	
+// ==========================================	
+// LOGIN	
+// ==========================================	
+function doLogin() {	
+var u = document.getElementById('li-user').value.trim().toLowerCase();	
+var p = document.getElementById('li-pass').value;	
+var err = document.getElementById('li-err');	
+var ok  = document.getElementById('li-ok');	
+err.style.display = 'none';	
+ok.style.display  = 'none';	
+	
+if (!u || !p) { showErr(err, 'Username aur Password dono daalo!'); return; }	
+	
+var btn = document.getElementById('li-btn');	
+btn.disabled = true;	
+document.getElementById('li-loading').style.display = 'block';	
+	
+function loginSuccess() {	
+btn.disabled = false;	
+document.getElementById('li-loading').style.display = 'none';	
+ok.textContent = '✅ Login successful!';	
+ok.style.display = 'block';	
+sessionStorage.setItem('mm_user', u);	
+setTimeout(function() {	
+document.getElementById('login-screen').classList.remove('show');	
+showTool(u);	
+}, 800);	
+}	
+	
+function loginFail(msg) {	
+btn.disabled = false;	
+document.getElementById('li-loading').style.display = 'none';	
+showErr(err, msg || '❌ Username ya Password galat hai!');	
+}	
+	
+// Pehle Apps Script try karo	
+fetch(APPS_SCRIPT_URL + '?action=login&username=' + encodeURIComponent(u) + '&password=' + encodeURIComponent(p))	
+.then(function(r) { return r.json(); })	
+.then(function(d) {	
+if (d.success) {	
+// Local mein save karo future ke liye	
+try { localStorage.setItem('mm_cred_' + u, p); } catch(e){}	
+loginSuccess();	
+} else {	
+loginFail('❌ ' + d.message);	
+}	
+})	
+.catch(function() {	
+// MOBILE FIX: Apps Script fail hua — local credentials check karo	
+try {	
+var saved = localStorage.getItem('mm_cred_' + u);	
+if (saved && saved === p) {	
+loginSuccess();	
+} else {	
+loginFail('Connection error! Internet check karo ya dobara try karo.');	
+}	
+} catch(e) {	
+loginFail('Connection error! Internet check karo.');	
+}	
+});	
+}	
+	
+// Enter key	
+document.addEventListener('keydown', function(e) {	
+if (e.key !== 'Enter') return;	
+if (document.getElementById('login-screen').classList.contains('show')) doLogin();	
+});	
+	
+// ==========================================	
+// LOGOUT	
+// ==========================================	
+function doLogout() {	
+// BUG 5 FIX: logout pe interval band karo	
+if (fetchInterval) { clearInterval(fetchInterval); fetchInterval = null; }	
+sessionStorage.removeItem('mm_user');	
+var tEl = document.getElementById('tool'); tEl.classList.remove('show'); tEl.style.display='none';	
+document.getElementById('main-page').style.display = 'none';	
+document.getElementById('login-screen').classList.add('show');	
+document.getElementById('li-user').value = '';	
+document.getElementById('li-pass').value = '';	
+}	
+	
+// ==========================================	
+// SHOW TOOL	
+// ==========================================	
+function showTool(username) {	
+document.getElementById('main-page').style.display = 'none';	
+document.getElementById('login-screen').classList.remove('show');	
+document.getElementById('welcome-msg').textContent = 'Welcome, ' + username + '!';	
+var t = document.getElementById('tool');	
+t.style.display = 'block';	
+t.classList.add('show');	
+window.scrollTo(0,0);	
+calc();	
+fetchResults();	
+// BUG 5 FIX: pehle wala interval clear karo, phir naya lagao	
+if (fetchInterval) clearInterval(fetchInterval);	
+fetchInterval = setInterval(fetchResults, 30000);	
+}	
+	
+// ==========================================	
+// HELPERS	
+// ==========================================	
+function showErr(el, msg) {	
+el.textContent = msg;	
+el.style.display = 'block';	
+}	
+	
+// ==========================================	
+// TABS	
+// ==========================================	
+function switchTab(name) {	
+var names = ['scanner','calc','rules'];	
+document.querySelectorAll('.tab').forEach(function(t,i) {	
+t.classList.toggle('active', names[i] === name);	
+});	
+document.querySelectorAll('.panel').forEach(function(p) {	
+p.classList.remove('active');	
+});	
+document.getElementById('panel-'+name).classList.add('active');	
+}	
+	
+// ==========================================	
+// SCANNER FETCH	
+// ==========================================	
+function fetchResults() {	
+fetch('https://raw.githubusercontent.com/newtrustyproducts/moneymaker/main/results.json?t=' + Date.now())	
+.then(function(r){return r.json();})	
+.then(function(data){	
+document.getElementById('live-dot').classList.add('live');	
+var phase = data.phase ? ' · Phase ' + data.phase + (data.phase==1?' (Pre-Open)':' (Live)') : '';	
+document.getElementById('scan-time').textContent = 'Last scan: ' + data.scan_time + phase;	
+document.getElementById('scan-date').textContent = data.date + '  |  ₹' + data.min_price + '–₹' + data.max_price;	
+document.getElementById('buy-title').textContent  = '📈 BULLISH (' + data.buy.length + ')';	
+document.getElementById('sell-title').textContent = '📉 BEARISH (' + data.sell.length + ')';	
+document.getElementById('buy-list').innerHTML = data.buy.length === 0	
+? '<div class="no-signal">Koi Bullish signal nahi</div>'	
+: data.buy.map(function(s){return '<div class="signal-item" onclick="selectStock(\''+s.symbol+'\','+s.price+',\'bull\')"><span class="sym">'+s.symbol+'</span><span class="price" style="color:var(--green)">₹'+s.price+'</span></div>';}).join('');	
+document.getElementById('sell-list').innerHTML = data.sell.length === 0	
+? '<div class="no-signal">Koi Bearish signal nahi</div>'	
+: data.sell.map(function(s){return '<div class="signal-item" onclick="selectStock(\''+s.symbol+'\','+s.price+',\'bear\')"><span class="sym">'+s.symbol+'</span><span class="price" style="color:var(--red)">₹'+s.price+'</span></div>';}).join('');	
+document.getElementById('auto-msg').textContent = 'Auto-refresh: har 30 sec · ' + new Date().toLocaleTimeString('en-IN');	
+// Global mein save karo — stock select pe levels dikhane ke liye	
+window._scanData = data;	
+})	
+.catch(function(){	
+document.getElementById('scan-time').textContent = 'Scanner band hai';	
+document.getElementById('live-dot').classList.remove('live');	
+});	
+}	
+	
+// ==========================================	
+// CALCULATOR	
+// ==========================================	
+function fmt(n){return '₹'+Math.round(n).toLocaleString('en-IN');}	
+	
+// ==========================================	
+// STOCK SELECT — Scanner se Calculator pe	
+// ==========================================	
+function selectStock(sym, price, type) {	
+// Highlight selected	
+document.querySelectorAll('.signal-item').forEach(function(el){ el.classList.remove('selected'); });	
+event.currentTarget.classList.add('selected');	
+	
+// Global mein store karo	
+window._selSym   = sym;	
+window._selPrice = price;	
+window._selType  = type;	
+	
+// Selected stock card show karo	
+var card = document.getElementById('ssc');	
+card.classList.add('show');	
+document.getElementById('ssc-sym').textContent   = sym;	
+document.getElementById('ssc-price').textContent = '₹' + price;	
+var typeEl = document.getElementById('ssc-type');	
+typeEl.textContent = type === 'bull' ? '📈 BULLISH' : '📉 BEARISH';	
+typeEl.className   = 'ssc-type ' + type;	
+	
+// Capital from main calculator	
+var cap = +document.getElementById('capital').value;	
+document.getElementById('ssc-capital').value = cap;	
+	
+// Levels show karo	
+var levelsWrap  = document.getElementById('levels-wrap');	
+var levelsGrid  = document.getElementById('levels-grid');	
+var levelsTitle = document.getElementById('levels-title');	
+if (window._scanData) {	
+var arr  = type === 'bull' ? window._scanData.buy : window._scanData.sell;	
+var stock = arr.find(function(x){ return x.symbol === sym; });	
+var lvlKey = type === 'bull' ? 'resistance' : 'support';	
+if (stock && stock[lvlKey]) {	
+levelsWrap.style.display = 'block';	
+levelsTitle.textContent  = type === 'bull' ? '🎯 RESISTANCE LEVELS' : '🛡️ SUPPORT LEVELS';	
+levelsTitle.className    = 'levels-title ' + (type === 'bull' ? 'res' : 'sup');	
+var cls = type === 'bull' ? 'res' : 'sup';	
+levelsGrid.innerHTML = stock[lvlKey].map(function(l){	
+return '<div class="level-box '+cls+'">'	
+#ERROR!	
+#ERROR!	
+#ERROR!	
+}).join('');	
+} else { levelsWrap.style.display = 'none'; }	
+}	
+	
+recalcStock();	
+switchTab('calc');	
+}	
+	
+function recalcStock() {	
+var price  = window._selPrice;	
+var type   = window._selType;	
+if (!price) return;	
+	
+var cap    = +document.getElementById('ssc-capital').value || 100000;	
+var margin = +document.getElementById('ssc-margin').value  || 1;	
+	
+// Effective buying power with margin	
+var buyingPower = cap * margin;	
+	
+// Qty based on buying power	
+var qty = Math.floor(buyingPower / price);	
+	
+// Support = PDC-2% for buy, PDC+2% for sell	
+var supportPct = 0.02;	
+var supPx = type === 'bull'	
+? (price * (1 - supportPct))	
+: (price * (1 + supportPct));	
+supPx = Math.round(supPx * 100) / 100;	
+	
+// Min Risk = qty * (price - support) for bull	
+var riskPerShare = Math.abs(price - supPx);	
+var minRisk      = Math.round(qty * riskPerShare);	
+	
+// Min Profit = R1 level - price (first resistance = PDC+1%)	
+var r1Px       = type === 'bull'	
+? (price * 1.01)	
+: (price * 0.99);	
+var profitPerShare = Math.abs(r1Px - price);	
+var minProfit      = Math.round(qty * profitPerShare);	
+	
+// Update UI	
+// Label: Buy = Support, Sell = Resistance	
+var supLabel = document.getElementById('tc-sup-label');	
+if (supLabel) supLabel.textContent = type === 'bull' ? 'Support' : 'Resistance';	
+document.getElementById('tc-sup').textContent    = '₹' + supPx.toFixed(2);	
+document.getElementById('tc-qty').textContent    = qty + ' shares';	
+document.getElementById('tc-loss').textContent   = '₹' + minRisk.toLocaleString('en-IN');	
+document.getElementById('tc-profit').textContent = '₹' + minProfit.toLocaleString('en-IN');	
+}	
+function calc(){	
+var cap=+document.getElementById('capital').value;	
+var nStk=+document.getElementById('stocks').value;	
+var risk=+document.getElementById('risk').value;	
+var sl=+document.getElementById('sl').value;	
+var rr=+document.getElementById('rr').value;	
+// BUG FIX (Minor): stock price ab dynamic hai, hardcoded 500 nahi	
+var sp=+document.getElementById('stock-price').value;	
+document.getElementById('cap-out').textContent=fmt(cap);	
+document.getElementById('stocks-out').textContent=nStk;	
+document.getElementById('risk-out').textContent=risk+'%';	
+document.getElementById('sl-out').textContent=sl.toFixed(1)+'%';	
+document.getElementById('rr-out').textContent='1:'+rr;	
+document.getElementById('sp-out').textContent=fmt(sp);	
+var pt=cap/nStk,ml=cap*(risk/100),tgt=ml*rr,daily=ml*2,qty=Math.floor(pt/sp);	
+document.getElementById('per-trade').textContent=fmt(pt);	
+document.getElementById('max-loss').textContent=fmt(ml);	
+document.getElementById('target').textContent=fmt(tgt);	
+document.getElementById('daily-loss').textContent=fmt(daily);	
+document.getElementById('best-case').textContent='+'+fmt(tgt*nStk);	
+document.getElementById('qty').textContent=qty+' shares';	
+document.getElementById('s-best').textContent='+'+fmt(tgt*nStk);	
+document.getElementById('s-worst').textContent='-'+fmt(ml*nStk);	
+document.getElementById('s-limit').textContent='-'+fmt(daily);	
+document.getElementById('r-stocks').textContent=nStk;	
+document.getElementById('r-daily').textContent='Limit: '+fmt(daily)+' — uske baad screen se door ho jao';	
+}	
+</script>	
+</body>	
+</html>	
