@@ -142,21 +142,18 @@ select{background:var(--card2);color:var(--text);border:1px solid var(--border);
 .warn-top{display:flex;align-items:center;gap:10px;margin-bottom:20px;}
 .warn-badge{background:rgba(239,68,68,.12);border:1px solid rgba(239,68,68,.3);color:var(--red);font-size:11px;font-weight:700;letter-spacing:.12em;padding:5px 14px;border-radius:99px;text-transform:uppercase;}
 .warn-sebi{font-size:11px;color:var(--muted);}
-.warn-title{font-family:'Bebas Neue','Arial Black',Impact,sans-serif;font-size:1.6rem;color:#fff;font-weight:700;margin-bottom:16px;line-height:1.2;}
+.warn-title{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;color:#fff;font-weight:700;margin-bottom:16px;line-height:1.2;}
 .warn-list{list-style:none;padding:0;margin-bottom:20px;}
 .warn-list li{display:flex;gap:10px;font-size:13px;color:#fff;font-weight:700;line-height:1.6;padding:8px 0;border-bottom:1px solid var(--border);}
 .warn-list li:last-child{border-bottom:none;}
-.warn-list li::before{content:'•';color:var(--red);font-size:16px;flex-shrink:0;margin-top:1px;}
+.warn-list li::before{content:"•";color:var(--red);font-size:16px;flex-shrink:0;margin-top:1px;}
 .warn-source{font-size:10px;color:var(--muted);line-height:1.6;margin-bottom:20px;padding:10px 12px;background:var(--card2);border-radius:8px;border:1px solid var(--border);}
 .warn-proceed{font-size:13px;color:#fff;font-weight:700;text-align:center;margin-bottom:16px;letter-spacing:.04em;}
-.warn-btn{width:100%;background:var(--red);color:#fff;border:none;border-radius:12px;padding:14px 24px;font-size:15px;font-weight:700;cursor:pointer;font-family:'Space Grotesk',sans-serif;transition:all .2s;letter-spacing:.04em;}
+.warn-btn{width:100%;background:var(--red);color:#fff;border:none;border-radius:12px;padding:14px 24px;font-size:15px;font-weight:700;cursor:pointer;font-family:"Space Grotesk",sans-serif;transition:all .2s;letter-spacing:.04em;}
 .warn-btn:hover{background:#dc2626;}
-.warn-btn:active{transform:scale(.98);}
-
-/* SEBI WARNING FOOTER — teeno panels pe */
+/* SEBI FOOTER */
 .sebi-footer{background:rgba(239,68,68,.06);border:1px solid rgba(239,68,68,.15);border-radius:10px;padding:12px 14px;margin-top:12px;}
-.sebi-footer-text{font-size:11px;color:var(--muted);line-height:1.7;}
-.sebi-footer-text strong{color:var(--red);font-weight:600;}
+.sebi-footer-text{font-size:11px;line-height:1.7;}
 
 footer{text-align:center;padding:3rem 1.5rem;color:var(--muted);font-size:12px;border-top:1px solid var(--border);}
 footer a{color:var(--gold);text-decoration:none;}
@@ -175,15 +172,13 @@ footer a{color:var(--gold);text-decoration:none;}
     <div style="font-size:12px;color:var(--red);font-weight:700;margin-bottom:12px;text-transform:uppercase;letter-spacing:.06em;">Risk Disclosures on Derivatives:</div>
     <ul class="warn-list">
       <li>9 out of 10 individual traders in Equity, Futures and Options segment, incurred net losses.</li>
-      <li>On an average, loss makers registered net trading loss close to ₹50,000.</li>
+      <li>On an average, loss makers registered net trading loss close to &#8377;50,000.</li>
       <li>Over and above the net trading losses incurred, loss makers expended an additional 28% of net trading losses as transaction costs.</li>
       <li>Those making net trading profits, incurred between 15% to 50% of such profits as transaction cost.</li>
     </ul>
-    <div class="warn-source">
-      <strong style="color:var(--muted);font-weight:600;">Source:</strong> SEBI study dated January 25, 2023 on "Analysis of Profit and Loss of Individual Traders dealing in equity Futures and Options (F&amp;O) Segment", wherein Aggregate Level findings are based on annual Profit/Loss incurred by individual traders in equity F&amp;O during FY 2021-22.
-    </div>
+    <div class="warn-source"><strong style="color:var(--muted);font-weight:600;">Source:</strong> SEBI study dated January 25, 2023 on "Analysis of Profit and Loss of Individual Traders dealing in equity Futures and Options (F&amp;O) Segment", wherein Aggregate Level findings are based on annual Profit/Loss incurred by individual traders in equity F&amp;O during FY 2021-22.</div>
     <div class="warn-proceed">Proceed Ahead to Trade</div>
-    <button class="warn-btn" onclick="acceptWarning()">I Understand — Proceed →</button>
+    <button class="warn-btn" onclick="acceptWarning()">I Understand — Proceed &#8594;</button>
   </div>
 </div>
 
@@ -341,11 +336,11 @@ footer a{color:var(--gold);text-decoration:none;}
       <!-- SEBI Warning Footer -->
       <div class="sebi-footer">
         <div class="sebi-footer-text">
-          <strong style="color:#fff;font-size:12px;">⚠️ Risk Disclosures on Derivatives:</strong><br>
-          <span style="color:#fff;font-weight:700;">• 9 out of 10 individual traders in Equity, Futures and Options Segment, incurred net losses.<br>
-          • On an average, loss makers registered net trading loss close to ₹50,000.<br>
-          • Over and above the net trading losses incurred, loss makers expended an additional 28% of net trading losses as transaction costs.<br>
-          • Those making net trading profits, incurred between 15% to 50% of such profits as transaction cost.</span><br><br>
+          <strong style="color:#fff;font-size:12px;">&#9888;&#65039; Risk Disclosures on Derivatives:</strong><br>
+          <span style="color:#fff;font-weight:700;">&#8226; 9 out of 10 individual traders in Equity, Futures and Options Segment, incurred net losses.<br>
+          &#8226; On an average, loss makers registered net trading loss close to &#8377;50,000.<br>
+          &#8226; Over and above the net trading losses incurred, loss makers expended an additional 28% of net trading losses as transaction costs.<br>
+          &#8226; Those making net trading profits, incurred between 15% to 50% of such profits as transaction cost.</span><br><br>
           <strong style="color:#fff;font-size:13px;">I am NOT a SEBI Registered Investment Advisor. This content is for educational purposes only. Please consult your financial advisor before making any investment. Stock market investments are subject to market risks.</strong>
         </div>
       </div>
@@ -379,11 +374,11 @@ footer a{color:var(--gold);text-decoration:none;}
       <!-- SEBI Warning Footer -->
       <div class="sebi-footer">
         <div class="sebi-footer-text">
-          <strong style="color:#fff;font-size:12px;">⚠️ Risk Disclosures on Derivatives:</strong><br>
-          <span style="color:#fff;font-weight:700;">• 9 out of 10 individual traders in Equity, Futures and Options Segment, incurred net losses.<br>
-          • On an average, loss makers registered net trading loss close to ₹50,000.<br>
-          • Over and above the net trading losses incurred, loss makers expended an additional 28% of net trading losses as transaction costs.<br>
-          • Those making net trading profits, incurred between 15% to 50% of such profits as transaction cost.</span><br><br>
+          <strong style="color:#fff;font-size:12px;">&#9888;&#65039; Risk Disclosures on Derivatives:</strong><br>
+          <span style="color:#fff;font-weight:700;">&#8226; 9 out of 10 individual traders in Equity, Futures and Options Segment, incurred net losses.<br>
+          &#8226; On an average, loss makers registered net trading loss close to &#8377;50,000.<br>
+          &#8226; Over and above the net trading losses incurred, loss makers expended an additional 28% of net trading losses as transaction costs.<br>
+          &#8226; Those making net trading profits, incurred between 15% to 50% of such profits as transaction cost.</span><br><br>
           <strong style="color:#fff;font-size:13px;">I am NOT a SEBI Registered Investment Advisor. This content is for educational purposes only. Please consult your financial advisor before making any investment. Stock market investments are subject to market risks.</strong>
         </div>
       </div>
@@ -408,11 +403,11 @@ footer a{color:var(--gold);text-decoration:none;}
       <!-- SEBI Warning Footer -->
       <div class="sebi-footer">
         <div class="sebi-footer-text">
-          <strong style="color:#fff;font-size:12px;">⚠️ Risk Disclosures on Derivatives:</strong><br>
-          <span style="color:#fff;font-weight:700;">• 9 out of 10 individual traders in Equity, Futures and Options Segment, incurred net losses.<br>
-          • On an average, loss makers registered net trading loss close to ₹50,000.<br>
-          • Over and above the net trading losses incurred, loss makers expended an additional 28% of net trading losses as transaction costs.<br>
-          • Those making net trading profits, incurred between 15% to 50% of such profits as transaction cost.</span><br><br>
+          <strong style="color:#fff;font-size:12px;">&#9888;&#65039; Risk Disclosures on Derivatives:</strong><br>
+          <span style="color:#fff;font-weight:700;">&#8226; 9 out of 10 individual traders in Equity, Futures and Options Segment, incurred net losses.<br>
+          &#8226; On an average, loss makers registered net trading loss close to &#8377;50,000.<br>
+          &#8226; Over and above the net trading losses incurred, loss makers expended an additional 28% of net trading losses as transaction costs.<br>
+          &#8226; Those making net trading profits, incurred between 15% to 50% of such profits as transaction cost.</span><br><br>
           <strong style="color:#fff;font-size:13px;">I am NOT a SEBI Registered Investment Advisor. This content is for educational purposes only. Please consult your financial advisor before making any investment. Stock market investments are subject to market risks.</strong>
         </div>
       </div>
