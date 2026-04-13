@@ -135,7 +135,6 @@ select{background:var(--card2);color:var(--text);border:1px solid var(--border);
 .rule-sub{font-size:11px;color:var(--muted);margin-top:2px;}
 .tool-header-bar{display:flex;justify-content:space-between;align-items:center;margin-bottom:1.5rem;}
 
-/* WARNING PAGE */
 .warn-screen{display:none;min-height:100vh;align-items:center;justify-content:center;padding:1.5rem;background:var(--bg);}
 .warn-screen.show{display:flex;}
 .warn-card{background:var(--card);border:1px solid rgba(239,68,68,.3);border-radius:20px;padding:2rem 1.8rem;width:100%;max-width:480px;}
@@ -146,14 +145,40 @@ select{background:var(--card2);color:var(--text);border:1px solid var(--border);
 .warn-list{list-style:none;padding:0;margin-bottom:20px;}
 .warn-list li{display:flex;gap:10px;font-size:13px;color:#fff;font-weight:700;line-height:1.6;padding:8px 0;border-bottom:1px solid var(--border);}
 .warn-list li:last-child{border-bottom:none;}
-.warn-list li::before{content:"•";color:var(--red);font-size:16px;flex-shrink:0;margin-top:1px;}
+.warn-list li::before{content:"*";color:var(--red);font-size:16px;flex-shrink:0;margin-top:1px;}
 .warn-source{font-size:10px;color:var(--muted);line-height:1.6;margin-bottom:20px;padding:10px 12px;background:var(--card2);border-radius:8px;border:1px solid var(--border);}
 .warn-proceed{font-size:13px;color:#fff;font-weight:700;text-align:center;margin-bottom:16px;letter-spacing:.04em;}
-.warn-btn{width:100%;background:var(--red);color:#fff;border:none;border-radius:12px;padding:14px 24px;font-size:15px;font-weight:700;cursor:pointer;font-family:"Space Grotesk",sans-serif;transition:all .2s;letter-spacing:.04em;}
+.warn-btn{width:100%;background:var(--red);color:#fff;border:none;border-radius:12px;padding:14px 24px;font-size:15px;font-weight:700;cursor:pointer;font-family:'Space Grotesk',sans-serif;transition:all .2s;letter-spacing:.04em;}
 .warn-btn:hover{background:#dc2626;}
-/* SEBI FOOTER */
 .sebi-footer{background:rgba(239,68,68,.06);border:1px solid rgba(239,68,68,.15);border-radius:10px;padding:12px 14px;margin-top:12px;}
 .sebi-footer-text{font-size:11px;line-height:1.7;}
+.signal-item{cursor:pointer;border-radius:6px;transition:background .2s;}
+.signal-item:hover,.signal-item.selected{background:rgba(240,180,41,.12);}
+.selected-stock-card{background:rgba(240,180,41,.08);border:1px solid rgba(240,180,41,.3);border-radius:12px;padding:12px 14px;margin-bottom:14px;display:none;}
+.selected-stock-card.show{display:block;}
+.ssc-title{font-size:11px;color:var(--gold);font-weight:600;letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px;}
+.ssc-row{display:flex;justify-content:space-between;align-items:center;}
+.ssc-sym{font-size:18px;font-weight:700;color:var(--text);}
+.ssc-price{font-size:14px;color:var(--gold);font-weight:600;}
+.ssc-type{font-size:11px;padding:3px 10px;border-radius:99px;font-weight:600;margin-top:6px;display:inline-block;}
+.ssc-type.bull{background:rgba(34,197,94,.15);color:var(--green);}
+.ssc-type.bear{background:rgba(239,68,68,.15);color:var(--red);}
+.trade-calc{margin-top:12px;display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.tc-box{background:var(--card2);border-radius:8px;padding:8px 10px;text-align:center;}
+.tc-label{font-size:10px;color:var(--muted);margin-bottom:3px;}
+.tc-val{font-size:13px;font-weight:700;}
+.levels-wrap{margin-top:12px;}
+.levels-title{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px;}
+.levels-title.res{color:var(--red);}
+.levels-title.sup{color:var(--green);}
+.levels-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;}
+.level-box{border-radius:8px;padding:7px 4px;text-align:center;}
+.level-box.res{background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.2);}
+.level-box.sup{background:rgba(34,197,94,.1);border:1px solid rgba(34,197,94,.2);}
+.level-lbl{font-size:9px;font-weight:600;margin-bottom:3px;}
+.level-lbl.res{color:var(--red);}
+.level-lbl.sup{color:var(--green);}
+.level-price{font-size:11px;font-weight:700;color:var(--text);}
 
 footer{text-align:center;padding:3rem 1.5rem;color:var(--muted);font-size:12px;border-top:1px solid var(--border);}
 footer a{color:var(--gold);text-decoration:none;}
@@ -164,21 +189,18 @@ footer a{color:var(--gold);text-decoration:none;}
 <!-- ============ SEBI WARNING PAGE ============ -->
 <div class="warn-screen" id="warn-screen">
   <div class="warn-card">
-    <div class="warn-top">
-      <span class="warn-badge">Risk Disclosure</span>
-      <span class="warn-sebi">SEBI Mandated</span>
-    </div>
+    <div class="warn-top"><span class="warn-badge">Risk Disclosure</span><span class="warn-sebi">SEBI Mandated</span></div>
     <div class="warn-title">Trade Responsibly in Futures &amp; Options</div>
     <div style="font-size:12px;color:var(--red);font-weight:700;margin-bottom:12px;text-transform:uppercase;letter-spacing:.06em;">Risk Disclosures on Derivatives:</div>
     <ul class="warn-list">
       <li>9 out of 10 individual traders in Equity, Futures and Options segment, incurred net losses.</li>
-      <li>On an average, loss makers registered net trading loss close to &#8377;50,000.</li>
+      <li>On an average, loss makers registered net trading loss close to Rs.50,000.</li>
       <li>Over and above the net trading losses incurred, loss makers expended an additional 28% of net trading losses as transaction costs.</li>
       <li>Those making net trading profits, incurred between 15% to 50% of such profits as transaction cost.</li>
     </ul>
-    <div class="warn-source"><strong style="color:var(--muted);font-weight:600;">Source:</strong> SEBI study dated January 25, 2023 on "Analysis of Profit and Loss of Individual Traders dealing in equity Futures and Options (F&amp;O) Segment", wherein Aggregate Level findings are based on annual Profit/Loss incurred by individual traders in equity F&amp;O during FY 2021-22.</div>
+    <div class="warn-source"><strong style="color:var(--muted);">Source:</strong> SEBI study dated January 25, 2023 on Analysis of Profit and Loss of Individual Traders dealing in equity F&amp;O Segment, FY 2021-22.</div>
     <div class="warn-proceed">Proceed Ahead to Trade</div>
-    <button class="warn-btn" onclick="acceptWarning()">I Understand — Proceed &#8594;</button>
+    <button class="warn-btn" onclick="acceptWarning()">I Understand -- Proceed</button>
   </div>
 </div>
 
@@ -296,7 +318,7 @@ footer a{color:var(--gold);text-decoration:none;}
     </div>
 
     <div class="tabs">
-      <button class="tab active" onclick="switchTab('scanner')">📊 Signals</button>
+      <button class="tab active" onclick="switchTab('scanner')">📊 Stocks</button>
       <button class="tab" onclick="switchTab('calc')">💰 Calculator</button>
       <button class="tab" onclick="switchTab('rules')">📋 Rules</button>
     </div>
@@ -305,7 +327,7 @@ footer a{color:var(--gold);text-decoration:none;}
     <div class="panel active" id="panel-scanner">
       <div class="tcard">
         <div class="scan-status">
-          <div class="card-title" style="margin-bottom:0">Live Signals</div>
+          <div class="card-title" style="margin-bottom:0">Live Stocks</div>
           <div class="scan-dot">
             <div class="dot" id="live-dot"></div>
             <span class="scan-time" id="scan-time">Fetch ho raha hai...</span>
@@ -333,17 +355,11 @@ footer a{color:var(--gold);text-decoration:none;}
         Hamesha SL lagao entry ke saath
       </div>
 
-      <!-- SEBI Warning Footer -->
-      <div class="sebi-footer">
-        <div class="sebi-footer-text">
-          <strong style="color:#fff;font-size:12px;">&#9888;&#65039; Risk Disclosures on Derivatives:</strong><br>
-          <span style="color:#fff;font-weight:700;">&#8226; 9 out of 10 individual traders in Equity, Futures and Options Segment, incurred net losses.<br>
-          &#8226; On an average, loss makers registered net trading loss close to &#8377;50,000.<br>
-          &#8226; Over and above the net trading losses incurred, loss makers expended an additional 28% of net trading losses as transaction costs.<br>
-          &#8226; Those making net trading profits, incurred between 15% to 50% of such profits as transaction cost.</span><br><br>
-          <strong style="color:#fff;font-size:13px;">I am NOT a SEBI Registered Investment Advisor. This content is for educational purposes only. Please consult your financial advisor before making any investment. Stock market investments are subject to market risks.</strong>
-        </div>
-      </div>
+      <div class="sebi-footer"><div class="sebi-footer-text">
+        <strong style="color:#fff;font-size:12px;">Risk Disclosures on Derivatives:</strong><br>
+        <span style="color:#fff;font-weight:700;">9 out of 10 individual traders in Equity, Futures and Options Segment, incurred net losses. On an average, loss makers registered net trading loss close to Rs.50,000. Over and above the net trading losses incurred, loss makers expended an additional 28% of net trading losses as transaction costs. Those making net trading profits, incurred between 15% to 50% of such profits as transaction cost.</span><br><br>
+        <strong style="color:#fff;font-size:13px;">I am NOT a SEBI Registered Investment Advisor. This content is for educational purposes only. Please consult your financial advisor before making any investment. Stock market investments are subject to market risks.</strong>
+      </div></div>
     </div>
 
     <!-- CALCULATOR -->
@@ -371,17 +387,11 @@ footer a{color:var(--gold);text-decoration:none;}
         <div class="sum-row"><span>Daily stop trading limit</span><span class="amber" id="s-limit">-₹2,000</span></div>
       </div>
 
-      <!-- SEBI Warning Footer -->
-      <div class="sebi-footer">
-        <div class="sebi-footer-text">
-          <strong style="color:#fff;font-size:12px;">&#9888;&#65039; Risk Disclosures on Derivatives:</strong><br>
-          <span style="color:#fff;font-weight:700;">&#8226; 9 out of 10 individual traders in Equity, Futures and Options Segment, incurred net losses.<br>
-          &#8226; On an average, loss makers registered net trading loss close to &#8377;50,000.<br>
-          &#8226; Over and above the net trading losses incurred, loss makers expended an additional 28% of net trading losses as transaction costs.<br>
-          &#8226; Those making net trading profits, incurred between 15% to 50% of such profits as transaction cost.</span><br><br>
-          <strong style="color:#fff;font-size:13px;">I am NOT a SEBI Registered Investment Advisor. This content is for educational purposes only. Please consult your financial advisor before making any investment. Stock market investments are subject to market risks.</strong>
-        </div>
-      </div>
+      <div class="sebi-footer"><div class="sebi-footer-text">
+        <strong style="color:#fff;font-size:12px;">Risk Disclosures on Derivatives:</strong><br>
+        <span style="color:#fff;font-weight:700;">9 out of 10 individual traders in Equity, Futures and Options Segment, incurred net losses. On an average, loss makers registered net trading loss close to Rs.50,000. Over and above the net trading losses incurred, loss makers expended an additional 28% of net trading losses as transaction costs. Those making net trading profits, incurred between 15% to 50% of such profits as transaction cost.</span><br><br>
+        <strong style="color:#fff;font-size:13px;">I am NOT a SEBI Registered Investment Advisor. This content is for educational purposes only. Please consult your financial advisor before making any investment. Stock market investments are subject to market risks.</strong>
+      </div></div>
     </div>
 
     <!-- RULES -->
@@ -400,17 +410,11 @@ footer a{color:var(--gold);text-decoration:none;}
         <div class="rule-item"><div class="rdot warn"></div><div><div class="rule-text">Monday subah pehle 15 min wait karo</div><div class="rule-sub">Gap up/down settle hone do</div></div></div>
       </div>
 
-      <!-- SEBI Warning Footer -->
-      <div class="sebi-footer">
-        <div class="sebi-footer-text">
-          <strong style="color:#fff;font-size:12px;">&#9888;&#65039; Risk Disclosures on Derivatives:</strong><br>
-          <span style="color:#fff;font-weight:700;">&#8226; 9 out of 10 individual traders in Equity, Futures and Options Segment, incurred net losses.<br>
-          &#8226; On an average, loss makers registered net trading loss close to &#8377;50,000.<br>
-          &#8226; Over and above the net trading losses incurred, loss makers expended an additional 28% of net trading losses as transaction costs.<br>
-          &#8226; Those making net trading profits, incurred between 15% to 50% of such profits as transaction cost.</span><br><br>
-          <strong style="color:#fff;font-size:13px;">I am NOT a SEBI Registered Investment Advisor. This content is for educational purposes only. Please consult your financial advisor before making any investment. Stock market investments are subject to market risks.</strong>
-        </div>
-      </div>
+      <div class="sebi-footer"><div class="sebi-footer-text">
+        <strong style="color:#fff;font-size:12px;">Risk Disclosures on Derivatives:</strong><br>
+        <span style="color:#fff;font-weight:700;">9 out of 10 individual traders in Equity, Futures and Options Segment, incurred net losses. On an average, loss makers registered net trading loss close to Rs.50,000. Over and above the net trading losses incurred, loss makers expended an additional 28% of net trading losses as transaction costs. Those making net trading profits, incurred between 15% to 50% of such profits as transaction cost.</span><br><br>
+        <strong style="color:#fff;font-size:13px;">I am NOT a SEBI Registered Investment Advisor. This content is for educational purposes only. Please consult your financial advisor before making any investment. Stock market investments are subject to market risks.</strong>
+      </div></div>
     </div>
 
   </section>
@@ -442,23 +446,16 @@ window.onload = function() {
     document.getElementById('warn-screen').classList.add('show');
   } else {
     var sess = sessionStorage.getItem('mm_user');
-    if (sess) {
-      showTool(sess);
-    } else {
-      document.getElementById('login-screen').classList.add('show');
-    }
+    if (sess) { showTool(sess); }
+    else { document.getElementById('login-screen').classList.add('show'); }
   }
 };
-
 function acceptWarning() {
-  sessionStorage.setItem('mm_warned', '1');
+  sessionStorage.setItem('mm_warned','1');
   document.getElementById('warn-screen').classList.remove('show');
   var sess = sessionStorage.getItem('mm_user');
-  if (sess) {
-    showTool(sess);
-  } else {
-    document.getElementById('login-screen').classList.add('show');
-  }
+  if (sess) { showTool(sess); }
+  else { document.getElementById('login-screen').classList.add('show'); }
 }
 
 function goToRegister() {
@@ -680,16 +677,70 @@ function fetchResults() {
     document.getElementById('sell-title').textContent = '📉 BEARISH (' + data.sell.length + ')';
     document.getElementById('buy-list').innerHTML = data.buy.length === 0
       ? '<div class="no-signal">Koi Bullish signal nahi</div>'
-      : data.buy.map(function(s){return '<div class="signal-item"><span class="sym">'+s.symbol+'</span><span class="price">₹'+s.price+'</span></div>';}).join('');
+      : data.buy.map(function(s){return '<div class="signal-item" onclick="selectStock(\''+s.symbol+'\','+s.price+',\'bull\')" ><span class="sym">'+s.symbol+'</span><span class="price" style="color:var(--green)">₹'+s.price+'</span></div>';}).join('');
     document.getElementById('sell-list').innerHTML = data.sell.length === 0
       ? '<div class="no-signal">Koi Bearish signal nahi</div>'
-      : data.sell.map(function(s){return '<div class="signal-item"><span class="sym">'+s.symbol+'</span><span class="price">₹'+s.price+'</span></div>';}).join('');
+      : data.sell.map(function(s){return '<div class="signal-item" onclick="selectStock(\''+s.symbol+'\','+s.price+',\'bear\')" ><span class="sym">'+s.symbol+'</span><span class="price" style="color:var(--red)">₹'+s.price+'</span></div>';}).join('');
     document.getElementById('auto-msg').textContent = 'Auto-refresh: har 30 sec · ' + new Date().toLocaleTimeString('en-IN');
+    window._scanData = data;
   })
   .catch(function(){
     document.getElementById('scan-time').textContent = 'Scanner band hai';
     document.getElementById('live-dot').classList.remove('live');
   });
+}
+
+
+// STOCK SELECT
+function selectStock(sym, price, type) {
+  document.querySelectorAll('.signal-item').forEach(function(el){ el.classList.remove('selected'); });
+  event.currentTarget.classList.add('selected');
+  window._selSym = sym; window._selPrice = price; window._selType = type;
+  var card = document.getElementById('ssc');
+  card.classList.add('show');
+  document.getElementById('ssc-sym').textContent = sym;
+  document.getElementById('ssc-price').textContent = 'Rs.' + price;
+  var typeEl = document.getElementById('ssc-type');
+  typeEl.textContent = type === 'bull' ? 'BULLISH' : 'BEARISH';
+  typeEl.className = 'ssc-type ' + type;
+  var cap = +document.getElementById('capital').value;
+  document.getElementById('ssc-capital').value = cap;
+  var levelsWrap = document.getElementById('levels-wrap');
+  var levelsGrid = document.getElementById('levels-grid');
+  var levelsTitle = document.getElementById('levels-title');
+  if (window._scanData) {
+    var arr = type === 'bull' ? window._scanData.buy : window._scanData.sell;
+    var stock = arr.find(function(x){ return x.symbol === sym; });
+    var lvlKey = type === 'bull' ? 'resistance' : 'support';
+    if (stock && stock[lvlKey]) {
+      levelsWrap.style.display = 'block';
+      levelsTitle.textContent  = type === 'bull' ? 'RESISTANCE LEVELS' : 'SUPPORT LEVELS';
+      levelsTitle.className    = 'levels-title ' + (type === 'bull' ? 'res' : 'sup');
+      var cls = type === 'bull' ? 'res' : 'sup';
+      levelsGrid.innerHTML = stock[lvlKey].map(function(l){
+        return '<div class="level-box '+cls+'"><div class="level-lbl '+cls+'">'+l.label+'</div><div class="level-price">Rs.'+l.price+'</div></div>';
+      }).join('');
+    } else { levelsWrap.style.display = 'none'; }
+  }
+  recalcStock();
+  switchTab('calc');
+}
+function recalcStock() {
+  var price = window._selPrice; var type = window._selType;
+  if (!price) return;
+  var cap = +document.getElementById('ssc-capital').value || 100000;
+  var margin = +document.getElementById('ssc-margin').value || 1;
+  var qty = Math.floor((cap * margin) / price);
+  var supPx = type === 'bull' ? Math.round(price * 0.98 * 100)/100 : Math.round(price * 1.02 * 100)/100;
+  var minRisk   = Math.round(qty * Math.abs(price - supPx));
+  var r1Px      = type === 'bull' ? price * 1.01 : price * 0.99;
+  var minProfit = Math.round(qty * Math.abs(r1Px - price));
+  var supLabel = document.getElementById('tc-sup-label');
+  if (supLabel) supLabel.textContent = type === 'bull' ? 'Support' : 'Resistance';
+  document.getElementById('tc-sup').textContent    = 'Rs.' + supPx.toFixed(2);
+  document.getElementById('tc-qty').textContent    = qty + ' shares';
+  document.getElementById('tc-loss').textContent   = 'Rs.' + minRisk.toLocaleString('en-IN');
+  document.getElementById('tc-profit').textContent = 'Rs.' + minProfit.toLocaleString('en-IN');
 }
 
 // ==========================================
