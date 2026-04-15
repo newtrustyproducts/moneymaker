@@ -1245,10 +1245,16 @@ var Auth = (function () {
 
     try {
       var hash = await Security.hashPassword(p);
+
+      // ─── CORS FIX ────────────────────────────────────────────────────────
+      // Google Apps Script does NOT handle OPTIONS preflight.
+      // Sending Content-Type: text/plain keeps it a "simple request"
+      // (no preflight) while the body is still valid JSON the server reads.
+      // ─────────────────────────────────────────────────────────────────────
       var data = await Http.getJson(CFG.APPS_URL, {
         method : 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body   : JSON.stringify({ username: u, password: hash, version: '2' })
+        headers: { 'Content-Type': 'text/plain' },   // ← key fix
+        body   : JSON.stringify({ action: 'register', username: u, password: hash, version: '2' })
       }, 1);
 
       if (data && data.success) {
