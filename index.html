@@ -459,6 +459,7 @@ footer a:hover { text-decoration: underline; }
           </div>
         </div>
         <div style="font-size:11px;color:var(--muted);margin-bottom:12px" id="scan-date"></div>
+        <div id="scan-debug" style="display:none;font-size:11px;color:var(--amber);background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.2);border-radius:6px;padding:5px 10px;margin-bottom:10px;font-family:monospace;word-break:break-all"></div>
         <div class="signal-grid">
           <div class="signal-box">
             <div class="signal-box-title buy" id="buy-title">📈 BULLISH (0)</div>
@@ -633,8 +634,16 @@ var Security = (function () {
     return d.innerHTML;
   }
 
-  /* Validate a stock symbol — only uppercase alphanum + dash, max 20 */
-  function validSym(v) { return /^[A-Z0-9\-&.]{1,20}$/.test(String(v || '')) ? String(v) : null; }
+  /* Validate a stock symbol — accepts all NSE/BSE formats, auto-uppercases */
+  function validSym(v) {
+    if (v == null) return null;
+    var s = String(v).trim().toUpperCase();
+    // Allow: letters, digits, dot, dash, ampersand, underscore, colon, slash, space
+    // Covers: RELIANCE, M&M, BAJAJ-AUTO, RELIANCE.NS, NSE:RELIANCE, 3MINDIA etc.
+    if (s.length < 1 || s.length > 30) return null;
+    if (!/^[A-Z0-9.\-&_: /]+$/.test(s)) return null;
+    return s;
+  }
 
   /* Validate a price — numeric, positive, < 10 million */
   function validPrice(v) {
@@ -985,6 +994,7 @@ var Scanner = (function () {
 
     try {
       var raw  = await Http.getJson(CFG.SCANNER_URL + '?t=' + Date.now(), {}, 1);
+      // Keep original raw counts for debug display
       var data = _validate(raw);
       _data = data;
 
@@ -994,6 +1004,14 @@ var Scanner = (function () {
       UI.text('scan-date',  data.date + '  |  ₹' + data.min_price + '–₹' + data.max_price);
       UI.text('buy-title',  '📈 BULLISH ('  + data.buy.length  + ')');
       UI.text('sell-title', '📉 BEARISH ('  + data.sell.length + ')');
+      // Debug info — shows raw counts from JSON vs parsed counts
+      var dbg = UI.$('scan-debug');
+      if (dbg) {
+        dbg.textContent = 'RAW: buy=' + (raw.buy ? raw.buy.length : 'missing') +
+          ' sell=' + (raw.sell ? raw.sell.length : 'missing') +
+          ' → PARSED: buy=' + data.buy.length + ' sell=' + data.sell.length;
+        dbg.style.display = 'block';
+      }
 
       function render(listId, arr, type) {
         var el = UI.$(listId);
