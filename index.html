@@ -1,1466 +1,594 @@
-<!DOCTYPE html>
-<html lang="hi">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#0A0A0A">
-<title>MoneyMaker7867 — Free Money Management Tool</title>
-<style>
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Bebas+Neue&display=swap');
-
-/* ============ DESIGN TOKENS ============ */
-:root {
-  --gold:#F0B429; --bg:#0A0A0A; --card:#111111; --card2:#161616;
-  --border:#222222; --text:#F0EDE6; --muted:#555;
-  --green:#22C55E; --red:#EF4444; --amber:#F59E0B;
-}
-
-/* ============ RESET ============ */
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-body {
-  background: var(--bg); color: var(--text);
-  font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  overflow-x: hidden; -webkit-font-smoothing: antialiased;
-}
-
-/* ============ TOAST SYSTEM ============ */
-#toast-container {
-  position: fixed; bottom: 1.5rem; left: 50%; transform: translateX(-50%);
-  z-index: 9999; display: flex; flex-direction: column; gap: 8px;
-  align-items: center; pointer-events: none; width: 90vw; max-width: 380px;
-}
-.toast {
-  padding: 10px 20px; border-radius: 99px; font-size: 13px; font-weight: 600;
-  font-family: 'Space Grotesk', sans-serif; animation: toastIn .3s ease;
-  pointer-events: none; text-align: center; width: 100%;
-}
-.toast.err  { background: rgba(239,68,68,.96);  color: #fff; border: 1px solid rgba(239,68,68,.4); }
-.toast.ok   { background: rgba(34,197,94,.96);  color: #000; border: 1px solid rgba(34,197,94,.4); }
-.toast.info { background: rgba(240,180,41,.96); color: #000; border: 1px solid rgba(240,180,41,.4); }
-.toast.out  { animation: toastOut .35s ease forwards; }
-@keyframes toastIn  { from { opacity:0; transform:translateY(12px) } to { opacity:1; transform:translateY(0) } }
-@keyframes toastOut { from { opacity:1; transform:translateY(0) } to { opacity:0; transform:translateY(12px) } }
-
-/* ============ HERO ============ */
-.hero {
-  min-height: 100vh; display: flex; flex-direction: column;
-  align-items: center; justify-content: center; text-align: center;
-  padding: 2rem; position: relative;
-}
-.hero::before {
-  content: ''; position: absolute; inset: 0;
-  background: radial-gradient(ellipse 80% 50% at 50% 0%, rgba(240,180,41,.10) 0%, transparent 70%);
-  pointer-events: none;
-}
-.hero-tag {
-  font-size: 11px; letter-spacing: .2em; color: var(--gold);
-  background: rgba(240,180,41,.1); border: 1px solid rgba(240,180,41,.2);
-  padding: 6px 16px; border-radius: 99px; display: inline-block;
-  margin-bottom: 24px; text-transform: uppercase;
-}
-.hero-title {
-  font-family: 'Bebas Neue', 'Arial Black', Impact, sans-serif;
-  font-size: clamp(3.5rem, 10vw, 7rem); line-height: .95; margin-bottom: 16px;
-}
-.hero-title span { color: var(--gold); }
-.hero-sub { font-size: clamp(.95rem, 2vw, 1.1rem); color: var(--muted); max-width: 440px; line-height: 1.7; margin-bottom: 36px; }
-.hero-badge {
-  display: inline-flex; align-items: center; gap: 8px;
-  background: rgba(34,197,94,.08); border: 1px solid rgba(34,197,94,.2);
-  color: var(--green); font-size: 13px; padding: 8px 18px; border-radius: 99px;
-}
-.hero-badge::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: var(--green); animation: pulse 2s infinite; }
-@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.3} }
-.scroll-hint {
-  position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%);
-  display: flex; flex-direction: column; align-items: center; gap: 6px;
-  color: var(--muted); font-size: 11px; letter-spacing: .1em;
-}
-.arrow { width: 18px; height: 18px; border-right: 1.5px solid var(--muted); border-bottom: 1.5px solid var(--muted); transform: rotate(45deg); animation: bounce 1.5s infinite; }
-@keyframes bounce { 0%,100%{transform:rotate(45deg) translateY(0)} 50%{transform:rotate(45deg) translateY(5px)} }
-
-/* ============ LAYOUT ============ */
-section { max-width: 680px; margin: 0 auto; padding: 4rem 1.5rem; }
-.sec-label { font-size: 11px; letter-spacing: .2em; color: var(--gold); text-transform: uppercase; margin-bottom: 10px; }
-.sec-title { font-family: 'Bebas Neue', 'Arial Black', Impact, sans-serif; font-size: clamp(2rem, 5vw, 2.8rem); margin-bottom: 8px; }
-.sec-sub { color: var(--muted); font-size: 14px; line-height: 1.6; margin-bottom: 2rem; }
-
-/* ============ STEPS ============ */
-.steps { display: flex; flex-direction: column; gap: 14px; }
-.step {
-  background: var(--card); border: 1px solid var(--border);
-  border-radius: 16px; padding: 1.2rem 1.5rem;
-  display: flex; align-items: flex-start; gap: 16px; transition: border-color .4s;
-}
-.step.done { border-color: rgba(34,197,94,.4); }
-.step-num {
-  width: 38px; height: 38px; border-radius: 50%; border: 1.5px solid var(--border);
-  display: flex; align-items: center; justify-content: center;
-  font-family: 'Bebas Neue', 'Arial Black', Impact, sans-serif;
-  font-size: 1.1rem; color: var(--gold); flex-shrink: 0; transition: all .3s;
-}
-.step.done .step-num { background: var(--green); border-color: var(--green); color: #000; font-family: 'Space Grotesk', sans-serif; font-weight: 700; }
-.step-body { flex: 1; min-width: 0; }
-.step-title { font-weight: 600; font-size: 14px; margin-bottom: 3px; }
-.step-desc { font-size: 12px; color: var(--muted); line-height: 1.5; }
-.step-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin-top: 10px; }
-.sbtn {
-  display: inline-flex; align-items: center; gap: 6px;
-  padding: 7px 14px; border-radius: 99px; font-size: 12px; font-weight: 600;
-  border: none; cursor: pointer; text-decoration: none;
-  transition: all .2s; font-family: 'Space Grotesk', sans-serif;
-}
-.sbtn-gold  { background: var(--gold); color: #000; }
-.sbtn-gold:hover { background: #FFD166; }
-.sbtn-insta { background: linear-gradient(135deg,#833ab4,#fd1d1d,#fcb045); color: #fff; }
-.sbtn-yt    { background: #FF0000; color: #fff; }
-.sbtn-confirm {
-  background: transparent; border: 1px solid var(--border); color: var(--muted);
-  display: none; /* shown by JS only */
-}
-.sbtn-confirm:not(:disabled):hover { border-color: var(--green); color: var(--green); }
-.sbtn-confirm:disabled { opacity: .4; cursor: not-allowed; }
-.done-badge { display: none; align-items: center; gap: 5px; font-size: 12px; color: var(--green); font-weight: 600; }
-.step-timer { font-size: 11px; color: var(--amber); margin-top: 6px; display: none; }
-
-/* ============ LOCK BOX ============ */
-.lock-box {
-  background: var(--card); border: 1px solid var(--border);
-  border-radius: 18px; padding: 2rem; text-align: center; margin-top: 1.5rem;
-}
-.lock-ico  { font-size: 2.5rem; margin-bottom: 10px; }
-.lock-title { font-family: 'Bebas Neue', 'Arial Black', Impact, sans-serif; font-size: 1.8rem; margin-bottom: 6px; }
-.lock-sub  { color: var(--muted); font-size: 13px; }
-.prog-wrap { background: var(--border); border-radius: 99px; height: 5px; margin: 1.2rem 0 .4rem; overflow: hidden; }
-.prog-bar  { height: 100%; background: var(--gold); border-radius: 99px; transition: width .5s ease; }
-.prog-text { font-size: 12px; color: var(--muted); }
-
-/* ============ FORMS ============ */
-.auth-card {
-  background: var(--card); border: 1px solid rgba(240,180,41,.25);
-  border-radius: 18px; padding: 2rem; margin-top: 1.5rem; display: none;
-}
-.auth-card.show { display: block; animation: popIn .4s ease; }
-.auth-title { font-family: 'Bebas Neue', 'Arial Black', Impact, sans-serif; font-size: 1.6rem; color: var(--gold); margin-bottom: 4px; text-align: center; }
-.auth-sub   { color: var(--muted); font-size: 13px; text-align: center; margin-bottom: 1.5rem; }
-.inp-wrap   { display: flex; flex-direction: column; gap: 10px; margin-bottom: 1.2rem; }
-.inp {
-  background: var(--card2); border: 1px solid var(--border);
-  border-radius: 10px; padding: 10px 14px; font-size: 14px; color: var(--text);
-  font-family: 'Space Grotesk', sans-serif; outline: none; width: 100%;
-  transition: border-color .2s;
-}
-.inp:focus         { border-color: var(--gold); }
-.inp.inp-invalid   { border-color: var(--red); }
-.inp.inp-valid     { border-color: var(--green); }
-.msg { font-size: 12px; padding: 8px 12px; border-radius: 8px; margin-bottom: 10px; display: none; }
-.msg.err { background: rgba(239,68,68,.1); border: 1px solid rgba(239,68,68,.3); color: var(--red); }
-.msg.ok  { background: rgba(34,197,94,.1);  border: 1px solid rgba(34,197,94,.3);  color: var(--green); }
-.btn-primary {
-  background: var(--gold); color: #000; border: none; border-radius: 10px;
-  padding: 11px 24px; font-size: 14px; font-weight: 700; cursor: pointer;
-  width: 100%; font-family: 'Space Grotesk', sans-serif; transition: all .2s;
-  display: flex; align-items: center; justify-content: center; gap: 8px;
-}
-.btn-primary:not(:disabled):hover { background: #FFD166; }
-.btn-primary:disabled { opacity: .5; cursor: not-allowed; }
-.btn-spinner {
-  display: none; width: 14px; height: 14px;
-  border: 2px solid #000; border-top-color: transparent;
-  border-radius: 50%; animation: spin .7s linear infinite; flex-shrink: 0;
-}
-.btn-primary.loading .btn-spinner { display: block; }
-@keyframes spin { to { transform: rotate(360deg); } }
-
-/* ============ LOGIN SCREEN ============ */
-.login-screen { display: none; min-height: 100vh; align-items: center; justify-content: center; padding: 2rem; }
-.login-screen.show { display: flex; }
-.login-card {
-  background: var(--card); border: 1px solid var(--border);
-  border-radius: 20px; padding: 2.5rem 2rem; width: 100%; max-width: 380px; text-align: center;
-}
-.login-logo { font-family: 'Bebas Neue', 'Arial Black', Impact, sans-serif; font-size: 2.5rem; color: var(--gold); margin-bottom: 4px; }
-.login-sub  { font-size: 13px; color: var(--muted); margin-bottom: 1.5rem; }
-.login-lock-notice {
-  font-size: 12px; color: var(--red);
-  background: rgba(239,68,68,.08); border: 1px solid rgba(239,68,68,.2);
-  border-radius: 8px; padding: 8px 12px; margin-bottom: 12px; display: none;
-}
-.attempts-badge { font-size: 11px; color: var(--amber); margin-top: 8px; display: none; }
-.logout-btn {
-  background: transparent; border: 1px solid var(--border); color: var(--muted);
-  border-radius: 8px; padding: 6px 14px; font-size: 12px; cursor: pointer;
-  font-family: 'Space Grotesk', sans-serif; transition: all .2s; margin-top: 12px;
-}
-.logout-btn:hover { border-color: var(--red); color: var(--red); }
-.new-acc-btn {
-  background: transparent; border: none; color: var(--muted); font-size: 12px;
-  cursor: pointer; font-family: 'Space Grotesk', sans-serif; margin-top: 8px;
-  text-decoration: underline;
-}
-
-/* ============ TOOL ============ */
-.tool-section { display: none; }
-.tool-section.show { display: block; animation: popIn .5s ease; }
-@keyframes popIn { from{opacity:0;transform:scale(.97)} to{opacity:1;transform:scale(1)} }
-.tabs { display: flex; gap: 6px; margin-bottom: 1.5rem; }
-.tab {
-  flex: 1; padding: 10px; border: 1px solid var(--border); border-radius: 10px;
-  background: var(--card); color: var(--muted); font-size: 13px; font-weight: 600;
-  cursor: pointer; text-align: center; transition: all .2s; font-family: 'Space Grotesk', sans-serif;
-}
-.tab.active { border-color: var(--gold); color: var(--gold); background: rgba(240,180,41,.06); }
-.panel { display: none; }
-.panel.active { display: block; }
-.tcard { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 1.2rem 1.4rem; margin-bottom: 12px; }
-.card-title { font-size: 11px; letter-spacing: .15em; text-transform: uppercase; color: var(--gold); margin-bottom: 14px; font-weight: 600; }
-.scan-status { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
-.scan-time   { font-size: 12px; color: var(--muted); }
-.scan-dot    { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; }
-.dot         { width: 7px; height: 7px; border-radius: 50%; background: var(--muted); flex-shrink: 0; }
-.dot.live    { background: var(--green); animation: pulse 2s infinite; }
-.dot.error   { background: var(--red); }
-.signal-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 12px; }
-.signal-box  { background: var(--card2); border: 1px solid var(--border); border-radius: 10px; padding: 10px 12px; }
-.signal-box-title { font-size: 11px; font-weight: 600; margin-bottom: 8px; }
-.signal-box-title.buy  { color: var(--green); }
-.signal-box-title.sell { color: var(--red); }
-.signal-item {
-  display: flex; justify-content: space-between; padding: 5px 6px;
-  font-size: 12px; cursor: pointer; border-radius: 6px; transition: background .2s;
-  border-bottom: 1px solid var(--border);
-}
-.signal-item:last-child { border-bottom: none; }
-.signal-item .sym   { font-weight: 600; }
-.signal-item .price { color: var(--muted); }
-.signal-item:hover, .signal-item.selected { background: rgba(240,180,41,.12); }
-.no-signal { font-size: 12px; color: var(--muted); padding: 8px 0; text-align: center; }
-.selected-stock-card {
-  background: rgba(240,180,41,.08); border: 1px solid rgba(240,180,41,.3);
-  border-radius: 12px; padding: 12px 14px; margin-bottom: 14px; display: none;
-}
-.selected-stock-card.show { display: block; }
-.ssc-title  { font-size: 11px; color: var(--gold); font-weight: 600; letter-spacing: .1em; text-transform: uppercase; margin-bottom: 8px; }
-.ssc-row    { display: flex; justify-content: space-between; align-items: center; }
-.ssc-sym    { font-size: 18px; font-weight: 700; color: var(--text); }
-.ssc-price  { font-size: 14px; color: var(--gold); font-weight: 600; }
-.ssc-type   { font-size: 11px; padding: 3px 10px; border-radius: 99px; font-weight: 600; margin-top: 6px; display: inline-block; }
-.ssc-type.bull { background: rgba(34,197,94,.15);  color: var(--green); }
-.ssc-type.bear { background: rgba(239,68,68,.15);  color: var(--red); }
-.trade-calc { margin-top: 12px; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; }
-.tc-box     { background: var(--card2); border-radius: 8px; padding: 8px 10px; text-align: center; }
-.tc-label   { font-size: 10px; color: var(--muted); margin-bottom: 3px; }
-.tc-val     { font-size: 13px; font-weight: 700; }
-.refresh-btn {
-  width: 100%; padding: 8px; background: transparent; border: 1px solid var(--border);
-  color: var(--muted); border-radius: 8px; font-size: 12px; cursor: pointer;
-  transition: all .2s; font-family: 'Space Grotesk', sans-serif; margin-top: 8px;
-}
-.refresh-btn:not(:disabled):hover { border-color: var(--gold); color: var(--gold); }
-.refresh-btn:disabled { opacity: .4; cursor: not-allowed; }
-.slider-row { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
-.slider-label { font-size: 12px; color: var(--muted); min-width: 130px; }
-input[type=range] { flex: 1; -webkit-appearance: none; height: 3px; border-radius: 99px; background: var(--border); outline: none; cursor: pointer; }
-input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; width: 15px; height: 15px; border-radius: 50%; background: var(--gold); cursor: pointer; border: 2px solid var(--bg); }
-.slider-val { font-size: 12px; font-weight: 700; min-width: 72px; text-align: right; }
-select { background: var(--card2); color: var(--text); border: 1px solid var(--border); border-radius: 8px; padding: 5px 8px; font-size: 12px; font-family: 'Space Grotesk', sans-serif; outline: none; cursor: pointer; }
-.metrics { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 8px; margin-bottom: 12px; }
-.metric-box   { background: var(--card2); border: 1px solid var(--border); border-radius: 10px; padding: 10px 12px; }
-.metric-label { font-size: 10px; color: var(--muted); margin-bottom: 5px; }
-.metric-val   { font-size: 16px; font-weight: 700; }
-.green  { color: var(--green); }
-.red    { color: var(--red); }
-.amber  { color: var(--amber); }
-.gold-c { color: var(--gold); }
-.sum-row { display: flex; justify-content: space-between; font-size: 12px; padding: 5px 0; border-bottom: 1px solid var(--border); }
-.sum-row:last-child { border-bottom: none; }
-.sum-row span:first-child { color: var(--muted); }
-.sum-row span:last-child  { font-weight: 700; }
-.rule-item { display: flex; align-items: flex-start; gap: 10px; padding: 9px 0; border-bottom: 1px solid var(--border); }
-.rule-item:last-child { border-bottom: none; }
-.rdot      { width: 7px; height: 7px; border-radius: 50%; margin-top: 5px; flex-shrink: 0; }
-.rdot.warn { background: var(--amber); }
-.rdot.ok   { background: var(--green); }
-.rule-text { font-size: 13px; line-height: 1.5; }
-.rule-sub  { font-size: 11px; color: var(--muted); margin-top: 2px; }
-.tool-header-bar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; }
-.levels-wrap  { margin-top: 12px; }
-.levels-title { font-size: 11px; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; margin-bottom: 8px; }
-.levels-title.res { color: var(--red); }
-.levels-title.sup { color: var(--green); }
-.levels-grid  { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; }
-.level-box    { border-radius: 8px; padding: 7px 4px; text-align: center; }
-.level-box.res { background: rgba(239,68,68,.1); border: 1px solid rgba(239,68,68,.2); }
-.level-box.sup { background: rgba(34,197,94,.1);  border: 1px solid rgba(34,197,94,.2); }
-.level-lbl    { font-size: 9px; font-weight: 600; margin-bottom: 3px; }
-.level-lbl.res { color: var(--red); }
-.level-lbl.sup { color: var(--green); }
-.level-price  { font-size: 11px; font-weight: 700; color: var(--text); }
-
-/* ============ MOBILE ============ */
-@media (max-width: 520px) {
-  section { padding: 3rem 1rem; }
-  .signal-grid  { grid-template-columns: 1fr; }
-  .trade-calc   { grid-template-columns: 1fr 1fr; }
-  .metrics      { grid-template-columns: 1fr 1fr; }
-  .levels-grid  { grid-template-columns: repeat(3, 1fr); }
-  .slider-label { min-width: 90px; font-size: 11px; }
-  .slider-val   { min-width: 60px; font-size: 11px; }
-  .tabs .tab    { font-size: 11px; padding: 8px 4px; }
-  .login-card   { padding: 2rem 1.25rem; }
-}
-
-/* ============ FOOTER ============ */
-footer { text-align: center; padding: 3rem 1.5rem; color: var(--muted); font-size: 12px; border-top: 1px solid var(--border); }
-footer a { color: var(--gold); text-decoration: none; }
-footer a:hover { text-decoration: underline; }
-</style>
-</head>
-<body>
-
-<!-- ============ TOAST CONTAINER ============ -->
-<div id="toast-container" role="status" aria-live="polite" aria-atomic="false"></div>
-
-<!-- ============ LOGIN SCREEN ============ -->
-<div class="login-screen" id="login-screen" role="main">
-  <div class="login-card">
-    <div class="login-logo">MM PRO</div>
-    <div class="login-sub">Apna account mein login karo</div>
-    <div class="login-lock-notice" id="lock-notice" role="alert"></div>
-    <div class="inp-wrap">
-      <input class="inp" type="text"     id="li-user" placeholder="Username"  autocomplete="username"         maxlength="30" spellcheck="false">
-      <input class="inp" type="password" id="li-pass" placeholder="Password"  autocomplete="current-password" maxlength="64">
-    </div>
-    <div class="msg err" id="li-err" role="alert"></div>
-    <div class="msg ok"  id="li-ok"  role="status"></div>
-    <button class="btn-primary" id="li-btn" type="button">
-      <span class="btn-spinner"></span><span class="btn-label">Login Karo →</span>
-    </button>
-    <div class="attempts-badge" id="attempts-badge" aria-live="polite"></div>
-    <br>
-    <button class="new-acc-btn" id="go-register-btn" type="button">Naya account banana hai? 3 steps karo →</button>
-  </div>
-</div>
-
-<!-- ============ MAIN PAGE ============ -->
-<div id="main-page" style="display:none">
-  <div class="hero">
-    <div class="hero-tag">Traders Ke Liye — 100% Free</div>
-    <h1 class="hero-title">MONEY<br><span>MANAGER</span><br>PRO</h1>
-    <p class="hero-sub">Live scanner signals + professional money management — ek jagah. Capital protect karo, risk control karo.</p>
-    <div class="hero-badge">Free Access — Sirf 3 Steps Mein</div>
-    <div class="scroll-hint"><span>NICHE DEKHO</span><div class="arrow"></div></div>
-  </div>
-
-  <section>
-    <div class="sec-label">Free Access</div>
-    <h2 class="sec-title">3 Steps — Tool Unlock Karo</h2>
-    <p class="sec-sub">Sirf ek baar karo — phir username + password se kisi bhi device pe login karo.</p>
-
-    <div class="steps">
-      <!-- Step 1 -->
-      <div class="step" id="s1">
-        <div class="step-num" id="n1">1</div>
-        <div class="step-body">
-          <div class="step-title">Dhan App Se Demat Account Kholo</div>
-          <div class="step-desc">Referral link se free mein Dhan account open karo.</div>
-          <div class="step-actions">
-            <a class="sbtn sbtn-gold" id="link1" href="https://join.dhan.co/?invite=OKHPS62291" target="_blank" rel="noopener noreferrer">🏦 Dhan Account Kholo</a>
-            <button class="sbtn sbtn-confirm" id="c1" type="button" disabled>✓ Ho gaya</button>
-            <span class="done-badge" id="d1">✅ Done!</span>
-          </div>
-          <div class="step-timer" id="timer1">⏳ <span id="timer1-val">5</span> sec aur ruko...</div>
-        </div>
-      </div>
-      <!-- Step 2 -->
-      <div class="step" id="s2">
-        <div class="step-num" id="n2">2</div>
-        <div class="step-body">
-          <div class="step-title">Instagram Pe Follow Karo</div>
-          <div class="step-desc">@mone_ymaker7867 — daily tips aur scanner results.</div>
-          <div class="step-actions">
-            <a class="sbtn sbtn-insta" id="link2" href="https://www.instagram.com/mone_ymaker7867/" target="_blank" rel="noopener noreferrer">📸 Follow Karo</a>
-            <button class="sbtn sbtn-confirm" id="c2" type="button" disabled>✓ Ho gaya</button>
-            <span class="done-badge" id="d2">✅ Done!</span>
-          </div>
-          <div class="step-timer" id="timer2">⏳ <span id="timer2-val">5</span> sec aur ruko...</div>
-        </div>
-      </div>
-      <!-- Step 3 -->
-      <div class="step" id="s3">
-        <div class="step-num" id="n3">3</div>
-        <div class="step-body">
-          <div class="step-title">YouTube Pe Subscribe Karo</div>
-          <div class="step-desc">@mone_ymaker7867 — free trading tutorials aur strategies.</div>
-          <div class="step-actions">
-            <a class="sbtn sbtn-yt" id="link3" href="https://www.youtube.com/@mone_ymaker7867" target="_blank" rel="noopener noreferrer">▶ Subscribe Karo</a>
-            <button class="sbtn sbtn-confirm" id="c3" type="button" disabled>✓ Ho gaya</button>
-            <span class="done-badge" id="d3">✅ Done!</span>
-          </div>
-          <div class="step-timer" id="timer3">⏳ <span id="timer3-val">5</span> sec aur ruko...</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Lock box -->
-    <div class="lock-box" id="lock-box">
-      <div class="lock-ico">🔒</div>
-      <div class="lock-title">Tool Locked Hai</div>
-      <div class="lock-sub">Teeno steps complete karo — phir account banao</div>
-      <div class="prog-wrap"><div class="prog-bar" id="prog" style="width:0%"></div></div>
-      <div class="prog-text" id="prog-text">0 / 3 complete</div>
-    </div>
-
-    <!-- Register form — shown after all steps done -->
-    <div class="auth-card" id="reg-form">
-      <div class="lock-ico" style="text-align:center">🔓</div>
-      <div class="auth-title">Account Banao!</div>
-      <div class="auth-sub">Ek baar set karo — phir kisi bhi device se login karo</div>
-      <div class="inp-wrap">
-        <input class="inp" type="text"     id="reg-user"  placeholder="Username (min 4 char, sirf a-z 0-9 _)" autocomplete="off"          maxlength="30" spellcheck="false">
-        <div class="msg err" id="reg-user-err" role="alert"></div>
-        <input class="inp" type="password" id="reg-pass"  placeholder="Password (min 6 characters)"            autocomplete="new-password" maxlength="64">
-        <input class="inp" type="password" id="reg-pass2" placeholder="Password dobara daalo"                  autocomplete="new-password" maxlength="64">
-        <div class="msg err" id="reg-err" role="alert"></div>
-        <div class="msg ok"  id="reg-ok"  role="status"></div>
-      </div>
-      <button class="btn-primary" id="reg-btn" type="button">
-        <span class="btn-spinner"></span><span class="btn-label">Account Banao & Tool Kholo →</span>
-      </button>
-    </div>
-  </section>
-</div>
-
-<!-- ============ TOOL SECTION ============ -->
-<div class="tool-section" id="tool">
-  <section style="padding-top:2rem">
-    <div class="tool-header-bar">
-      <div>
-        <div class="sec-label" id="welcome-msg">Welcome!</div>
-        <h2 class="sec-title" style="margin-bottom:0">Money Manager Pro</h2>
-      </div>
-      <button class="logout-btn" id="logout-btn" type="button">Logout</button>
-    </div>
-
-    <div class="tabs" role="tablist">
-      <button class="tab active" data-tab="scanner" role="tab" aria-selected="true">📊 Signals</button>
-      <button class="tab"        data-tab="calc"    role="tab" aria-selected="false">💰 Calculator</button>
-      <button class="tab"        data-tab="rules"   role="tab" aria-selected="false">📋 Rules</button>
-    </div>
-
-    <!-- SCANNER PANEL -->
-    <div class="panel active" id="panel-scanner" role="tabpanel">
-      <div class="tcard">
-        <div class="scan-status">
-          <div class="card-title" style="margin-bottom:0">Live Signals</div>
-          <div class="scan-dot">
-            <div class="dot" id="live-dot"></div>
-            <span class="scan-time" id="scan-time">Fetch ho raha hai...</span>
-          </div>
-        </div>
-        <div style="font-size:11px;color:var(--muted);margin-bottom:12px" id="scan-date"></div>
-        <div id="scan-debug" style="display:none;font-size:11px;color:var(--amber);background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.2);border-radius:6px;padding:5px 10px;margin-bottom:10px;font-family:monospace;word-break:break-all"></div>
-        <div class="signal-grid">
-          <div class="signal-box">
-            <div class="signal-box-title buy" id="buy-title">📈 BULLISH (0)</div>
-            <div id="buy-list"><div class="no-signal">Scanner se results ka wait karo</div></div>
-          </div>
-          <div class="signal-box">
-            <div class="signal-box-title sell" id="sell-title">📉 BEARISH (0)</div>
-            <div id="sell-list"><div class="no-signal">Scanner se results ka wait karo</div></div>
-          </div>
-        </div>
-        <div style="font-size:11px;color:var(--muted);text-align:center;margin-bottom:6px" id="auto-msg">Har 30 sec mein auto-refresh</div>
-        <button class="refresh-btn" id="refresh-btn" type="button">🔄 Abhi Refresh Karo</button>
-      </div>
-      <div class="tcard" style="font-size:12px;color:var(--muted);line-height:1.8">
-        <div class="card-title">Kaise Use Karein</div>
-        📈 Bullish = Strong uptrend — consider karo<br>
-        📉 Bearish = Strong Downtrend — consider karo<br>
-        Nifty green ho tab Bullish signals zyada reliable hote hain<br>
-        Nifty red ho tab Bearish signals zyada reliable hote hain<br>
-        Hamesha SL lagao entry ke saath
-        <div style="margin-top:14px;text-align:center;font-size:13px;font-weight:700;letter-spacing:.08em;color:#F0B429;">
-          🇮🇳 With Love from MONE_YMAKER7867 🇮🇳
-        </div>
-      </div>
-    </div>
-
-    <!-- CALCULATOR PANEL -->
-    <div class="panel" id="panel-calc" role="tabpanel">
-      <div class="selected-stock-card" id="ssc">
-        <div class="ssc-title">📊 Selected Stock</div>
-        <div class="ssc-row">
-          <span class="ssc-sym"   id="ssc-sym">—</span>
-          <span class="ssc-price" id="ssc-price">₹0</span>
-        </div>
-        <span class="ssc-type" id="ssc-type"></span>
-        <div class="trade-calc">
-          <div class="tc-box"><div class="tc-label">Entry</div><div class="tc-val gold-c" id="tc-entry">—</div></div>
-          <div class="tc-box"><div class="tc-label">Stop Loss</div><div class="tc-val red"    id="tc-sl">—</div></div>
-          <div class="tc-box"><div class="tc-label">Target</div><div class="tc-val green"   id="tc-tgt">—</div></div>
-          <div class="tc-box"><div class="tc-label">Max Loss</div><div class="tc-val red"    id="tc-loss">—</div></div>
-          <div class="tc-box"><div class="tc-label">Profit</div><div class="tc-val green"   id="tc-profit">—</div></div>
-          <div class="tc-box"><div class="tc-label">Qty</div><div class="tc-val"           id="tc-qty">—</div></div>
-        </div>
-        <div class="levels-wrap" id="levels-wrap" style="display:none">
-          <div class="levels-title res" id="levels-title">🎯 RESISTANCE LEVELS</div>
-          <div class="levels-grid" id="levels-grid"></div>
-        </div>
-      </div>
-      <div class="tcard">
-        <div class="card-title">Capital & Risk Setup</div>
-        <div class="slider-row"><span class="slider-label">Total Capital</span><input type="range" min="50000"  max="500000" step="10000" value="100000" id="capital"><span class="slider-val gold-c" id="cap-out">₹1,00,000</span></div>
-        <div class="slider-row"><span class="slider-label">Max stocks ek saath</span><input type="range" min="1" max="15" step="1" value="5" id="stocks"><span class="slider-val" id="stocks-out">5</span></div>
-        <div class="slider-row"><span class="slider-label">Risk per trade</span><input type="range" min="0.5"  max="3"    step="0.5"  value="1"   id="risk"><span class="slider-val" id="risk-out">1%</span></div>
-        <div class="slider-row"><span class="slider-label">Stop Loss %</span><input type="range" min="0.3" max="2" step="0.1" value="0.5" id="sl"><span class="slider-val" id="sl-out">0.5%</span></div>
-        <div class="slider-row"><span class="slider-label">Stock price (₹)</span><input type="range" min="50" max="5000" step="50" value="500" id="stock-price"><span class="slider-val gold-c" id="sp-out">₹500</span></div>
-        <div class="slider-row" style="margin-bottom:0"><span class="slider-label">Risk : Reward</span><select id="rr"><option value="1.5">1:1.5</option><option value="2" selected>1:2</option><option value="2.5">1:2.5</option><option value="3">1:3</option></select><span class="slider-val green" id="rr-out">1:2</span></div>
-      </div>
-      <div class="metrics">
-        <div class="metric-box"><div class="metric-label">Per trade</div><div class="metric-val gold-c" id="per-trade">₹20,000</div></div>
-        <div class="metric-box"><div class="metric-label">Max loss/trade</div><div class="metric-val red"    id="max-loss">₹1,000</div></div>
-        <div class="metric-box"><div class="metric-label">Target/trade</div><div class="metric-val green"  id="target">₹2,000</div></div>
-        <div class="metric-box"><div class="metric-label">Daily limit</div><div class="metric-val red"    id="daily-loss">₹2,000</div></div>
-        <div class="metric-box"><div class="metric-label">Best case</div><div class="metric-val green"  id="best-case">+₹10,000</div></div>
-        <div class="metric-box"><div class="metric-label">Qty</div><div class="metric-val"          id="qty">40</div></div>
-      </div>
-      <div class="tcard">
-        <div class="card-title">Summary</div>
-        <div class="sum-row"><span>Saare targets hit hon toh</span><span class="green" id="s-best">+₹10,000</span></div>
-        <div class="sum-row"><span>Saare SL hit hon toh</span><span class="red"   id="s-worst">-₹5,000</span></div>
-        <div class="sum-row"><span>Daily stop trading limit</span><span class="amber" id="s-limit">-₹2,000</span></div>
-      </div>
-    </div>
-
-    <!-- RULES PANEL -->
-    <div class="panel" id="panel-rules" role="tabpanel">
-      <div class="tcard">
-        <div class="card-title">Golden Rules</div>
-        <div class="rule-item"><div class="rdot warn"></div><div><div class="rule-text">Max <strong id="r-stocks">5</strong> stocks ek saath — zyada mat lo</div><div class="rule-sub">Concentration risk badh jaata hai</div></div></div>
-        <div class="rule-item"><div class="rdot warn"></div><div><div class="rule-text">Daily loss limit hit hote hi trading BAND karo</div><div class="rule-sub" id="r-daily">Limit: ₹2,000 — phir screen se door ho jao</div></div></div>
-        <div class="rule-item"><div class="rdot ok"></div><div><div class="rule-text">Nifty direction 9:20 pe confirm karo</div><div class="rule-sub">Green → Bullish lo · Red → Bearish lo</div></div></div>
-        <div class="rule-item"><div class="rdot ok"></div><div><div class="rule-text">SL hamesha entry ke saath lagao</div><div class="rule-sub">Bracket Order use karo — automatic SL</div></div></div>
-        <div class="rule-item"><div class="rdot ok"></div><div><div class="rule-text">3:15 PM pe saare positions close karo</div><div class="rule-sub">Koi overnight position nahi — kal fresh start</div></div></div>
-        <div class="rule-item"><div class="rdot warn"></div><div><div class="rule-text">Lagaataar 3 loss ke baad — aaj trading band</div><div class="rule-sub">Emotional trading sabse bada dushman hai</div></div></div>
-        <div class="rule-item"><div class="rdot warn"></div><div><div class="rule-text">News events pe trade mat karo</div><div class="rule-sub">Budget, RBI, results — high volatility mein signals unreliable</div></div></div>
-        <div class="rule-item"><div class="rdot ok"></div><div><div class="rule-text">Profit mein SL trailing karo</div><div class="rule-sub">1% move ke baad SL ko breakeven pe le aao</div></div></div>
-        <div class="rule-item"><div class="rdot ok"></div><div><div class="rule-text">Volume confirm karo entry se pehle</div><div class="rule-sub">Kam volume wale stocks mein entry nahi</div></div></div>
-        <div class="rule-item"><div class="rdot warn"></div><div><div class="rule-text">Monday subah pehle 15 min wait karo</div><div class="rule-sub">Gap up/down settle hone do</div></div></div>
-      </div>
-    </div>
-  </section>
-</div>
-
-<footer>
-  <p>Made for Indian traders 🇮🇳</p>
-  <p style="margin-top:8px">
-    <a href="https://www.instagram.com/mone_ymaker7867/" target="_blank" rel="noopener noreferrer">Instagram</a> &nbsp;·&nbsp;
-    <a href="https://www.youtube.com/@mone_ymaker7867"    target="_blank" rel="noopener noreferrer">YouTube</a>   &nbsp;·&nbsp;
-    <a href="https://join.dhan.co/?invite=OKHPS62291"     target="_blank" rel="noopener noreferrer">Dhan Account</a>
-  </p>
-  <p style="margin-top:8px;font-size:11px;color:#333">Trading mein risk hota hai — sirf informed decisions lo.</p>
-</footer>
-
-<script>
-'use strict';
-
-/* ==========================================================
- * ⚙️  CONFIG  — single source of truth
- * ========================================================== */
-var CFG = Object.freeze({
-  APPS_URL      : 'https://script.google.com/macros/s/AKfycbyWV5W1YmhQZp8DouYpTSHOgomMgBdMZEXcmYrCHKGLLBJKX94gowTYfG1iJmKwAngA/exec',
-  SCANNER_URL   : 'https://raw.githubusercontent.com/newtrustyproducts/moneymaker/main/results.json',
-  TIMEOUT_MS    : 8000,
-  MAX_RETRIES   : 2,
-  SCAN_INTERVAL : 30000,
-  SESSION_KEY   : 'mm_sess_v3',
-  STEPS_KEY     : 'mm_steps_v3',
-  STEP_DELAY_MS : 5000,           // min ms user must spend on external page
-  MAX_ATTEMPTS  : 5,              // login attempts before lockout
-  LOCKOUT_MS    : 15 * 60 * 1000, // 15-minute lockout
-  PASS_SALT     : 'MM7867_PROD_SALT_v2'
-});
-
-/* ==========================================================
- * 🔐  SECURITY MODULE
- *   - SHA-256 client hashing (no plaintext ever stored/sent)
- *   - In-memory rate limiting (cannot be reset via DevTools)
- *   - HTML sanitisation helpers
- * ========================================================== */
-var Security = (function () {
-  var _rl = {}; // rate-limit state — intentionally in closure, not localStorage
-
-  /* SHA-256 via Web Crypto API.  Falls back to a base64 obfuscation on
-     very old browsers — passwords still never go in plain text. */
-  async function hashPassword(pw) {
-    var salted = pw + CFG.PASS_SALT;
-    try {
-      var buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(salted));
-      return Array.from(new Uint8Array(buf)).map(function (b) {
-        return b.toString(16).padStart(2, '0');
-      }).join('');
-    } catch (_) {
-      // Fallback: double-encode — still better than plaintext
-      return btoa(btoa(salted)).replace(/=/g, '');
-    }
-  }
-
-  function checkRL(key) {
-    var now = Date.now(), s = _rl[key] || { c: 0, until: 0 };
-    if (now < s.until) {
-      return { ok: false, msg: 'Bahut zyada attempts. ' + Math.ceil((s.until - now) / 60000) + ' min baad try karo.' };
-    }
-    // Reset if lockout has expired
-    if (s.until && now >= s.until) { s.c = 0; s.until = 0; _rl[key] = s; }
-    return { ok: true, left: CFG.MAX_ATTEMPTS - s.c };
-  }
-
-  function recordFail(key) {
-    var s = _rl[key] || { c: 0, until: 0 };
-    s.c++;
-    if (s.c >= CFG.MAX_ATTEMPTS) s.until = Date.now() + CFG.LOCKOUT_MS;
-    _rl[key] = s;
-    return CFG.MAX_ATTEMPTS - s.c;
-  }
-
-  function clearRL(key) { delete _rl[key]; }
-  function failCount(key) { return (_rl[key] || {}).c || 0; }
-
-  /* Safe text → HTML escape (used before ANY innerHTML assignment of external data) */
-  function esc(str) {
-    var d = document.createElement('div');
-    d.appendChild(document.createTextNode(String(str == null ? '' : str)));
-    return d.innerHTML;
-  }
-
-  /* Validate a stock symbol — accepts all NSE/BSE formats, auto-uppercases */
-  function validSym(v) {
-    if (v == null) return null;
-    var s = String(v).trim().toUpperCase();
-    // Allow: letters, digits, dot, dash, ampersand, underscore, colon, slash, space
-    // Covers: RELIANCE, M&M, BAJAJ-AUTO, RELIANCE.NS, NSE:RELIANCE, 3MINDIA etc.
-    if (s.length < 1 || s.length > 30) return null;
-    if (!/^[A-Z0-9.\-&_: /]+$/.test(s)) return null;
-    return s;
-  }
-
-  /* Validate a price — numeric, positive, < 10 million */
-  function validPrice(v) {
-    var n = parseFloat(v);
-    return (!isNaN(n) && n > 0 && n < 10000000) ? Math.round(n * 100) / 100 : null;
-  }
-
-  /* Validate a short label string */
-  function validLabel(v) { return String(v || '').slice(0, 20); }
-
-  return { hashPassword, checkRL, recordFail, clearRL, failCount, esc, validSym, validPrice, validLabel };
-})();
-
-
-/* ==========================================================
- * 📡  HTTP MODULE
- *   - Timeout via AbortController
- *   - Exponential-backoff retry
- * ========================================================== */
-var Http = (function () {
-  async function _once(url, opts) {
-    var ctrl = new AbortController();
-    var timer = setTimeout(function () { ctrl.abort(); }, CFG.TIMEOUT_MS);
-    try {
-      var r = await fetch(url, Object.assign({}, opts || {}, { signal: ctrl.signal }));
-      clearTimeout(timer);
-      if (!r.ok) throw new Error('HTTP_' + r.status);
-      return r;
-    } catch (e) {
-      clearTimeout(timer);
-      throw e.name === 'AbortError' ? new Error('TIMEOUT') : e;
-    }
-  }
-
-  async function getJson(url, opts, retries) {
-    retries = retries !== undefined ? retries : CFG.MAX_RETRIES;
-    var lastErr;
-    for (var i = 0; i <= retries; i++) {
-      try { return await (await _once(url, opts)).json(); }
-      catch (e) {
-        lastErr = e;
-        if (i < retries) await new Promise(function (r) { setTimeout(r, 800 * Math.pow(2, i)); });
-      }
-    }
-    throw lastErr;
-  }
-
-  return { getJson };
-})();
-
-
-/* ==========================================================
- * 🗝️  SESSION MODULE  (sessionStorage only — no localStorage)
- * ========================================================== */
-var Session = (function () {
-  var TTL = 8 * 60 * 60 * 1000; // 8 hours
-
-  function get() {
-    try {
-      var raw = sessionStorage.getItem(CFG.SESSION_KEY);
-      if (!raw) return null;
-      var s = JSON.parse(raw);
-      if (!s || !s.u || !s.t) return null;
-      if (Date.now() - s.t > TTL) { clear(); return null; }
-      return s;
-    } catch (_) { return null; }
-  }
-
-  function set(username) {
-    try { sessionStorage.setItem(CFG.SESSION_KEY, JSON.stringify({ u: username.slice(0, 30), t: Date.now() })); }
-    catch (_) {}
-  }
-
-  function clear() {
-    try { sessionStorage.removeItem(CFG.SESSION_KEY); } catch (_) {}
-  }
-
-  return { get, set, clear };
-})();
-
-
-/* ==========================================================
- * 🎨  UI HELPERS
- * ========================================================== */
-var UI = (function () {
-  function $(id) { return document.getElementById(id); }
-
-  function text(id, val) { var el = $(id); if (el) el.textContent = val; }
-
-  function show(el) { if (el) el.style.display = 'block'; }
-  function hide(el) { if (el) el.style.display = 'none'; }
-  function flex(el) { if (el) el.style.display = 'flex'; }
-
-  function msg(id, txt, type) {
-    var el = $(id);
-    if (!el) return;
-    el.textContent = txt;
-    el.className = 'msg ' + type;
-    el.style.display = txt ? 'block' : 'none';
-  }
-
-  function clearMsg(id) { msg(id, '', 'err'); }
-
-  function btnLoading(id, isLoading, resetLabel) {
-    var btn = $(id);
-    if (!btn) return;
-    btn.disabled = isLoading;
-    btn.classList.toggle('loading', isLoading);
-    var lbl = btn.querySelector('.btn-label');
-    if (lbl && !isLoading && resetLabel) lbl.textContent = resetLabel;
-  }
-
-  /* Toast notification */
-  var _tc = null;
-  function toast(message, type, ms) {
-    if (!_tc) _tc = $('toast-container');
-    if (!_tc) return;
-    ms = ms || 3000;
-    var el = document.createElement('div');
-    el.className = 'toast ' + (type || 'info');
-    el.textContent = message;
-    _tc.appendChild(el);
-    setTimeout(function () {
-      el.classList.add('out');
-      setTimeout(function () { if (el.parentNode) el.parentNode.removeChild(el); }, 380);
-    }, ms);
-  }
-
-  return { $, text, show, hide, flex, msg, clearMsg, btnLoading, toast };
-})();
-
-
-/* ==========================================================
- * 🪜  STEPS MODULE
- *   - Enforces minimum time on external page (5 s countdown)
- *   - State is sessionStorage-backed (survives refresh)
- *   - Confirm button is disabled until timer elapses
- * ========================================================== */
-var Steps = (function () {
-  var _s = { clicked: [false, false, false], at: [0, 0, 0], done: [false, false, false], regShown: false };
-  var _intervals = [null, null, null];
-
-  function _save() {
-    try { sessionStorage.setItem(CFG.STEPS_KEY, JSON.stringify(_s)); } catch (_) {}
-  }
-
-  function _load() {
-    try { var raw = sessionStorage.getItem(CFG.STEPS_KEY); if (raw) _s = JSON.parse(raw); } catch (_) {}
-  }
-
-  function _markDone(n) {
-    var i = n - 1;
-    _s.done[i] = true;
-    if (_intervals[i]) { clearInterval(_intervals[i]); _intervals[i] = null; }
-    var cBtn = UI.$('c' + n);
-    if (cBtn) cBtn.style.display = 'none';
-    var timer = UI.$('timer' + n);
-    if (timer) timer.style.display = 'none';
-    var badge = UI.$('d' + n);
-    if (badge) badge.style.display = 'inline-flex';
-    var step = UI.$('s' + n);
-    if (step) step.classList.add('done');
-    var num = UI.$('n' + n);
-    if (num) num.textContent = '✓';
-  }
-
-  function _showConfirm(n) {
-    var btn = UI.$('c' + n);
-    if (!btn || _s.done[n - 1]) return;
-    btn.style.display = 'inline-flex';
-    btn.disabled = false;
-    var timer = UI.$('timer' + n);
-    if (timer) timer.style.display = 'none';
-  }
-
-  function _startCountdown(n, remainingMs) {
-    var i = n - 1;
-    var timerEl  = UI.$('timer' + n);
-    var timerVal = UI.$('timer' + n + '-val');
-    if (timerEl) timerEl.style.display = 'block';
-    var cBtn = UI.$('c' + n);
-    if (cBtn) { cBtn.style.display = 'inline-flex'; cBtn.disabled = true; }
-
-    if (_intervals[i]) clearInterval(_intervals[i]);
-    var end = Date.now() + remainingMs;
-
-    _intervals[i] = setInterval(function () {
-      var left = end - Date.now();
-      if (left <= 0) {
-        clearInterval(_intervals[i]); _intervals[i] = null;
-        _showConfirm(n);
-      } else {
-        if (timerVal) timerVal.textContent = Math.ceil(left / 1000);
-      }
-    }, 200);
-  }
-
-  function _updateProgress() {
-    var done = _s.done.filter(Boolean).length;
-    var bar  = UI.$('prog'); if (bar) bar.style.width = (done / 3 * 100) + '%';
-    UI.text('prog-text', done + ' / 3 complete');
-
-    if (done === 3 && !_s.regShown) {
-      _s.regShown = true;
-      setTimeout(function () {
-        UI.hide(UI.$('lock-box'));
-        var rf = UI.$('reg-form');
-        if (rf) { rf.classList.add('show'); rf.scrollIntoView({ behavior: 'smooth', block: 'center' }); }
-      }, 400);
-    }
-  }
-
-  function _restore() {
-    for (var i = 0; i < 3; i++) {
-      var n = i + 1;
-      if (_s.done[i])         { _markDone(n); }
-      else if (_s.clicked[i]) {
-        var rem = CFG.STEP_DELAY_MS - (Date.now() - _s.at[i]);
-        if (rem <= 0) _showConfirm(n);
-        else          _startCountdown(n, rem);
-      }
-    }
-    _updateProgress();
-    if (_s.regShown && _s.done.every(Boolean)) {
-      UI.hide(UI.$('lock-box'));
-      var rf = UI.$('reg-form'); if (rf) rf.classList.add('show');
-    }
-  }
-
-  function onLinkClick(n) {
-    var i = n - 1;
-    if (_s.done[i]) return;
-    if (!_s.clicked[i]) { _s.clicked[i] = true; _s.at[i] = Date.now(); _save(); }
-    var rem = CFG.STEP_DELAY_MS - (Date.now() - _s.at[i]);
-    _startCountdown(n, rem > 0 ? rem : 0);
-  }
-
-  function onConfirm(n) {
-    var i = n - 1;
-    if (_s.done[i]) return;
-    if (!_s.clicked[i]) { UI.toast('Pehle link click karo!', 'err'); return; }
-    var elapsed = Date.now() - _s.at[i];
-    if (elapsed < CFG.STEP_DELAY_MS) {
-      UI.toast(Math.ceil((CFG.STEP_DELAY_MS - elapsed) / 1000) + ' sec aur ruko...', 'err');
-      return;
-    }
-    _markDone(n); _save(); _updateProgress();
-    UI.toast('Step ' + n + ' complete! 🎉', 'ok');
-  }
-
-  function init() {
-    _load();
-    _restore();
-    for (var n = 1; n <= 3; n++) {
-      (function (num) {
-        var lnk = UI.$('link' + num);
-        var btn = UI.$('c'    + num);
-        if (lnk) lnk.addEventListener('click', function () { onLinkClick(num); });
-        if (btn) btn.addEventListener('click', function () { onConfirm(num);   });
-      })(n);
-    }
-  }
-
-  return { init };
-})();
-
-
-/* ==========================================================
- * 📡  SCANNER MODULE
- *   - Validates ALL external data before rendering
- *   - Uses document fragment for efficient DOM updates
- *   - Prevents overlapping fetches
- * ========================================================== */
-var Scanner = (function () {
-  var _interval = null;
-  var _busy     = false;
-  var _data     = null;
-
-  /* Validate + sanitise raw JSON from GitHub */
-  function _validate(raw) {
-    if (!raw || typeof raw !== 'object') throw new Error('Bad format');
-
-    function parseList(arr) {
-      if (!Array.isArray(arr)) return [];
-      return arr.reduce(function (acc, s) {
-        if (!s || typeof s !== 'object') return acc;
-        var sym   = Security.validSym(s.symbol);
-        var price = Security.validPrice(s.price);
-        if (!sym || !price) return acc;
-        var item = { symbol: sym, price: price };
-        ['resistance', 'support'].forEach(function (k) {
-          if (Array.isArray(s[k])) {
-            item[k] = s[k].reduce(function (a, l) {
-              var lp = Security.validPrice((l || {}).price);
-              if (lp) a.push({ label: Security.validLabel((l || {}).label), price: lp });
-              return a;
-            }, []);
-          }
-        });
-        acc.push(item);
-        return acc;
-      }, []);
-    }
-
-    return {
-      scan_time : Security.esc(String(raw.scan_time || '').slice(0, 30)),
-      date      : Security.esc(String(raw.date      || '').slice(0, 30)),
-      min_price : Security.validPrice(raw.min_price) || 0,
-      max_price : Security.validPrice(raw.max_price) || 0,
-      phase     : parseInt(raw.phase) || 0,
-      buy       : parseList(raw.buy),
-      sell      : parseList(raw.sell)
-    };
-  }
-
-  /* Build a signal item DOM node — no innerHTML with external strings */
-  function _makeItem(s, type) {
-    var row = document.createElement('div');
-    row.className = 'signal-item';
-    row.setAttribute('role', 'button');
-    row.setAttribute('tabindex', '0');
-
-    var sym = document.createElement('span');
-    sym.className = 'sym';
-    sym.textContent = s.symbol;         // textContent — safe
-
-    var price = document.createElement('span');
-    price.className = 'price';
-    price.textContent = '₹' + s.price; // textContent — safe
-
-    row.appendChild(sym);
-    row.appendChild(price);
-
-    function handleSelect() {
-      Calculator.selectStock(s.symbol, s.price, type, _data);
-    }
-    row.addEventListener('click', handleSelect);
-    row.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') handleSelect(); });
-    return row;
-  }
-
-  async function _fetch() {
-    if (_busy) return;
-    _busy = true;
-    var dot = UI.$('live-dot');
-    var rb  = UI.$('refresh-btn');
-    if (rb) rb.disabled = true;
-
-    try {
-      var raw  = await Http.getJson(CFG.SCANNER_URL + '?t=' + Date.now(), {}, 1);
-      // Keep original raw counts for debug display
-      var data = _validate(raw);
-      _data = data;
-
-      if (dot) dot.className = 'dot live';
-      var phase = data.phase ? ' · Phase ' + data.phase + (data.phase === 1 ? ' (Pre-Open)' : ' (Live)') : '';
-      UI.text('scan-time',  'Last scan: ' + data.scan_time + phase);
-      UI.text('scan-date',  data.date + '  |  ₹' + data.min_price + '–₹' + data.max_price);
-      UI.text('buy-title',  '📈 BULLISH ('  + data.buy.length  + ')');
-      UI.text('sell-title', '📉 BEARISH ('  + data.sell.length + ')');
-      // Debug info — shows raw counts from JSON vs parsed counts
-      var dbg = UI.$('scan-debug');
-      if (dbg) {
-        dbg.textContent = 'RAW: buy=' + (raw.buy ? raw.buy.length : 'missing') +
-          ' sell=' + (raw.sell ? raw.sell.length : 'missing') +
-          ' → PARSED: buy=' + data.buy.length + ' sell=' + data.sell.length;
-        dbg.style.display = 'block';
-      }
-
-      function render(listId, arr, type) {
-        var el = UI.$(listId);
-        if (!el) return;
-        el.innerHTML = '';
-        if (!arr.length) {
-          var np = document.createElement('div');
-          np.className = 'no-signal';
-          np.textContent = 'Koi ' + (type === 'bull' ? 'Bullish' : 'Bearish') + ' signal nahi';
-          el.appendChild(np);
-        } else {
-          var frag = document.createDocumentFragment();
-          arr.forEach(function (s) { frag.appendChild(_makeItem(s, type)); });
-          el.appendChild(frag);
+# ==========================================
+# MONEYMAKER SCANNER v3.3 — BUGS FIXED
+# v3.2 se v3.3 changes:
+#  1. push_to_github — infinite recursion fix (retry depth limit)
+#  2. Baaki sab logic same — kuch break nahi kiya
+# ==========================================
+
+import os, json, time, base64, urllib.request, urllib.parse
+import pandas as pd
+import yfinance as yf
+from datetime import datetime, timedelta
+
+BASE_DIR     = os.path.dirname(os.path.abspath(__file__))
+CSV_FILE     = os.path.join(BASE_DIR, "stocks.csv")
+CACHE_FILE   = os.path.join(BASE_DIR, "cache.json")
+RESULTS_FILE = os.path.join(BASE_DIR, "results.json")
+CONFIG_FILE  = os.path.join(BASE_DIR, "config.json")
+
+MARKET_OPEN  = "09:15"
+MARKET_CLOSE = "15:30"
+
+# ==========================================
+# CONFIG — config.json se load hoga
+# ==========================================
+def load_config():
+    if not os.path.exists(CONFIG_FILE):
+        default = {
+            "GITHUB_TOKEN":      "APNA_TOKEN_YAHAN_DAALO",
+            "GITHUB_REPO":       "newtrustyproducts/moneymaker",
+            "GITHUB_BRANCH":     "main",
+            "DHAN_CLIENT_ID":    "1101114816",
+            "DHAN_ACCESS_TOKEN": "",
+            "MIN_PRICE":         250,
+            "MAX_PRICE":         2500,
+            "MIN_VOLUME":        50000
         }
-      }
-      render('buy-list',  data.buy,  'bull');
-      render('sell-list', data.sell, 'bear');
+        with open(CONFIG_FILE, "w") as f:
+            json.dump(default, f, indent=2)
+        print(f"⚠️  config.json nahi mila — default bana diya: {CONFIG_FILE}")
+        print(f"   Apna GitHub token aur Dhan token daalo config.json mein!")
+    with open(CONFIG_FILE) as f:
+        return json.load(f)
 
-      UI.text('auto-msg', 'Auto-refresh: har 30 sec · ' + new Date().toLocaleTimeString('en-IN'));
+cfg = load_config()
+GITHUB_TOKEN      = cfg.get("GITHUB_TOKEN",      "")
+GITHUB_REPO       = cfg.get("GITHUB_REPO",       "newtrustyproducts/moneymaker")
+GITHUB_BRANCH     = cfg.get("GITHUB_BRANCH",     "main")
+DHAN_CLIENT_ID    = cfg.get("DHAN_CLIENT_ID",    "1101114816")
+DHAN_ACCESS_TOKEN = cfg.get("DHAN_ACCESS_TOKEN", "")
+MIN_PRICE         = float(cfg.get("MIN_PRICE",   250))
+MAX_PRICE         = float(cfg.get("MAX_PRICE",   2500))
+MIN_VOLUME        = int(cfg.get("MIN_VOLUME",    50000))
 
-    } catch (e) {
-      if (dot) dot.className = 'dot error';
-      UI.text('scan-time', 'Scanner error — retry ho raha hai');
-    } finally {
-      _busy = false;
-      if (rb) rb.disabled = false;
-    }
-  }
-
-  function start()  { stop(); _fetch(); _interval = setInterval(_fetch, CFG.SCAN_INTERVAL); }
-  function stop()   { if (_interval) { clearInterval(_interval); _interval = null; } }
-  function fetch()  { _fetch(); }
-  function getData(){ return _data; }
-
-  return { start, stop, fetch, getData };
-})();
-
-
-/* ==========================================================
- * 💰  CALCULATOR MODULE
- *   - All DOM reads go through UI.$()
- *   - selectStock no longer relies on global `event`
- * ========================================================== */
-var Calculator = (function () {
-  function _fmt(n) { return '₹' + Math.round(n).toLocaleString('en-IN'); }
-  function _val(id) { return parseFloat((UI.$(id) || {}).value) || 0; }
-
-  function run() {
-    var cap  = _val('capital');
-    var nStk = _val('stocks');
-    var risk = _val('risk');
-    var sl   = _val('sl');
-    var rr   = _val('rr');
-    var sp   = _val('stock-price');
-
-    UI.text('cap-out',    _fmt(cap));
-    UI.text('stocks-out', nStk);
-    UI.text('risk-out',   risk + '%');
-    UI.text('sl-out',     sl.toFixed(1) + '%');
-    UI.text('rr-out',     '1:' + rr);
-    UI.text('sp-out',     _fmt(sp));
-
-    var pt    = cap / nStk;
-    var ml    = cap * (risk / 100);
-    var tgt   = ml * rr;
-    var daily = ml * 2;
-    var qty   = Math.floor(pt / sp);
-
-    UI.text('per-trade',  _fmt(pt));
-    UI.text('max-loss',   _fmt(ml));
-    UI.text('target',     _fmt(tgt));
-    UI.text('daily-loss', _fmt(daily));
-    UI.text('best-case',  '+' + _fmt(tgt * nStk));
-    UI.text('qty',        qty + ' shares');
-    UI.text('s-best',     '+' + _fmt(tgt * nStk));
-    UI.text('s-worst',    '-' + _fmt(ml  * nStk));
-    UI.text('s-limit',    '-' + _fmt(daily));
-    UI.text('r-stocks',   nStk);
-    UI.text('r-daily',    'Limit: ' + _fmt(daily) + ' — uske baad screen se door ho jao');
-  }
-
-  /* Called by Scanner signal items — event object NOT used here (bug fix) */
-  function selectStock(sym, price, type, scanData) {
-    // Highlight selected row
-    document.querySelectorAll('.signal-item').forEach(function (el) { el.classList.remove('selected'); });
-    document.querySelectorAll('.signal-item .sym').forEach(function (el) {
-      if (el.textContent === sym) el.closest('.signal-item').classList.add('selected');
-    });
-
-    // Sync stock-price slider (clamp to slider range)
-    var sp = UI.$('stock-price');
-    if (sp) sp.value = Math.min(Math.max(Math.round(price / 50) * 50, 50), 5000);
-    run();
-
-    // Update selected-stock card — all values set via textContent (safe)
-    var card = UI.$('ssc');
-    if (card) card.classList.add('show');
-    UI.text('ssc-sym',   sym);
-    UI.text('ssc-price', '₹' + price);
-    var typeEl = UI.$('ssc-type');
-    if (typeEl) {
-      typeEl.textContent = type === 'bull' ? '📈 BULLISH' : '📉 BEARISH';
-      typeEl.className   = 'ssc-type ' + type;
-    }
-
-    // Per-stock trade calculations
-    var cap  = _val('capital');
-    var nStk = _val('stocks');
-    var sl   = _val('sl');
-    var rr   = _val('rr');
-    var pt   = cap / nStk;
-    var qty  = Math.floor(pt / price);
-    var slA  = price * (sl / 100);
-    var slPx = type === 'bull' ? price - slA : price + slA;
-    var tPx  = type === 'bull' ? price + (slA * rr) : price - (slA * rr);
-
-    UI.text('tc-entry',  '₹' + price);
-    UI.text('tc-sl',     '₹' + slPx.toFixed(2));
-    UI.text('tc-tgt',    '₹' + tPx.toFixed(2));
-    UI.text('tc-loss',   _fmt(qty * slA));
-    UI.text('tc-profit', _fmt(qty * slA * rr));
-    UI.text('tc-qty',    qty + ' shares');
-
-    // Levels (resistance / support) — use textContent only
-    var lw = UI.$('levels-wrap');
-    if (lw) lw.style.display = 'none';
-    if (scanData) {
-      var arr   = type === 'bull' ? scanData.buy : scanData.sell;
-      var stock = arr.find(function (x) { return x.symbol === sym; });
-      var key   = type === 'bull' ? 'resistance' : 'support';
-      if (stock && stock[key] && stock[key].length) {
-        if (lw) lw.style.display = 'block';
-        var lt = UI.$('levels-title');
-        if (lt) {
-          lt.textContent = type === 'bull' ? '🎯 RESISTANCE LEVELS' : '🛡️ SUPPORT LEVELS';
-          lt.className   = 'levels-title ' + (type === 'bull' ? 'res' : 'sup');
-        }
-        var lg = UI.$('levels-grid');
-        if (lg) {
-          lg.innerHTML = '';
-          var cls = type === 'bull' ? 'res' : 'sup';
-          stock[key].forEach(function (l) {
-            var box  = document.createElement('div');
-            box.className = 'level-box ' + cls;
-            var lbl  = document.createElement('div');
-            lbl.className = 'level-lbl ' + cls;
-            lbl.textContent = l.label;            // sanitised earlier
-            var px   = document.createElement('div');
-            px.className = 'level-price';
-            px.textContent = '₹' + l.price;
-            box.appendChild(lbl); box.appendChild(px);
-            lg.appendChild(box);
-          });
-        }
-      }
-    }
-
-    App.switchTab('calc');
-  }
-
-  function initSliders() {
-    ['capital', 'stocks', 'risk', 'sl', 'stock-price', 'rr'].forEach(function (id) {
-      var el = UI.$(id);
-      if (el) el.addEventListener('input', run);
-    });
-  }
-
-  return { run, selectStock, initSliders };
-})();
-
-
-/* ==========================================================
- * 🔑  AUTH MODULE
- *   - Passwords hashed with SHA-256 + salt — never stored plain
- *   - localStorage credentials removed entirely
- *   - In-memory rate limiting prevents brute-force
- * ========================================================== */
-var Auth = (function () {
-  var _checkTimer = null;
-
-  async function doLogin() {
-    var u  = ((UI.$('li-user') || {}).value || '').trim().toLowerCase();
-    var p  = (UI.$('li-pass') || {}).value || '';
-
-    UI.clearMsg('li-err');
-    UI.clearMsg('li-ok');
-    var lockEl = UI.$('lock-notice');
-    if (lockEl) lockEl.style.display = 'none';
-
-    if (!u || !p)          { UI.msg('li-err', 'Username aur Password dono daalo!', 'err'); return; }
-    if (u.length > 30 || p.length > 64) { UI.msg('li-err', 'Input too long.', 'err'); return; }
-
-    // Rate limit
-    var rl = Security.checkRL('login:' + u);
-    if (!rl.ok) {
-      if (lockEl) { lockEl.textContent = '🔒 ' + rl.msg; lockEl.style.display = 'block'; }
-      return;
-    }
-
-    UI.btnLoading('li-btn', true);
-    var btn = UI.$('li-btn');
-    var lbl = btn && btn.querySelector('.btn-label');
-    if (lbl) lbl.textContent = 'Verify ho raha hai...';
-
-    try {
-      var hash = await Security.hashPassword(p);
-      var url  = CFG.APPS_URL + '?action=login&username=' + encodeURIComponent(u) + '&password=' + encodeURIComponent(hash) + '&v=2';
-      var data = await Http.getJson(url, {}, 1);
-
-      if (data && data.success) {
-        Security.clearRL('login:' + u);
-        UI.msg('li-ok', '✅ Login successful!', 'ok');
-        Session.set(u);
-        setTimeout(function () { App.showTool(u); }, 600);
-      } else {
-        var left = Security.recordFail('login:' + u);
-        var m    = (data && data.message) ? data.message : 'Username ya Password galat hai!';
-        if (left > 0 && left <= 3) m += '  (' + left + ' attempts baaki)';
-        UI.msg('li-err', '❌ ' + m, 'err');
-        var ab = UI.$('attempts-badge');
-        if (ab && left <= 3 && left >= 0) { ab.textContent = left + ' attempts remaining'; ab.style.display = 'block'; }
-      }
-    } catch (e) {
-      UI.msg('li-err', e.message === 'TIMEOUT' ? 'Timeout! Internet check karo.' : 'Connection error! Dobara try karo.', 'err');
-    } finally {
-      UI.btnLoading('li-btn', false, 'Login Karo →');
-    }
-  }
-
-  async function doRegister() {
-    var u  = ((UI.$('reg-user')  || {}).value || '').trim().toLowerCase();
-    var p  = (UI.$('reg-pass')   || {}).value || '';
-    var p2 = (UI.$('reg-pass2')  || {}).value || '';
-
-    UI.clearMsg('reg-err');
-    UI.clearMsg('reg-ok');
-
-    if (u.length < 4)                     { UI.msg('reg-err', 'Username min 4 characters', 'err'); return; }
-    if (!/^[a-z0-9_]{4,30}$/.test(u))    { UI.msg('reg-err', 'Sirf a-z, 0-9, aur _ allowed', 'err'); return; }
-    if (p.length < 6)                     { UI.msg('reg-err', 'Password min 6 characters', 'err'); return; }
-    if (p.length > 64)                    { UI.msg('reg-err', 'Password bahut lamba hai', 'err'); return; }
-    if (p !== p2)                         { UI.msg('reg-err', 'Passwords match nahi kar rahe!', 'err'); return; }
-
-    UI.btnLoading('reg-btn', true);
-    var btn = UI.$('reg-btn');
-    var lbl = btn && btn.querySelector('.btn-label');
-    if (lbl) lbl.textContent = 'Ban raha hai...';
-
-    try {
-      var hash = await Security.hashPassword(p);
-
-      // ─── CORS FIX ────────────────────────────────────────────────────────
-      // Google Apps Script does NOT handle OPTIONS preflight.
-      // Sending Content-Type: text/plain keeps it a "simple request"
-      // (no preflight) while the body is still valid JSON the server reads.
-      // ─────────────────────────────────────────────────────────────────────
-      var data = await Http.getJson(CFG.APPS_URL, {
-        method : 'POST',
-        headers: { 'Content-Type': 'text/plain' },   // ← key fix
-        body   : JSON.stringify({ action: 'register', username: u, password: hash, version: '2' })
-      }, 1);
-
-      if (data && data.success) {
-        UI.msg('reg-ok', '✅ ' + (data.message || 'Account ban gaya!'), 'ok');
-        Session.set(u);
-        setTimeout(function () { App.showTool(u); }, 1000);
-      } else {
-        UI.msg('reg-err', '❌ ' + ((data && data.message) || 'Registration failed'), 'err');
-      }
-    } catch (e) {
-      UI.msg('reg-err', e.message === 'TIMEOUT' ? 'Timeout! Internet check karo.' : 'Connection error! Dobara try karo.', 'err');
-    } finally {
-      UI.btnLoading('reg-btn', false, 'Account Banao & Tool Kholo →');
-    }
-  }
-
-  function checkUsername() {
-    clearTimeout(_checkTimer);
-    var uEl = UI.$('reg-user');
-    var u   = ((uEl || {}).value || '').trim();
-    var err = UI.$('reg-user-err');
-
-    if (uEl) uEl.classList.remove('inp-invalid', 'inp-valid');
-    if (err) UI.clearMsg('reg-user-err');
-    if (u.length < 4) return;
-
-    if (!/^[a-z0-9_]{4,30}$/.test(u.toLowerCase())) {
-      if (err) UI.msg('reg-user-err', '❌ Sirf a-z, 0-9, _ allowed', 'err');
-      if (uEl) uEl.classList.add('inp-invalid');
-      return;
-    }
-
-    _checkTimer = setTimeout(async function () {
-      try {
-        var data = await Http.getJson(CFG.APPS_URL + '?action=check&username=' + encodeURIComponent(u.toLowerCase()), {}, 0);
-        if (!data) return;
-        if (!data.available) {
-          if (err) UI.msg('reg-user-err', '❌ ' + (data.message || 'Username already taken'), 'err');
-          if (uEl) uEl.classList.add('inp-invalid');
-        } else {
-          if (err) UI.msg('reg-user-err', '✅ Username available!', 'ok');
-          if (uEl) uEl.classList.add('inp-valid');
-        }
-      } catch (_) { /* Silent — username check is advisory */ }
-    }, 700);
-  }
-
-  function doLogout() {
-    Scanner.stop();
-    Session.clear();
-    var tool  = UI.$('tool');
-    if (tool) { tool.classList.remove('show'); tool.style.display = 'none'; }
-    UI.hide(UI.$('main-page'));
-    var ls = UI.$('login-screen'); if (ls) ls.classList.add('show');
-    var lu = UI.$('li-user'); if (lu) lu.value = '';
-    var lp = UI.$('li-pass'); if (lp) lp.value = '';
-    UI.clearMsg('li-err'); UI.clearMsg('li-ok');
-    UI.toast('Logout successful.', 'info');
-  }
-
-  return { doLogin, doRegister, checkUsername, doLogout };
-})();
-
-
-/* ==========================================================
- * 🚀  APP MODULE — bootstraps everything
- * ========================================================== */
-var App = (function () {
-
-  function switchTab(name) {
-    document.querySelectorAll('.tab').forEach(function (t) {
-      var active = t.dataset.tab === name;
-      t.classList.toggle('active', active);
-      t.setAttribute('aria-selected', active ? 'true' : 'false');
-    });
-    document.querySelectorAll('.panel').forEach(function (p) { p.classList.remove('active'); });
-    var panel = UI.$('panel-' + name);
-    if (panel) panel.classList.add('active');
-  }
-
-  function showTool(username) {
-    UI.hide(UI.$('main-page'));
-    var ls = UI.$('login-screen'); if (ls) ls.classList.remove('show');
-    UI.text('welcome-msg', 'Welcome, ' + Security.esc(username) + '!');
-    var t = UI.$('tool');
-    if (t) { t.style.display = 'block'; t.classList.add('show'); }
-    window.scrollTo(0, 0);
-    Calculator.run();
-    Scanner.start();
-  }
-
-  function _goToRegister() {
-    var ls = UI.$('login-screen'); if (ls) ls.classList.remove('show');
-    var mp = UI.$('main-page');    if (mp) mp.style.display = 'block';
-    window.scrollTo(0, 0);
-  }
-
-  function _bindEvents() {
-    // Login
-    var liBtn = UI.$('li-btn');
-    if (liBtn) liBtn.addEventListener('click', Auth.doLogin);
-
-    // Register
-    var regBtn = UI.$('reg-btn');
-    if (regBtn) regBtn.addEventListener('click', Auth.doRegister);
-
-    // Username availability check
-    var regUser = UI.$('reg-user');
-    if (regUser) regUser.addEventListener('input', Auth.checkUsername);
-
-    // Go to register flow
-    var goReg = UI.$('go-register-btn');
-    if (goReg) goReg.addEventListener('click', _goToRegister);
-
-    // Logout
-    var lgBtn = UI.$('logout-btn');
-    if (lgBtn) lgBtn.addEventListener('click', Auth.doLogout);
-
-    // Scanner manual refresh
-    var rfBtn = UI.$('refresh-btn');
-    if (rfBtn) rfBtn.addEventListener('click', function () { Scanner.fetch(); });
-
-    // Tab switcher
-    document.querySelectorAll('.tab').forEach(function (tab) {
-      tab.addEventListener('click', function () { switchTab(tab.dataset.tab); });
-    });
-
-    // Enter key: submit login
-    document.addEventListener('keydown', function (e) {
-      if (e.key !== 'Enter') return;
-      var ls = UI.$('login-screen');
-      if (ls && ls.classList.contains('show')) Auth.doLogin();
-    });
-
-    // Enter key in register form
-    var rf = UI.$('reg-form');
-    if (rf) {
-      rf.addEventListener('keydown', function (e) {
-        if (e.key === 'Enter') { e.preventDefault(); Auth.doRegister(); }
-      });
-    }
-  }
-
-  function init() {
-    // Restore session if still valid
-    var sess = Session.get();
-    if (sess) {
-      showTool(sess.u);
-    } else {
-      var ls = UI.$('login-screen');
-      if (ls) ls.classList.add('show');
-    }
-    Steps.init();
-    Calculator.initSliders();
-    _bindEvents();
-  }
-
-  return { init, showTool, switchTab };
-})();
-
-
-/* ==========================================================
- * 🏁  BOOT
- * ========================================================== */
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', App.init);
-} else {
-  App.init();
+NSE_HOLIDAYS = {
+    "2026-01-26","2026-03-19","2026-04-02","2026-04-06",
+    "2026-04-14","2026-05-01","2026-08-15","2026-10-02",
+    "2026-10-21","2026-11-11","2026-12-25",
 }
 
-/*
- * ⚠️  BACKEND NOTE FOR DEVELOPER:
- * ──────────────────────────────────────────────────────────
- * This app now sends SHA-256(password + SALT) instead of plain text.
- * Your Google Apps Script must be updated to:
- *   1. Accept the `v=2` or `version:'2'` flag in requests
- *   2. Store hashes, NOT plain passwords, in your Sheet
- *   3. Compare hash vs hash during login
- *
- * Existing plain-text users in the Sheet will need to re-register
- * or you can run a one-time migration to hash them.
- *
- * For stronger security, also consider:
- *   - Adding a CORS-restricted proxy (Cloud Run / Cloudflare Worker)
- *     in front of the Apps Script URL
- *   - Storing passwords with PBKDF2 or bcrypt on the server side
- * ──────────────────────────────────────────────────────────
- */
-</script>
-</body>
-</html>
+print("=" * 54)
+print("   🚀 MONEYMAKER SCANNER v3.3 — DHAN + YFINANCE")
+print("=" * 54)
+print("  Phase 1  Before 9:15 : PDC vs PWC/WO/MO/PMC")
+print("  Phase 2  After  9:15 : Today Open (Dhan/yfinance)")
+print(f"  Volume   Min {MIN_VOLUME:,} (fake move filter)")
+print("=" * 54)
+print(f"  Price range : ₹{MIN_PRICE} – ₹{MAX_PRICE}")
+print(f"  Min Volume  : {MIN_VOLUME:,}")
+print("=" * 54)
+
+# ==========================================
+# TRADING DAY CHECK
+# ==========================================
+def is_trading_day():
+    t = datetime.today()
+    if t.weekday() == 5: print("\n  📅 SATURDAY — Market band!"); return False
+    if t.weekday() == 6: print("\n  📅 SUNDAY — Market band!");   return False
+    if t.strftime("%Y-%m-%d") in NSE_HOLIDAYS:
+        print("\n  📅 NSE Holiday — Market band!"); return False
+    return True
+
+if not is_trading_day(): exit()
+
+# ==========================================
+# STOCKS LOAD
+# ==========================================
+stocks_df = pd.read_csv(CSV_FILE)
+
+if stocks_df["symbol"].iloc[0].endswith(".NS"):
+    stocks_df["sym"] = stocks_df["symbol"].str.replace(".NS", "", regex=False)
+else:
+    stocks_df["sym"] = stocks_df["symbol"]
+
+if "security_id" in stocks_df.columns:
+    sym_to_secid = dict(zip(stocks_df["sym"], stocks_df["security_id"].astype(str)))
+    print(f"✅ security_id column mila — Dhan API sahi kaam karega!")
+else:
+    sym_to_secid = {}
+    print(f"⚠️  security_id column nahi mila stocks.csv mein!")
+    print(f"   Dhan fetch kaam nahi karega — yfinance use hoga!")
+
+print(f"✅ {len(stocks_df)} stocks loaded!")
+print("=" * 54)
+
+# ==========================================
+# CACHE
+# ==========================================
+def save_cache(cache):
+    with open(CACHE_FILE, "w") as f:
+        json.dump({
+            "date"       : datetime.today().strftime("%Y-%m-%d"),
+            "min_price"  : MIN_PRICE,
+            "max_price"  : MAX_PRICE,
+            "min_volume" : MIN_VOLUME,
+            "cache"      : cache
+        }, f)
+    print("💾 Cache saved!")
+
+def load_cache():
+    today = datetime.today().strftime("%Y-%m-%d")
+    if not os.path.exists(CACHE_FILE): return None
+    try:
+        data = json.load(open(CACHE_FILE))
+        if (data.get("date")       == today and
+            data.get("min_price")  == MIN_PRICE and
+            data.get("max_price")  == MAX_PRICE and
+            data.get("min_volume") == MIN_VOLUME):
+            print(f"✅ Aaj ka cache mila! ({len(data['cache'])} stocks)")
+            return data["cache"]
+        print("⚠️  Cache purana/range alag — rebuild hoga")
+        return None
+    except: return None
+
+# ==========================================
+# GITHUB PUSH
+# BUG FIX v3.3: retry=0 parameter add kiya
+# 409 conflict pe sirf EK baar retry hoga
+# Infinite recursion ab possible nahi
+# ==========================================
+def push_to_github(results, retry=0):
+    if not GITHUB_TOKEN or GITHUB_TOKEN == "APNA_TOKEN_YAHAN_DAALO":
+        print("⚠️  GitHub token nahi — push skip")
+        return
+    try:
+        content    = json.dumps(results, indent=2)
+        b64content = base64.b64encode(content.encode()).decode()
+        api_url    = f"https://api.github.com/repos/{GITHUB_REPO}/contents/results.json"
+        headers    = {
+            "Authorization": f"token {GITHUB_TOKEN}",
+            "Content-Type" : "application/json",
+            "User-Agent"   : "MoneyMaker-Scanner"
+        }
+        sha = None
+        try:
+            req = urllib.request.Request(api_url, headers=headers)
+            with urllib.request.urlopen(req) as r:
+                sha = json.loads(r.read())["sha"]
+        except: pass
+
+        payload = {
+            "message": f"scan {results['scan_time']} ph{results['phase']}",
+            "content": b64content,
+            "branch" : GITHUB_BRANCH
+        }
+        if sha: payload["sha"] = sha
+
+        req = urllib.request.Request(
+            api_url,
+            data    = json.dumps(payload).encode(),
+            headers = headers,
+            method  = "PUT"
+        )
+        with urllib.request.urlopen(req) as r:
+            code = r.getcode()
+            if code in [200, 201]:
+                print(f"✅ GitHub push ho gaya! ({code})")
+            else:
+                print(f"⚠️  Push status: {code}")
+
+    except urllib.error.HTTPError as e:
+        if e.code == 401:
+            print("❌ GitHub token invalid! config.json check karo.")
+        elif e.code == 409:
+            # BUG FIX: retry==0 check — sirf ek baar retry hoga, infinite loop nahi
+            if retry == 0:
+                print("⚠️  GitHub conflict — ek baar retry kar raha hoon...")
+                time.sleep(2)
+                push_to_github(results, retry=1)
+            else:
+                print("❌ GitHub 409 conflict — retry bhi fail hua, skip kar raha hoon.")
+        else:
+            print(f"⚠️  GitHub push fail: {e.code} {e.reason}")
+    except Exception as e:
+        print(f"⚠️  GitHub push fail: {e}")
+
+# ==========================================
+# SAVE RESULTS
+# ==========================================
+def calc_levels(price, side):
+    levels = []
+    for pct in [1, 2, 3, 4, 5]:
+        if side == "buy":
+            lvl = round(price * (1 + pct / 100), 2)
+            levels.append({"pct": pct, "price": lvl, "label": f"R{pct} (+{pct}%)"})
+        else:
+            lvl = round(price * (1 - pct / 100), 2)
+            levels.append({"pct": pct, "price": lvl, "label": f"S{pct} (-{pct}%)"})
+    return levels
+
+def save_results(buy_list, sell_list, scan_time, phase):
+    results = {
+        "scan_time"  : scan_time,
+        "phase"      : phase,
+        "date"       : datetime.today().strftime("%d %b %Y"),
+        "min_price"  : MIN_PRICE,
+        "max_price"  : MAX_PRICE,
+        "buy"  : [{"symbol": s, "price": p, "resistance": calc_levels(p, "buy")}  for s, p in buy_list],
+        "sell" : [{"symbol": s, "price": p, "support":    calc_levels(p, "sell")} for s, p in sell_list],
+    }
+    with open(RESULTS_FILE, "w") as f:
+        json.dump(results, f, indent=2)
+    print(f"📊 results.json saved!")
+    return results
+
+# ==========================================
+# SMART DATE HELPERS
+# ==========================================
+def get_smart_dates(index):
+    today       = pd.Timestamp(datetime.today().date())
+    idx         = pd.DatetimeIndex(index).tz_localize(None).sort_values()
+    this_mon    = today - timedelta(days=today.weekday())
+    month_start = today.replace(day=1)
+
+    pdc = idx[idx < today][-1]        if len(idx[idx < today])        > 0 else idx[-1]
+    pwc = idx[idx < this_mon][-1]     if len(idx[idx < this_mon])     > 0 else idx[0]
+    wo  = idx[idx >= this_mon][0]     if len(idx[idx >= this_mon])    > 0 else idx[-1]
+    mo  = idx[idx >= month_start][0]  if len(idx[idx >= month_start]) > 0 else idx[-1]
+    pmc = idx[idx < month_start][-1]  if len(idx[idx < month_start])  > 0 else idx[0]
+    return pwc, wo, mo, pmc, pdc
+
+# ==========================================
+# BUILD CACHE — yfinance
+# ==========================================
+def build_cache():
+    print(f"\n⚡ Historical data download (yfinance)...")
+    print(f"   ⏱  2-3 min lagenge\n")
+
+    syms  = stocks_df["sym"].tolist()
+    yfsym = [s + ".NS" for s in syms]
+    start = (datetime.today() - timedelta(days=90)).strftime("%Y-%m-%d")
+    end   = (datetime.today() + timedelta(days=1)).strftime("%Y-%m-%d")
+
+    print(f"📥 {len(yfsym)} stocks download ho rahi hain...")
+    try:
+        raw = yf.download(yfsym, start=start, end=end, interval="1d",
+                          group_by="ticker", auto_adjust=True, progress=False, threads=True)
+    except Exception as e:
+        print(f"❌ Download error: {e}"); return None
+
+    try:
+        pwc, wo, mo, pmc, pdc = get_smart_dates(raw.index)
+        print(f"\n📅 PDC:{pdc.date()} PWC:{pwc.date()} WO:{wo.date()} MO:{mo.date()} PMC:{pmc.date()}")
+    except Exception as e:
+        print(f"❌ Date error: {e}"); return None
+
+    def get_val(ns, ts, field="Close"):
+        try:
+            if ns not in raw.columns.get_level_values(0): return 0
+            col = raw[ns][[field]]
+            col.index = pd.to_datetime(col.index).tz_localize(None)
+            fwd = col[col.index >= ts]
+            bwd = col[col.index <= ts]
+            sub = fwd if not fwd.empty else bwd
+            if sub.empty: return 0
+            v = sub[field].iloc[0] if not fwd.empty else sub[field].iloc[-1]
+            return 0 if pd.isna(v) else round(float(v), 2)
+        except: return 0
+
+    def get_avg_vol(ns):
+        try:
+            if ns not in raw.columns.get_level_values(0): return 0
+            col = raw[ns][["Volume"]]
+            col.index = pd.to_datetime(col.index).tz_localize(None)
+            recent = col[col.index <= pdc].tail(20)
+            if recent.empty: return 0
+            v = recent["Volume"].mean()
+            return 0 if pd.isna(v) else int(v)
+        except: return 0
+
+    cache = {}
+    ok    = 0
+    vol_skip = 0
+    print(f"\n  {'Symbol':<15} {'PDC':>8} {'PWC':>8} {'WO':>8} {'MO':>8} {'PMC':>8} {'AvgVol':>10}")
+    print(f"  {'─'*68}")
+
+    for i, row in enumerate(stocks_df.itertuples(), 1):
+        s  = row.sym
+        ns = s + ".NS"
+        pdc_v = get_val(ns, pdc, "Close")
+        pwc_v = get_val(ns, pwc, "Close")
+        wo_v  = get_val(ns, wo,  "Open")
+        mo_v  = get_val(ns, mo,  "Open")
+        pmc_v = get_val(ns, pmc, "Close")
+        avg_v = get_avg_vol(ns)
+
+        sec_id = sym_to_secid.get(s, "")
+
+        cache[s] = {
+            "symbol"     : s,
+            "security_id": sec_id,
+            "today_open" : 0,
+            "pdc"  : pdc_v, "pwc"  : pwc_v,
+            "wo"   : wo_v,  "mo"   : mo_v,
+            "pmc"  : pmc_v,
+            "avg_vol": avg_v,
+        }
+        all_ok = all([pdc_v, pwc_v, wo_v, mo_v, pmc_v])
+        if all_ok: ok += 1
+        vol_flag = "❌" if avg_v < MIN_VOLUME else "✅"
+        if avg_v < MIN_VOLUME: vol_skip += 1
+
+        print(f"  [{i:>3}/{len(stocks_df)}] {s:<12} {pdc_v:>8} {pwc_v:>8} {wo_v:>8} {mo_v:>8} {pmc_v:>8} {avg_v:>10,} {vol_flag}")
+
+    print(f"\n✅ Cache ready! {ok}/{len(stocks_df)} stocks complete | Vol skip: {vol_skip}")
+    return cache
+
+# ==========================================
+# DHAN API — Today Open
+# ==========================================
+def fetch_open_dhan(cache):
+    if not DHAN_ACCESS_TOKEN:
+        print("⚠️  Dhan token nahi — yfinance use ho raha hai")
+        return fetch_open_yfinance(cache)
+
+    if not sym_to_secid:
+        print("⚠️  security_id column missing — yfinance fallback")
+        return fetch_open_yfinance(cache)
+
+    print("\n⚡ Dhan API se Today Open fetch ho raha hai...")
+    filled = 0
+    url    = "https://api.dhan.co/v2/marketfeed/ohlc"
+    headers = {
+        "access-token": DHAN_ACCESS_TOKEN,
+        "client-id"   : DHAN_CLIENT_ID,
+        "Content-Type": "application/json",
+        "Accept"      : "application/json",
+    }
+
+    syms = list(cache.keys())
+    secid_to_sym = {v: k for k, v in sym_to_secid.items() if v}
+
+    for i in range(0, len(syms), 100):
+        batch = syms[i:i+100]
+        instruments = []
+        for s in batch:
+            sec_id = cache[s].get("security_id") or sym_to_secid.get(s, "")
+            if not sec_id:
+                continue
+            instruments.append({
+                "exchangeSegment": "NSE_EQ",
+                "securityId"     : str(sec_id)
+            })
+
+        if not instruments:
+            continue
+
+        try:
+            payload = json.dumps({"instruments": instruments}).encode()
+            req     = urllib.request.Request(url, data=payload, headers=headers, method="POST")
+            with urllib.request.urlopen(req, timeout=15) as r:
+                resp = json.loads(r.read())
+
+            nse_data = resp.get("data", {}).get("NSE_EQ", {})
+            for sec_id_key, vals in nse_data.items():
+                sym = secid_to_sym.get(sec_id_key, "")
+                if not sym:
+                    sym = sec_id_key if sec_id_key in cache else ""
+                if sym and sym in cache:
+                    op = vals.get("open", 0) or vals.get("openPrice", 0)
+                    if op and float(op) > 0:
+                        cache[sym]["today_open"] = round(float(op), 2)
+                        filled += 1
+
+            batch_num     = i // 100 + 1
+            total_batches = (len(syms) + 99) // 100
+            print(f"  Batch {batch_num}/{total_batches} done | Filled: {filled}")
+            time.sleep(0.5)
+
+        except urllib.error.HTTPError as e:
+            print(f"  ⚠️  Batch {i//100+1} HTTP {e.code}: {e.reason}")
+            if e.code == 401:
+                print("  ❌ Dhan token invalid — yfinance fallback")
+                return fetch_open_yfinance(cache)
+            time.sleep(1)
+        except Exception as e:
+            print(f"  ⚠️  Batch {i//100+1} error: {e}")
+            time.sleep(1)
+
+    print(f"✅ Dhan Today Open: {filled} stocks filled!")
+    if filled == 0:
+        print("⚠️  Dhan se data nahi aaya — yfinance fallback...")
+        return fetch_open_yfinance(cache)
+    return cache
+
+# ==========================================
+# YFINANCE — Today Open fallback
+# ==========================================
+def fetch_open_yfinance(cache):
+    print("\n⚡ yfinance se Today Open fetch ho raha hai...")
+    syms   = stocks_df["sym"].tolist()
+    yfsyms = [s + ".NS" for s in syms]
+    filled = 0
+    try:
+        raw = yf.download(yfsyms, period="1d", interval="1m",
+                          group_by="ticker", auto_adjust=True,
+                          progress=False, threads=True)
+        for row in stocks_df.itertuples():
+            s  = row.sym
+            ns = s + ".NS"
+            try:
+                if ns not in raw.columns.get_level_values(0): continue
+                col = raw[ns][["Open"]]
+                col.index = pd.to_datetime(col.index).tz_localize(None)
+                if col.empty: continue
+                v = col["Open"].iloc[0]
+                if not pd.isna(v) and v > 0:
+                    cache[s]["today_open"] = round(float(v), 2)
+                    filled += 1
+            except: pass
+    except Exception as e:
+        print(f"⚠️  yfinance error: {e}")
+    print(f"✅ yfinance Today Open: {filled} stocks filled!")
+    return cache
+
+# ==========================================
+# 9:15 WAIT
+# ==========================================
+def wait_for_market():
+    now = datetime.now().strftime("%H:%M")
+    if now >= MARKET_OPEN:
+        print(f"\n🟢 Market already open ({now})"); return
+    print(f"\n⏳ 9:15 AM ka wait ho raha hai...")
+    while True:
+        now = datetime.now().strftime("%H:%M")
+        if now >= MARKET_OPEN:
+            print(f"\n🟢 {now} — Market open!"); break
+        print(f"   ⏳ {now} | 9:15 ka wait...", end="\r")
+        time.sleep(15)
+
+# ==========================================
+# PHASE 1 — Before 9:15 (PDC based)
+# ==========================================
+def phase1_scan(cache):
+    buy_list  = []
+    sell_list = []
+    vol_skip  = 0
+
+    for sym, d in cache.items():
+        try:
+            pdc  = d["pdc"];  pwc = d["pwc"]
+            wo   = d["wo"];   mo  = d["mo"]
+            pmc  = d["pmc"]
+            avg_vol = d.get("avg_vol", 0)
+
+            if not all([pdc, pwc, wo, mo, pmc]): continue
+            if not (MIN_PRICE <= pdc <= MAX_PRICE): continue
+
+            if avg_vol < MIN_VOLUME and avg_vol > 0:
+                vol_skip += 1
+                continue
+
+            if pdc > pwc and pdc > wo and pdc > mo and pdc > pmc:
+                buy_list.append((sym, pdc))
+            elif pdc < pwc and pdc < wo and pdc < mo and pdc < pmc:
+                sell_list.append((sym, pdc))
+        except: pass
+
+    if vol_skip:
+        print(f"  📊 Volume filter: {vol_skip} stocks skip hue (avg vol < {MIN_VOLUME:,})")
+
+    return (sorted(buy_list,  key=lambda x: x[1]),
+            sorted(sell_list, key=lambda x: x[1], reverse=True))
+
+# ==========================================
+# PHASE 2 — After 9:15 (Today Open based)
+# ==========================================
+def phase2_scan(cache):
+    buy_list  = []
+    sell_list = []
+    vol_skip  = 0
+
+    for sym, d in cache.items():
+        try:
+            op  = d["today_open"]
+            pdc = d["pdc"]; pwc = d["pwc"]
+            wo  = d["wo"];  mo  = d["mo"]
+            pmc = d["pmc"]
+            avg_vol = d.get("avg_vol", 0)
+
+            if op == 0 or not all([pdc, pwc, wo, mo, pmc]): continue
+            if not (MIN_PRICE <= pdc <= MAX_PRICE): continue
+
+            if avg_vol < MIN_VOLUME and avg_vol > 0:
+                vol_skip += 1
+                continue
+
+            if op > pdc and op > pwc and op > wo and op > mo and op > pmc:
+                buy_list.append((sym, op))
+            elif op < pdc and op < pwc and op < wo and op < mo and op < pmc:
+                sell_list.append((sym, op))
+        except: pass
+
+    if vol_skip:
+        print(f"  📊 Volume filter: {vol_skip} stocks skip hue")
+
+    return (sorted(buy_list,  key=lambda x: x[1]),
+            sorted(sell_list, key=lambda x: x[1], reverse=True))
+
+# ==========================================
+# PRINT + PUSH
+# ==========================================
+def print_and_push(buy_list, sell_list, scan_time, phase):
+    label = "Pre-Open (PDC based)" if phase == 1 else "Live (Today Open)"
+    print(f"\n{'='*54}")
+    print(f"  SCAN   : {scan_time}")
+    print(f"  PHASE  : {phase} | {label}")
+    print(f"  RANGE  : ₹{MIN_PRICE}–₹{MAX_PRICE}  |  Vol-min: {MIN_VOLUME:,}")
+    print(f"  MATCH  : BUY={len(buy_list)}  SELL={len(sell_list)}")
+    print(f"{'='*54}")
+
+    print(f"\n  📈 BULLISH ({len(buy_list)} stocks)")
+    print(f"  {'─'*44}")
+    for i, (s, p) in enumerate(buy_list, 1):
+        print(f"  {i:>3}. {'✅'} {s:<18} ₹{p}")
+    if not buy_list: print("    — Koi Bullish signal nahi —")
+
+    print(f"\n  📉 BEARISH ({len(sell_list)} stocks)")
+    print(f"  {'─'*44}")
+    for i, (s, p) in enumerate(sell_list, 1):
+        print(f"  {i:>3}. {'🔴'} {s:<18} ₹{p}")
+    if not sell_list: print("    — Koi Bearish signal nahi —")
+    print(f"{'='*54}")
+
+    results = save_results(buy_list, sell_list, scan_time, phase)
+    push_to_github(results)
+
+# ==========================================
+# MAIN
+# ==========================================
+cache = load_cache()
+if cache is None:
+    cache = build_cache()
+    if cache: save_cache(cache)
+    else: print("❌ Cache build failed!"); exit()
+
+now = datetime.now().strftime("%H:%M")
+
+# ---- PHASE 1 — Before 9:15 ----
+if now < MARKET_OPEN:
+    print(f"\n📊 Phase 1 scan (Pre-Open, PDC based)...")
+    b, s = phase1_scan(cache)
+    print_and_push(b, s, now, phase=1)
+    print(f"\n⏳ 9:15 ka wait karo — Phase 1 signals HTML pe live hain!")
+
+wait_for_market()
+
+# ---- DHAN TOKEN CHECK ----
+if not DHAN_ACCESS_TOKEN:
+    print("\n⚠️  DHAN_ACCESS_TOKEN config.json mein nahi!")
+    print("   Dhan App → Profile → Access Token → config.json mein daalo")
+    print("   yfinance fallback use hoga Phase 2 mein")
+else:
+    print(f"\n✅ Dhan token config.json se mila!")
+
+# ---- PHASE 2 — After 9:15 ----
+print("\n🚀 Phase 2 shuru — Today Open fetch karo!")
+print("=" * 54)
+
+while True:
+    now = datetime.now().strftime("%H:%M")
+    if now > MARKET_CLOSE:
+      print(f"\n🌙 {now} — Market band! After-market scan run kar raha hoon...")
+
+    # 👉 yfinance se data fetch force karo
+    cache = fetch_open_yfinance(cache)
+
+    # 👉 scan chalao
+    b, s = phase2_scan(cache)
+
+    # 👉 print + github push
+    print_and_push(b, s, now, phase=2)
+
+    print("\n✅ After-market scan complete.")
+    break
