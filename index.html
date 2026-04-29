@@ -694,6 +694,9 @@ function switchTab(name){
 }
 
 // ─── SCANNER FETCH ───────────────────────────────────
+var _buyStocks  = [];   // global store — index safe hai
+var _sellStocks = [];
+
 function fetchResults(){
   fetch('https://raw.githubusercontent.com/newtrustyproducts/moneymaker/refs/heads/main/results.json?t='+Date.now())
   .then(function(r){return r.json();})
@@ -704,22 +707,25 @@ function fetchResults(){
     document.getElementById('buy-title').textContent='📈 BULLISH ('+data.buy.length+')';
     document.getElementById('sell-title').textContent='📉 BEARISH ('+data.sell.length+')';
 
-    // BUY list — "MM" badge instead of price
-    document.getElementById('buy-list').innerHTML = data.buy.length===0
+    _buyStocks  = data.buy  || [];
+    _sellStocks = data.sell || [];
+
+    // BUY list — index reference, no JSON in onclick
+    document.getElementById('buy-list').innerHTML = _buyStocks.length===0
       ? '<div class="no-signal">Koi Bullish signal nahi</div>'
-      : data.buy.map(function(s){
-          return '<div class="signal-item" onclick="openModal('+JSON.stringify(s)+',\'buy\')">'
+      : _buyStocks.map(function(s, i){
+          return '<div class="signal-item" onclick="openModal(\'buy\','+i+')">'
                + '<span class="sym">'+s.symbol+'</span>'
                + '<span style="display:flex;align-items:center;gap:4px">'
                + '<span class="mm-tag">MM</span>'
                + '<span class="tap-hint">›</span></span></div>';
         }).join('');
 
-    // SELL list — "MM" badge instead of price
-    document.getElementById('sell-list').innerHTML = data.sell.length===0
+    // SELL list — index reference, no JSON in onclick
+    document.getElementById('sell-list').innerHTML = _sellStocks.length===0
       ? '<div class="no-signal">Koi Bearish signal nahi</div>'
-      : data.sell.map(function(s){
-          return '<div class="signal-item" onclick="openModal('+JSON.stringify(s)+',\'sell\')">'
+      : _sellStocks.map(function(s, i){
+          return '<div class="signal-item" onclick="openModal(\'sell\','+i+')">'
                + '<span class="sym">'+s.symbol+'</span>'
                + '<span style="display:flex;align-items:center;gap:4px">'
                + '<span class="mm-tag">MM</span>'
@@ -735,7 +741,9 @@ function fetchResults(){
 }
 
 // ─── MODAL — STOCK DETAIL ────────────────────────────
-function openModal(stock, side){
+function openModal(side, idx){
+  var stock = side==='buy' ? _buyStocks[idx] : _sellStocks[idx];
+  if(!stock){ return; }
   _currentStock = {stock: stock, side: side};
 
   // Header
