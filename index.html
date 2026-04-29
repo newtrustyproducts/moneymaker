@@ -237,7 +237,7 @@ width:100%;padding:8px;background:transparent;border:1px solid var(--border);col
 .lvl-price{font-size:11px;font-weight:700;}
 .lvl-box.resistance .lvl-price{color:var(--green);}
 .lvl-box.support   .lvl-price{color:var(--red);}
-.lvl-pct{font-size:9px;color:var(--muted);margin-top:2px;}
+.lvl-pct{display:none;}
 
 /* SL + Target row */
 .sl-tgt-row{
@@ -258,7 +258,7 @@ width:100%;padding:8px;background:transparent;border:1px solid var(--border);col
 .sl-tgt-val{font-size:1.15rem;font-weight:700;}
 .sl-box  .sl-tgt-val{color:var(--red);}
 .tgt-box .sl-tgt-val{color:var(--green);}
-.sl-tgt-sub{font-size:10px;color:var(--muted);margin-top:2px;}
+.sl-tgt-sub{display:none;}
 
 /* Pivot row */
 .pivot-row{
@@ -325,7 +325,6 @@ footer a{color:var(--gold);text-decoration:none;}
     <div class="modal-header">
       <div>
         <div class="modal-sym" id="m-sym">SYMBOL</div>
-        <div style="font-size:11px;color:var(--muted);margin-top:2px">Tap karke copy karo</div>
       </div>
       <div style="display:flex;flex-direction:column;align-items:flex-end;gap:8px">
         <button class="modal-close" onclick="document.getElementById('modal-overlay').classList.remove('show')">✕ Close</button>
@@ -824,10 +823,8 @@ function openModal(side, idx){
 
   document.getElementById('m-sl').textContent  = '₹' + sl;
   document.getElementById('m-tgt').textContent = '₹' + tgt;
-  var slPct  = stock.price ? Math.round(Math.abs(sl-stock.price)/stock.price*100*10)/10 : 0;
-  var tgtPct = stock.price ? Math.round(Math.abs(tgt-stock.price)/stock.price*100*10)/10 : 0;
-  document.getElementById('m-sl-pct').textContent  = slPct  + '% from entry';
-  document.getElementById('m-tgt-pct').textContent = tgtPct + '% from entry';
+  document.getElementById('m-sl-pct').textContent  = '';
+  document.getElementById('m-tgt-pct').textContent = '';
 
   // Resistance (BUY) / Support (SELL) Levels
   var levels = side==='buy'
@@ -841,11 +838,9 @@ function openModal(side, idx){
     lvlTitle.textContent = side==='buy' ? '📈 RESISTANCE LEVELS (R1–R5)' : '📉 SUPPORT LEVELS (S1–S5)';
     var cls = side==='buy' ? 'resistance' : 'support';
     lvlGrid.innerHTML = levels.map(function(l){
-      var pct = stock.price ? Math.round(Math.abs(l.price-stock.price)/stock.price*100*10)/10 : 0;
       return '<div class="lvl-box '+cls+'" title="'+l.label+'">'
            + '<div class="lvl-label">'+l.label+'</div>'
            + '<div class="lvl-price">₹'+l.price+'</div>'
-           + '<div class="lvl-pct">'+pct+'%</div>'
            + '</div>';
     }).join('');
     lvlTitle.style.display='block';
@@ -860,7 +855,7 @@ function openModal(side, idx){
       lvls.push('<div class="lvl-box '+cls2+'">'
               + '<div class="lvl-label">'+(side==='buy'?'R':'S')+i+'</div>'
               + '<div class="lvl-price">₹'+lp+'</div>'
-              + '<div class="lvl-pct">'+i+'%</div></div>');
+              + '</div>');
     }
     lvlGrid.innerHTML = lvls.join('');
     lvlTitle.style.display='block';
