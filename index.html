@@ -106,7 +106,7 @@ section{max-width:680px;margin:0 auto;padding:4rem 1.5rem;}
 .signal-box-title.buy{color:var(--green);}
 .signal-box-title.sell{color:var(--red);}
 
-/* ── SIGNAL ITEM — clickable ── */
+/* ── SIGNAL ITEM ── */
 .signal-item{
   display:flex;justify-content:space-between;align-items:center;
   padding:6px 8px;border-bottom:1px solid var(--border);
@@ -116,15 +116,18 @@ section{max-width:680px;margin:0 auto;padding:4rem 1.5rem;}
 .signal-item:last-child{border-bottom:none;}
 .signal-item:hover{background:rgba(240,180,41,.07);}
 .signal-item .sym{font-weight:700;color:var(--text);}
-.signal-item .price{color:var(--muted);}
+.signal-item .mm-tag{
+  font-size:10px;font-weight:700;letter-spacing:.08em;
+  color:var(--gold);background:rgba(240,180,41,.1);
+  border:1px solid rgba(240,180,41,.25);
+  padding:2px 7px;border-radius:99px;
+}
 .signal-item .tap-hint{font-size:10px;color:rgba(240,180,41,.5);margin-left:4px;}
 .no-signal{font-size:12px;color:var(--muted);padding:8px 0;text-align:center;}
 .refresh-btn{width:100%;padding:8px;background:transparent;border:1px solid var(--border);color:var(--muted);border-radius:8px;font-size:12px;cursor:pointer;transition:all .2s;font-family:'Space Grotesk',sans-serif;margin-top:8px;}
 .refresh-btn:hover{border-color:var(--gold);color:var(--gold);}
 
-/* ─────────────────────────────────────
-   STOCK DETAIL MODAL — RESTORED
-───────────────────────────────────── */
+/* MODAL */
 .modal-overlay{
   display:none;
   position:fixed;inset:0;
@@ -186,6 +189,18 @@ section{max-width:680px;margin:0 auto;padding:4rem 1.5rem;}
 }
 .modal-close:hover{border-color:var(--red);color:var(--red);}
 .modal-body{padding:1rem 1.4rem 0;}
+
+/* Entry highlight in modal */
+.modal-entry-row{
+  background:rgba(240,180,41,.06);
+  border:1px solid rgba(240,180,41,.2);
+  border-radius:10px;
+  padding:10px 14px;
+  display:flex;align-items:center;justify-content:space-between;
+  margin-bottom:1rem;
+}
+.modal-entry-label{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);}
+.modal-entry-val{font-size:1.3rem;font-weight:700;color:var(--gold);}
 
 /* Levels grid */
 .levels-title{
@@ -260,7 +275,7 @@ section{max-width:680px;margin:0 auto;padding:4rem 1.5rem;}
 .copy-btn:hover{border-color:var(--gold);color:var(--gold);}
 .copy-btn.copied{border-color:var(--green);color:var(--green);}
 
-/* ── CALCULATOR ── */
+/* CALCULATOR */
 .slider-row{display:flex;align-items:center;gap:10px;margin-bottom:12px;}
 .slider-label{font-size:12px;color:var(--muted);min-width:130px;}
 input[type=range]{flex:1;-webkit-appearance:none;height:3px;border-radius:99px;background:var(--border);outline:none;}
@@ -277,7 +292,7 @@ select{background:var(--card2);color:var(--text);border:1px solid var(--border);
 .sum-row span:first-child{color:var(--muted);}
 .sum-row span:last-child{font-weight:700;}
 
-/* ── RULES ── */
+/* RULES */
 .rule-item{display:flex;align-items:flex-start;gap:10px;padding:9px 0;border-bottom:1px solid var(--border);}
 .rule-item:last-child{border-bottom:none;}
 .rdot{width:7px;height:7px;border-radius:50%;margin-top:5px;flex-shrink:0;}
@@ -298,7 +313,7 @@ footer a{color:var(--gold);text-decoration:none;}
     <div class="modal-header">
       <div>
         <div class="modal-sym" id="m-sym">SYMBOL</div>
-        <div class="modal-price" id="m-price">₹0.00</div>
+        <div style="font-size:11px;color:var(--muted);margin-top:2px">Tap karke copy karo</div>
       </div>
       <div style="display:flex;flex-direction:column;align-items:flex-end;gap:8px">
         <button class="modal-close" onclick="document.getElementById('modal-overlay').classList.remove('show')">✕ Close</button>
@@ -307,8 +322,14 @@ footer a{color:var(--gold);text-decoration:none;}
     </div>
     <div class="modal-body">
 
+      <!-- ENTRY PRICE — prominent -->
+      <div class="modal-entry-row">
+        <div class="modal-entry-label">📍 Entry (MM Price)</div>
+        <div class="modal-entry-val" id="m-entry-price">₹0.00</div>
+      </div>
+
       <!-- SL + Target -->
-      <div class="sl-tgt-row" id="m-sl-tgt">
+      <div class="sl-tgt-row">
         <div class="sl-box">
           <div class="sl-tgt-label">🛡 Stop Loss</div>
           <div class="sl-tgt-val" id="m-sl">₹—</div>
@@ -464,7 +485,7 @@ footer a{color:var(--gold);text-decoration:none;}
           </div>
         </div>
         <div style="font-size:11px;color:var(--muted);margin-bottom:4px" id="scan-date"></div>
-        <div style="font-size:10px;color:rgba(240,180,41,.6);margin-bottom:12px"></div>
+        <div style="font-size:10px;color:rgba(240,180,41,.6);margin-bottom:12px">💡 Kisi bhi stock pe tap karo — Entry, SL, Target aur Levels dekhne ke liye</div>
         <div class="signal-grid">
           <div class="signal-box">
             <div class="signal-box-title buy" id="buy-title">📈 BULLISH (0)</div>
@@ -482,7 +503,7 @@ footer a{color:var(--gold);text-decoration:none;}
         <div class="card-title">Kaise Use Karein</div>
         📈 Bullish = Strong uptrend — BUY consider karo<br>
         📉 Bearish = Weak stocks — SELL/avoid karo<br>
-        Stock pe tap karo → SL, Target, R1-R5/S1-S5 levels dekhne ko milenge<br>
+        Stock pe tap karo → Entry (MM Price), SL, Target, R1–R5 / S1–S5 levels dekhne ko milenge<br>
         Nifty green ho tab Bullish signals zyada reliable hote hain
       </div>
     </div>
@@ -547,7 +568,7 @@ footer a{color:var(--gold);text-decoration:none;}
 <script>
 var APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyWV5W1YmhQZp8DouYpTSHOgomMgBdMZEXcmYrCHKGLLBJKX94gowTYfG1iJmKwAngA/exec";
 var fetchInterval  = null;
-var _currentStock  = null;  // active modal stock data
+var _currentStock  = null;
 
 // ─── INIT ───────────────────────────────────────────
 window.onload = function() {
@@ -683,25 +704,25 @@ function fetchResults(){
     document.getElementById('buy-title').textContent='📈 BULLISH ('+data.buy.length+')';
     document.getElementById('sell-title').textContent='📉 BEARISH ('+data.sell.length+')';
 
-    // BUY list — clickable
+    // BUY list — "MM" badge instead of price
     document.getElementById('buy-list').innerHTML = data.buy.length===0
       ? '<div class="no-signal">Koi Bullish signal nahi</div>'
       : data.buy.map(function(s){
           return '<div class="signal-item" onclick="openModal('+JSON.stringify(s)+',\'buy\')">'
                + '<span class="sym">'+s.symbol+'</span>'
                + '<span style="display:flex;align-items:center;gap:4px">'
-               + '<span class="price">₹'+s.price+'</span>'
+               + '<span class="mm-tag">MM</span>'
                + '<span class="tap-hint">›</span></span></div>';
         }).join('');
 
-    // SELL list — clickable
+    // SELL list — "MM" badge instead of price
     document.getElementById('sell-list').innerHTML = data.sell.length===0
       ? '<div class="no-signal">Koi Bearish signal nahi</div>'
       : data.sell.map(function(s){
           return '<div class="signal-item" onclick="openModal('+JSON.stringify(s)+',\'sell\')">'
                + '<span class="sym">'+s.symbol+'</span>'
                + '<span style="display:flex;align-items:center;gap:4px">'
-               + '<span class="price">₹'+s.price+'</span>'
+               + '<span class="mm-tag">MM</span>'
                + '<span class="tap-hint">›</span></span></div>';
         }).join('');
 
@@ -721,19 +742,19 @@ function openModal(stock, side){
   var sym = document.getElementById('m-sym');
   sym.textContent = stock.symbol;
   sym.className   = 'modal-sym ' + (side==='buy' ? 'buy-sym' : 'sell-sym');
-  document.getElementById('m-price').textContent = '₹' + stock.price;
 
   var badge = document.getElementById('m-badge');
   badge.textContent = side==='buy' ? '📈 BULLISH' : '📉 BEARISH';
   badge.className   = 'modal-badge ' + (side==='buy' ? 'badge-buy' : 'badge-sell');
 
+  // Entry (MM Price) — prominent row
+  document.getElementById('m-entry-price').textContent = '₹' + stock.price;
+
   // SL + Target
-  // Try sl_price/tgt_price (RS scanner) first, else calculate from levels
   var sl=0, tgt=0;
   if(stock.sl_price)  sl  = stock.sl_price;
   if(stock.tgt_price) tgt = stock.tgt_price;
 
-  // Fallback: calculate from price (2% SL, 4% target for buy)
   if(!sl && stock.price){
     if(side==='buy'){
       sl  = Math.round(stock.price * 0.98 * 100)/100;
@@ -751,7 +772,7 @@ function openModal(stock, side){
   document.getElementById('m-sl-pct').textContent  = slPct  + '% from entry';
   document.getElementById('m-tgt-pct').textContent = tgtPct + '% from entry';
 
-  // Resistance / Support levels
+  // Resistance (BUY) / Support (SELL) Levels
   var levels = side==='buy'
     ? (stock.resistance || [])
     : (stock.support    || []);
@@ -760,7 +781,7 @@ function openModal(stock, side){
   var lvlGrid  = document.getElementById('m-levels');
 
   if(levels.length > 0){
-    lvlTitle.textContent = side==='buy' ? '📈 RESISTANCE LEVELS' : '📉 SUPPORT LEVELS';
+    lvlTitle.textContent = side==='buy' ? '📈 RESISTANCE LEVELS (R1–R5)' : '📉 SUPPORT LEVELS (S1–S5)';
     var cls = side==='buy' ? 'resistance' : 'support';
     lvlGrid.innerHTML = levels.map(function(l){
       var pct = stock.price ? Math.round(Math.abs(l.price-stock.price)/stock.price*100*10)/10 : 0;
@@ -773,14 +794,14 @@ function openModal(stock, side){
     lvlTitle.style.display='block';
     lvlGrid.style.display='grid';
   } else {
-    // Agar levels nahi hain — calculate karo
-    lvlTitle.textContent = side==='buy' ? '📈 RESISTANCE LEVELS' : '📉 SUPPORT LEVELS';
+    // Fallback: calculate R1–R5 or S1–S5
+    lvlTitle.textContent = side==='buy' ? '📈 RESISTANCE LEVELS (R1–R5)' : '📉 SUPPORT LEVELS (S1–S5)';
     var lvls=[], cls2=side==='buy'?'resistance':'support';
     for(var i=1;i<=5;i++){
       var mult = side==='buy' ? (1+i/100) : (1-i/100);
       var lp   = Math.round(stock.price * mult * 100)/100;
       lvls.push('<div class="lvl-box '+cls2+'">'
-              + '<div class="lvl-label">'+(side==='buy'?'R':'S')+i+' (+'+i+'%)</div>'
+              + '<div class="lvl-label">'+(side==='buy'?'R':'S')+i+'</div>'
               + '<div class="lvl-price">₹'+lp+'</div>'
               + '<div class="lvl-pct">'+i+'%</div></div>');
     }
@@ -789,7 +810,7 @@ function openModal(stock, side){
     lvlGrid.style.display='grid';
   }
 
-  // Pivot Points (RS Scanner v9 format)
+  // Pivot Points
   var pv = stock.pivots;
   var pvtSec = document.getElementById('m-pivot-section');
   if(pv && pv.pivot){
@@ -808,11 +829,10 @@ function openModal(stock, side){
   ['copy-entry','copy-sl','copy-tgt','copy-all'].forEach(function(id){
     var b=document.getElementById(id);
     b.classList.remove('copied');
-    b.textContent = b.textContent.replace('✅ ','📋 ');
+    b.textContent = '📋 Copy '+(id==='copy-entry'?'Entry':id==='copy-sl'?'SL':id==='copy-tgt'?'Target':'All');
   });
 
   document.getElementById('modal-overlay').classList.add('show');
-  document.getElementById('m-sym').scrollIntoView({behavior:'smooth',block:'center'});
 }
 
 function closeModal(e){
@@ -849,7 +869,6 @@ function copyDetail(type){
       btn.textContent='📋 Copy '+(type==='entry'?'Entry':type==='sl'?'SL':type==='tgt'?'Target':'All');
     },2000);
   }).catch(function(){
-    // Fallback for older browsers
     var ta=document.createElement('textarea');
     ta.value=text; document.body.appendChild(ta);
     ta.select(); document.execCommand('copy');
