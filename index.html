@@ -838,8 +838,9 @@ function openModal(side, idx){
     lvlTitle.textContent = side==='buy' ? '📈 RESISTANCE LEVELS (R1–R5)' : '📉 SUPPORT LEVELS (S1–S5)';
     var cls = side==='buy' ? 'resistance' : 'support';
     lvlGrid.innerHTML = levels.map(function(l){
-      return '<div class="lvl-box '+cls+'" title="'+l.label+'">'
-           + '<div class="lvl-label">'+l.label+'</div>'
+      var cleanLabel = l.label.replace(/\s*\(.*?\)/g, '');
+      return '<div class="lvl-box '+cls+'">'
+           + '<div class="lvl-label">'+cleanLabel+'</div>'
            + '<div class="lvl-price">₹'+l.price+'</div>'
            + '</div>';
     }).join('');
