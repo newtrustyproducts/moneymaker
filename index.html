@@ -105,189 +105,16 @@ section{max-width:680px;margin:0 auto;padding:4rem 1.5rem;}
 .signal-box-title{font-size:11px;font-weight:600;margin-bottom:8px;}
 .signal-box-title.buy{color:var(--green);}
 .signal-box-title.sell{color:var(--red);}
-
-/* ── SIGNAL ITEM ── */
-.signal-item{
-  display:flex;justify-content:space-between;align-items:center;
-  padding:6px 8px;border-bottom:1px solid var(--border);
-  font-size:12px;cursor:pointer;border-radius:6px;
-  transition:background .15s;
-}
+/* Signal item — clickable */
+.signal-item{display:flex;justify-content:space-between;align-items:center;padding:6px 4px;border-bottom:1px solid var(--border);font-size:12px;cursor:pointer;border-radius:4px;transition:background .15s;}
 .signal-item:last-child{border-bottom:none;}
-.signal-item:hover{background:rgba(240,180,41,.07);}
-.signal-item .sym{font-weight:700;color:var(--text);}
-.signal-item .mm-tag{
-  font-size:10px;font-weight:700;letter-spacing:.08em;
-  color:var(--gold);background:rgba(240,180,41,.1);
-  border:1px solid rgba(240,180,41,.25);
-  padding:2px 7px;border-radius:99px;
-}
-.signal-item .tap-hint{font-size:10px;color:rgba(240,180,41,.5);margin-left:4px;}
+.signal-item:hover{background:rgba(240,180,41,.06);}
+.signal-item .sym{font-weight:700;}
+.signal-item .price{color:var(--muted);}
+.signal-item .arr{font-size:10px;color:rgba(240,180,41,.5);margin-left:2px;}
 .no-signal{font-size:12px;color:var(--muted);padding:8px 0;text-align:center;}
-.copy-all-btn{
-  padding:9px 10px;border-radius:8px;
-  font-size:12px;font-weight:700;cursor:pointer;
-  font-family:'Space Grotesk',sans-serif;
-  border:none;transition:all .2s;text-align:center;
-}
-.buy-copy{background:rgba(34,197,94,.12);color:var(--green);border:1px solid rgba(34,197,94,.3);}
-.buy-copy:hover{background:rgba(34,197,94,.22);}
-.buy-copy.copied{background:rgba(34,197,94,.25);border-color:var(--green);}
-.sell-copy{background:rgba(239,68,68,.10);color:var(--red);border:1px solid rgba(239,68,68,.3);}
-.sell-copy:hover{background:rgba(239,68,68,.2);}
-.sell-copy.copied{background:rgba(239,68,68,.2);border-color:var(--red);}
-width:100%;padding:8px;background:transparent;border:1px solid var(--border);color:var(--muted);border-radius:8px;font-size:12px;cursor:pointer;transition:all .2s;font-family:'Space Grotesk',sans-serif;margin-top:8px;}
+.refresh-btn{width:100%;padding:8px;background:transparent;border:1px solid var(--border);color:var(--muted);border-radius:8px;font-size:12px;cursor:pointer;transition:all .2s;font-family:'Space Grotesk',sans-serif;margin-top:8px;}
 .refresh-btn:hover{border-color:var(--gold);color:var(--gold);}
-
-/* MODAL */
-.modal-overlay{
-  display:none;
-  position:fixed;inset:0;
-  background:rgba(0,0,0,.75);
-  z-index:1000;
-  align-items:flex-end;
-  justify-content:center;
-  backdrop-filter:blur(4px);
-}
-.modal-overlay.show{display:flex;animation:fadeIn .2s ease;}
-@keyframes fadeIn{from{opacity:0}to{opacity:1}}
-
-.modal{
-  background:var(--card);
-  border:1px solid var(--border);
-  border-radius:20px 20px 0 0;
-  width:100%;max-width:480px;
-  padding:0 0 2rem;
-  animation:slideUp .3s ease;
-  max-height:92vh;
-  overflow-y:auto;
-}
-@keyframes slideUp{from{transform:translateY(100%)}to{transform:translateY(0)}}
-
-.modal-handle{
-  width:40px;height:4px;
-  background:var(--border);
-  border-radius:99px;
-  margin:12px auto 0;
-}
-.modal-header{
-  padding:1rem 1.4rem .6rem;
-  display:flex;align-items:center;justify-content:space-between;
-  border-bottom:1px solid var(--border);
-}
-.modal-sym{
-  font-family:'Bebas Neue',sans-serif;
-  font-size:2rem;
-  line-height:1;
-}
-.modal-sym.buy-sym{color:var(--green);}
-.modal-sym.sell-sym{color:var(--red);}
-.modal-price{
-  font-size:1.3rem;font-weight:700;
-  color:var(--text);
-}
-.modal-badge{
-  font-size:10px;font-weight:700;
-  padding:3px 10px;border-radius:99px;
-  text-transform:uppercase;letter-spacing:.1em;
-}
-.badge-buy{background:rgba(34,197,94,.12);color:var(--green);border:1px solid rgba(34,197,94,.3);}
-.badge-sell{background:rgba(239,68,68,.12);color:var(--red);border:1px solid rgba(239,68,68,.3);}
-.modal-close{
-  background:transparent;border:1px solid var(--border);
-  color:var(--muted);border-radius:8px;padding:5px 12px;
-  font-size:13px;cursor:pointer;font-family:'Space Grotesk',sans-serif;
-  transition:all .2s;
-}
-.modal-close:hover{border-color:var(--red);color:var(--red);}
-.modal-body{padding:1rem 1.4rem 0;}
-
-/* Entry highlight in modal */
-.modal-entry-row{
-  background:rgba(240,180,41,.06);
-  border:1px solid rgba(240,180,41,.2);
-  border-radius:10px;
-  padding:10px 14px;
-  display:flex;align-items:center;justify-content:space-between;
-  margin-bottom:1rem;
-}
-.modal-entry-label{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);}
-.modal-entry-val{font-size:1.3rem;font-weight:700;color:var(--gold);}
-
-/* Levels grid */
-.levels-title{
-  font-size:10px;font-weight:700;letter-spacing:.15em;
-  text-transform:uppercase;color:var(--gold);
-  margin-bottom:8px;margin-top:4px;
-}
-.levels-grid{
-  display:grid;
-  grid-template-columns:repeat(5,1fr);
-  gap:6px;margin-bottom:1rem;
-}
-.lvl-box{
-  background:var(--card2);border:1px solid var(--border);
-  border-radius:8px;padding:7px 4px;text-align:center;
-  cursor:pointer;transition:all .2s;
-}
-.lvl-box:hover{border-color:var(--gold);}
-.lvl-box.resistance{border-top:2px solid rgba(34,197,94,.4);}
-.lvl-box.support{border-top:2px solid rgba(239,68,68,.4);}
-.lvl-label{font-size:9px;color:var(--muted);font-weight:600;margin-bottom:3px;}
-.lvl-price{font-size:11px;font-weight:700;}
-.lvl-box.resistance .lvl-price{color:var(--green);}
-.lvl-box.support   .lvl-price{color:var(--red);}
-.lvl-pct{display:none;}
-
-/* SL + Target row */
-.sl-tgt-row{
-  display:grid;grid-template-columns:1fr 1fr;
-  gap:10px;margin-bottom:1rem;
-}
-.sl-box{
-  background:var(--card2);border:1px solid rgba(239,68,68,.25);
-  border-radius:10px;padding:10px 12px;
-}
-.tgt-box{
-  background:var(--card2);border:1px solid rgba(34,197,94,.25);
-  border-radius:10px;padding:10px 12px;
-}
-.sl-tgt-label{font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;margin-bottom:4px;}
-.sl-box  .sl-tgt-label{color:var(--red);}
-.tgt-box .sl-tgt-label{color:var(--green);}
-.sl-tgt-val{font-size:1.15rem;font-weight:700;}
-.sl-box  .sl-tgt-val{color:var(--red);}
-.tgt-box .sl-tgt-val{color:var(--green);}
-.sl-tgt-sub{display:none;}
-
-/* Pivot row */
-.pivot-row{
-  display:flex;gap:8px;margin-bottom:1rem;flex-wrap:wrap;
-}
-.pvt-box{
-  flex:1;min-width:60px;
-  background:var(--card2);border:1px solid var(--border);
-  border-radius:8px;padding:7px 8px;text-align:center;
-}
-.pvt-label{font-size:9px;color:var(--muted);font-weight:600;margin-bottom:3px;}
-.pvt-val{font-size:11px;font-weight:700;color:var(--gold);}
-
-/* Copy row */
-.copy-row{
-  display:flex;gap:8px;margin-bottom:.6rem;flex-wrap:wrap;
-}
-.copy-btn{
-  flex:1;padding:9px 10px;
-  background:transparent;border:1px solid var(--border);
-  color:var(--muted);border-radius:8px;
-  font-size:11px;font-weight:600;cursor:pointer;
-  font-family:'Space Grotesk',sans-serif;
-  transition:all .2s;text-align:center;
-}
-.copy-btn:hover{border-color:var(--gold);color:var(--gold);}
-.copy-btn.copied{border-color:var(--green);color:var(--green);}
-
-/* CALCULATOR */
 .slider-row{display:flex;align-items:center;gap:10px;margin-bottom:12px;}
 .slider-label{font-size:12px;color:var(--muted);min-width:130px;}
 input[type=range]{flex:1;-webkit-appearance:none;height:3px;border-radius:99px;background:var(--border);outline:none;}
@@ -303,8 +130,6 @@ select{background:var(--card2);color:var(--text);border:1px solid var(--border);
 .sum-row:last-child{border-bottom:none;}
 .sum-row span:first-child{color:var(--muted);}
 .sum-row span:last-child{font-weight:700;}
-
-/* RULES */
 .rule-item{display:flex;align-items:flex-start;gap:10px;padding:9px 0;border-bottom:1px solid var(--border);}
 .rule-item:last-child{border-bottom:none;}
 .rdot{width:7px;height:7px;border-radius:50%;margin-top:5px;flex-shrink:0;}
@@ -314,68 +139,144 @@ select{background:var(--card2);color:var(--text);border:1px solid var(--border);
 .tool-header-bar{display:flex;justify-content:space-between;align-items:center;margin-bottom:1.5rem;}
 footer{text-align:center;padding:3rem 1.5rem;color:var(--muted);font-size:12px;border-top:1px solid var(--border);}
 footer a{color:var(--gold);text-decoration:none;}
+
+/* ═══════════════════════════════════════
+   STOCK DETAIL MODAL
+═══════════════════════════════════════ */
+.modal-overlay{
+  display:none;position:fixed;inset:0;
+  background:rgba(0,0,0,.8);
+  z-index:9999;
+  align-items:flex-end;justify-content:center;
+  backdrop-filter:blur(6px);
+}
+.modal-overlay.show{display:flex;animation:mfadeIn .2s ease;}
+@keyframes mfadeIn{from{opacity:0}to{opacity:1}}
+.modal{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:22px 22px 0 0;
+  width:100%;max-width:460px;
+  max-height:90vh;overflow-y:auto;
+  padding-bottom:2rem;
+  animation:mslideUp .3s ease;
+}
+@keyframes mslideUp{from{transform:translateY(100%)}to{transform:translateY(0)}}
+.m-handle{width:38px;height:4px;background:var(--border);border-radius:99px;margin:12px auto 0;}
+.m-header{
+  padding:.9rem 1.3rem .7rem;
+  display:flex;align-items:center;justify-content:space-between;
+  border-bottom:1px solid var(--border);
+}
+.m-sym{font-family:'Bebas Neue',sans-serif;font-size:2rem;line-height:1;}
+.m-sym.buy-c{color:var(--green);}
+.m-sym.sell-c{color:var(--red);}
+.m-price-wrap{text-align:right;}
+.m-price{font-size:1.25rem;font-weight:700;}
+.m-badge{font-size:10px;font-weight:700;padding:3px 10px;border-radius:99px;letter-spacing:.1em;display:inline-block;margin-top:4px;}
+.m-badge.buy-b{background:rgba(34,197,94,.1);color:var(--green);border:1px solid rgba(34,197,94,.3);}
+.m-badge.sell-b{background:rgba(239,68,68,.1);color:var(--red);border:1px solid rgba(239,68,68,.3);}
+.m-close{background:transparent;border:1px solid var(--border);color:var(--muted);border-radius:7px;padding:4px 11px;font-size:12px;cursor:pointer;font-family:'Space Grotesk',sans-serif;}
+.m-close:hover{border-color:var(--red);color:var(--red);}
+.m-body{padding:.9rem 1.3rem 0;}
+
+/* SL + Targets header row */
+.m-sec{font-size:10px;font-weight:700;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin:10px 0 7px;}
+
+/* SL row */
+.m-sl-row{
+  display:flex;align-items:center;justify-content:space-between;
+  background:rgba(239,68,68,.06);
+  border:1px solid rgba(239,68,68,.2);
+  border-radius:10px;padding:9px 12px;margin-bottom:8px;
+}
+.m-sl-label{font-size:11px;font-weight:700;color:var(--red);}
+.m-sl-price{font-size:1.1rem;font-weight:700;color:var(--red);}
+.m-sl-pnl{font-size:11px;color:var(--muted);margin-top:2px;}
+
+/* Target rows T1–T5 */
+.m-tgt-row{
+  display:flex;align-items:center;justify-content:space-between;
+  background:var(--card2);
+  border:1px solid var(--border);
+  border-left:3px solid var(--green);
+  border-radius:8px;padding:8px 12px;margin-bottom:6px;
+}
+.m-tgt-label{font-size:11px;font-weight:700;color:var(--green);min-width:28px;}
+.m-tgt-price{font-size:13px;font-weight:700;color:var(--text);}
+.m-tgt-pct{font-size:10px;color:var(--muted);margin-left:6px;}
+.m-tgt-pnl{font-size:13px;font-weight:700;color:var(--green);text-align:right;}
+
+/* QTY input */
+.m-qty-wrap{
+  display:flex;align-items:center;gap:10px;
+  background:var(--card2);border:1px solid var(--gold);
+  border-radius:10px;padding:8px 12px;margin-bottom:2px;
+}
+.m-qty-label{font-size:12px;color:var(--gold);font-weight:700;white-space:nowrap;}
+.m-qty-inp{
+  flex:1;background:transparent;border:none;outline:none;
+  font-size:1.1rem;font-weight:700;color:var(--text);
+  font-family:'Space Grotesk',sans-serif;
+  text-align:right;width:80px;
+}
+.m-qty-inp::-webkit-outer-spin-button,
+.m-qty-inp::-webkit-inner-spin-button{-webkit-appearance:none;}
+.m-qty-hint{font-size:10px;color:var(--muted);margin-bottom:10px;}
 </style>
 </head>
 <body>
 
-<!-- ============ STOCK DETAIL MODAL ============ -->
-<div class="modal-overlay" id="modal-overlay" onclick="closeModal(event)">
+<!-- ═══════════ STOCK DETAIL MODAL ═══════════ -->
+<div class="modal-overlay" id="modal-overlay" onclick="modalBgClick(event)">
   <div class="modal" id="modal">
-    <div class="modal-handle"></div>
-    <div class="modal-header">
+    <div class="m-handle"></div>
+    <div class="m-header">
       <div>
-        <div class="modal-sym" id="m-sym">SYMBOL</div>
+        <div class="m-sym" id="m-sym">SYMBOL</div>
+        <div class="m-price" id="m-price">₹0</div>
       </div>
-      <div style="display:flex;flex-direction:column;align-items:flex-end;gap:8px">
-        <button class="modal-close" onclick="document.getElementById('modal-overlay').classList.remove('show')">✕ Close</button>
-        <span class="modal-badge" id="m-badge">BUY</span>
+      <div style="display:flex;flex-direction:column;align-items:flex-end;gap:6px">
+        <button class="m-close" onclick="document.getElementById('modal-overlay').classList.remove('show')">✕</button>
+        <span class="m-badge" id="m-badge">BUY</span>
       </div>
     </div>
-    <div class="modal-body">
 
-      <!-- ENTRY PRICE — prominent -->
-      <div class="modal-entry-row">
-        <div class="modal-entry-label">📍 Entry (MM Price)</div>
-        <div class="modal-entry-val" id="m-entry-price">₹0.00</div>
+    <div class="m-body">
+
+      <!-- QTY INPUT -->
+      <div class="m-sec">📦 Quantity Daalo — P&amp;L Calculate Hoga</div>
+      <div class="m-qty-wrap">
+        <span class="m-qty-label">QTY</span>
+        <input class="m-qty-inp" type="number" id="m-qty" value="1" min="1" oninput="calcPnl()">
+        <span style="font-size:11px;color:var(--muted)">shares</span>
       </div>
+      <div class="m-qty-hint">↑ Qty badlo — SL loss aur T1–T5 profit auto update hoga</div>
 
-      <!-- SL + Target -->
-      <div class="sl-tgt-row">
-        <div class="sl-box">
-          <div class="sl-tgt-label">🛡 Stop Loss</div>
-          <div class="sl-tgt-val" id="m-sl">₹—</div>
-          <div class="sl-tgt-sub" id="m-sl-pct">—</div>
+      <!-- STOP LOSS -->
+      <div class="m-sec">🛡️ Stop Loss</div>
+      <div class="m-sl-row">
+        <div>
+          <div class="m-sl-label">STOP LOSS</div>
+          <div style="font-size:1rem;font-weight:700;color:var(--red)" id="m-sl-price">₹—</div>
+          <div class="m-sl-pnl" id="m-sl-pct">— % from entry</div>
         </div>
-        <div class="tgt-box">
-          <div class="sl-tgt-label">🎯 Target</div>
-          <div class="sl-tgt-val" id="m-tgt">₹—</div>
-          <div class="sl-tgt-sub" id="m-tgt-pct">—</div>
+        <div style="text-align:right">
+          <div style="font-size:10px;color:var(--muted);margin-bottom:3px">Max Loss</div>
+          <div style="font-size:1.15rem;font-weight:700;color:var(--red)" id="m-sl-pnl">₹—</div>
+          <div style="font-size:10px;color:var(--muted)" id="m-sl-qty-note">@ 1 qty</div>
         </div>
       </div>
 
-      <!-- Resistance / Support Levels -->
-      <div class="levels-title" id="m-lvl-title">📈 RESISTANCE LEVELS</div>
-      <div class="levels-grid" id="m-levels"></div>
-
-      <!-- Pivot Points -->
-      <div id="m-pivot-section" style="display:none">
-        <div class="levels-title">📊 PIVOT POINTS</div>
-        <div class="pivot-row" id="m-pivots"></div>
-      </div>
-
-      <!-- Copy Buttons -->
-      <div class="copy-row">
-        <button class="copy-btn" id="copy-entry" onclick="copyDetail('entry')">📋 Copy Entry</button>
-        <button class="copy-btn" id="copy-sl"    onclick="copyDetail('sl')">📋 Copy SL</button>
-        <button class="copy-btn" id="copy-tgt"   onclick="copyDetail('tgt')">📋 Copy Target</button>
-        <button class="copy-btn" id="copy-all"   onclick="copyDetail('all')">📋 Copy All</button>
-      </div>
+      <!-- TARGETS T1–T5 -->
+      <div class="m-sec" id="m-tgt-title">🎯 Targets (Resistance / Support)</div>
+      <div id="m-targets"></div>
 
     </div>
   </div>
 </div>
 
-<!-- ============ LOGIN SCREEN ============ -->
+<!-- ═══════════ LOGIN SCREEN ═══════════ -->
 <div class="login-screen" id="login-screen">
   <div class="login-card">
     <div class="login-logo">MM PRO</div>
@@ -385,7 +286,7 @@ footer a{color:var(--gold);text-decoration:none;}
       <input class="inp" type="password" id="li-pass" placeholder="Password" autocomplete="current-password">
     </div>
     <div class="msg err" id="li-err"></div>
-    <div class="msg ok"  id="li-ok"></div>
+    <div class="msg ok" id="li-ok"></div>
     <button class="btn-primary" id="li-btn" onclick="doLogin()">Login Karo →</button>
     <div class="loading-text" id="li-loading" style="display:none">⏳ Verify ho raha hai...</div>
     <br>
@@ -393,7 +294,7 @@ footer a{color:var(--gold);text-decoration:none;}
   </div>
 </div>
 
-<!-- ============ MAIN PAGE ============ -->
+<!-- ═══════════ MAIN PAGE ═══════════ -->
 <div id="main-page" style="display:none">
 <div class="hero">
   <div class="hero-tag">Traders Ke Liye — 100% Free</div>
@@ -461,7 +362,7 @@ footer a{color:var(--gold);text-decoration:none;}
       <input class="inp" type="password" id="reg-pass" placeholder="Password (min 6 characters)" autocomplete="new-password">
       <input class="inp" type="password" id="reg-pass2" placeholder="Password dobara daalo" autocomplete="new-password">
       <div class="msg err" id="reg-err"></div>
-      <div class="msg ok"  id="reg-ok"></div>
+      <div class="msg ok" id="reg-ok"></div>
     </div>
     <button class="btn-primary" id="reg-btn" onclick="doRegister()">Account Banao & Tool Kholo →</button>
     <div class="loading-text" id="reg-loading" style="display:none">⏳ Account ban raha hai...</div>
@@ -469,7 +370,7 @@ footer a{color:var(--gold);text-decoration:none;}
 </section>
 </div>
 
-<!-- ============ TOOL ============ -->
+<!-- ═══════════ TOOL ═══════════ -->
 <div class="tool-section" id="tool">
   <section style="padding-top:2rem">
     <div class="tool-header-bar">
@@ -496,7 +397,7 @@ footer a{color:var(--gold);text-decoration:none;}
           </div>
         </div>
         <div style="font-size:11px;color:var(--muted);margin-bottom:4px" id="scan-date"></div>
-        <div style="font-size:10px;color:rgba(240,180,41,.6);margin-bottom:12px">💡 Kisi bhi stock pe tap karo — Entry, SL, Target aur Levels dekhne ke liye</div>
+        <div style="font-size:10px;color:rgba(240,180,41,.55);margin-bottom:12px">💡 Stock pe tap karo → SL loss &amp; T1–T5 profit dekhne ko milega</div>
         <div class="signal-grid">
           <div class="signal-box">
             <div class="signal-box-title buy" id="buy-title">📈 BULLISH (0)</div>
@@ -507,11 +408,6 @@ footer a{color:var(--gold);text-decoration:none;}
             <div id="sell-list"><div class="no-signal">Scanner se results ka wait karo</div></div>
           </div>
         </div>
-        <!-- Copy All Buttons -->
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:10px">
-          <button class="copy-all-btn buy-copy" id="copy-all-buy" onclick="copyAllStocks('buy')">📋 Copy All Bullish</button>
-          <button class="copy-all-btn sell-copy" id="copy-all-sell" onclick="copyAllStocks('sell')">📋 Copy All Bearish</button>
-        </div>
         <div style="font-size:11px;color:var(--muted);text-align:center;margin-bottom:6px" id="auto-msg">Har 30 sec mein auto-refresh</div>
         <button class="refresh-btn" onclick="fetchResults()">🔄 Abhi Refresh Karo</button>
       </div>
@@ -519,7 +415,7 @@ footer a{color:var(--gold);text-decoration:none;}
         <div class="card-title">Kaise Use Karein</div>
         📈 Bullish = Strong uptrend — BUY consider karo<br>
         📉 Bearish = Weak stocks — SELL/avoid karo<br>
-        Stock pe tap karo → Entry (MM Price), SL, Target, R1–R5 / S1–S5 levels dekhne ko milenge<br>
+        Stock pe tap karo → Qty daalo → SL pe kitna loss, T1–T5 pe kitna profit automatically dikhega<br>
         Nifty green ho tab Bullish signals zyada reliable hote hain
       </div>
     </div>
@@ -532,7 +428,6 @@ footer a{color:var(--gold);text-decoration:none;}
         <div class="slider-row"><span class="slider-label">Max stocks ek saath</span><input type="range" min="1" max="15" step="1" value="5" id="stocks" oninput="calc()"><span class="slider-val" id="stocks-out">5</span></div>
         <div class="slider-row"><span class="slider-label">Risk per trade</span><input type="range" min="0.5" max="3" step="0.5" value="1" id="risk" oninput="calc()"><span class="slider-val" id="risk-out">1%</span></div>
         <div class="slider-row"><span class="slider-label">Stop Loss %</span><input type="range" min="0.3" max="2" step="0.1" value="0.5" id="sl" oninput="calc()"><span class="slider-val" id="sl-out">0.5%</span></div>
-        <div class="slider-row"><span class="slider-label">Stock price (₹)</span><input type="range" min="50" max="5000" step="50" value="500" id="stock-price" oninput="calc()"><span class="slider-val gold-c" id="sp-out">₹500</span></div>
         <div class="slider-row" style="margin-bottom:0"><span class="slider-label">Risk : Reward</span><select id="rr" onchange="calc()"><option value="1.5">1:1.5</option><option value="2" selected>1:2</option><option value="2.5">1:2.5</option><option value="3">1:3</option></select><span class="slider-val green" id="rr-out">1:2</span></div>
       </div>
       <div class="metrics">
@@ -541,7 +436,7 @@ footer a{color:var(--gold);text-decoration:none;}
         <div class="metric-box"><div class="metric-label">Target/trade</div><div class="metric-val green" id="target">₹2,000</div></div>
         <div class="metric-box"><div class="metric-label">Daily limit</div><div class="metric-val red" id="daily-loss">₹2,000</div></div>
         <div class="metric-box"><div class="metric-label">Best case</div><div class="metric-val green" id="best-case">+₹10,000</div></div>
-        <div class="metric-box"><div class="metric-label">Qty (selected price)</div><div class="metric-val" id="qty">40</div></div>
+        <div class="metric-box"><div class="metric-label">Qty (₹500 stock)</div><div class="metric-val" id="qty">40</div></div>
       </div>
       <div class="tcard">
         <div class="card-title">Summary</div>
@@ -567,7 +462,6 @@ footer a{color:var(--gold);text-decoration:none;}
         <div class="rule-item"><div class="rdot warn"></div><div><div class="rule-text">Monday subah pehle 15 min wait karo</div><div class="rule-sub">Gap up/down settle hone do</div></div></div>
       </div>
     </div>
-
   </section>
 </div>
 
@@ -582,28 +476,36 @@ footer a{color:var(--gold);text-decoration:none;}
 </footer>
 
 <script>
+// ==========================================
 var APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbyWV5W1YmhQZp8DouYpTSHOgomMgBdMZEXcmYrCHKGLLBJKX94gowTYfG1iJmKwAngA/exec";
-var fetchInterval  = null;
-var _currentStock  = null;
+var fetchInterval   = null;
 
-// ─── INIT ───────────────────────────────────────────
+// ── Modal state ──────────────────────────────────────
+var _mEntry = 0;   // entry price
+var _mSl    = 0;   // sl price
+var _mTgts  = [];  // [{label, price}] T1–T5
+var _mSide  = 'buy';
+
+// ==========================================
+// INIT
+// ==========================================
 window.onload = function() {
   var sess = sessionStorage.getItem('mm_user');
   if (sess) showTool(sess);
   else document.getElementById('login-screen').classList.add('show');
 };
-
 function goToRegister() {
   document.getElementById('login-screen').classList.remove('show');
   document.getElementById('main-page').style.display = 'block';
   window.scrollTo(0,0);
 }
 
-// ─── 3 STEP SYSTEM ──────────────────────────────────
+// ==========================================
+// 3 STEP SYSTEM
+// ==========================================
 var clicked_steps=[false,false,false], done_steps=[false,false,false];
 function clicked(n){ clicked_steps[n-1]=true; setTimeout(function(){ document.getElementById('c'+n).style.display='inline-flex'; },1500); }
 function confirm_step(n){
-  if(!clicked_steps[n-1]){ alert('Pehle upar wala button click karo, phir "Ho gaya" dabao!'); return; }
   done_steps[n-1]=true;
   document.getElementById('c'+n).style.display='none';
   document.getElementById('d'+n).style.display='inline-flex';
@@ -618,7 +520,9 @@ function update_progress(){
   if(done===3){ setTimeout(function(){ document.getElementById('lock-box').style.display='none'; document.getElementById('reg-form').classList.add('show'); document.getElementById('reg-form').scrollIntoView({behavior:'smooth',block:'center'}); },500); }
 }
 
-// ─── USERNAME CHECK ──────────────────────────────────
+// ==========================================
+// USERNAME CHECK
+// ==========================================
 var checkTimer;
 function checkUser(){
   clearTimeout(checkTimer);
@@ -629,54 +533,64 @@ function checkUser(){
   checkTimer=setTimeout(function(){
     fetch(APPS_SCRIPT_URL+'?action=check&username='+encodeURIComponent(u))
     .then(function(r){return r.json();})
-    .then(function(d){ if(!d.available){err.textContent='❌ '+d.message; err.style.display='block';} })
+    .then(function(d){ if(!d.available){err.textContent='❌ '+d.message;err.style.display='block';} })
     .catch(function(){});
   },600);
 }
 
-// ─── REGISTER ───────────────────────────────────────
+// ==========================================
+// REGISTER
+// ==========================================
 function doRegister(){
   var u=document.getElementById('reg-user').value.trim().toLowerCase();
   var p=document.getElementById('reg-pass').value;
   var p2=document.getElementById('reg-pass2').value;
-  var err=document.getElementById('reg-err'), ok=document.getElementById('reg-ok');
+  var err=document.getElementById('reg-err'),ok=document.getElementById('reg-ok');
   err.style.display='none'; ok.style.display='none';
-  if(u.length<4){ showErr(err,'Username kam se kam 4 characters'); return; }
-  if(p.length<6){ showErr(err,'Password kam se kam 6 characters'); return; }
-  if(p!==p2){ showErr(err,'Dono passwords match nahi!'); return; }
+  if(u.length<4){showErr(err,'Username kam se kam 4 characters');return;}
+  if(p.length<6){showErr(err,'Password kam se kam 6 characters');return;}
+  if(p!==p2){showErr(err,'Dono passwords match nahi!');return;}
   var btn=document.getElementById('reg-btn'); btn.disabled=true;
   document.getElementById('reg-loading').style.display='block';
   fetch(APPS_SCRIPT_URL,{method:'POST',body:JSON.stringify({username:u,password:p})})
   .then(function(r){return r.json();})
   .then(function(d){
     btn.disabled=false; document.getElementById('reg-loading').style.display='none';
-    if(d.success){ ok.textContent='✅ '+d.message; ok.style.display='block'; setTimeout(function(){ sessionStorage.setItem('mm_user',u); showTool(u); },1000); }
+    if(d.success){ok.textContent='✅ '+d.message;ok.style.display='block';setTimeout(function(){sessionStorage.setItem('mm_user',u);showTool(u);},1000);}
     else showErr(err,d.message);
-  }).catch(function(){ btn.disabled=false; document.getElementById('reg-loading').style.display='none'; showErr(err,'Connection error!'); });
+  }).catch(function(){btn.disabled=false;document.getElementById('reg-loading').style.display='none';showErr(err,'Connection error!');});
 }
 
-// ─── LOGIN ───────────────────────────────────────────
+// ==========================================
+// LOGIN
+// ==========================================
 function doLogin(){
   var u=document.getElementById('li-user').value.trim().toLowerCase();
   var p=document.getElementById('li-pass').value;
-  var err=document.getElementById('li-err'), ok=document.getElementById('li-ok');
+  var err=document.getElementById('li-err'),ok=document.getElementById('li-ok');
   err.style.display='none'; ok.style.display='none';
-  if(!u||!p){ showErr(err,'Username aur Password dono daalo!'); return; }
+  if(!u||!p){showErr(err,'Username aur Password dono daalo!');return;}
   var btn=document.getElementById('li-btn'); btn.disabled=true;
   document.getElementById('li-loading').style.display='block';
   fetch(APPS_SCRIPT_URL+'?action=login&username='+encodeURIComponent(u)+'&password='+encodeURIComponent(p))
   .then(function(r){return r.json();})
   .then(function(d){
     btn.disabled=false; document.getElementById('li-loading').style.display='none';
-    if(d.success){ ok.textContent='✅ Login successful!'; ok.style.display='block'; sessionStorage.setItem('mm_user',u); setTimeout(function(){ document.getElementById('login-screen').classList.remove('show'); showTool(u); },800); }
+    if(d.success){ok.textContent='✅ Login successful!';ok.style.display='block';sessionStorage.setItem('mm_user',u);setTimeout(function(){document.getElementById('login-screen').classList.remove('show');showTool(u);},800);}
     else showErr(err,'❌ '+d.message);
-  }).catch(function(){ btn.disabled=false; document.getElementById('li-loading').style.display='none'; showErr(err,'Connection error!'); });
+  }).catch(function(){btn.disabled=false;document.getElementById('li-loading').style.display='none';showErr(err,'Connection error!');});
 }
-document.addEventListener('keydown',function(e){ if(e.key!=='Enter') return; if(document.getElementById('login-screen').classList.contains('show')) doLogin(); });
+document.addEventListener('keydown',function(e){
+  if(e.key!=='Enter') return;
+  if(document.getElementById('login-screen').classList.contains('show')) doLogin();
+  else if(document.getElementById('reg-form').classList.contains('show')) doRegister();
+});
 
-// ─── LOGOUT ──────────────────────────────────────────
+// ==========================================
+// LOGOUT
+// ==========================================
 function doLogout(){
-  if(fetchInterval){ clearInterval(fetchInterval); fetchInterval=null; }
+  if(fetchInterval){clearInterval(fetchInterval);fetchInterval=null;}
   sessionStorage.removeItem('mm_user');
   document.getElementById('tool').classList.remove('show');
   document.getElementById('main-page').style.display='none';
@@ -685,7 +599,9 @@ function doLogout(){
   document.getElementById('li-pass').value='';
 }
 
-// ─── SHOW TOOL ───────────────────────────────────────
+// ==========================================
+// SHOW TOOL
+// ==========================================
 function showTool(username){
   document.getElementById('main-page').style.display='none';
   document.getElementById('login-screen').classList.remove('show');
@@ -698,23 +614,28 @@ function showTool(username){
   fetchInterval=setInterval(fetchResults,30000);
 }
 
-// ─── HELPERS ─────────────────────────────────────────
-function showErr(el,msg){ el.textContent=msg; el.style.display='block'; }
+// ==========================================
+// HELPERS
+// ==========================================
+function showErr(el,msg){el.textContent=msg;el.style.display='block';}
+function fmtRs(n){return '₹'+Math.abs(Math.round(n)).toLocaleString('en-IN');}
+function r2(n){return Math.round(n*100)/100;}
 
-// ─── TABS ────────────────────────────────────────────
+// ==========================================
+// TABS
+// ==========================================
 function switchTab(name){
   var names=['scanner','calc','rules'];
-  document.querySelectorAll('.tab').forEach(function(t,i){ t.classList.toggle('active',names[i]===name); });
-  document.querySelectorAll('.panel').forEach(function(p){ p.classList.remove('active'); });
+  document.querySelectorAll('.tab').forEach(function(t,i){t.classList.toggle('active',names[i]===name);});
+  document.querySelectorAll('.panel').forEach(function(p){p.classList.remove('active');});
   document.getElementById('panel-'+name).classList.add('active');
 }
 
-// ─── SCANNER FETCH ───────────────────────────────────
-var _buyStocks  = [];   // global store — index safe hai
-var _sellStocks = [];
-
+// ==========================================
+// SCANNER FETCH
+// ==========================================
 function fetchResults(){
-  fetch('https://raw.githubusercontent.com/newtrustyproducts/moneymaker/refs/heads/main/results.json?t='+Date.now())
+  fetch('https://raw.githubusercontent.com/newtrustyproducts/moneymaker/main/results.json?t='+Date.now())
   .then(function(r){return r.json();})
   .then(function(data){
     document.getElementById('live-dot').classList.add('live');
@@ -723,30 +644,27 @@ function fetchResults(){
     document.getElementById('buy-title').textContent='📈 BULLISH ('+data.buy.length+')';
     document.getElementById('sell-title').textContent='📉 BEARISH ('+data.sell.length+')';
 
-    _buyStocks  = data.buy  || [];
-    _sellStocks = data.sell || [];
+    // BUY — clickable
+    document.getElementById('buy-list').innerHTML=data.buy.length===0
+      ?'<div class="no-signal">Koi Bullish signal nahi</div>'
+      :data.buy.map(function(s){
+        return '<div class="signal-item" onclick=\'openModal('+JSON.stringify(s)+',"buy")\'>'
+          +'<span class="sym">'+s.symbol+'</span>'
+          +'<span style="display:flex;align-items:center;gap:3px">'
+          +'<span class="price">₹'+s.price+'</span>'
+          +'<span class="arr">›</span></span></div>';
+      }).join('');
 
-    // BUY list — index reference, no JSON in onclick
-    document.getElementById('buy-list').innerHTML = _buyStocks.length===0
-      ? '<div class="no-signal">Koi Bullish signal nahi</div>'
-      : _buyStocks.map(function(s, i){
-          return '<div class="signal-item" onclick="openModal(\'buy\','+i+')">'
-               + '<span class="sym">'+s.symbol+'</span>'
-               + '<span style="display:flex;align-items:center;gap:4px">'
-               + '<span class="mm-tag">MM</span>'
-               + '<span class="tap-hint">›</span></span></div>';
-        }).join('');
-
-    // SELL list — index reference, no JSON in onclick
-    document.getElementById('sell-list').innerHTML = _sellStocks.length===0
-      ? '<div class="no-signal">Koi Bearish signal nahi</div>'
-      : _sellStocks.map(function(s, i){
-          return '<div class="signal-item" onclick="openModal(\'sell\','+i+')">'
-               + '<span class="sym">'+s.symbol+'</span>'
-               + '<span style="display:flex;align-items:center;gap:4px">'
-               + '<span class="mm-tag">MM</span>'
-               + '<span class="tap-hint">›</span></span></div>';
-        }).join('');
+    // SELL — clickable
+    document.getElementById('sell-list').innerHTML=data.sell.length===0
+      ?'<div class="no-signal">Koi Bearish signal nahi</div>'
+      :data.sell.map(function(s){
+        return '<div class="signal-item" onclick=\'openModal('+JSON.stringify(s)+',"sell")\'>'
+          +'<span class="sym">'+s.symbol+'</span>'
+          +'<span style="display:flex;align-items:center;gap:3px">'
+          +'<span class="price">₹'+s.price+'</span>'
+          +'<span class="arr">›</span></span></div>';
+      }).join('');
 
     document.getElementById('auto-msg').textContent='Auto-refresh: har 30 sec · '+new Date().toLocaleTimeString('en-IN');
   })
@@ -756,180 +674,120 @@ function fetchResults(){
   });
 }
 
-// ─── COPY ALL STOCKS ─────────────────────────────────
-function copyAllStocks(side){
-  var list = side==='buy' ? _buyStocks : _sellStocks;
-  if(!list || list.length===0){ alert('Abhi koi '+(side==='buy'?'Bullish':'Bearish')+' stocks nahi hain!'); return; }
-  var label = side==='buy' ? '📈 BULLISH STOCKS' : '📉 BEARISH STOCKS';
-  var text  = label+' ('+list.length+')\n'
-            + new Date().toLocaleString('en-IN')+'\n'
-            + '─────────────────\n'
-            + list.map(function(s){ return s.symbol; }).join('\n')
-            + '\n─────────────────\n'
-            + 'Source: @mone_ymaker7867';
-
-  var btnId = side==='buy' ? 'copy-all-buy' : 'copy-all-sell';
-  var btn   = document.getElementById(btnId);
-
-  navigator.clipboard.writeText(text).then(function(){
-    btn.textContent = '✅ Copied ('+list.length+')!';
-    btn.classList.add('copied');
-    setTimeout(function(){
-      btn.classList.remove('copied');
-      btn.textContent = side==='buy' ? '📋 Copy All Bullish' : '📋 Copy All Bearish';
-    }, 2500);
-  }).catch(function(){
-    var ta=document.createElement('textarea');
-    ta.value=text; document.body.appendChild(ta);
-    ta.select(); document.execCommand('copy');
-    document.body.removeChild(ta);
-    btn.textContent='✅ Copied!';
-    setTimeout(function(){ btn.textContent=side==='buy'?'📋 Copy All Bullish':'📋 Copy All Bearish'; },2500);
-  });
-}
-
-
-function openModal(side, idx){
-  var stock = side==='buy' ? _buyStocks[idx] : _sellStocks[idx];
-  if(!stock){ return; }
-  _currentStock = {stock: stock, side: side};
+// ==========================================
+// MODAL — OPEN
+// ==========================================
+function openModal(stock, side){
+  _mSide  = side;
+  _mEntry = stock.price;
 
   // Header
-  var sym = document.getElementById('m-sym');
-  sym.textContent = stock.symbol;
-  sym.className   = 'modal-sym ' + (side==='buy' ? 'buy-sym' : 'sell-sym');
+  var sym=document.getElementById('m-sym');
+  sym.textContent=stock.symbol;
+  sym.className='m-sym '+(side==='buy'?'buy-c':'sell-c');
+  document.getElementById('m-price').textContent='₹'+stock.price+' (Entry)';
+  var badge=document.getElementById('m-badge');
+  badge.textContent=side==='buy'?'📈 BULLISH':'📉 BEARISH';
+  badge.className='m-badge '+(side==='buy'?'buy-b':'sell-b');
 
-  var badge = document.getElementById('m-badge');
-  badge.textContent = side==='buy' ? '📈 BULLISH' : '📉 BEARISH';
-  badge.className   = 'modal-badge ' + (side==='buy' ? 'badge-buy' : 'badge-sell');
+  // ── SL price ──────────────────────────────────────
+  // Try from results.json fields first, else 2% fallback
+  _mSl = 0;
+  if(side==='buy'){
+    // resistance array → SL = entry - 2%
+    _mSl = r2(stock.price * 0.98);
+  } else {
+    _mSl = r2(stock.price * 1.02);
+  }
+  // If scanner gave explicit sl_price use it
+  if(stock.sl_price && stock.sl_price > 0) _mSl = stock.sl_price;
 
-  // Entry (MM Price) — prominent row
-  document.getElementById('m-entry-price').textContent = '₹' + stock.price;
+  var slPct = r2(Math.abs(_mEntry - _mSl) / _mEntry * 100);
+  document.getElementById('m-sl-price').textContent = '₹'+_mSl;
+  document.getElementById('m-sl-pct').textContent   = slPct+'% from entry';
 
-  // SL + Target
-  var sl=0, tgt=0;
-  if(stock.sl_price)  sl  = stock.sl_price;
-  if(stock.tgt_price) tgt = stock.tgt_price;
+  // ── Targets T1–T5 ─────────────────────────────────
+  _mTgts = [];
+  var levels = side==='buy' ? (stock.resistance||[]) : (stock.support||[]);
 
-  if(!sl && stock.price){
-    if(side==='buy'){
-      sl  = Math.round(stock.price * 0.98 * 100)/100;
-      tgt = Math.round(stock.price * 1.04 * 100)/100;
-    } else {
-      sl  = Math.round(stock.price * 1.02 * 100)/100;
-      tgt = Math.round(stock.price * 0.96 * 100)/100;
+  if(levels && levels.length>0){
+    // Use levels from results.json (max 5)
+    for(var i=0;i<Math.min(5,levels.length);i++){
+      _mTgts.push({label:'T'+(i+1)+' ('+levels[i].label+')', price: levels[i].price});
+    }
+  } else {
+    // Fallback: calculate T1–T5 as 1%–5% from entry
+    for(var j=1;j<=5;j++){
+      var tp = side==='buy' ? r2(stock.price*(1+j/100)) : r2(stock.price*(1-j/100));
+      _mTgts.push({label:'T'+j+' ('+(side==='buy'?'+':'-')+j+'%)', price: tp});
     }
   }
 
-  document.getElementById('m-sl').textContent  = '₹' + sl;
-  document.getElementById('m-tgt').textContent = '₹' + tgt;
-  document.getElementById('m-sl-pct').textContent  = '';
-  document.getElementById('m-tgt-pct').textContent = '';
+  // Reset qty to 1 on every open
+  document.getElementById('m-qty').value = 1;
 
-  // Resistance (BUY) / Support (SELL) Levels
-  var levels = side==='buy'
-    ? (stock.resistance || [])
-    : (stock.support    || []);
+  // Render targets
+  renderTargets();
 
-  var lvlTitle = document.getElementById('m-lvl-title');
-  var lvlGrid  = document.getElementById('m-levels');
+  // Render SL P&L
+  calcPnl();
 
-  if(levels.length > 0){
-    lvlTitle.textContent = side==='buy' ? '📈 RESISTANCE LEVELS (R1–R5)' : '📉 SUPPORT LEVELS (S1–S5)';
-    var cls = side==='buy' ? 'resistance' : 'support';
-    lvlGrid.innerHTML = levels.map(function(l){
-      var cleanLabel = l.label.replace(/\s*\(.*?\)/g, '');
-      return '<div class="lvl-box '+cls+'">'
-           + '<div class="lvl-label">'+cleanLabel+'</div>'
-           + '<div class="lvl-price">₹'+l.price+'</div>'
-           + '</div>';
-    }).join('');
-    lvlTitle.style.display='block';
-    lvlGrid.style.display='grid';
-  } else {
-    // Fallback: calculate R1–R5 or S1–S5
-    lvlTitle.textContent = side==='buy' ? '📈 RESISTANCE LEVELS (R1–R5)' : '📉 SUPPORT LEVELS (S1–S5)';
-    var lvls=[], cls2=side==='buy'?'resistance':'support';
-    for(var i=1;i<=5;i++){
-      var mult = side==='buy' ? (1+i/100) : (1-i/100);
-      var lp   = Math.round(stock.price * mult * 100)/100;
-      lvls.push('<div class="lvl-box '+cls2+'">'
-              + '<div class="lvl-label">'+(side==='buy'?'R':'S')+i+'</div>'
-              + '<div class="lvl-price">₹'+lp+'</div>'
-              + '</div>');
-    }
-    lvlGrid.innerHTML = lvls.join('');
-    lvlTitle.style.display='block';
-    lvlGrid.style.display='grid';
-  }
-
-  // Pivot Points
-  var pv = stock.pivots;
-  var pvtSec = document.getElementById('m-pivot-section');
-  if(pv && pv.pivot){
-    pvtSec.style.display='block';
-    document.getElementById('m-pivots').innerHTML =
-      '<div class="pvt-box"><div class="pvt-label">S2</div><div class="pvt-val" style="color:var(--red)">₹'+pv.s2+'</div></div>'+
-      '<div class="pvt-box"><div class="pvt-label">S1</div><div class="pvt-val" style="color:var(--red)">₹'+pv.s1+'</div></div>'+
-      '<div class="pvt-box"><div class="pvt-label">PIVOT</div><div class="pvt-val">₹'+pv.pivot+'</div></div>'+
-      '<div class="pvt-box"><div class="pvt-label">R1</div><div class="pvt-val" style="color:var(--green)">₹'+pv.r1+'</div></div>'+
-      '<div class="pvt-box"><div class="pvt-label">R2</div><div class="pvt-val" style="color:var(--green)">₹'+pv.r2+'</div></div>';
-  } else {
-    pvtSec.style.display='none';
-  }
-
-  // Reset copy buttons
-  ['copy-entry','copy-sl','copy-tgt','copy-all'].forEach(function(id){
-    var b=document.getElementById(id);
-    b.classList.remove('copied');
-    b.textContent = '📋 Copy '+(id==='copy-entry'?'Entry':id==='copy-sl'?'SL':id==='copy-tgt'?'Target':'All');
-  });
+  // Title
+  document.getElementById('m-tgt-title').textContent =
+    side==='buy' ? '🎯 Targets — Resistance Levels' : '🎯 Targets — Support Levels';
 
   document.getElementById('modal-overlay').classList.add('show');
 }
 
-function closeModal(e){
+// ─── Render target rows (static HTML, qty update via calcPnl) ───────────────
+function renderTargets(){
+  var html = '';
+  for(var i=0;i<_mTgts.length;i++){
+    var t   = _mTgts[i];
+    var pct = r2(Math.abs(t.price - _mEntry) / _mEntry * 100);
+    var dir = _mSide==='buy' ? '+' : '-';
+    html += '<div class="m-tgt-row" id="tgt-row-'+i+'">'
+          + '<div><div class="m-tgt-label">'+t.label+'</div>'
+          + '<span class="m-tgt-price">₹'+t.price+'</span>'
+          + '<span class="m-tgt-pct">'+dir+pct+'%</span></div>'
+          + '<div style="text-align:right">'
+          + '<div style="font-size:10px;color:var(--muted);margin-bottom:3px">Profit</div>'
+          + '<div class="m-tgt-pnl" id="tgt-pnl-'+i+'">₹—</div>'
+          + '<div style="font-size:10px;color:var(--muted)" id="tgt-qty-note-'+i+'">@ 1 qty</div>'
+          + '</div></div>';
+  }
+  document.getElementById('m-targets').innerHTML = html;
+}
+
+// ── P&L Calculator — runs on every qty change ──────────────────────────────
+function calcPnl(){
+  var qty = parseInt(document.getElementById('m-qty').value) || 1;
+  if(qty < 1) qty = 1;
+
+  // SL loss
+  var slLoss = r2(Math.abs(_mEntry - _mSl) * qty);
+  document.getElementById('m-sl-pnl').textContent  = '- '+fmtRs(slLoss);
+  document.getElementById('m-sl-qty-note').textContent = '@ '+qty+' qty';
+
+  // Targets profit
+  for(var i=0;i<_mTgts.length;i++){
+    var profit = r2(Math.abs(_mTgts[i].price - _mEntry) * qty);
+    var el = document.getElementById('tgt-pnl-'+i);
+    var nt = document.getElementById('tgt-qty-note-'+i);
+    if(el){ el.textContent = '+ '+fmtRs(profit); }
+    if(nt){ nt.textContent = '@ '+qty+' qty'; }
+  }
+}
+
+// Close modal on background click
+function modalBgClick(e){
   if(e.target===document.getElementById('modal-overlay'))
     document.getElementById('modal-overlay').classList.remove('show');
 }
 
-// Copy helpers
-function copyDetail(type){
-  if(!_currentStock) return;
-  var s    = _currentStock.stock;
-  var side = _currentStock.side;
-  var sl   = document.getElementById('m-sl').textContent;
-  var tgt  = document.getElementById('m-tgt').textContent;
-  var text = '';
-
-  if(type==='entry') text = s.symbol+' Entry: ₹'+s.price;
-  else if(type==='sl')  text = s.symbol+' SL: '+sl;
-  else if(type==='tgt') text = s.symbol+' Target: '+tgt;
-  else text = (side==='buy'?'📈':'📉')+' '+s.symbol
-            +'\nEntry : ₹'+s.price
-            +'\nSL    : '+sl
-            +'\nTarget: '+tgt
-            +'\nSide  : '+(side==='buy'?'BUY':'SELL')
-            +'\nSource: @mone_ymaker7867';
-
-  navigator.clipboard.writeText(text).then(function(){
-    var id = type==='entry'?'copy-entry':type==='sl'?'copy-sl':type==='tgt'?'copy-tgt':'copy-all';
-    var btn=document.getElementById(id);
-    btn.textContent='✅ Copied!';
-    btn.classList.add('copied');
-    setTimeout(function(){
-      btn.classList.remove('copied');
-      btn.textContent='📋 Copy '+(type==='entry'?'Entry':type==='sl'?'SL':type==='tgt'?'Target':'All');
-    },2000);
-  }).catch(function(){
-    var ta=document.createElement('textarea');
-    ta.value=text; document.body.appendChild(ta);
-    ta.select(); document.execCommand('copy');
-    document.body.removeChild(ta);
-  });
-}
-
-// ─── CALCULATOR ──────────────────────────────────────
+// ==========================================
+// CALCULATOR
+// ==========================================
 function fmt(n){return '₹'+Math.round(n).toLocaleString('en-IN');}
 function calc(){
   var cap=+document.getElementById('capital').value;
@@ -937,14 +795,12 @@ function calc(){
   var risk=+document.getElementById('risk').value;
   var sl=+document.getElementById('sl').value;
   var rr=+document.getElementById('rr').value;
-  var sp=+document.getElementById('stock-price').value;
   document.getElementById('cap-out').textContent=fmt(cap);
   document.getElementById('stocks-out').textContent=nStk;
   document.getElementById('risk-out').textContent=risk+'%';
   document.getElementById('sl-out').textContent=sl.toFixed(1)+'%';
   document.getElementById('rr-out').textContent='1:'+rr;
-  document.getElementById('sp-out').textContent=fmt(sp);
-  var pt=cap/nStk,ml=cap*(risk/100),tgt=ml*rr,daily=ml*2,qty=Math.floor(pt/sp);
+  var pt=cap/nStk,ml=cap*(risk/100),tgt=ml*rr,daily=ml*2,qty=Math.floor(pt/500);
   document.getElementById('per-trade').textContent=fmt(pt);
   document.getElementById('max-loss').textContent=fmt(ml);
   document.getElementById('target').textContent=fmt(tgt);
