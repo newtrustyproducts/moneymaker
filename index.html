@@ -245,32 +245,24 @@ footer a{color:var(--gold);text-decoration:none;}
     <div class="m-body">
 
       <!-- QTY INPUT -->
-      <div class="m-sec">📦 Quantity Daalo — P&amp;L Calculate Hoga</div>
-      <div class="m-qty-wrap">
+      <div class="m-qty-wrap" style="margin-top:.6rem">
         <span class="m-qty-label">QTY</span>
         <input class="m-qty-inp" type="number" id="m-qty" value="1" min="1" oninput="calcPnl()">
-        <span style="font-size:11px;color:var(--muted)">shares</span>
       </div>
-      <div class="m-qty-hint">↑ Qty badlo — SL loss aur T1–T5 profit auto update hoga</div>
 
-      <!-- STOP LOSS -->
-      <div class="m-sec">🛡️ Stop Loss</div>
-      <div class="m-sl-row">
+      <!-- STOP LOSS / SUPPORT -->
+      <div class="m-sl-row" style="margin-top:10px">
         <div>
-          <div class="m-sl-label">STOP LOSS</div>
+          <div class="m-sl-label" id="m-sl-label">SUPPORT</div>
           <div style="font-size:1rem;font-weight:700;color:var(--red)" id="m-sl-price">₹—</div>
-          <div class="m-sl-pnl" id="m-sl-pct">— % from entry</div>
         </div>
         <div style="text-align:right">
-          <div style="font-size:10px;color:var(--muted);margin-bottom:3px">Max Loss</div>
           <div style="font-size:1.15rem;font-weight:700;color:var(--red)" id="m-sl-pnl">₹—</div>
-          <div style="font-size:10px;color:var(--muted)" id="m-sl-qty-note">@ 1 qty</div>
         </div>
       </div>
 
-      <!-- TARGETS T1–T5 -->
-      <div class="m-sec" id="m-tgt-title">🎯 Targets (Resistance / Support)</div>
-      <div id="m-targets"></div>
+      <!-- TARGETS R1–R5 / S1–S5 -->
+      <div id="m-targets" style="margin-top:8px"></div>
 
     </div>
   </div>
@@ -397,7 +389,7 @@ footer a{color:var(--gold);text-decoration:none;}
           </div>
         </div>
         <div style="font-size:11px;color:var(--muted);margin-bottom:4px" id="scan-date"></div>
-        <div style="font-size:10px;color:rgba(240,180,41,.55);margin-bottom:12px">💡 Stock pe tap karo → SL loss &amp; T1–T5 profit dekhne ko milega</div>
+        <div style="font-size:10px;color:rgba(240,180,41,.4);margin-bottom:12px">Tap any stock to view levels &amp; P&amp;L</div>
         <div class="signal-grid">
           <div class="signal-box">
             <div class="signal-box-title buy" id="buy-title">📈 BULLISH (0)</div>
@@ -685,76 +677,61 @@ function openModal(stock, side){
   var sym=document.getElementById('m-sym');
   sym.textContent=stock.symbol;
   sym.className='m-sym '+(side==='buy'?'buy-c':'sell-c');
-  document.getElementById('m-price').textContent='₹'+stock.price+' (Entry)';
+  document.getElementById('m-price').textContent='₹'+stock.price+'  MM';
   var badge=document.getElementById('m-badge');
-  badge.textContent=side==='buy'?'📈 BULLISH':'📉 BEARISH';
+  badge.textContent=side==='buy'?'📈 BUY':'📉 SELL';
   badge.className='m-badge '+(side==='buy'?'buy-b':'sell-b');
 
   // ── SL price ──────────────────────────────────────
-  // Try from results.json fields first, else 2% fallback
   _mSl = 0;
   if(side==='buy'){
-    // resistance array → SL = entry - 2%
     _mSl = r2(stock.price * 0.98);
   } else {
     _mSl = r2(stock.price * 1.02);
   }
-  // If scanner gave explicit sl_price use it
   if(stock.sl_price && stock.sl_price > 0) _mSl = stock.sl_price;
 
-  var slPct = r2(Math.abs(_mEntry - _mSl) / _mEntry * 100);
+  // BUY → SUPPORT  |  SELL → RESISTANCE
+  document.getElementById('m-sl-label').textContent = side==='buy' ? 'SUPPORT' : 'RESISTANCE';
   document.getElementById('m-sl-price').textContent = '₹'+_mSl;
-  document.getElementById('m-sl-pct').textContent   = slPct+'% from entry';
 
-  // ── Targets T1–T5 ─────────────────────────────────
+  // ── Targets R1–R5 (BUY) / S1–S5 (SELL) ──────────
   _mTgts = [];
   var levels = side==='buy' ? (stock.resistance||[]) : (stock.support||[]);
 
   if(levels && levels.length>0){
-    // Use levels from results.json (max 5)
     for(var i=0;i<Math.min(5,levels.length);i++){
-      _mTgts.push({label:'T'+(i+1)+' ('+levels[i].label+')', price: levels[i].price});
+      var lbl = side==='buy' ? 'R'+(i+1) : 'S'+(i+1);
+      _mTgts.push({label: lbl, price: levels[i].price});
     }
   } else {
-    // Fallback: calculate T1–T5 as 1%–5% from entry
     for(var j=1;j<=5;j++){
-      var tp = side==='buy' ? r2(stock.price*(1+j/100)) : r2(stock.price*(1-j/100));
-      _mTgts.push({label:'T'+j+' ('+(side==='buy'?'+':'-')+j+'%)', price: tp});
+      var tp  = side==='buy' ? r2(stock.price*(1+j/100)) : r2(stock.price*(1-j/100));
+      var lbl2 = side==='buy' ? 'R'+j : 'S'+j;
+      _mTgts.push({label: lbl2, price: tp});
     }
   }
 
-  // Reset qty to 1 on every open
   document.getElementById('m-qty').value = 1;
-
-  // Render targets
   renderTargets();
-
-  // Render SL P&L
   calcPnl();
-
-  // Title
-  document.getElementById('m-tgt-title').textContent =
-    side==='buy' ? '🎯 Targets — Resistance Levels' : '🎯 Targets — Support Levels';
-
   document.getElementById('modal-overlay').classList.add('show');
 }
 
 // ─── Render target rows (static HTML, qty update via calcPnl) ───────────────
 function renderTargets(){
   var html = '';
+  var tgtColor = _mSide==='buy' ? 'var(--green)' : 'var(--red)';
+  var borderColor = _mSide==='buy' ? 'var(--green)' : 'var(--red)';
   for(var i=0;i<_mTgts.length;i++){
-    var t   = _mTgts[i];
-    var pct = r2(Math.abs(t.price - _mEntry) / _mEntry * 100);
-    var dir = _mSide==='buy' ? '+' : '-';
-    html += '<div class="m-tgt-row" id="tgt-row-'+i+'">'
-          + '<div><div class="m-tgt-label">'+t.label+'</div>'
-          + '<span class="m-tgt-price">₹'+t.price+'</span>'
-          + '<span class="m-tgt-pct">'+dir+pct+'%</span></div>'
-          + '<div style="text-align:right">'
-          + '<div style="font-size:10px;color:var(--muted);margin-bottom:3px">Profit</div>'
-          + '<div class="m-tgt-pnl" id="tgt-pnl-'+i+'">₹—</div>'
-          + '<div style="font-size:10px;color:var(--muted)" id="tgt-qty-note-'+i+'">@ 1 qty</div>'
-          + '</div></div>';
+    var t = _mTgts[i];
+    html += '<div class="m-tgt-row" id="tgt-row-'+i+'" style="border-left-color:'+borderColor+'">'
+          + '<div style="display:flex;align-items:center;gap:10px">'
+          + '<div class="m-tgt-label" style="color:'+tgtColor+';min-width:32px">'+t.label+'</div>'
+          + '<div class="m-tgt-price">₹'+t.price+'</div>'
+          + '</div>'
+          + '<div class="m-tgt-pnl" id="tgt-pnl-'+i+'" style="color:'+tgtColor+'">₹—</div>'
+          + '</div>';
   }
   document.getElementById('m-targets').innerHTML = html;
 }
@@ -766,16 +743,13 @@ function calcPnl(){
 
   // SL loss
   var slLoss = r2(Math.abs(_mEntry - _mSl) * qty);
-  document.getElementById('m-sl-pnl').textContent  = '- '+fmtRs(slLoss);
-  document.getElementById('m-sl-qty-note').textContent = '@ '+qty+' qty';
+  document.getElementById('m-sl-pnl').textContent = '- '+fmtRs(slLoss);
 
   // Targets profit
   for(var i=0;i<_mTgts.length;i++){
     var profit = r2(Math.abs(_mTgts[i].price - _mEntry) * qty);
     var el = document.getElementById('tgt-pnl-'+i);
-    var nt = document.getElementById('tgt-qty-note-'+i);
     if(el){ el.textContent = '+ '+fmtRs(profit); }
-    if(nt){ nt.textContent = '@ '+qty+' qty'; }
   }
 }
 
