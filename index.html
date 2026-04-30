@@ -679,7 +679,7 @@ function openModal(stock, side){
   sym.className='m-sym '+(side==='buy'?'buy-c':'sell-c');
   document.getElementById('m-price').textContent='₹'+stock.price+'  MM';
   var badge=document.getElementById('m-badge');
-  badge.textContent=side==='buy'?'📈 BUY':'📉 SELL';
+  badge.textContent=side==='buy'?'BULLISH':'📉 BEARISH ';
   badge.className='m-badge '+(side==='buy'?'buy-b':'sell-b');
 
   // ── SL price ──────────────────────────────────────
