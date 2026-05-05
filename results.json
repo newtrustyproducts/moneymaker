@@ -1,37 +1,138 @@
 {
-  "scan_time": "06:43",
+  "scan_time": "06:50",
   "phase": 1,
   "date": "05 May 2026",
   "min_price": 250.0,
   "max_price": 2500.0,
   "buy": [
     {
-      "symbol": "ENGINERSIN",
-      "price": 261.7,
+      "symbol": "HDFCBANK",
+      "price": 779.4,
+      "avg_vol": 39296060,
+      "avg_vol_fmt": "39.3M",
       "resistance": [
         {
           "pct": 1,
-          "price": 264.32,
+          "price": 787.19,
           "label": "R1 (+1%)"
         },
         {
           "pct": 2,
-          "price": 266.93,
+          "price": 794.99,
           "label": "R2 (+2%)"
         },
         {
           "pct": 3,
-          "price": 269.55,
+          "price": 802.78,
           "label": "R3 (+3%)"
         },
         {
           "pct": 4,
-          "price": 272.17,
+          "price": 810.58,
           "label": "R4 (+4%)"
         },
         {
           "pct": 5,
-          "price": 274.79,
+          "price": 818.37,
+          "label": "R5 (+5%)"
+        }
+      ]
+    },
+    {
+      "symbol": "BHEL",
+      "price": 377.05,
+      "avg_vol": 24612503,
+      "avg_vol_fmt": "24.6M",
+      "resistance": [
+        {
+          "pct": 1,
+          "price": 380.82,
+          "label": "R1 (+1%)"
+        },
+        {
+          "pct": 2,
+          "price": 384.59,
+          "label": "R2 (+2%)"
+        },
+        {
+          "pct": 3,
+          "price": 388.36,
+          "label": "R3 (+3%)"
+        },
+        {
+          "pct": 4,
+          "price": 392.13,
+          "label": "R4 (+4%)"
+        },
+        {
+          "pct": 5,
+          "price": 395.9,
+          "label": "R5 (+5%)"
+        }
+      ]
+    },
+    {
+      "symbol": "RELIANCE",
+      "price": 1463.1,
+      "avg_vol": 21875953,
+      "avg_vol_fmt": "21.9M",
+      "resistance": [
+        {
+          "pct": 1,
+          "price": 1477.73,
+          "label": "R1 (+1%)"
+        },
+        {
+          "pct": 2,
+          "price": 1492.36,
+          "label": "R2 (+2%)"
+        },
+        {
+          "pct": 3,
+          "price": 1506.99,
+          "label": "R3 (+3%)"
+        },
+        {
+          "pct": 4,
+          "price": 1521.62,
+          "label": "R4 (+4%)"
+        },
+        {
+          "pct": 5,
+          "price": 1536.25,
+          "label": "R5 (+5%)"
+        }
+      ]
+    },
+    {
+      "symbol": "SCI",
+      "price": 318.55,
+      "avg_vol": 15312633,
+      "avg_vol_fmt": "15.3M",
+      "resistance": [
+        {
+          "pct": 1,
+          "price": 321.74,
+          "label": "R1 (+1%)"
+        },
+        {
+          "pct": 2,
+          "price": 324.92,
+          "label": "R2 (+2%)"
+        },
+        {
+          "pct": 3,
+          "price": 328.11,
+          "label": "R3 (+3%)"
+        },
+        {
+          "pct": 4,
+          "price": 331.29,
+          "label": "R4 (+4%)"
+        },
+        {
+          "pct": 5,
+          "price": 334.48,
           "label": "R5 (+5%)"
         }
       ]
@@ -39,6 +140,8 @@
     {
       "symbol": "BANKBARODA",
       "price": 265.1,
+      "avg_vol": 9926601,
+      "avg_vol_fmt": "9.9M",
       "resistance": [
         {
           "pct": 1,
@@ -70,6 +173,8 @@
     {
       "symbol": "SWIGGY",
       "price": 278.8,
+      "avg_vol": 9662388,
+      "avg_vol_fmt": "9.7M",
       "resistance": [
         {
           "pct": 1,
@@ -99,8 +204,208 @@
       ]
     },
     {
+      "symbol": "BAJFINANCE",
+      "price": 950.2,
+      "avg_vol": 8920544,
+      "avg_vol_fmt": "8.9M",
+      "resistance": [
+        {
+          "pct": 1,
+          "price": 959.7,
+          "label": "R1 (+1%)"
+        },
+        {
+          "pct": 2,
+          "price": 969.2,
+          "label": "R2 (+2%)"
+        },
+        {
+          "pct": 3,
+          "price": 978.71,
+          "label": "R3 (+3%)"
+        },
+        {
+          "pct": 4,
+          "price": 988.21,
+          "label": "R4 (+4%)"
+        },
+        {
+          "pct": 5,
+          "price": 997.71,
+          "label": "R5 (+5%)"
+        }
+      ]
+    },
+    {
+      "symbol": "GALLANTT",
+      "price": 872.5,
+      "avg_vol": 8855765,
+      "avg_vol_fmt": "8.9M",
+      "resistance": [
+        {
+          "pct": 1,
+          "price": 881.23,
+          "label": "R1 (+1%)"
+        },
+        {
+          "pct": 2,
+          "price": 889.95,
+          "label": "R2 (+2%)"
+        },
+        {
+          "pct": 3,
+          "price": 898.68,
+          "label": "R3 (+3%)"
+        },
+        {
+          "pct": 4,
+          "price": 907.4,
+          "label": "R4 (+4%)"
+        },
+        {
+          "pct": 5,
+          "price": 916.12,
+          "label": "R5 (+5%)"
+        }
+      ]
+    },
+    {
+      "symbol": "SHRIRAMFIN",
+      "price": 960.45,
+      "avg_vol": 6896621,
+      "avg_vol_fmt": "6.9M",
+      "resistance": [
+        {
+          "pct": 1,
+          "price": 970.05,
+          "label": "R1 (+1%)"
+        },
+        {
+          "pct": 2,
+          "price": 979.66,
+          "label": "R2 (+2%)"
+        },
+        {
+          "pct": 3,
+          "price": 989.26,
+          "label": "R3 (+3%)"
+        },
+        {
+          "pct": 4,
+          "price": 998.87,
+          "label": "R4 (+4%)"
+        },
+        {
+          "pct": 5,
+          "price": 1008.47,
+          "label": "R5 (+5%)"
+        }
+      ]
+    },
+    {
+      "symbol": "NLCINDIA",
+      "price": 320.4,
+      "avg_vol": 6449537,
+      "avg_vol_fmt": "6.4M",
+      "resistance": [
+        {
+          "pct": 1,
+          "price": 323.6,
+          "label": "R1 (+1%)"
+        },
+        {
+          "pct": 2,
+          "price": 326.81,
+          "label": "R2 (+2%)"
+        },
+        {
+          "pct": 3,
+          "price": 330.01,
+          "label": "R3 (+3%)"
+        },
+        {
+          "pct": 4,
+          "price": 333.22,
+          "label": "R4 (+4%)"
+        },
+        {
+          "pct": 5,
+          "price": 336.42,
+          "label": "R5 (+5%)"
+        }
+      ]
+    },
+    {
+      "symbol": "HINDZINC",
+      "price": 605.55,
+      "avg_vol": 6335540,
+      "avg_vol_fmt": "6.3M",
+      "resistance": [
+        {
+          "pct": 1,
+          "price": 611.61,
+          "label": "R1 (+1%)"
+        },
+        {
+          "pct": 2,
+          "price": 617.66,
+          "label": "R2 (+2%)"
+        },
+        {
+          "pct": 3,
+          "price": 623.72,
+          "label": "R3 (+3%)"
+        },
+        {
+          "pct": 4,
+          "price": 629.77,
+          "label": "R4 (+4%)"
+        },
+        {
+          "pct": 5,
+          "price": 635.83,
+          "label": "R5 (+5%)"
+        }
+      ]
+    },
+    {
+      "symbol": "ENGINERSIN",
+      "price": 261.7,
+      "avg_vol": 6316957,
+      "avg_vol_fmt": "6.3M",
+      "resistance": [
+        {
+          "pct": 1,
+          "price": 264.32,
+          "label": "R1 (+1%)"
+        },
+        {
+          "pct": 2,
+          "price": 266.93,
+          "label": "R2 (+2%)"
+        },
+        {
+          "pct": 3,
+          "price": 269.55,
+          "label": "R3 (+3%)"
+        },
+        {
+          "pct": 4,
+          "price": 272.17,
+          "label": "R4 (+4%)"
+        },
+        {
+          "pct": 5,
+          "price": 274.79,
+          "label": "R5 (+5%)"
+        }
+      ]
+    },
+    {
       "symbol": "LTF",
       "price": 285.65,
+      "avg_vol": 5477540,
+      "avg_vol_fmt": "5.5M",
       "resistance": [
         {
           "pct": 1,
@@ -130,8 +435,109 @@
       ]
     },
     {
+      "symbol": "ATGL",
+      "price": 643.15,
+      "avg_vol": 4623481,
+      "avg_vol_fmt": "4.6M",
+      "resistance": [
+        {
+          "pct": 1,
+          "price": 649.58,
+          "label": "R1 (+1%)"
+        },
+        {
+          "pct": 2,
+          "price": 656.01,
+          "label": "R2 (+2%)"
+        },
+        {
+          "pct": 3,
+          "price": 662.44,
+          "label": "R3 (+3%)"
+        },
+        {
+          "pct": 4,
+          "price": 668.88,
+          "label": "R4 (+4%)"
+        },
+        {
+          "pct": 5,
+          "price": 675.31,
+          "label": "R5 (+5%)"
+        }
+      ]
+    },
+    {
+      "symbol": "MANAPPURAM",
+      "price": 305.15,
+      "avg_vol": 4029148,
+      "avg_vol_fmt": "4.0M",
+      "resistance": [
+        {
+          "pct": 1,
+          "price": 308.2,
+          "label": "R1 (+1%)"
+        },
+        {
+          "pct": 2,
+          "price": 311.25,
+          "label": "R2 (+2%)"
+        },
+        {
+          "pct": 3,
+          "price": 314.3,
+          "label": "R3 (+3%)"
+        },
+        {
+          "pct": 4,
+          "price": 317.36,
+          "label": "R4 (+4%)"
+        },
+        {
+          "pct": 5,
+          "price": 320.41,
+          "label": "R5 (+5%)"
+        }
+      ]
+    },
+    {
+      "symbol": "ADANIPORTS",
+      "price": 1742.6,
+      "avg_vol": 3835586,
+      "avg_vol_fmt": "3.8M",
+      "resistance": [
+        {
+          "pct": 1,
+          "price": 1760.03,
+          "label": "R1 (+1%)"
+        },
+        {
+          "pct": 2,
+          "price": 1777.45,
+          "label": "R2 (+2%)"
+        },
+        {
+          "pct": 3,
+          "price": 1794.88,
+          "label": "R3 (+3%)"
+        },
+        {
+          "pct": 4,
+          "price": 1812.3,
+          "label": "R4 (+4%)"
+        },
+        {
+          "pct": 5,
+          "price": 1829.73,
+          "label": "R5 (+5%)"
+        }
+      ]
+    },
+    {
       "symbol": "JWL",
       "price": 287.4,
+      "avg_vol": 3441154,
+      "avg_vol_fmt": "3.4M",
       "resistance": [
         {
           "pct": 1,
@@ -163,6 +569,8 @@
     {
       "symbol": "KARURVYSYA",
       "price": 297.4,
+      "avg_vol": 3426897,
+      "avg_vol_fmt": "3.4M",
       "resistance": [
         {
           "pct": 1,
@@ -192,218 +600,34 @@
       ]
     },
     {
-      "symbol": "MANAPPURAM",
-      "price": 305.15,
+      "symbol": "LODHA",
+      "price": 923.6,
+      "avg_vol": 3394167,
+      "avg_vol_fmt": "3.4M",
       "resistance": [
         {
           "pct": 1,
-          "price": 308.2,
+          "price": 932.84,
           "label": "R1 (+1%)"
         },
         {
           "pct": 2,
-          "price": 311.25,
+          "price": 942.07,
           "label": "R2 (+2%)"
         },
         {
           "pct": 3,
-          "price": 314.3,
+          "price": 951.31,
           "label": "R3 (+3%)"
         },
         {
           "pct": 4,
-          "price": 317.36,
+          "price": 960.54,
           "label": "R4 (+4%)"
         },
         {
           "pct": 5,
-          "price": 320.41,
-          "label": "R5 (+5%)"
-        }
-      ]
-    },
-    {
-      "symbol": "PCBL",
-      "price": 309.5,
-      "resistance": [
-        {
-          "pct": 1,
-          "price": 312.6,
-          "label": "R1 (+1%)"
-        },
-        {
-          "pct": 2,
-          "price": 315.69,
-          "label": "R2 (+2%)"
-        },
-        {
-          "pct": 3,
-          "price": 318.79,
-          "label": "R3 (+3%)"
-        },
-        {
-          "pct": 4,
-          "price": 321.88,
-          "label": "R4 (+4%)"
-        },
-        {
-          "pct": 5,
-          "price": 324.98,
-          "label": "R5 (+5%)"
-        }
-      ]
-    },
-    {
-      "symbol": "SCI",
-      "price": 318.55,
-      "resistance": [
-        {
-          "pct": 1,
-          "price": 321.74,
-          "label": "R1 (+1%)"
-        },
-        {
-          "pct": 2,
-          "price": 324.92,
-          "label": "R2 (+2%)"
-        },
-        {
-          "pct": 3,
-          "price": 328.11,
-          "label": "R3 (+3%)"
-        },
-        {
-          "pct": 4,
-          "price": 331.29,
-          "label": "R4 (+4%)"
-        },
-        {
-          "pct": 5,
-          "price": 334.48,
-          "label": "R5 (+5%)"
-        }
-      ]
-    },
-    {
-      "symbol": "NLCINDIA",
-      "price": 320.4,
-      "resistance": [
-        {
-          "pct": 1,
-          "price": 323.6,
-          "label": "R1 (+1%)"
-        },
-        {
-          "pct": 2,
-          "price": 326.81,
-          "label": "R2 (+2%)"
-        },
-        {
-          "pct": 3,
-          "price": 330.01,
-          "label": "R3 (+3%)"
-        },
-        {
-          "pct": 4,
-          "price": 333.22,
-          "label": "R4 (+4%)"
-        },
-        {
-          "pct": 5,
-          "price": 336.42,
-          "label": "R5 (+5%)"
-        }
-      ]
-    },
-    {
-      "symbol": "SWANCORP",
-      "price": 344.2,
-      "resistance": [
-        {
-          "pct": 1,
-          "price": 347.64,
-          "label": "R1 (+1%)"
-        },
-        {
-          "pct": 2,
-          "price": 351.08,
-          "label": "R2 (+2%)"
-        },
-        {
-          "pct": 3,
-          "price": 354.53,
-          "label": "R3 (+3%)"
-        },
-        {
-          "pct": 4,
-          "price": 357.97,
-          "label": "R4 (+4%)"
-        },
-        {
-          "pct": 5,
-          "price": 361.41,
-          "label": "R5 (+5%)"
-        }
-      ]
-    },
-    {
-      "symbol": "BHEL",
-      "price": 377.05,
-      "resistance": [
-        {
-          "pct": 1,
-          "price": 380.82,
-          "label": "R1 (+1%)"
-        },
-        {
-          "pct": 2,
-          "price": 384.59,
-          "label": "R2 (+2%)"
-        },
-        {
-          "pct": 3,
-          "price": 388.36,
-          "label": "R3 (+3%)"
-        },
-        {
-          "pct": 4,
-          "price": 392.13,
-          "label": "R4 (+4%)"
-        },
-        {
-          "pct": 5,
-          "price": 395.9,
-          "label": "R5 (+5%)"
-        }
-      ]
-    },
-    {
-      "symbol": "GICRE",
-      "price": 409.35,
-      "resistance": [
-        {
-          "pct": 1,
-          "price": 413.44,
-          "label": "R1 (+1%)"
-        },
-        {
-          "pct": 2,
-          "price": 417.54,
-          "label": "R2 (+2%)"
-        },
-        {
-          "pct": 3,
-          "price": 421.63,
-          "label": "R3 (+3%)"
-        },
-        {
-          "pct": 4,
-          "price": 425.72,
-          "label": "R4 (+4%)"
-        },
-        {
-          "pct": 5,
-          "price": 429.82,
+          "price": 969.78,
           "label": "R5 (+5%)"
         }
       ]
@@ -411,6 +635,8 @@
     {
       "symbol": "TEJASNET",
       "price": 420.25,
+      "avg_vol": 2881352,
+      "avg_vol_fmt": "2.9M",
       "resistance": [
         {
           "pct": 1,
@@ -442,6 +668,8 @@
     {
       "symbol": "POONAWALLA",
       "price": 437.1,
+      "avg_vol": 2719096,
+      "avg_vol_fmt": "2.7M",
       "resistance": [
         {
           "pct": 1,
@@ -471,132 +699,10 @@
       ]
     },
     {
-      "symbol": "DABUR",
-      "price": 445.65,
-      "resistance": [
-        {
-          "pct": 1,
-          "price": 450.11,
-          "label": "R1 (+1%)"
-        },
-        {
-          "pct": 2,
-          "price": 454.56,
-          "label": "R2 (+2%)"
-        },
-        {
-          "pct": 3,
-          "price": 459.02,
-          "label": "R3 (+3%)"
-        },
-        {
-          "pct": 4,
-          "price": 463.48,
-          "label": "R4 (+4%)"
-        },
-        {
-          "pct": 5,
-          "price": 467.93,
-          "label": "R5 (+5%)"
-        }
-      ]
-    },
-    {
-      "symbol": "SUMICHEM",
-      "price": 449.0,
-      "resistance": [
-        {
-          "pct": 1,
-          "price": 453.49,
-          "label": "R1 (+1%)"
-        },
-        {
-          "pct": 2,
-          "price": 457.98,
-          "label": "R2 (+2%)"
-        },
-        {
-          "pct": 3,
-          "price": 462.47,
-          "label": "R3 (+3%)"
-        },
-        {
-          "pct": 4,
-          "price": 466.96,
-          "label": "R4 (+4%)"
-        },
-        {
-          "pct": 5,
-          "price": 471.45,
-          "label": "R5 (+5%)"
-        }
-      ]
-    },
-    {
-      "symbol": "BLUEJET",
-      "price": 475.85,
-      "resistance": [
-        {
-          "pct": 1,
-          "price": 480.61,
-          "label": "R1 (+1%)"
-        },
-        {
-          "pct": 2,
-          "price": 485.37,
-          "label": "R2 (+2%)"
-        },
-        {
-          "pct": 3,
-          "price": 490.13,
-          "label": "R3 (+3%)"
-        },
-        {
-          "pct": 4,
-          "price": 494.88,
-          "label": "R4 (+4%)"
-        },
-        {
-          "pct": 5,
-          "price": 499.64,
-          "label": "R5 (+5%)"
-        }
-      ]
-    },
-    {
-      "symbol": "AADHARHFC",
-      "price": 499.55,
-      "resistance": [
-        {
-          "pct": 1,
-          "price": 504.55,
-          "label": "R1 (+1%)"
-        },
-        {
-          "pct": 2,
-          "price": 509.54,
-          "label": "R2 (+2%)"
-        },
-        {
-          "pct": 3,
-          "price": 514.54,
-          "label": "R3 (+3%)"
-        },
-        {
-          "pct": 4,
-          "price": 519.53,
-          "label": "R4 (+4%)"
-        },
-        {
-          "pct": 5,
-          "price": 524.53,
-          "label": "R5 (+5%)"
-        }
-      ]
-    },
-    {
       "symbol": "ANANTRAJ",
       "price": 510.35,
+      "avg_vol": 2626220,
+      "avg_vol_fmt": "2.6M",
       "resistance": [
         {
           "pct": 1,
@@ -626,1217 +732,10 @@
       ]
     },
     {
-      "symbol": "AARTIIND",
-      "price": 513.1,
-      "resistance": [
-        {
-          "pct": 1,
-          "price": 518.23,
-          "label": "R1 (+1%)"
-        },
-        {
-          "pct": 2,
-          "price": 523.36,
-          "label": "R2 (+2%)"
-        },
-        {
-          "pct": 3,
-          "price": 528.49,
-          "label": "R3 (+3%)"
-        },
-        {
-          "pct": 4,
-          "price": 533.62,
-          "label": "R4 (+4%)"
-        },
-        {
-          "pct": 5,
-          "price": 538.75,
-          "label": "R5 (+5%)"
-        }
-      ]
-    },
-    {
-      "symbol": "BALRAMCHIN",
-      "price": 524.85,
-      "resistance": [
-        {
-          "pct": 1,
-          "price": 530.1,
-          "label": "R1 (+1%)"
-        },
-        {
-          "pct": 2,
-          "price": 535.35,
-          "label": "R2 (+2%)"
-        },
-        {
-          "pct": 3,
-          "price": 540.6,
-          "label": "R3 (+3%)"
-        },
-        {
-          "pct": 4,
-          "price": 545.84,
-          "label": "R4 (+4%)"
-        },
-        {
-          "pct": 5,
-          "price": 551.09,
-          "label": "R5 (+5%)"
-        }
-      ]
-    },
-    {
-      "symbol": "ELECON",
-      "price": 525.65,
-      "resistance": [
-        {
-          "pct": 1,
-          "price": 530.91,
-          "label": "R1 (+1%)"
-        },
-        {
-          "pct": 2,
-          "price": 536.16,
-          "label": "R2 (+2%)"
-        },
-        {
-          "pct": 3,
-          "price": 541.42,
-          "label": "R3 (+3%)"
-        },
-        {
-          "pct": 4,
-          "price": 546.68,
-          "label": "R4 (+4%)"
-        },
-        {
-          "pct": 5,
-          "price": 551.93,
-          "label": "R5 (+5%)"
-        }
-      ]
-    },
-    {
-      "symbol": "INDGN",
-      "price": 533.35,
-      "resistance": [
-        {
-          "pct": 1,
-          "price": 538.68,
-          "label": "R1 (+1%)"
-        },
-        {
-          "pct": 2,
-          "price": 544.02,
-          "label": "R2 (+2%)"
-        },
-        {
-          "pct": 3,
-          "price": 549.35,
-          "label": "R3 (+3%)"
-        },
-        {
-          "pct": 4,
-          "price": 554.68,
-          "label": "R4 (+4%)"
-        },
-        {
-          "pct": 5,
-          "price": 560.02,
-          "label": "R5 (+5%)"
-        }
-      ]
-    },
-    {
-      "symbol": "ICICIPRULI",
-      "price": 535.55,
-      "resistance": [
-        {
-          "pct": 1,
-          "price": 540.91,
-          "label": "R1 (+1%)"
-        },
-        {
-          "pct": 2,
-          "price": 546.26,
-          "label": "R2 (+2%)"
-        },
-        {
-          "pct": 3,
-          "price": 551.62,
-          "label": "R3 (+3%)"
-        },
-        {
-          "pct": 4,
-          "price": 556.97,
-          "label": "R4 (+4%)"
-        },
-        {
-          "pct": 5,
-          "price": 562.33,
-          "label": "R5 (+5%)"
-        }
-      ]
-    },
-    {
-      "symbol": "IRCTC",
-      "price": 555.25,
-      "resistance": [
-        {
-          "pct": 1,
-          "price": 560.8,
-          "label": "R1 (+1%)"
-        },
-        {
-          "pct": 2,
-          "price": 566.36,
-          "label": "R2 (+2%)"
-        },
-        {
-          "pct": 3,
-          "price": 571.91,
-          "label": "R3 (+3%)"
-        },
-        {
-          "pct": 4,
-          "price": 577.46,
-          "label": "R4 (+4%)"
-        },
-        {
-          "pct": 5,
-          "price": 583.01,
-          "label": "R5 (+5%)"
-        }
-      ]
-    },
-    {
-      "symbol": "LICHSGFIN",
-      "price": 557.0,
-      "resistance": [
-        {
-          "pct": 1,
-          "price": 562.57,
-          "label": "R1 (+1%)"
-        },
-        {
-          "pct": 2,
-          "price": 568.14,
-          "label": "R2 (+2%)"
-        },
-        {
-          "pct": 3,
-          "price": 573.71,
-          "label": "R3 (+3%)"
-        },
-        {
-          "pct": 4,
-          "price": 579.28,
-          "label": "R4 (+4%)"
-        },
-        {
-          "pct": 5,
-          "price": 584.85,
-          "label": "R5 (+5%)"
-        }
-      ]
-    },
-    {
-      "symbol": "KEC",
-      "price": 579.45,
-      "resistance": [
-        {
-          "pct": 1,
-          "price": 585.24,
-          "label": "R1 (+1%)"
-        },
-        {
-          "pct": 2,
-          "price": 591.04,
-          "label": "R2 (+2%)"
-        },
-        {
-          "pct": 3,
-          "price": 596.83,
-          "label": "R3 (+3%)"
-        },
-        {
-          "pct": 4,
-          "price": 602.63,
-          "label": "R4 (+4%)"
-        },
-        {
-          "pct": 5,
-          "price": 608.42,
-          "label": "R5 (+5%)"
-        }
-      ]
-    },
-    {
-      "symbol": "HINDZINC",
-      "price": 605.55,
-      "resistance": [
-        {
-          "pct": 1,
-          "price": 611.61,
-          "label": "R1 (+1%)"
-        },
-        {
-          "pct": 2,
-          "price": 617.66,
-          "label": "R2 (+2%)"
-        },
-        {
-          "pct": 3,
-          "price": 623.72,
-          "label": "R3 (+3%)"
-        },
-        {
-          "pct": 4,
-          "price": 629.77,
-          "label": "R4 (+4%)"
-        },
-        {
-          "pct": 5,
-          "price": 635.83,
-          "label": "R5 (+5%)"
-        }
-      ]
-    },
-    {
-      "symbol": "ATGL",
-      "price": 643.15,
-      "resistance": [
-        {
-          "pct": 1,
-          "price": 649.58,
-          "label": "R1 (+1%)"
-        },
-        {
-          "pct": 2,
-          "price": 656.01,
-          "label": "R2 (+2%)"
-        },
-        {
-          "pct": 3,
-          "price": 662.44,
-          "label": "R3 (+3%)"
-        },
-        {
-          "pct": 4,
-          "price": 668.88,
-          "label": "R4 (+4%)"
-        },
-        {
-          "pct": 5,
-          "price": 675.31,
-          "label": "R5 (+5%)"
-        }
-      ]
-    },
-    {
-      "symbol": "NAVA",
-      "price": 675.8,
-      "resistance": [
-        {
-          "pct": 1,
-          "price": 682.56,
-          "label": "R1 (+1%)"
-        },
-        {
-          "pct": 2,
-          "price": 689.32,
-          "label": "R2 (+2%)"
-        },
-        {
-          "pct": 3,
-          "price": 696.07,
-          "label": "R3 (+3%)"
-        },
-        {
-          "pct": 4,
-          "price": 702.83,
-          "label": "R4 (+4%)"
-        },
-        {
-          "pct": 5,
-          "price": 709.59,
-          "label": "R5 (+5%)"
-        }
-      ]
-    },
-    {
-      "symbol": "ASTERDM",
-      "price": 744.85,
-      "resistance": [
-        {
-          "pct": 1,
-          "price": 752.3,
-          "label": "R1 (+1%)"
-        },
-        {
-          "pct": 2,
-          "price": 759.75,
-          "label": "R2 (+2%)"
-        },
-        {
-          "pct": 3,
-          "price": 767.2,
-          "label": "R3 (+3%)"
-        },
-        {
-          "pct": 4,
-          "price": 774.64,
-          "label": "R4 (+4%)"
-        },
-        {
-          "pct": 5,
-          "price": 782.09,
-          "label": "R5 (+5%)"
-        }
-      ]
-    },
-    {
-      "symbol": "KPITTECH",
-      "price": 768.55,
-      "resistance": [
-        {
-          "pct": 1,
-          "price": 776.24,
-          "label": "R1 (+1%)"
-        },
-        {
-          "pct": 2,
-          "price": 783.92,
-          "label": "R2 (+2%)"
-        },
-        {
-          "pct": 3,
-          "price": 791.61,
-          "label": "R3 (+3%)"
-        },
-        {
-          "pct": 4,
-          "price": 799.29,
-          "label": "R4 (+4%)"
-        },
-        {
-          "pct": 5,
-          "price": 806.98,
-          "label": "R5 (+5%)"
-        }
-      ]
-    },
-    {
-      "symbol": "JSL",
-      "price": 778.4,
-      "resistance": [
-        {
-          "pct": 1,
-          "price": 786.18,
-          "label": "R1 (+1%)"
-        },
-        {
-          "pct": 2,
-          "price": 793.97,
-          "label": "R2 (+2%)"
-        },
-        {
-          "pct": 3,
-          "price": 801.75,
-          "label": "R3 (+3%)"
-        },
-        {
-          "pct": 4,
-          "price": 809.54,
-          "label": "R4 (+4%)"
-        },
-        {
-          "pct": 5,
-          "price": 817.32,
-          "label": "R5 (+5%)"
-        }
-      ]
-    },
-    {
-      "symbol": "HDFCBANK",
-      "price": 779.4,
-      "resistance": [
-        {
-          "pct": 1,
-          "price": 787.19,
-          "label": "R1 (+1%)"
-        },
-        {
-          "pct": 2,
-          "price": 794.99,
-          "label": "R2 (+2%)"
-        },
-        {
-          "pct": 3,
-          "price": 802.78,
-          "label": "R3 (+3%)"
-        },
-        {
-          "pct": 4,
-          "price": 810.58,
-          "label": "R4 (+4%)"
-        },
-        {
-          "pct": 5,
-          "price": 818.37,
-          "label": "R5 (+5%)"
-        }
-      ]
-    },
-    {
-      "symbol": "MOTILALOFS",
-      "price": 836.6,
-      "resistance": [
-        {
-          "pct": 1,
-          "price": 844.97,
-          "label": "R1 (+1%)"
-        },
-        {
-          "pct": 2,
-          "price": 853.33,
-          "label": "R2 (+2%)"
-        },
-        {
-          "pct": 3,
-          "price": 861.7,
-          "label": "R3 (+3%)"
-        },
-        {
-          "pct": 4,
-          "price": 870.06,
-          "label": "R4 (+4%)"
-        },
-        {
-          "pct": 5,
-          "price": 878.43,
-          "label": "R5 (+5%)"
-        }
-      ]
-    },
-    {
-      "symbol": "GALLANTT",
-      "price": 872.5,
-      "resistance": [
-        {
-          "pct": 1,
-          "price": 881.23,
-          "label": "R1 (+1%)"
-        },
-        {
-          "pct": 2,
-          "price": 889.95,
-          "label": "R2 (+2%)"
-        },
-        {
-          "pct": 3,
-          "price": 898.68,
-          "label": "R3 (+3%)"
-        },
-        {
-          "pct": 4,
-          "price": 907.4,
-          "label": "R4 (+4%)"
-        },
-        {
-          "pct": 5,
-          "price": 916.12,
-          "label": "R5 (+5%)"
-        }
-      ]
-    },
-    {
-      "symbol": "LODHA",
-      "price": 923.6,
-      "resistance": [
-        {
-          "pct": 1,
-          "price": 932.84,
-          "label": "R1 (+1%)"
-        },
-        {
-          "pct": 2,
-          "price": 942.07,
-          "label": "R2 (+2%)"
-        },
-        {
-          "pct": 3,
-          "price": 951.31,
-          "label": "R3 (+3%)"
-        },
-        {
-          "pct": 4,
-          "price": 960.54,
-          "label": "R4 (+4%)"
-        },
-        {
-          "pct": 5,
-          "price": 969.78,
-          "label": "R5 (+5%)"
-        }
-      ]
-    },
-    {
-      "symbol": "BAJFINANCE",
-      "price": 950.2,
-      "resistance": [
-        {
-          "pct": 1,
-          "price": 959.7,
-          "label": "R1 (+1%)"
-        },
-        {
-          "pct": 2,
-          "price": 969.2,
-          "label": "R2 (+2%)"
-        },
-        {
-          "pct": 3,
-          "price": 978.71,
-          "label": "R3 (+3%)"
-        },
-        {
-          "pct": 4,
-          "price": 988.21,
-          "label": "R4 (+4%)"
-        },
-        {
-          "pct": 5,
-          "price": 997.71,
-          "label": "R5 (+5%)"
-        }
-      ]
-    },
-    {
-      "symbol": "FORTIS",
-      "price": 952.9,
-      "resistance": [
-        {
-          "pct": 1,
-          "price": 962.43,
-          "label": "R1 (+1%)"
-        },
-        {
-          "pct": 2,
-          "price": 971.96,
-          "label": "R2 (+2%)"
-        },
-        {
-          "pct": 3,
-          "price": 981.49,
-          "label": "R3 (+3%)"
-        },
-        {
-          "pct": 4,
-          "price": 991.02,
-          "label": "R4 (+4%)"
-        },
-        {
-          "pct": 5,
-          "price": 1000.55,
-          "label": "R5 (+5%)"
-        }
-      ]
-    },
-    {
-      "symbol": "UTIAMC",
-      "price": 957.95,
-      "resistance": [
-        {
-          "pct": 1,
-          "price": 967.53,
-          "label": "R1 (+1%)"
-        },
-        {
-          "pct": 2,
-          "price": 977.11,
-          "label": "R2 (+2%)"
-        },
-        {
-          "pct": 3,
-          "price": 986.69,
-          "label": "R3 (+3%)"
-        },
-        {
-          "pct": 4,
-          "price": 996.27,
-          "label": "R4 (+4%)"
-        },
-        {
-          "pct": 5,
-          "price": 1005.85,
-          "label": "R5 (+5%)"
-        }
-      ]
-    },
-    {
-      "symbol": "SHRIRAMFIN",
-      "price": 960.45,
-      "resistance": [
-        {
-          "pct": 1,
-          "price": 970.05,
-          "label": "R1 (+1%)"
-        },
-        {
-          "pct": 2,
-          "price": 979.66,
-          "label": "R2 (+2%)"
-        },
-        {
-          "pct": 3,
-          "price": 989.26,
-          "label": "R3 (+3%)"
-        },
-        {
-          "pct": 4,
-          "price": 998.87,
-          "label": "R4 (+4%)"
-        },
-        {
-          "pct": 5,
-          "price": 1008.47,
-          "label": "R5 (+5%)"
-        }
-      ]
-    },
-    {
-      "symbol": "CARBORUNIV",
-      "price": 980.0,
-      "resistance": [
-        {
-          "pct": 1,
-          "price": 989.8,
-          "label": "R1 (+1%)"
-        },
-        {
-          "pct": 2,
-          "price": 999.6,
-          "label": "R2 (+2%)"
-        },
-        {
-          "pct": 3,
-          "price": 1009.4,
-          "label": "R3 (+3%)"
-        },
-        {
-          "pct": 4,
-          "price": 1019.2,
-          "label": "R4 (+4%)"
-        },
-        {
-          "pct": 5,
-          "price": 1029.0,
-          "label": "R5 (+5%)"
-        }
-      ]
-    },
-    {
-      "symbol": "PREMIERENE",
-      "price": 1035.1,
-      "resistance": [
-        {
-          "pct": 1,
-          "price": 1045.45,
-          "label": "R1 (+1%)"
-        },
-        {
-          "pct": 2,
-          "price": 1055.8,
-          "label": "R2 (+2%)"
-        },
-        {
-          "pct": 3,
-          "price": 1066.15,
-          "label": "R3 (+3%)"
-        },
-        {
-          "pct": 4,
-          "price": 1076.5,
-          "label": "R4 (+4%)"
-        },
-        {
-          "pct": 5,
-          "price": 1086.86,
-          "label": "R5 (+5%)"
-        }
-      ]
-    },
-    {
-      "symbol": "360ONE",
-      "price": 1066.5,
-      "resistance": [
-        {
-          "pct": 1,
-          "price": 1077.16,
-          "label": "R1 (+1%)"
-        },
-        {
-          "pct": 2,
-          "price": 1087.83,
-          "label": "R2 (+2%)"
-        },
-        {
-          "pct": 3,
-          "price": 1098.5,
-          "label": "R3 (+3%)"
-        },
-        {
-          "pct": 4,
-          "price": 1109.16,
-          "label": "R4 (+4%)"
-        },
-        {
-          "pct": 5,
-          "price": 1119.83,
-          "label": "R5 (+5%)"
-        }
-      ]
-    },
-    {
-      "symbol": "TATACONSUM",
-      "price": 1160.4,
-      "resistance": [
-        {
-          "pct": 1,
-          "price": 1172.0,
-          "label": "R1 (+1%)"
-        },
-        {
-          "pct": 2,
-          "price": 1183.61,
-          "label": "R2 (+2%)"
-        },
-        {
-          "pct": 3,
-          "price": 1195.21,
-          "label": "R3 (+3%)"
-        },
-        {
-          "pct": 4,
-          "price": 1206.82,
-          "label": "R4 (+4%)"
-        },
-        {
-          "pct": 5,
-          "price": 1218.42,
-          "label": "R5 (+5%)"
-        }
-      ]
-    },
-    {
-      "symbol": "LAURUSLABS",
-      "price": 1166.4,
-      "resistance": [
-        {
-          "pct": 1,
-          "price": 1178.06,
-          "label": "R1 (+1%)"
-        },
-        {
-          "pct": 2,
-          "price": 1189.73,
-          "label": "R2 (+2%)"
-        },
-        {
-          "pct": 3,
-          "price": 1201.39,
-          "label": "R3 (+3%)"
-        },
-        {
-          "pct": 4,
-          "price": 1213.06,
-          "label": "R4 (+4%)"
-        },
-        {
-          "pct": 5,
-          "price": 1224.72,
-          "label": "R5 (+5%)"
-        }
-      ]
-    },
-    {
-      "symbol": "CCL",
-      "price": 1170.3,
-      "resistance": [
-        {
-          "pct": 1,
-          "price": 1182.0,
-          "label": "R1 (+1%)"
-        },
-        {
-          "pct": 2,
-          "price": 1193.71,
-          "label": "R2 (+2%)"
-        },
-        {
-          "pct": 3,
-          "price": 1205.41,
-          "label": "R3 (+3%)"
-        },
-        {
-          "pct": 4,
-          "price": 1217.11,
-          "label": "R4 (+4%)"
-        },
-        {
-          "pct": 5,
-          "price": 1228.82,
-          "label": "R5 (+5%)"
-        }
-      ]
-    },
-    {
-      "symbol": "OLECTRA",
-      "price": 1249.8,
-      "resistance": [
-        {
-          "pct": 1,
-          "price": 1262.3,
-          "label": "R1 (+1%)"
-        },
-        {
-          "pct": 2,
-          "price": 1274.8,
-          "label": "R2 (+2%)"
-        },
-        {
-          "pct": 3,
-          "price": 1287.29,
-          "label": "R3 (+3%)"
-        },
-        {
-          "pct": 4,
-          "price": 1299.79,
-          "label": "R4 (+4%)"
-        },
-        {
-          "pct": 5,
-          "price": 1312.29,
-          "label": "R5 (+5%)"
-        }
-      ]
-    },
-    {
-      "symbol": "JINDALSTEL",
-      "price": 1261.4,
-      "resistance": [
-        {
-          "pct": 1,
-          "price": 1274.01,
-          "label": "R1 (+1%)"
-        },
-        {
-          "pct": 2,
-          "price": 1286.63,
-          "label": "R2 (+2%)"
-        },
-        {
-          "pct": 3,
-          "price": 1299.24,
-          "label": "R3 (+3%)"
-        },
-        {
-          "pct": 4,
-          "price": 1311.86,
-          "label": "R4 (+4%)"
-        },
-        {
-          "pct": 5,
-          "price": 1324.47,
-          "label": "R5 (+5%)"
-        }
-      ]
-    },
-    {
-      "symbol": "DEEPAKFERT",
-      "price": 1289.1,
-      "resistance": [
-        {
-          "pct": 1,
-          "price": 1301.99,
-          "label": "R1 (+1%)"
-        },
-        {
-          "pct": 2,
-          "price": 1314.88,
-          "label": "R2 (+2%)"
-        },
-        {
-          "pct": 3,
-          "price": 1327.77,
-          "label": "R3 (+3%)"
-        },
-        {
-          "pct": 4,
-          "price": 1340.66,
-          "label": "R4 (+4%)"
-        },
-        {
-          "pct": 5,
-          "price": 1353.56,
-          "label": "R5 (+5%)"
-        }
-      ]
-    },
-    {
-      "symbol": "TECHNOE",
-      "price": 1300.4,
-      "resistance": [
-        {
-          "pct": 1,
-          "price": 1313.4,
-          "label": "R1 (+1%)"
-        },
-        {
-          "pct": 2,
-          "price": 1326.41,
-          "label": "R2 (+2%)"
-        },
-        {
-          "pct": 3,
-          "price": 1339.41,
-          "label": "R3 (+3%)"
-        },
-        {
-          "pct": 4,
-          "price": 1352.42,
-          "label": "R4 (+4%)"
-        },
-        {
-          "pct": 5,
-          "price": 1365.42,
-          "label": "R5 (+5%)"
-        }
-      ]
-    },
-    {
-      "symbol": "RELIANCE",
-      "price": 1463.1,
-      "resistance": [
-        {
-          "pct": 1,
-          "price": 1477.73,
-          "label": "R1 (+1%)"
-        },
-        {
-          "pct": 2,
-          "price": 1492.36,
-          "label": "R2 (+2%)"
-        },
-        {
-          "pct": 3,
-          "price": 1506.99,
-          "label": "R3 (+3%)"
-        },
-        {
-          "pct": 4,
-          "price": 1521.62,
-          "label": "R4 (+4%)"
-        },
-        {
-          "pct": 5,
-          "price": 1536.25,
-          "label": "R5 (+5%)"
-        }
-      ]
-    },
-    {
-      "symbol": "MFSL",
-      "price": 1606.7,
-      "resistance": [
-        {
-          "pct": 1,
-          "price": 1622.77,
-          "label": "R1 (+1%)"
-        },
-        {
-          "pct": 2,
-          "price": 1638.83,
-          "label": "R2 (+2%)"
-        },
-        {
-          "pct": 3,
-          "price": 1654.9,
-          "label": "R3 (+3%)"
-        },
-        {
-          "pct": 4,
-          "price": 1670.97,
-          "label": "R4 (+4%)"
-        },
-        {
-          "pct": 5,
-          "price": 1687.04,
-          "label": "R5 (+5%)"
-        }
-      ]
-    },
-    {
-      "symbol": "ADANIPORTS",
-      "price": 1742.6,
-      "resistance": [
-        {
-          "pct": 1,
-          "price": 1760.03,
-          "label": "R1 (+1%)"
-        },
-        {
-          "pct": 2,
-          "price": 1777.45,
-          "label": "R2 (+2%)"
-        },
-        {
-          "pct": 3,
-          "price": 1794.88,
-          "label": "R3 (+3%)"
-        },
-        {
-          "pct": 4,
-          "price": 1812.3,
-          "label": "R4 (+4%)"
-        },
-        {
-          "pct": 5,
-          "price": 1829.73,
-          "label": "R5 (+5%)"
-        }
-      ]
-    },
-    {
-      "symbol": "HYUNDAI",
-      "price": 1844.5,
-      "resistance": [
-        {
-          "pct": 1,
-          "price": 1862.94,
-          "label": "R1 (+1%)"
-        },
-        {
-          "pct": 2,
-          "price": 1881.39,
-          "label": "R2 (+2%)"
-        },
-        {
-          "pct": 3,
-          "price": 1899.84,
-          "label": "R3 (+3%)"
-        },
-        {
-          "pct": 4,
-          "price": 1918.28,
-          "label": "R4 (+4%)"
-        },
-        {
-          "pct": 5,
-          "price": 1936.73,
-          "label": "R5 (+5%)"
-        }
-      ]
-    },
-    {
-      "symbol": "GODREJPROP",
-      "price": 1899.8,
-      "resistance": [
-        {
-          "pct": 1,
-          "price": 1918.8,
-          "label": "R1 (+1%)"
-        },
-        {
-          "pct": 2,
-          "price": 1937.8,
-          "label": "R2 (+2%)"
-        },
-        {
-          "pct": 3,
-          "price": 1956.79,
-          "label": "R3 (+3%)"
-        },
-        {
-          "pct": 4,
-          "price": 1975.79,
-          "label": "R4 (+4%)"
-        },
-        {
-          "pct": 5,
-          "price": 1994.79,
-          "label": "R5 (+5%)"
-        }
-      ]
-    },
-    {
-      "symbol": "JBCHEPHARM",
-      "price": 2082.1,
-      "resistance": [
-        {
-          "pct": 1,
-          "price": 2102.92,
-          "label": "R1 (+1%)"
-        },
-        {
-          "pct": 2,
-          "price": 2123.74,
-          "label": "R2 (+2%)"
-        },
-        {
-          "pct": 3,
-          "price": 2144.56,
-          "label": "R3 (+3%)"
-        },
-        {
-          "pct": 4,
-          "price": 2165.38,
-          "label": "R4 (+4%)"
-        },
-        {
-          "pct": 5,
-          "price": 2186.2,
-          "label": "R5 (+5%)"
-        }
-      ]
-    },
-    {
-      "symbol": "COLPAL",
-      "price": 2172.9,
-      "resistance": [
-        {
-          "pct": 1,
-          "price": 2194.63,
-          "label": "R1 (+1%)"
-        },
-        {
-          "pct": 2,
-          "price": 2216.36,
-          "label": "R2 (+2%)"
-        },
-        {
-          "pct": 3,
-          "price": 2238.09,
-          "label": "R3 (+3%)"
-        },
-        {
-          "pct": 4,
-          "price": 2259.82,
-          "label": "R4 (+4%)"
-        },
-        {
-          "pct": 5,
-          "price": 2281.55,
-          "label": "R5 (+5%)"
-        }
-      ]
-    },
-    {
       "symbol": "HINDUNILVR",
       "price": 2309.3,
+      "avg_vol": 2428278,
+      "avg_vol_fmt": "2.4M",
       "resistance": [
         {
           "pct": 1,
@@ -1866,32 +765,925 @@
       ]
     },
     {
-      "symbol": "CPPLUS",
-      "price": 2395.8,
+      "symbol": "SWANCORP",
+      "price": 344.2,
+      "avg_vol": 2085407,
+      "avg_vol_fmt": "2.1M",
       "resistance": [
         {
           "pct": 1,
-          "price": 2419.76,
+          "price": 347.64,
           "label": "R1 (+1%)"
         },
         {
           "pct": 2,
-          "price": 2443.72,
+          "price": 351.08,
           "label": "R2 (+2%)"
         },
         {
           "pct": 3,
-          "price": 2467.67,
+          "price": 354.53,
           "label": "R3 (+3%)"
         },
         {
           "pct": 4,
-          "price": 2491.63,
+          "price": 357.97,
           "label": "R4 (+4%)"
         },
         {
           "pct": 5,
-          "price": 2515.59,
+          "price": 361.41,
+          "label": "R5 (+5%)"
+        }
+      ]
+    },
+    {
+      "symbol": "PREMIERENE",
+      "price": 1035.1,
+      "avg_vol": 1981594,
+      "avg_vol_fmt": "2.0M",
+      "resistance": [
+        {
+          "pct": 1,
+          "price": 1045.45,
+          "label": "R1 (+1%)"
+        },
+        {
+          "pct": 2,
+          "price": 1055.8,
+          "label": "R2 (+2%)"
+        },
+        {
+          "pct": 3,
+          "price": 1066.15,
+          "label": "R3 (+3%)"
+        },
+        {
+          "pct": 4,
+          "price": 1076.5,
+          "label": "R4 (+4%)"
+        },
+        {
+          "pct": 5,
+          "price": 1086.86,
+          "label": "R5 (+5%)"
+        }
+      ]
+    },
+    {
+      "symbol": "DABUR",
+      "price": 445.65,
+      "avg_vol": 1959544,
+      "avg_vol_fmt": "2.0M",
+      "resistance": [
+        {
+          "pct": 1,
+          "price": 450.11,
+          "label": "R1 (+1%)"
+        },
+        {
+          "pct": 2,
+          "price": 454.56,
+          "label": "R2 (+2%)"
+        },
+        {
+          "pct": 3,
+          "price": 459.02,
+          "label": "R3 (+3%)"
+        },
+        {
+          "pct": 4,
+          "price": 463.48,
+          "label": "R4 (+4%)"
+        },
+        {
+          "pct": 5,
+          "price": 467.93,
+          "label": "R5 (+5%)"
+        }
+      ]
+    },
+    {
+      "symbol": "NAVA",
+      "price": 675.8,
+      "avg_vol": 1841126,
+      "avg_vol_fmt": "1.8M",
+      "resistance": [
+        {
+          "pct": 1,
+          "price": 682.56,
+          "label": "R1 (+1%)"
+        },
+        {
+          "pct": 2,
+          "price": 689.32,
+          "label": "R2 (+2%)"
+        },
+        {
+          "pct": 3,
+          "price": 696.07,
+          "label": "R3 (+3%)"
+        },
+        {
+          "pct": 4,
+          "price": 702.83,
+          "label": "R4 (+4%)"
+        },
+        {
+          "pct": 5,
+          "price": 709.59,
+          "label": "R5 (+5%)"
+        }
+      ]
+    },
+    {
+      "symbol": "ICICIPRULI",
+      "price": 535.55,
+      "avg_vol": 1715202,
+      "avg_vol_fmt": "1.7M",
+      "resistance": [
+        {
+          "pct": 1,
+          "price": 540.91,
+          "label": "R1 (+1%)"
+        },
+        {
+          "pct": 2,
+          "price": 546.26,
+          "label": "R2 (+2%)"
+        },
+        {
+          "pct": 3,
+          "price": 551.62,
+          "label": "R3 (+3%)"
+        },
+        {
+          "pct": 4,
+          "price": 556.97,
+          "label": "R4 (+4%)"
+        },
+        {
+          "pct": 5,
+          "price": 562.33,
+          "label": "R5 (+5%)"
+        }
+      ]
+    },
+    {
+      "symbol": "LAURUSLABS",
+      "price": 1166.4,
+      "avg_vol": 1692083,
+      "avg_vol_fmt": "1.7M",
+      "resistance": [
+        {
+          "pct": 1,
+          "price": 1178.06,
+          "label": "R1 (+1%)"
+        },
+        {
+          "pct": 2,
+          "price": 1189.73,
+          "label": "R2 (+2%)"
+        },
+        {
+          "pct": 3,
+          "price": 1201.39,
+          "label": "R3 (+3%)"
+        },
+        {
+          "pct": 4,
+          "price": 1213.06,
+          "label": "R4 (+4%)"
+        },
+        {
+          "pct": 5,
+          "price": 1224.72,
+          "label": "R5 (+5%)"
+        }
+      ]
+    },
+    {
+      "symbol": "PCBL",
+      "price": 309.5,
+      "avg_vol": 1670495,
+      "avg_vol_fmt": "1.7M",
+      "resistance": [
+        {
+          "pct": 1,
+          "price": 312.6,
+          "label": "R1 (+1%)"
+        },
+        {
+          "pct": 2,
+          "price": 315.69,
+          "label": "R2 (+2%)"
+        },
+        {
+          "pct": 3,
+          "price": 318.79,
+          "label": "R3 (+3%)"
+        },
+        {
+          "pct": 4,
+          "price": 321.88,
+          "label": "R4 (+4%)"
+        },
+        {
+          "pct": 5,
+          "price": 324.98,
+          "label": "R5 (+5%)"
+        }
+      ]
+    },
+    {
+      "symbol": "KPITTECH",
+      "price": 768.55,
+      "avg_vol": 1663284,
+      "avg_vol_fmt": "1.7M",
+      "resistance": [
+        {
+          "pct": 1,
+          "price": 776.24,
+          "label": "R1 (+1%)"
+        },
+        {
+          "pct": 2,
+          "price": 783.92,
+          "label": "R2 (+2%)"
+        },
+        {
+          "pct": 3,
+          "price": 791.61,
+          "label": "R3 (+3%)"
+        },
+        {
+          "pct": 4,
+          "price": 799.29,
+          "label": "R4 (+4%)"
+        },
+        {
+          "pct": 5,
+          "price": 806.98,
+          "label": "R5 (+5%)"
+        }
+      ]
+    },
+    {
+      "symbol": "JINDALSTEL",
+      "price": 1261.4,
+      "avg_vol": 1633448,
+      "avg_vol_fmt": "1.6M",
+      "resistance": [
+        {
+          "pct": 1,
+          "price": 1274.01,
+          "label": "R1 (+1%)"
+        },
+        {
+          "pct": 2,
+          "price": 1286.63,
+          "label": "R2 (+2%)"
+        },
+        {
+          "pct": 3,
+          "price": 1299.24,
+          "label": "R3 (+3%)"
+        },
+        {
+          "pct": 4,
+          "price": 1311.86,
+          "label": "R4 (+4%)"
+        },
+        {
+          "pct": 5,
+          "price": 1324.47,
+          "label": "R5 (+5%)"
+        }
+      ]
+    },
+    {
+      "symbol": "360ONE",
+      "price": 1066.5,
+      "avg_vol": 1594840,
+      "avg_vol_fmt": "1.6M",
+      "resistance": [
+        {
+          "pct": 1,
+          "price": 1077.16,
+          "label": "R1 (+1%)"
+        },
+        {
+          "pct": 2,
+          "price": 1087.83,
+          "label": "R2 (+2%)"
+        },
+        {
+          "pct": 3,
+          "price": 1098.5,
+          "label": "R3 (+3%)"
+        },
+        {
+          "pct": 4,
+          "price": 1109.16,
+          "label": "R4 (+4%)"
+        },
+        {
+          "pct": 5,
+          "price": 1119.83,
+          "label": "R5 (+5%)"
+        }
+      ]
+    },
+    {
+      "symbol": "KEC",
+      "price": 579.45,
+      "avg_vol": 1593462,
+      "avg_vol_fmt": "1.6M",
+      "resistance": [
+        {
+          "pct": 1,
+          "price": 585.24,
+          "label": "R1 (+1%)"
+        },
+        {
+          "pct": 2,
+          "price": 591.04,
+          "label": "R2 (+2%)"
+        },
+        {
+          "pct": 3,
+          "price": 596.83,
+          "label": "R3 (+3%)"
+        },
+        {
+          "pct": 4,
+          "price": 602.63,
+          "label": "R4 (+4%)"
+        },
+        {
+          "pct": 5,
+          "price": 608.42,
+          "label": "R5 (+5%)"
+        }
+      ]
+    },
+    {
+      "symbol": "TATACONSUM",
+      "price": 1160.4,
+      "avg_vol": 1554223,
+      "avg_vol_fmt": "1.6M",
+      "resistance": [
+        {
+          "pct": 1,
+          "price": 1172.0,
+          "label": "R1 (+1%)"
+        },
+        {
+          "pct": 2,
+          "price": 1183.61,
+          "label": "R2 (+2%)"
+        },
+        {
+          "pct": 3,
+          "price": 1195.21,
+          "label": "R3 (+3%)"
+        },
+        {
+          "pct": 4,
+          "price": 1206.82,
+          "label": "R4 (+4%)"
+        },
+        {
+          "pct": 5,
+          "price": 1218.42,
+          "label": "R5 (+5%)"
+        }
+      ]
+    },
+    {
+      "symbol": "MOTILALOFS",
+      "price": 836.6,
+      "avg_vol": 1451224,
+      "avg_vol_fmt": "1.5M",
+      "resistance": [
+        {
+          "pct": 1,
+          "price": 844.97,
+          "label": "R1 (+1%)"
+        },
+        {
+          "pct": 2,
+          "price": 853.33,
+          "label": "R2 (+2%)"
+        },
+        {
+          "pct": 3,
+          "price": 861.7,
+          "label": "R3 (+3%)"
+        },
+        {
+          "pct": 4,
+          "price": 870.06,
+          "label": "R4 (+4%)"
+        },
+        {
+          "pct": 5,
+          "price": 878.43,
+          "label": "R5 (+5%)"
+        }
+      ]
+    },
+    {
+      "symbol": "FORTIS",
+      "price": 952.9,
+      "avg_vol": 1407048,
+      "avg_vol_fmt": "1.4M",
+      "resistance": [
+        {
+          "pct": 1,
+          "price": 962.43,
+          "label": "R1 (+1%)"
+        },
+        {
+          "pct": 2,
+          "price": 971.96,
+          "label": "R2 (+2%)"
+        },
+        {
+          "pct": 3,
+          "price": 981.49,
+          "label": "R3 (+3%)"
+        },
+        {
+          "pct": 4,
+          "price": 991.02,
+          "label": "R4 (+4%)"
+        },
+        {
+          "pct": 5,
+          "price": 1000.55,
+          "label": "R5 (+5%)"
+        }
+      ]
+    },
+    {
+      "symbol": "LICHSGFIN",
+      "price": 557.0,
+      "avg_vol": 1400812,
+      "avg_vol_fmt": "1.4M",
+      "resistance": [
+        {
+          "pct": 1,
+          "price": 562.57,
+          "label": "R1 (+1%)"
+        },
+        {
+          "pct": 2,
+          "price": 568.14,
+          "label": "R2 (+2%)"
+        },
+        {
+          "pct": 3,
+          "price": 573.71,
+          "label": "R3 (+3%)"
+        },
+        {
+          "pct": 4,
+          "price": 579.28,
+          "label": "R4 (+4%)"
+        },
+        {
+          "pct": 5,
+          "price": 584.85,
+          "label": "R5 (+5%)"
+        }
+      ]
+    },
+    {
+      "symbol": "AARTIIND",
+      "price": 513.1,
+      "avg_vol": 1339976,
+      "avg_vol_fmt": "1.3M",
+      "resistance": [
+        {
+          "pct": 1,
+          "price": 518.23,
+          "label": "R1 (+1%)"
+        },
+        {
+          "pct": 2,
+          "price": 523.36,
+          "label": "R2 (+2%)"
+        },
+        {
+          "pct": 3,
+          "price": 528.49,
+          "label": "R3 (+3%)"
+        },
+        {
+          "pct": 4,
+          "price": 533.62,
+          "label": "R4 (+4%)"
+        },
+        {
+          "pct": 5,
+          "price": 538.75,
+          "label": "R5 (+5%)"
+        }
+      ]
+    },
+    {
+      "symbol": "IRCTC",
+      "price": 555.25,
+      "avg_vol": 1264237,
+      "avg_vol_fmt": "1.3M",
+      "resistance": [
+        {
+          "pct": 1,
+          "price": 560.8,
+          "label": "R1 (+1%)"
+        },
+        {
+          "pct": 2,
+          "price": 566.36,
+          "label": "R2 (+2%)"
+        },
+        {
+          "pct": 3,
+          "price": 571.91,
+          "label": "R3 (+3%)"
+        },
+        {
+          "pct": 4,
+          "price": 577.46,
+          "label": "R4 (+4%)"
+        },
+        {
+          "pct": 5,
+          "price": 583.01,
+          "label": "R5 (+5%)"
+        }
+      ]
+    },
+    {
+      "symbol": "ELECON",
+      "price": 525.65,
+      "avg_vol": 1260575,
+      "avg_vol_fmt": "1.3M",
+      "resistance": [
+        {
+          "pct": 1,
+          "price": 530.91,
+          "label": "R1 (+1%)"
+        },
+        {
+          "pct": 2,
+          "price": 536.16,
+          "label": "R2 (+2%)"
+        },
+        {
+          "pct": 3,
+          "price": 541.42,
+          "label": "R3 (+3%)"
+        },
+        {
+          "pct": 4,
+          "price": 546.68,
+          "label": "R4 (+4%)"
+        },
+        {
+          "pct": 5,
+          "price": 551.93,
+          "label": "R5 (+5%)"
+        }
+      ]
+    },
+    {
+      "symbol": "GODREJPROP",
+      "price": 1899.8,
+      "avg_vol": 1128962,
+      "avg_vol_fmt": "1.1M",
+      "resistance": [
+        {
+          "pct": 1,
+          "price": 1918.8,
+          "label": "R1 (+1%)"
+        },
+        {
+          "pct": 2,
+          "price": 1937.8,
+          "label": "R2 (+2%)"
+        },
+        {
+          "pct": 3,
+          "price": 1956.79,
+          "label": "R3 (+3%)"
+        },
+        {
+          "pct": 4,
+          "price": 1975.79,
+          "label": "R4 (+4%)"
+        },
+        {
+          "pct": 5,
+          "price": 1994.79,
+          "label": "R5 (+5%)"
+        }
+      ]
+    },
+    {
+      "symbol": "ASTERDM",
+      "price": 744.85,
+      "avg_vol": 1079723,
+      "avg_vol_fmt": "1.1M",
+      "resistance": [
+        {
+          "pct": 1,
+          "price": 752.3,
+          "label": "R1 (+1%)"
+        },
+        {
+          "pct": 2,
+          "price": 759.75,
+          "label": "R2 (+2%)"
+        },
+        {
+          "pct": 3,
+          "price": 767.2,
+          "label": "R3 (+3%)"
+        },
+        {
+          "pct": 4,
+          "price": 774.64,
+          "label": "R4 (+4%)"
+        },
+        {
+          "pct": 5,
+          "price": 782.09,
+          "label": "R5 (+5%)"
+        }
+      ]
+    },
+    {
+      "symbol": "HYUNDAI",
+      "price": 1844.5,
+      "avg_vol": 1031032,
+      "avg_vol_fmt": "1.0M",
+      "resistance": [
+        {
+          "pct": 1,
+          "price": 1862.94,
+          "label": "R1 (+1%)"
+        },
+        {
+          "pct": 2,
+          "price": 1881.39,
+          "label": "R2 (+2%)"
+        },
+        {
+          "pct": 3,
+          "price": 1899.84,
+          "label": "R3 (+3%)"
+        },
+        {
+          "pct": 4,
+          "price": 1918.28,
+          "label": "R4 (+4%)"
+        },
+        {
+          "pct": 5,
+          "price": 1936.73,
+          "label": "R5 (+5%)"
+        }
+      ]
+    },
+    {
+      "symbol": "OLECTRA",
+      "price": 1249.8,
+      "avg_vol": 1021181,
+      "avg_vol_fmt": "1.0M",
+      "resistance": [
+        {
+          "pct": 1,
+          "price": 1262.3,
+          "label": "R1 (+1%)"
+        },
+        {
+          "pct": 2,
+          "price": 1274.8,
+          "label": "R2 (+2%)"
+        },
+        {
+          "pct": 3,
+          "price": 1287.29,
+          "label": "R3 (+3%)"
+        },
+        {
+          "pct": 4,
+          "price": 1299.79,
+          "label": "R4 (+4%)"
+        },
+        {
+          "pct": 5,
+          "price": 1312.29,
+          "label": "R5 (+5%)"
+        }
+      ]
+    },
+    {
+      "symbol": "BALRAMCHIN",
+      "price": 524.85,
+      "avg_vol": 1007856,
+      "avg_vol_fmt": "1.0M",
+      "resistance": [
+        {
+          "pct": 1,
+          "price": 530.1,
+          "label": "R1 (+1%)"
+        },
+        {
+          "pct": 2,
+          "price": 535.35,
+          "label": "R2 (+2%)"
+        },
+        {
+          "pct": 3,
+          "price": 540.6,
+          "label": "R3 (+3%)"
+        },
+        {
+          "pct": 4,
+          "price": 545.84,
+          "label": "R4 (+4%)"
+        },
+        {
+          "pct": 5,
+          "price": 551.09,
+          "label": "R5 (+5%)"
+        }
+      ]
+    },
+    {
+      "symbol": "MFSL",
+      "price": 1606.7,
+      "avg_vol": 714068,
+      "avg_vol_fmt": "714K",
+      "resistance": [
+        {
+          "pct": 1,
+          "price": 1622.77,
+          "label": "R1 (+1%)"
+        },
+        {
+          "pct": 2,
+          "price": 1638.83,
+          "label": "R2 (+2%)"
+        },
+        {
+          "pct": 3,
+          "price": 1654.9,
+          "label": "R3 (+3%)"
+        },
+        {
+          "pct": 4,
+          "price": 1670.97,
+          "label": "R4 (+4%)"
+        },
+        {
+          "pct": 5,
+          "price": 1687.04,
+          "label": "R5 (+5%)"
+        }
+      ]
+    },
+    {
+      "symbol": "GICRE",
+      "price": 409.35,
+      "avg_vol": 711673,
+      "avg_vol_fmt": "712K",
+      "resistance": [
+        {
+          "pct": 1,
+          "price": 413.44,
+          "label": "R1 (+1%)"
+        },
+        {
+          "pct": 2,
+          "price": 417.54,
+          "label": "R2 (+2%)"
+        },
+        {
+          "pct": 3,
+          "price": 421.63,
+          "label": "R3 (+3%)"
+        },
+        {
+          "pct": 4,
+          "price": 425.72,
+          "label": "R4 (+4%)"
+        },
+        {
+          "pct": 5,
+          "price": 429.82,
+          "label": "R5 (+5%)"
+        }
+      ]
+    },
+    {
+      "symbol": "DEEPAKFERT",
+      "price": 1289.1,
+      "avg_vol": 656445,
+      "avg_vol_fmt": "656K",
+      "resistance": [
+        {
+          "pct": 1,
+          "price": 1301.99,
+          "label": "R1 (+1%)"
+        },
+        {
+          "pct": 2,
+          "price": 1314.88,
+          "label": "R2 (+2%)"
+        },
+        {
+          "pct": 3,
+          "price": 1327.77,
+          "label": "R3 (+3%)"
+        },
+        {
+          "pct": 4,
+          "price": 1340.66,
+          "label": "R4 (+4%)"
+        },
+        {
+          "pct": 5,
+          "price": 1353.56,
+          "label": "R5 (+5%)"
+        }
+      ]
+    },
+    {
+      "symbol": "JSL",
+      "price": 778.4,
+      "avg_vol": 615357,
+      "avg_vol_fmt": "615K",
+      "resistance": [
+        {
+          "pct": 1,
+          "price": 786.18,
+          "label": "R1 (+1%)"
+        },
+        {
+          "pct": 2,
+          "price": 793.97,
+          "label": "R2 (+2%)"
+        },
+        {
+          "pct": 3,
+          "price": 801.75,
+          "label": "R3 (+3%)"
+        },
+        {
+          "pct": 4,
+          "price": 809.54,
+          "label": "R4 (+4%)"
+        },
+        {
+          "pct": 5,
+          "price": 817.32,
+          "label": "R5 (+5%)"
+        }
+      ]
+    },
+    {
+      "symbol": "COLPAL",
+      "price": 2172.9,
+      "avg_vol": 512169,
+      "avg_vol_fmt": "512K",
+      "resistance": [
+        {
+          "pct": 1,
+          "price": 2194.63,
+          "label": "R1 (+1%)"
+        },
+        {
+          "pct": 2,
+          "price": 2216.36,
+          "label": "R2 (+2%)"
+        },
+        {
+          "pct": 3,
+          "price": 2238.09,
+          "label": "R3 (+3%)"
+        },
+        {
+          "pct": 4,
+          "price": 2259.82,
+          "label": "R4 (+4%)"
+        },
+        {
+          "pct": 5,
+          "price": 2281.55,
           "label": "R5 (+5%)"
         }
       ]
@@ -1899,745 +1691,67 @@
   ],
   "sell": [
     {
-      "symbol": "TCS",
-      "price": 2431.3,
+      "symbol": "KOTAKBANK",
+      "price": 371.65,
+      "avg_vol": 19898995,
+      "avg_vol_fmt": "19.9M",
       "support": [
         {
           "pct": 1,
-          "price": 2406.99,
+          "price": 367.93,
           "label": "S1 (-1%)"
         },
         {
           "pct": 2,
-          "price": 2382.67,
+          "price": 364.22,
           "label": "S2 (-2%)"
         },
         {
           "pct": 3,
-          "price": 2358.36,
+          "price": 360.5,
           "label": "S3 (-3%)"
         },
         {
           "pct": 4,
-          "price": 2334.05,
+          "price": 356.78,
           "label": "S4 (-4%)"
         },
         {
           "pct": 5,
-          "price": 2309.74,
+          "price": 353.07,
           "label": "S5 (-5%)"
         }
       ]
     },
     {
-      "symbol": "BHARATFORG",
-      "price": 1845.8,
+      "symbol": "ANGELONE",
+      "price": 307.7,
+      "avg_vol": 13985424,
+      "avg_vol_fmt": "14.0M",
       "support": [
         {
           "pct": 1,
-          "price": 1827.34,
+          "price": 304.62,
           "label": "S1 (-1%)"
         },
         {
           "pct": 2,
-          "price": 1808.88,
+          "price": 301.55,
           "label": "S2 (-2%)"
         },
         {
           "pct": 3,
-          "price": 1790.43,
+          "price": 298.47,
           "label": "S3 (-3%)"
         },
         {
           "pct": 4,
-          "price": 1771.97,
+          "price": 295.39,
           "label": "S4 (-4%)"
         },
         {
           "pct": 5,
-          "price": 1753.51,
-          "label": "S5 (-5%)"
-        }
-      ]
-    },
-    {
-      "symbol": "BHARTIARTL",
-      "price": 1827.1,
-      "support": [
-        {
-          "pct": 1,
-          "price": 1808.83,
-          "label": "S1 (-1%)"
-        },
-        {
-          "pct": 2,
-          "price": 1790.56,
-          "label": "S2 (-2%)"
-        },
-        {
-          "pct": 3,
-          "price": 1772.29,
-          "label": "S3 (-3%)"
-        },
-        {
-          "pct": 4,
-          "price": 1754.02,
-          "label": "S4 (-4%)"
-        },
-        {
-          "pct": 5,
-          "price": 1735.74,
-          "label": "S5 (-5%)"
-        }
-      ]
-    },
-    {
-      "symbol": "COCHINSHIP",
-      "price": 1719.3,
-      "support": [
-        {
-          "pct": 1,
-          "price": 1702.11,
-          "label": "S1 (-1%)"
-        },
-        {
-          "pct": 2,
-          "price": 1684.91,
-          "label": "S2 (-2%)"
-        },
-        {
-          "pct": 3,
-          "price": 1667.72,
-          "label": "S3 (-3%)"
-        },
-        {
-          "pct": 4,
-          "price": 1650.53,
-          "label": "S4 (-4%)"
-        },
-        {
-          "pct": 5,
-          "price": 1633.33,
-          "label": "S5 (-5%)"
-        }
-      ]
-    },
-    {
-      "symbol": "LGEINDIA",
-      "price": 1579.2,
-      "support": [
-        {
-          "pct": 1,
-          "price": 1563.41,
-          "label": "S1 (-1%)"
-        },
-        {
-          "pct": 2,
-          "price": 1547.62,
-          "label": "S2 (-2%)"
-        },
-        {
-          "pct": 3,
-          "price": 1531.82,
-          "label": "S3 (-3%)"
-        },
-        {
-          "pct": 4,
-          "price": 1516.03,
-          "label": "S4 (-4%)"
-        },
-        {
-          "pct": 5,
-          "price": 1500.24,
-          "label": "S5 (-5%)"
-        }
-      ]
-    },
-    {
-      "symbol": "BHARTIHEXA",
-      "price": 1497.9,
-      "support": [
-        {
-          "pct": 1,
-          "price": 1482.92,
-          "label": "S1 (-1%)"
-        },
-        {
-          "pct": 2,
-          "price": 1467.94,
-          "label": "S2 (-2%)"
-        },
-        {
-          "pct": 3,
-          "price": 1452.96,
-          "label": "S3 (-3%)"
-        },
-        {
-          "pct": 4,
-          "price": 1437.98,
-          "label": "S4 (-4%)"
-        },
-        {
-          "pct": 5,
-          "price": 1423.01,
-          "label": "S5 (-5%)"
-        }
-      ]
-    },
-    {
-      "symbol": "ACC",
-      "price": 1398.2,
-      "support": [
-        {
-          "pct": 1,
-          "price": 1384.22,
-          "label": "S1 (-1%)"
-        },
-        {
-          "pct": 2,
-          "price": 1370.24,
-          "label": "S2 (-2%)"
-        },
-        {
-          "pct": 3,
-          "price": 1356.25,
-          "label": "S3 (-3%)"
-        },
-        {
-          "pct": 4,
-          "price": 1342.27,
-          "label": "S4 (-4%)"
-        },
-        {
-          "pct": 5,
-          "price": 1328.29,
-          "label": "S5 (-5%)"
-        }
-      ]
-    },
-    {
-      "symbol": "PIDILITIND",
-      "price": 1364.6,
-      "support": [
-        {
-          "pct": 1,
-          "price": 1350.95,
-          "label": "S1 (-1%)"
-        },
-        {
-          "pct": 2,
-          "price": 1337.31,
-          "label": "S2 (-2%)"
-        },
-        {
-          "pct": 3,
-          "price": 1323.66,
-          "label": "S3 (-3%)"
-        },
-        {
-          "pct": 4,
-          "price": 1310.02,
-          "label": "S4 (-4%)"
-        },
-        {
-          "pct": 5,
-          "price": 1296.37,
-          "label": "S5 (-5%)"
-        }
-      ]
-    },
-    {
-      "symbol": "DRREDDY",
-      "price": 1287.2,
-      "support": [
-        {
-          "pct": 1,
-          "price": 1274.33,
-          "label": "S1 (-1%)"
-        },
-        {
-          "pct": 2,
-          "price": 1261.46,
-          "label": "S2 (-2%)"
-        },
-        {
-          "pct": 3,
-          "price": 1248.58,
-          "label": "S3 (-3%)"
-        },
-        {
-          "pct": 4,
-          "price": 1235.71,
-          "label": "S4 (-4%)"
-        },
-        {
-          "pct": 5,
-          "price": 1222.84,
-          "label": "S5 (-5%)"
-        }
-      ]
-    },
-    {
-      "symbol": "CDSL",
-      "price": 1238.3,
-      "support": [
-        {
-          "pct": 1,
-          "price": 1225.92,
-          "label": "S1 (-1%)"
-        },
-        {
-          "pct": 2,
-          "price": 1213.53,
-          "label": "S2 (-2%)"
-        },
-        {
-          "pct": 3,
-          "price": 1201.15,
-          "label": "S3 (-3%)"
-        },
-        {
-          "pct": 4,
-          "price": 1188.77,
-          "label": "S4 (-4%)"
-        },
-        {
-          "pct": 5,
-          "price": 1176.38,
-          "label": "S5 (-5%)"
-        }
-      ]
-    },
-    {
-      "symbol": "COFORGE",
-      "price": 1151.6,
-      "support": [
-        {
-          "pct": 1,
-          "price": 1140.08,
-          "label": "S1 (-1%)"
-        },
-        {
-          "pct": 2,
-          "price": 1128.57,
-          "label": "S2 (-2%)"
-        },
-        {
-          "pct": 3,
-          "price": 1117.05,
-          "label": "S3 (-3%)"
-        },
-        {
-          "pct": 4,
-          "price": 1105.54,
-          "label": "S4 (-4%)"
-        },
-        {
-          "pct": 5,
-          "price": 1094.02,
-          "label": "S5 (-5%)"
-        }
-      ]
-    },
-    {
-      "symbol": "KAJARIACER",
-      "price": 1104.5,
-      "support": [
-        {
-          "pct": 1,
-          "price": 1093.45,
-          "label": "S1 (-1%)"
-        },
-        {
-          "pct": 2,
-          "price": 1082.41,
-          "label": "S2 (-2%)"
-        },
-        {
-          "pct": 3,
-          "price": 1071.37,
-          "label": "S3 (-3%)"
-        },
-        {
-          "pct": 4,
-          "price": 1060.32,
-          "label": "S4 (-4%)"
-        },
-        {
-          "pct": 5,
-          "price": 1049.27,
-          "label": "S5 (-5%)"
-        }
-      ]
-    },
-    {
-      "symbol": "KFINTECH",
-      "price": 863.95,
-      "support": [
-        {
-          "pct": 1,
-          "price": 855.31,
-          "label": "S1 (-1%)"
-        },
-        {
-          "pct": 2,
-          "price": 846.67,
-          "label": "S2 (-2%)"
-        },
-        {
-          "pct": 3,
-          "price": 838.03,
-          "label": "S3 (-3%)"
-        },
-        {
-          "pct": 4,
-          "price": 829.39,
-          "label": "S4 (-4%)"
-        },
-        {
-          "pct": 5,
-          "price": 820.75,
-          "label": "S5 (-5%)"
-        }
-      ]
-    },
-    {
-      "symbol": "INDIANB",
-      "price": 830.35,
-      "support": [
-        {
-          "pct": 1,
-          "price": 822.05,
-          "label": "S1 (-1%)"
-        },
-        {
-          "pct": 2,
-          "price": 813.74,
-          "label": "S2 (-2%)"
-        },
-        {
-          "pct": 3,
-          "price": 805.44,
-          "label": "S3 (-3%)"
-        },
-        {
-          "pct": 4,
-          "price": 797.14,
-          "label": "S4 (-4%)"
-        },
-        {
-          "pct": 5,
-          "price": 788.83,
-          "label": "S5 (-5%)"
-        }
-      ]
-    },
-    {
-      "symbol": "CGPOWER",
-      "price": 802.3,
-      "support": [
-        {
-          "pct": 1,
-          "price": 794.28,
-          "label": "S1 (-1%)"
-        },
-        {
-          "pct": 2,
-          "price": 786.25,
-          "label": "S2 (-2%)"
-        },
-        {
-          "pct": 3,
-          "price": 778.23,
-          "label": "S3 (-3%)"
-        },
-        {
-          "pct": 4,
-          "price": 770.21,
-          "label": "S4 (-4%)"
-        },
-        {
-          "pct": 5,
-          "price": 762.18,
-          "label": "S5 (-5%)"
-        }
-      ]
-    },
-    {
-      "symbol": "CAMS",
-      "price": 730.85,
-      "support": [
-        {
-          "pct": 1,
-          "price": 723.54,
-          "label": "S1 (-1%)"
-        },
-        {
-          "pct": 2,
-          "price": 716.23,
-          "label": "S2 (-2%)"
-        },
-        {
-          "pct": 3,
-          "price": 708.92,
-          "label": "S3 (-3%)"
-        },
-        {
-          "pct": 4,
-          "price": 701.62,
-          "label": "S4 (-4%)"
-        },
-        {
-          "pct": 5,
-          "price": 694.31,
-          "label": "S5 (-5%)"
-        }
-      ]
-    },
-    {
-      "symbol": "GMDCLTD",
-      "price": 727.6,
-      "support": [
-        {
-          "pct": 1,
-          "price": 720.32,
-          "label": "S1 (-1%)"
-        },
-        {
-          "pct": 2,
-          "price": 713.05,
-          "label": "S2 (-2%)"
-        },
-        {
-          "pct": 3,
-          "price": 705.77,
-          "label": "S3 (-3%)"
-        },
-        {
-          "pct": 4,
-          "price": 698.5,
-          "label": "S4 (-4%)"
-        },
-        {
-          "pct": 5,
-          "price": 691.22,
-          "label": "S5 (-5%)"
-        }
-      ]
-    },
-    {
-      "symbol": "SONACOMS",
-      "price": 575.45,
-      "support": [
-        {
-          "pct": 1,
-          "price": 569.7,
-          "label": "S1 (-1%)"
-        },
-        {
-          "pct": 2,
-          "price": 563.94,
-          "label": "S2 (-2%)"
-        },
-        {
-          "pct": 3,
-          "price": 558.19,
-          "label": "S3 (-3%)"
-        },
-        {
-          "pct": 4,
-          "price": 552.43,
-          "label": "S4 (-4%)"
-        },
-        {
-          "pct": 5,
-          "price": 546.68,
-          "label": "S5 (-5%)"
-        }
-      ]
-    },
-    {
-      "symbol": "TRITURBINE",
-      "price": 570.0,
-      "support": [
-        {
-          "pct": 1,
-          "price": 564.3,
-          "label": "S1 (-1%)"
-        },
-        {
-          "pct": 2,
-          "price": 558.6,
-          "label": "S2 (-2%)"
-        },
-        {
-          "pct": 3,
-          "price": 552.9,
-          "label": "S3 (-3%)"
-        },
-        {
-          "pct": 4,
-          "price": 547.2,
-          "label": "S4 (-4%)"
-        },
-        {
-          "pct": 5,
-          "price": 541.5,
-          "label": "S5 (-5%)"
-        }
-      ]
-    },
-    {
-      "symbol": "ZENSARTECH",
-      "price": 509.95,
-      "support": [
-        {
-          "pct": 1,
-          "price": 504.85,
-          "label": "S1 (-1%)"
-        },
-        {
-          "pct": 2,
-          "price": 499.75,
-          "label": "S2 (-2%)"
-        },
-        {
-          "pct": 3,
-          "price": 494.65,
-          "label": "S3 (-3%)"
-        },
-        {
-          "pct": 4,
-          "price": 489.55,
-          "label": "S4 (-4%)"
-        },
-        {
-          "pct": 5,
-          "price": 484.45,
-          "label": "S5 (-5%)"
-        }
-      ]
-    },
-    {
-      "symbol": "VBL",
-      "price": 506.75,
-      "support": [
-        {
-          "pct": 1,
-          "price": 501.68,
-          "label": "S1 (-1%)"
-        },
-        {
-          "pct": 2,
-          "price": 496.62,
-          "label": "S2 (-2%)"
-        },
-        {
-          "pct": 3,
-          "price": 491.55,
-          "label": "S3 (-3%)"
-        },
-        {
-          "pct": 4,
-          "price": 486.48,
-          "label": "S4 (-4%)"
-        },
-        {
-          "pct": 5,
-          "price": 481.41,
-          "label": "S5 (-5%)"
-        }
-      ]
-    },
-    {
-      "symbol": "JUBLFOOD",
-      "price": 476.4,
-      "support": [
-        {
-          "pct": 1,
-          "price": 471.64,
-          "label": "S1 (-1%)"
-        },
-        {
-          "pct": 2,
-          "price": 466.87,
-          "label": "S2 (-2%)"
-        },
-        {
-          "pct": 3,
-          "price": 462.11,
-          "label": "S3 (-3%)"
-        },
-        {
-          "pct": 4,
-          "price": 457.34,
-          "label": "S4 (-4%)"
-        },
-        {
-          "pct": 5,
-          "price": 452.58,
-          "label": "S5 (-5%)"
-        }
-      ]
-    },
-    {
-      "symbol": "OIL",
-      "price": 475.1,
-      "support": [
-        {
-          "pct": 1,
-          "price": 470.35,
-          "label": "S1 (-1%)"
-        },
-        {
-          "pct": 2,
-          "price": 465.6,
-          "label": "S2 (-2%)"
-        },
-        {
-          "pct": 3,
-          "price": 460.85,
-          "label": "S3 (-3%)"
-        },
-        {
-          "pct": 4,
-          "price": 456.1,
-          "label": "S4 (-4%)"
-        },
-        {
-          "pct": 5,
-          "price": 451.35,
-          "label": "S5 (-5%)"
-        }
-      ]
-    },
-    {
-      "symbol": "PATANJALI",
-      "price": 456.25,
-      "support": [
-        {
-          "pct": 1,
-          "price": 451.69,
-          "label": "S1 (-1%)"
-        },
-        {
-          "pct": 2,
-          "price": 447.12,
-          "label": "S2 (-2%)"
-        },
-        {
-          "pct": 3,
-          "price": 442.56,
-          "label": "S3 (-3%)"
-        },
-        {
-          "pct": 4,
-          "price": 438.0,
-          "label": "S4 (-4%)"
-        },
-        {
-          "pct": 5,
-          "price": 433.44,
+          "price": 292.31,
           "label": "S5 (-5%)"
         }
       ]
@@ -2645,6 +1759,8 @@
     {
       "symbol": "PFC",
       "price": 448.25,
+      "avg_vol": 9336035,
+      "avg_vol_fmt": "9.3M",
       "support": [
         {
           "pct": 1,
@@ -2676,6 +1792,8 @@
     {
       "symbol": "TATAPOWER",
       "price": 441.4,
+      "avg_vol": 9325056,
+      "avg_vol_fmt": "9.3M",
       "support": [
         {
           "pct": 1,
@@ -2705,8 +1823,109 @@
       ]
     },
     {
+      "symbol": "VBL",
+      "price": 506.75,
+      "avg_vol": 9024555,
+      "avg_vol_fmt": "9.0M",
+      "support": [
+        {
+          "pct": 1,
+          "price": 501.68,
+          "label": "S1 (-1%)"
+        },
+        {
+          "pct": 2,
+          "price": 496.62,
+          "label": "S2 (-2%)"
+        },
+        {
+          "pct": 3,
+          "price": 491.55,
+          "label": "S3 (-3%)"
+        },
+        {
+          "pct": 4,
+          "price": 486.48,
+          "label": "S4 (-4%)"
+        },
+        {
+          "pct": 5,
+          "price": 481.41,
+          "label": "S5 (-5%)"
+        }
+      ]
+    },
+    {
+      "symbol": "BHARTIARTL",
+      "price": 1827.1,
+      "avg_vol": 8787582,
+      "avg_vol_fmt": "8.8M",
+      "support": [
+        {
+          "pct": 1,
+          "price": 1808.83,
+          "label": "S1 (-1%)"
+        },
+        {
+          "pct": 2,
+          "price": 1790.56,
+          "label": "S2 (-2%)"
+        },
+        {
+          "pct": 3,
+          "price": 1772.29,
+          "label": "S3 (-3%)"
+        },
+        {
+          "pct": 4,
+          "price": 1754.02,
+          "label": "S4 (-4%)"
+        },
+        {
+          "pct": 5,
+          "price": 1735.74,
+          "label": "S5 (-5%)"
+        }
+      ]
+    },
+    {
+      "symbol": "GMDCLTD",
+      "price": 727.6,
+      "avg_vol": 8195530,
+      "avg_vol_fmt": "8.2M",
+      "support": [
+        {
+          "pct": 1,
+          "price": 720.32,
+          "label": "S1 (-1%)"
+        },
+        {
+          "pct": 2,
+          "price": 713.05,
+          "label": "S2 (-2%)"
+        },
+        {
+          "pct": 3,
+          "price": 705.77,
+          "label": "S3 (-3%)"
+        },
+        {
+          "pct": 4,
+          "price": 698.5,
+          "label": "S4 (-4%)"
+        },
+        {
+          "pct": 5,
+          "price": 691.22,
+          "label": "S5 (-5%)"
+        }
+      ]
+    },
+    {
       "symbol": "INDUSTOWER",
       "price": 400.25,
+      "avg_vol": 6389669,
+      "avg_vol_fmt": "6.4M",
       "support": [
         {
           "pct": 1,
@@ -2736,125 +1955,67 @@
       ]
     },
     {
-      "symbol": "KOTAKBANK",
-      "price": 371.65,
+      "symbol": "OIL",
+      "price": 475.1,
+      "avg_vol": 5650428,
+      "avg_vol_fmt": "5.7M",
       "support": [
         {
           "pct": 1,
-          "price": 367.93,
+          "price": 470.35,
           "label": "S1 (-1%)"
         },
         {
           "pct": 2,
-          "price": 364.22,
+          "price": 465.6,
           "label": "S2 (-2%)"
         },
         {
           "pct": 3,
-          "price": 360.5,
+          "price": 460.85,
           "label": "S3 (-3%)"
         },
         {
           "pct": 4,
-          "price": 356.78,
+          "price": 456.1,
           "label": "S4 (-4%)"
         },
         {
           "pct": 5,
-          "price": 353.07,
+          "price": 451.35,
           "label": "S5 (-5%)"
         }
       ]
     },
     {
-      "symbol": "BSOFT",
-      "price": 366.1,
+      "symbol": "TRITURBINE",
+      "price": 570.0,
+      "avg_vol": 4842728,
+      "avg_vol_fmt": "4.8M",
       "support": [
         {
           "pct": 1,
-          "price": 362.44,
+          "price": 564.3,
           "label": "S1 (-1%)"
         },
         {
           "pct": 2,
-          "price": 358.78,
+          "price": 558.6,
           "label": "S2 (-2%)"
         },
         {
           "pct": 3,
-          "price": 355.12,
+          "price": 552.9,
           "label": "S3 (-3%)"
         },
         {
           "pct": 4,
-          "price": 351.46,
+          "price": 547.2,
           "label": "S4 (-4%)"
         },
         {
           "pct": 5,
-          "price": 347.8,
-          "label": "S5 (-5%)"
-        }
-      ]
-    },
-    {
-      "symbol": "ANGELONE",
-      "price": 307.7,
-      "support": [
-        {
-          "pct": 1,
-          "price": 304.62,
-          "label": "S1 (-1%)"
-        },
-        {
-          "pct": 2,
-          "price": 301.55,
-          "label": "S2 (-2%)"
-        },
-        {
-          "pct": 3,
-          "price": 298.47,
-          "label": "S3 (-3%)"
-        },
-        {
-          "pct": 4,
-          "price": 295.39,
-          "label": "S4 (-4%)"
-        },
-        {
-          "pct": 5,
-          "price": 292.31,
-          "label": "S5 (-5%)"
-        }
-      ]
-    },
-    {
-      "symbol": "GODIGIT",
-      "price": 304.45,
-      "support": [
-        {
-          "pct": 1,
-          "price": 301.41,
-          "label": "S1 (-1%)"
-        },
-        {
-          "pct": 2,
-          "price": 298.36,
-          "label": "S2 (-2%)"
-        },
-        {
-          "pct": 3,
-          "price": 295.32,
-          "label": "S3 (-3%)"
-        },
-        {
-          "pct": 4,
-          "price": 292.27,
-          "label": "S4 (-4%)"
-        },
-        {
-          "pct": 5,
-          "price": 289.23,
+          "price": 541.5,
           "label": "S5 (-5%)"
         }
       ]
@@ -2862,6 +2023,8 @@
     {
       "symbol": "M&MFIN",
       "price": 303.8,
+      "avg_vol": 4750733,
+      "avg_vol_fmt": "4.8M",
       "support": [
         {
           "pct": 1,
@@ -2891,8 +2054,340 @@
       ]
     },
     {
+      "symbol": "JUBLFOOD",
+      "price": 476.4,
+      "avg_vol": 4242118,
+      "avg_vol_fmt": "4.2M",
+      "support": [
+        {
+          "pct": 1,
+          "price": 471.64,
+          "label": "S1 (-1%)"
+        },
+        {
+          "pct": 2,
+          "price": 466.87,
+          "label": "S2 (-2%)"
+        },
+        {
+          "pct": 3,
+          "price": 462.11,
+          "label": "S3 (-3%)"
+        },
+        {
+          "pct": 4,
+          "price": 457.34,
+          "label": "S4 (-4%)"
+        },
+        {
+          "pct": 5,
+          "price": 452.58,
+          "label": "S5 (-5%)"
+        }
+      ]
+    },
+    {
+      "symbol": "TCS",
+      "price": 2431.3,
+      "avg_vol": 4062463,
+      "avg_vol_fmt": "4.1M",
+      "support": [
+        {
+          "pct": 1,
+          "price": 2406.99,
+          "label": "S1 (-1%)"
+        },
+        {
+          "pct": 2,
+          "price": 2382.67,
+          "label": "S2 (-2%)"
+        },
+        {
+          "pct": 3,
+          "price": 2358.36,
+          "label": "S3 (-3%)"
+        },
+        {
+          "pct": 4,
+          "price": 2334.05,
+          "label": "S4 (-4%)"
+        },
+        {
+          "pct": 5,
+          "price": 2309.74,
+          "label": "S5 (-5%)"
+        }
+      ]
+    },
+    {
+      "symbol": "CGPOWER",
+      "price": 802.3,
+      "avg_vol": 3030379,
+      "avg_vol_fmt": "3.0M",
+      "support": [
+        {
+          "pct": 1,
+          "price": 794.28,
+          "label": "S1 (-1%)"
+        },
+        {
+          "pct": 2,
+          "price": 786.25,
+          "label": "S2 (-2%)"
+        },
+        {
+          "pct": 3,
+          "price": 778.23,
+          "label": "S3 (-3%)"
+        },
+        {
+          "pct": 4,
+          "price": 770.21,
+          "label": "S4 (-4%)"
+        },
+        {
+          "pct": 5,
+          "price": 762.18,
+          "label": "S5 (-5%)"
+        }
+      ]
+    },
+    {
+      "symbol": "DRREDDY",
+      "price": 1287.2,
+      "avg_vol": 2984855,
+      "avg_vol_fmt": "3.0M",
+      "support": [
+        {
+          "pct": 1,
+          "price": 1274.33,
+          "label": "S1 (-1%)"
+        },
+        {
+          "pct": 2,
+          "price": 1261.46,
+          "label": "S2 (-2%)"
+        },
+        {
+          "pct": 3,
+          "price": 1248.58,
+          "label": "S3 (-3%)"
+        },
+        {
+          "pct": 4,
+          "price": 1235.71,
+          "label": "S4 (-4%)"
+        },
+        {
+          "pct": 5,
+          "price": 1222.84,
+          "label": "S5 (-5%)"
+        }
+      ]
+    },
+    {
+      "symbol": "SONACOMS",
+      "price": 575.45,
+      "avg_vol": 2824189,
+      "avg_vol_fmt": "2.8M",
+      "support": [
+        {
+          "pct": 1,
+          "price": 569.7,
+          "label": "S1 (-1%)"
+        },
+        {
+          "pct": 2,
+          "price": 563.94,
+          "label": "S2 (-2%)"
+        },
+        {
+          "pct": 3,
+          "price": 558.19,
+          "label": "S3 (-3%)"
+        },
+        {
+          "pct": 4,
+          "price": 552.43,
+          "label": "S4 (-4%)"
+        },
+        {
+          "pct": 5,
+          "price": 546.68,
+          "label": "S5 (-5%)"
+        }
+      ]
+    },
+    {
+      "symbol": "COFORGE",
+      "price": 1151.6,
+      "avg_vol": 2748858,
+      "avg_vol_fmt": "2.7M",
+      "support": [
+        {
+          "pct": 1,
+          "price": 1140.08,
+          "label": "S1 (-1%)"
+        },
+        {
+          "pct": 2,
+          "price": 1128.57,
+          "label": "S2 (-2%)"
+        },
+        {
+          "pct": 3,
+          "price": 1117.05,
+          "label": "S3 (-3%)"
+        },
+        {
+          "pct": 4,
+          "price": 1105.54,
+          "label": "S4 (-4%)"
+        },
+        {
+          "pct": 5,
+          "price": 1094.02,
+          "label": "S5 (-5%)"
+        }
+      ]
+    },
+    {
+      "symbol": "COCHINSHIP",
+      "price": 1719.3,
+      "avg_vol": 2714582,
+      "avg_vol_fmt": "2.7M",
+      "support": [
+        {
+          "pct": 1,
+          "price": 1702.11,
+          "label": "S1 (-1%)"
+        },
+        {
+          "pct": 2,
+          "price": 1684.91,
+          "label": "S2 (-2%)"
+        },
+        {
+          "pct": 3,
+          "price": 1667.72,
+          "label": "S3 (-3%)"
+        },
+        {
+          "pct": 4,
+          "price": 1650.53,
+          "label": "S4 (-4%)"
+        },
+        {
+          "pct": 5,
+          "price": 1633.33,
+          "label": "S5 (-5%)"
+        }
+      ]
+    },
+    {
+      "symbol": "INDIANB",
+      "price": 830.35,
+      "avg_vol": 2676309,
+      "avg_vol_fmt": "2.7M",
+      "support": [
+        {
+          "pct": 1,
+          "price": 822.05,
+          "label": "S1 (-1%)"
+        },
+        {
+          "pct": 2,
+          "price": 813.74,
+          "label": "S2 (-2%)"
+        },
+        {
+          "pct": 3,
+          "price": 805.44,
+          "label": "S3 (-3%)"
+        },
+        {
+          "pct": 4,
+          "price": 797.14,
+          "label": "S4 (-4%)"
+        },
+        {
+          "pct": 5,
+          "price": 788.83,
+          "label": "S5 (-5%)"
+        }
+      ]
+    },
+    {
+      "symbol": "CDSL",
+      "price": 1238.3,
+      "avg_vol": 2254545,
+      "avg_vol_fmt": "2.3M",
+      "support": [
+        {
+          "pct": 1,
+          "price": 1225.92,
+          "label": "S1 (-1%)"
+        },
+        {
+          "pct": 2,
+          "price": 1213.53,
+          "label": "S2 (-2%)"
+        },
+        {
+          "pct": 3,
+          "price": 1201.15,
+          "label": "S3 (-3%)"
+        },
+        {
+          "pct": 4,
+          "price": 1188.77,
+          "label": "S4 (-4%)"
+        },
+        {
+          "pct": 5,
+          "price": 1176.38,
+          "label": "S5 (-5%)"
+        }
+      ]
+    },
+    {
+      "symbol": "PATANJALI",
+      "price": 456.25,
+      "avg_vol": 1961701,
+      "avg_vol_fmt": "2.0M",
+      "support": [
+        {
+          "pct": 1,
+          "price": 451.69,
+          "label": "S1 (-1%)"
+        },
+        {
+          "pct": 2,
+          "price": 447.12,
+          "label": "S2 (-2%)"
+        },
+        {
+          "pct": 3,
+          "price": 442.56,
+          "label": "S3 (-3%)"
+        },
+        {
+          "pct": 4,
+          "price": 438.0,
+          "label": "S4 (-4%)"
+        },
+        {
+          "pct": 5,
+          "price": 433.44,
+          "label": "S5 (-5%)"
+        }
+      ]
+    },
+    {
       "symbol": "ACMESOLAR",
       "price": 298.75,
+      "avg_vol": 1749815,
+      "avg_vol_fmt": "1.7M",
       "support": [
         {
           "pct": 1,
@@ -2917,6 +2412,270 @@
         {
           "pct": 5,
           "price": 283.81,
+          "label": "S5 (-5%)"
+        }
+      ]
+    },
+    {
+      "symbol": "KFINTECH",
+      "price": 863.95,
+      "avg_vol": 1434322,
+      "avg_vol_fmt": "1.4M",
+      "support": [
+        {
+          "pct": 1,
+          "price": 855.31,
+          "label": "S1 (-1%)"
+        },
+        {
+          "pct": 2,
+          "price": 846.67,
+          "label": "S2 (-2%)"
+        },
+        {
+          "pct": 3,
+          "price": 838.03,
+          "label": "S3 (-3%)"
+        },
+        {
+          "pct": 4,
+          "price": 829.39,
+          "label": "S4 (-4%)"
+        },
+        {
+          "pct": 5,
+          "price": 820.75,
+          "label": "S5 (-5%)"
+        }
+      ]
+    },
+    {
+      "symbol": "CAMS",
+      "price": 730.85,
+      "avg_vol": 1321931,
+      "avg_vol_fmt": "1.3M",
+      "support": [
+        {
+          "pct": 1,
+          "price": 723.54,
+          "label": "S1 (-1%)"
+        },
+        {
+          "pct": 2,
+          "price": 716.23,
+          "label": "S2 (-2%)"
+        },
+        {
+          "pct": 3,
+          "price": 708.92,
+          "label": "S3 (-3%)"
+        },
+        {
+          "pct": 4,
+          "price": 701.62,
+          "label": "S4 (-4%)"
+        },
+        {
+          "pct": 5,
+          "price": 694.31,
+          "label": "S5 (-5%)"
+        }
+      ]
+    },
+    {
+      "symbol": "BHARATFORG",
+      "price": 1845.8,
+      "avg_vol": 1202533,
+      "avg_vol_fmt": "1.2M",
+      "support": [
+        {
+          "pct": 1,
+          "price": 1827.34,
+          "label": "S1 (-1%)"
+        },
+        {
+          "pct": 2,
+          "price": 1808.88,
+          "label": "S2 (-2%)"
+        },
+        {
+          "pct": 3,
+          "price": 1790.43,
+          "label": "S3 (-3%)"
+        },
+        {
+          "pct": 4,
+          "price": 1771.97,
+          "label": "S4 (-4%)"
+        },
+        {
+          "pct": 5,
+          "price": 1753.51,
+          "label": "S5 (-5%)"
+        }
+      ]
+    },
+    {
+      "symbol": "LGEINDIA",
+      "price": 1579.2,
+      "avg_vol": 883037,
+      "avg_vol_fmt": "883K",
+      "support": [
+        {
+          "pct": 1,
+          "price": 1563.41,
+          "label": "S1 (-1%)"
+        },
+        {
+          "pct": 2,
+          "price": 1547.62,
+          "label": "S2 (-2%)"
+        },
+        {
+          "pct": 3,
+          "price": 1531.82,
+          "label": "S3 (-3%)"
+        },
+        {
+          "pct": 4,
+          "price": 1516.03,
+          "label": "S4 (-4%)"
+        },
+        {
+          "pct": 5,
+          "price": 1500.24,
+          "label": "S5 (-5%)"
+        }
+      ]
+    },
+    {
+      "symbol": "PIDILITIND",
+      "price": 1364.6,
+      "avg_vol": 867241,
+      "avg_vol_fmt": "867K",
+      "support": [
+        {
+          "pct": 1,
+          "price": 1350.95,
+          "label": "S1 (-1%)"
+        },
+        {
+          "pct": 2,
+          "price": 1337.31,
+          "label": "S2 (-2%)"
+        },
+        {
+          "pct": 3,
+          "price": 1323.66,
+          "label": "S3 (-3%)"
+        },
+        {
+          "pct": 4,
+          "price": 1310.02,
+          "label": "S4 (-4%)"
+        },
+        {
+          "pct": 5,
+          "price": 1296.37,
+          "label": "S5 (-5%)"
+        }
+      ]
+    },
+    {
+      "symbol": "BSOFT",
+      "price": 366.1,
+      "avg_vol": 798648,
+      "avg_vol_fmt": "799K",
+      "support": [
+        {
+          "pct": 1,
+          "price": 362.44,
+          "label": "S1 (-1%)"
+        },
+        {
+          "pct": 2,
+          "price": 358.78,
+          "label": "S2 (-2%)"
+        },
+        {
+          "pct": 3,
+          "price": 355.12,
+          "label": "S3 (-3%)"
+        },
+        {
+          "pct": 4,
+          "price": 351.46,
+          "label": "S4 (-4%)"
+        },
+        {
+          "pct": 5,
+          "price": 347.8,
+          "label": "S5 (-5%)"
+        }
+      ]
+    },
+    {
+      "symbol": "ZENSARTECH",
+      "price": 509.95,
+      "avg_vol": 528321,
+      "avg_vol_fmt": "528K",
+      "support": [
+        {
+          "pct": 1,
+          "price": 504.85,
+          "label": "S1 (-1%)"
+        },
+        {
+          "pct": 2,
+          "price": 499.75,
+          "label": "S2 (-2%)"
+        },
+        {
+          "pct": 3,
+          "price": 494.65,
+          "label": "S3 (-3%)"
+        },
+        {
+          "pct": 4,
+          "price": 489.55,
+          "label": "S4 (-4%)"
+        },
+        {
+          "pct": 5,
+          "price": 484.45,
+          "label": "S5 (-5%)"
+        }
+      ]
+    },
+    {
+      "symbol": "KAJARIACER",
+      "price": 1104.5,
+      "avg_vol": 513697,
+      "avg_vol_fmt": "514K",
+      "support": [
+        {
+          "pct": 1,
+          "price": 1093.45,
+          "label": "S1 (-1%)"
+        },
+        {
+          "pct": 2,
+          "price": 1082.41,
+          "label": "S2 (-2%)"
+        },
+        {
+          "pct": 3,
+          "price": 1071.37,
+          "label": "S3 (-3%)"
+        },
+        {
+          "pct": 4,
+          "price": 1060.32,
+          "label": "S4 (-4%)"
+        },
+        {
+          "pct": 5,
+          "price": 1049.27,
           "label": "S5 (-5%)"
         }
       ]
