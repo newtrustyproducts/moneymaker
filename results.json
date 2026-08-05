@@ -1,5 +1,5 @@
 {
-  "scan_time": "12:51",
+  "scan_time": "12:59",
   "phase": 3,
   "date": "05 Aug 2026",
   "min_price": 250.0,
@@ -2585,6 +2585,74 @@
         {
           "pct": 5,
           "price": 283.76,
+          "label": "R5 (+5%)"
+        }
+      ]
+    },
+    {
+      "symbol": "RBLBANK",
+      "price": 386.55,
+      "fc_high": 383.45,
+      "fc_vol": 244011.0,
+      "fc_vol_fmt": "244K",
+      "resistance": [
+        {
+          "pct": 1,
+          "price": 390.42,
+          "label": "R1 (+1%)"
+        },
+        {
+          "pct": 2,
+          "price": 394.28,
+          "label": "R2 (+2%)"
+        },
+        {
+          "pct": 3,
+          "price": 398.15,
+          "label": "R3 (+3%)"
+        },
+        {
+          "pct": 4,
+          "price": 402.01,
+          "label": "R4 (+4%)"
+        },
+        {
+          "pct": 5,
+          "price": 405.88,
+          "label": "R5 (+5%)"
+        }
+      ]
+    },
+    {
+      "symbol": "EICHERMOT",
+      "price": 7993.0,
+      "fc_high": 7930.0,
+      "fc_vol": 10646.0,
+      "fc_vol_fmt": "11K",
+      "resistance": [
+        {
+          "pct": 1,
+          "price": 8072.93,
+          "label": "R1 (+1%)"
+        },
+        {
+          "pct": 2,
+          "price": 8152.86,
+          "label": "R2 (+2%)"
+        },
+        {
+          "pct": 3,
+          "price": 8232.79,
+          "label": "R3 (+3%)"
+        },
+        {
+          "pct": 4,
+          "price": 8312.72,
+          "label": "R4 (+4%)"
+        },
+        {
+          "pct": 5,
+          "price": 8392.65,
           "label": "R5 (+5%)"
         }
       ]
