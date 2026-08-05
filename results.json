@@ -1,78 +1,9 @@
 {
-  "scan_time": "09:20",
+  "scan_time": "09:21",
   "phase": 3,
-  "date": "20 May 2026",
+  "date": "05 Aug 2026",
   "min_price": 250.0,
   "max_price": 25000.0,
-  "buy": [
-    {
-      "symbol": "ZYDUSLIFE",
-      "price": 1074.9,
-      "fc_high": 1067.95,
-      "fc_vol": 338245,
-      "fc_vol_fmt": "338K",
-      "resistance": [
-        {
-          "pct": 1,
-          "price": 1085.65,
-          "label": "R1 (+1%)"
-        },
-        {
-          "pct": 2,
-          "price": 1096.4,
-          "label": "R2 (+2%)"
-        },
-        {
-          "pct": 3,
-          "price": 1107.15,
-          "label": "R3 (+3%)"
-        },
-        {
-          "pct": 4,
-          "price": 1117.9,
-          "label": "R4 (+4%)"
-        },
-        {
-          "pct": 5,
-          "price": 1128.65,
-          "label": "R5 (+5%)"
-        }
-      ]
-    },
-    {
-      "symbol": "MANKIND",
-      "price": 2547.6,
-      "fc_high": 2530.4,
-      "fc_vol": 82893,
-      "fc_vol_fmt": "83K",
-      "resistance": [
-        {
-          "pct": 1,
-          "price": 2573.08,
-          "label": "R1 (+1%)"
-        },
-        {
-          "pct": 2,
-          "price": 2598.55,
-          "label": "R2 (+2%)"
-        },
-        {
-          "pct": 3,
-          "price": 2624.03,
-          "label": "R3 (+3%)"
-        },
-        {
-          "pct": 4,
-          "price": 2649.5,
-          "label": "R4 (+4%)"
-        },
-        {
-          "pct": 5,
-          "price": 2674.98,
-          "label": "R5 (+5%)"
-        }
-      ]
-    }
-  ],
+  "buy": [],
   "sell": []
 }
