@@ -1,5 +1,5 @@
 {
-  "scan_time": "14:53",
+  "scan_time": "15:02",
   "phase": 3,
   "date": "05 Aug 2026",
   "min_price": 250.0,
@@ -2721,6 +2721,40 @@
         {
           "pct": 5,
           "price": 1374.45,
+          "label": "R5 (+5%)"
+        }
+      ]
+    },
+    {
+      "symbol": "VMM",
+      "price": 110.81,
+      "fc_high": 110.48,
+      "fc_vol": 162441.0,
+      "fc_vol_fmt": "162K",
+      "resistance": [
+        {
+          "pct": 1,
+          "price": 111.92,
+          "label": "R1 (+1%)"
+        },
+        {
+          "pct": 2,
+          "price": 113.03,
+          "label": "R2 (+2%)"
+        },
+        {
+          "pct": 3,
+          "price": 114.13,
+          "label": "R3 (+3%)"
+        },
+        {
+          "pct": 4,
+          "price": 115.24,
+          "label": "R4 (+4%)"
+        },
+        {
+          "pct": 5,
+          "price": 116.35,
           "label": "R5 (+5%)"
         }
       ]
