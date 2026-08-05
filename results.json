@@ -1,5 +1,5 @@
 {
-  "scan_time": "09:29",
+  "scan_time": "09:37",
   "phase": 3,
   "date": "05 Aug 2026",
   "min_price": 250.0,
@@ -2211,6 +2211,176 @@
         {
           "pct": 5,
           "price": 1349.36,
+          "label": "R5 (+5%)"
+        }
+      ]
+    },
+    {
+      "symbol": "RADICO",
+      "price": 4509.0,
+      "fc_high": 4494.4,
+      "fc_vol": 22275.0,
+      "fc_vol_fmt": "22K",
+      "resistance": [
+        {
+          "pct": 1,
+          "price": 4554.09,
+          "label": "R1 (+1%)"
+        },
+        {
+          "pct": 2,
+          "price": 4599.18,
+          "label": "R2 (+2%)"
+        },
+        {
+          "pct": 3,
+          "price": 4644.27,
+          "label": "R3 (+3%)"
+        },
+        {
+          "pct": 4,
+          "price": 4689.36,
+          "label": "R4 (+4%)"
+        },
+        {
+          "pct": 5,
+          "price": 4734.45,
+          "label": "R5 (+5%)"
+        }
+      ]
+    },
+    {
+      "symbol": "PETRONET",
+      "price": 282.2,
+      "fc_high": 281.35,
+      "fc_vol": 10336.0,
+      "fc_vol_fmt": "10K",
+      "resistance": [
+        {
+          "pct": 1,
+          "price": 285.02,
+          "label": "R1 (+1%)"
+        },
+        {
+          "pct": 2,
+          "price": 287.84,
+          "label": "R2 (+2%)"
+        },
+        {
+          "pct": 3,
+          "price": 290.67,
+          "label": "R3 (+3%)"
+        },
+        {
+          "pct": 4,
+          "price": 293.49,
+          "label": "R4 (+4%)"
+        },
+        {
+          "pct": 5,
+          "price": 296.31,
+          "label": "R5 (+5%)"
+        }
+      ]
+    },
+    {
+      "symbol": "CROMPTON",
+      "price": 267.1,
+      "fc_high": 266.5,
+      "fc_vol": 34357.0,
+      "fc_vol_fmt": "34K",
+      "resistance": [
+        {
+          "pct": 1,
+          "price": 269.77,
+          "label": "R1 (+1%)"
+        },
+        {
+          "pct": 2,
+          "price": 272.44,
+          "label": "R2 (+2%)"
+        },
+        {
+          "pct": 3,
+          "price": 275.11,
+          "label": "R3 (+3%)"
+        },
+        {
+          "pct": 4,
+          "price": 277.78,
+          "label": "R4 (+4%)"
+        },
+        {
+          "pct": 5,
+          "price": 280.46,
+          "label": "R5 (+5%)"
+        }
+      ]
+    },
+    {
+      "symbol": "MOTHERSON",
+      "price": 152.74,
+      "fc_high": 152.4,
+      "fc_vol": 468061.0,
+      "fc_vol_fmt": "468K",
+      "resistance": [
+        {
+          "pct": 1,
+          "price": 154.27,
+          "label": "R1 (+1%)"
+        },
+        {
+          "pct": 2,
+          "price": 155.79,
+          "label": "R2 (+2%)"
+        },
+        {
+          "pct": 3,
+          "price": 157.32,
+          "label": "R3 (+3%)"
+        },
+        {
+          "pct": 4,
+          "price": 158.85,
+          "label": "R4 (+4%)"
+        },
+        {
+          "pct": 5,
+          "price": 160.38,
+          "label": "R5 (+5%)"
+        }
+      ]
+    },
+    {
+      "symbol": "PIDILITIND",
+      "price": 1641.8,
+      "fc_high": 1637.9,
+      "fc_vol": 99195.0,
+      "fc_vol_fmt": "99K",
+      "resistance": [
+        {
+          "pct": 1,
+          "price": 1658.22,
+          "label": "R1 (+1%)"
+        },
+        {
+          "pct": 2,
+          "price": 1674.64,
+          "label": "R2 (+2%)"
+        },
+        {
+          "pct": 3,
+          "price": 1691.05,
+          "label": "R3 (+3%)"
+        },
+        {
+          "pct": 4,
+          "price": 1707.47,
+          "label": "R4 (+4%)"
+        },
+        {
+          "pct": 5,
+          "price": 1723.89,
           "label": "R5 (+5%)"
         }
       ]
