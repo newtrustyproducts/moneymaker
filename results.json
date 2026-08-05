@@ -1,5 +1,5 @@
 {
-  "scan_time": "15:02",
+  "scan_time": "15:10",
   "phase": 3,
   "date": "05 Aug 2026",
   "min_price": 250.0,
@@ -2755,6 +2755,74 @@
         {
           "pct": 5,
           "price": 116.35,
+          "label": "R5 (+5%)"
+        }
+      ]
+    },
+    {
+      "symbol": "BANDHANBNK",
+      "price": 175.87,
+      "fc_high": 175.4,
+      "fc_vol": 233818.0,
+      "fc_vol_fmt": "234K",
+      "resistance": [
+        {
+          "pct": 1,
+          "price": 177.63,
+          "label": "R1 (+1%)"
+        },
+        {
+          "pct": 2,
+          "price": 179.39,
+          "label": "R2 (+2%)"
+        },
+        {
+          "pct": 3,
+          "price": 181.15,
+          "label": "R3 (+3%)"
+        },
+        {
+          "pct": 4,
+          "price": 182.9,
+          "label": "R4 (+4%)"
+        },
+        {
+          "pct": 5,
+          "price": 184.66,
+          "label": "R5 (+5%)"
+        }
+      ]
+    },
+    {
+      "symbol": "TATASTEEL",
+      "price": 192.44,
+      "fc_high": 191.84,
+      "fc_vol": 2811253.0,
+      "fc_vol_fmt": "2.8M",
+      "resistance": [
+        {
+          "pct": 1,
+          "price": 194.36,
+          "label": "R1 (+1%)"
+        },
+        {
+          "pct": 2,
+          "price": 196.29,
+          "label": "R2 (+2%)"
+        },
+        {
+          "pct": 3,
+          "price": 198.21,
+          "label": "R3 (+3%)"
+        },
+        {
+          "pct": 4,
+          "price": 200.14,
+          "label": "R4 (+4%)"
+        },
+        {
+          "pct": 5,
+          "price": 202.06,
           "label": "R5 (+5%)"
         }
       ]
