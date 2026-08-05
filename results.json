@@ -1,5 +1,5 @@
 {
-  "scan_time": "11:06",
+  "scan_time": "11:14",
   "phase": 3,
   "date": "05 Aug 2026",
   "min_price": 250.0,
@@ -2449,6 +2449,40 @@
         {
           "pct": 5,
           "price": 471.82,
+          "label": "R5 (+5%)"
+        }
+      ]
+    },
+    {
+      "symbol": "ULTRACEMCO",
+      "price": 12195.0,
+      "fc_high": 12090.0,
+      "fc_vol": 10812.0,
+      "fc_vol_fmt": "11K",
+      "resistance": [
+        {
+          "pct": 1,
+          "price": 12316.95,
+          "label": "R1 (+1%)"
+        },
+        {
+          "pct": 2,
+          "price": 12438.9,
+          "label": "R2 (+2%)"
+        },
+        {
+          "pct": 3,
+          "price": 12560.85,
+          "label": "R3 (+3%)"
+        },
+        {
+          "pct": 4,
+          "price": 12682.8,
+          "label": "R4 (+4%)"
+        },
+        {
+          "pct": 5,
+          "price": 12804.75,
           "label": "R5 (+5%)"
         }
       ]
