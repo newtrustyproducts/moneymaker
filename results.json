@@ -1,5 +1,5 @@
 {
-  "scan_time": "13:07",
+  "scan_time": "13:15",
   "phase": 3,
   "date": "05 Aug 2026",
   "min_price": 250.0,
@@ -2687,6 +2687,40 @@
         {
           "pct": 5,
           "price": 1714.65,
+          "label": "R5 (+5%)"
+        }
+      ]
+    },
+    {
+      "symbol": "JSWSTEEL",
+      "price": 1309.0,
+      "fc_high": 1304.5,
+      "fc_vol": 44557.0,
+      "fc_vol_fmt": "45K",
+      "resistance": [
+        {
+          "pct": 1,
+          "price": 1322.09,
+          "label": "R1 (+1%)"
+        },
+        {
+          "pct": 2,
+          "price": 1335.18,
+          "label": "R2 (+2%)"
+        },
+        {
+          "pct": 3,
+          "price": 1348.27,
+          "label": "R3 (+3%)"
+        },
+        {
+          "pct": 4,
+          "price": 1361.36,
+          "label": "R4 (+4%)"
+        },
+        {
+          "pct": 5,
+          "price": 1374.45,
           "label": "R5 (+5%)"
         }
       ]
