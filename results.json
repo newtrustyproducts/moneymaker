@@ -1,5 +1,5 @@
 {
-  "scan_time": "14:12",
+  "scan_time": "14:20",
   "phase": 3,
   "date": "05 Aug 2026",
   "min_price": 250.0,
@@ -3165,6 +3165,40 @@
         {
           "pct": 5,
           "price": 372.88,
+          "label": "S5 (-5%)"
+        }
+      ]
+    },
+    {
+      "symbol": "BDL",
+      "price": 1234.4,
+      "fc_low": 1237.1,
+      "fc_vol": 19452.0,
+      "fc_vol_fmt": "19K",
+      "support": [
+        {
+          "pct": 1,
+          "price": 1222.06,
+          "label": "S1 (-1%)"
+        },
+        {
+          "pct": 2,
+          "price": 1209.71,
+          "label": "S2 (-2%)"
+        },
+        {
+          "pct": 3,
+          "price": 1197.37,
+          "label": "S3 (-3%)"
+        },
+        {
+          "pct": 4,
+          "price": 1185.02,
+          "label": "S4 (-4%)"
+        },
+        {
+          "pct": 5,
+          "price": 1172.68,
           "label": "S5 (-5%)"
         }
       ]
