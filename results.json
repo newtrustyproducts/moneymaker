@@ -1,5 +1,5 @@
 {
-  "scan_time": "11:54",
+  "scan_time": "12:02",
   "phase": 3,
   "date": "05 Aug 2026",
   "min_price": 250.0,
@@ -2517,6 +2517,40 @@
         {
           "pct": 5,
           "price": 1939.88,
+          "label": "R5 (+5%)"
+        }
+      ]
+    },
+    {
+      "symbol": "OFSS",
+      "price": 11759.0,
+      "fc_high": 11695.0,
+      "fc_vol": 17824.0,
+      "fc_vol_fmt": "18K",
+      "resistance": [
+        {
+          "pct": 1,
+          "price": 11876.59,
+          "label": "R1 (+1%)"
+        },
+        {
+          "pct": 2,
+          "price": 11994.18,
+          "label": "R2 (+2%)"
+        },
+        {
+          "pct": 3,
+          "price": 12111.77,
+          "label": "R3 (+3%)"
+        },
+        {
+          "pct": 4,
+          "price": 12229.36,
+          "label": "R4 (+4%)"
+        },
+        {
+          "pct": 5,
+          "price": 12346.95,
           "label": "R5 (+5%)"
         }
       ]
