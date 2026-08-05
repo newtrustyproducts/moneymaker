@@ -1,5 +1,5 @@
 {
-  "scan_time": "11:14",
+  "scan_time": "11:22",
   "phase": 3,
   "date": "05 Aug 2026",
   "min_price": 250.0,
@@ -2483,6 +2483,40 @@
         {
           "pct": 5,
           "price": 12804.75,
+          "label": "R5 (+5%)"
+        }
+      ]
+    },
+    {
+      "symbol": "DALBHARAT",
+      "price": 1847.5,
+      "fc_high": 1840.3,
+      "fc_vol": 11279.0,
+      "fc_vol_fmt": "11K",
+      "resistance": [
+        {
+          "pct": 1,
+          "price": 1865.97,
+          "label": "R1 (+1%)"
+        },
+        {
+          "pct": 2,
+          "price": 1884.45,
+          "label": "R2 (+2%)"
+        },
+        {
+          "pct": 3,
+          "price": 1902.92,
+          "label": "R3 (+3%)"
+        },
+        {
+          "pct": 4,
+          "price": 1921.4,
+          "label": "R4 (+4%)"
+        },
+        {
+          "pct": 5,
+          "price": 1939.88,
           "label": "R5 (+5%)"
         }
       ]
