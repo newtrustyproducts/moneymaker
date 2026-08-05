@@ -1,5 +1,5 @@
 {
-  "scan_time": "12:59",
+  "scan_time": "13:07",
   "phase": 3,
   "date": "05 Aug 2026",
   "min_price": 250.0,
@@ -2653,6 +2653,40 @@
         {
           "pct": 5,
           "price": 8392.65,
+          "label": "R5 (+5%)"
+        }
+      ]
+    },
+    {
+      "symbol": "POLICYBZR",
+      "price": 1633.0,
+      "fc_high": 1620.9,
+      "fc_vol": 26903.0,
+      "fc_vol_fmt": "27K",
+      "resistance": [
+        {
+          "pct": 1,
+          "price": 1649.33,
+          "label": "R1 (+1%)"
+        },
+        {
+          "pct": 2,
+          "price": 1665.66,
+          "label": "R2 (+2%)"
+        },
+        {
+          "pct": 3,
+          "price": 1681.99,
+          "label": "R3 (+3%)"
+        },
+        {
+          "pct": 4,
+          "price": 1698.32,
+          "label": "R4 (+4%)"
+        },
+        {
+          "pct": 5,
+          "price": 1714.65,
           "label": "R5 (+5%)"
         }
       ]
