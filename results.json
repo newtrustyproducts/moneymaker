@@ -1,5 +1,5 @@
 {
-  "scan_time": "10:17",
+  "scan_time": "10:25",
   "phase": 3,
   "date": "05 Aug 2026",
   "min_price": 250.0,
@@ -2415,6 +2415,40 @@
         {
           "pct": 5,
           "price": 1695.86,
+          "label": "R5 (+5%)"
+        }
+      ]
+    },
+    {
+      "symbol": "AMBUJACEM",
+      "price": 449.35,
+      "fc_high": 443.0,
+      "fc_vol": 241825.0,
+      "fc_vol_fmt": "242K",
+      "resistance": [
+        {
+          "pct": 1,
+          "price": 453.84,
+          "label": "R1 (+1%)"
+        },
+        {
+          "pct": 2,
+          "price": 458.34,
+          "label": "R2 (+2%)"
+        },
+        {
+          "pct": 3,
+          "price": 462.83,
+          "label": "R3 (+3%)"
+        },
+        {
+          "pct": 4,
+          "price": 467.32,
+          "label": "R4 (+4%)"
+        },
+        {
+          "pct": 5,
+          "price": 471.82,
           "label": "R5 (+5%)"
         }
       ]
