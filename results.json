@@ -1,5 +1,5 @@
 {
-  "scan_time": "13:59",
+  "scan_time": "14:07",
   "phase": 3,
   "date": "06 Aug 2026",
   "min_price": 250.0,
@@ -3301,6 +3301,40 @@
         {
           "pct": 5,
           "price": 605.58,
+          "label": "S5 (-5%)"
+        }
+      ]
+    },
+    {
+      "symbol": "IDEA",
+      "price": 12.71,
+      "fc_low": 12.76,
+      "fc_vol": 3523293.0,
+      "fc_vol_fmt": "3.5M",
+      "support": [
+        {
+          "pct": 1,
+          "price": 12.58,
+          "label": "S1 (-1%)"
+        },
+        {
+          "pct": 2,
+          "price": 12.46,
+          "label": "S2 (-2%)"
+        },
+        {
+          "pct": 3,
+          "price": 12.33,
+          "label": "S3 (-3%)"
+        },
+        {
+          "pct": 4,
+          "price": 12.2,
+          "label": "S4 (-4%)"
+        },
+        {
+          "pct": 5,
+          "price": 12.07,
           "label": "S5 (-5%)"
         }
       ]
