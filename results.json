@@ -1,5 +1,5 @@
 {
-  "scan_time": "10:13",
+  "scan_time": "10:21",
   "phase": 3,
   "date": "06 Aug 2026",
   "min_price": 250.0,
@@ -2517,6 +2517,40 @@
         {
           "pct": 5,
           "price": 2396.1,
+          "label": "R5 (+5%)"
+        }
+      ]
+    },
+    {
+      "symbol": "BHARATFORG",
+      "price": 2220.0,
+      "fc_high": 2212.6,
+      "fc_vol": 18647.0,
+      "fc_vol_fmt": "19K",
+      "resistance": [
+        {
+          "pct": 1,
+          "price": 2242.2,
+          "label": "R1 (+1%)"
+        },
+        {
+          "pct": 2,
+          "price": 2264.4,
+          "label": "R2 (+2%)"
+        },
+        {
+          "pct": 3,
+          "price": 2286.6,
+          "label": "R3 (+3%)"
+        },
+        {
+          "pct": 4,
+          "price": 2308.8,
+          "label": "R4 (+4%)"
+        },
+        {
+          "pct": 5,
+          "price": 2331.0,
           "label": "R5 (+5%)"
         }
       ]
