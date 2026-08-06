@@ -1,5 +1,5 @@
 {
-  "scan_time": "11:18",
+  "scan_time": "11:26",
   "phase": 3,
   "date": "06 Aug 2026",
   "min_price": 250.0,
@@ -2687,6 +2687,40 @@
         {
           "pct": 5,
           "price": 1134.42,
+          "label": "R5 (+5%)"
+        }
+      ]
+    },
+    {
+      "symbol": "RELIANCE",
+      "price": 1313.0,
+      "fc_high": 1309.7,
+      "fc_vol": 439896.0,
+      "fc_vol_fmt": "440K",
+      "resistance": [
+        {
+          "pct": 1,
+          "price": 1326.13,
+          "label": "R1 (+1%)"
+        },
+        {
+          "pct": 2,
+          "price": 1339.26,
+          "label": "R2 (+2%)"
+        },
+        {
+          "pct": 3,
+          "price": 1352.39,
+          "label": "R3 (+3%)"
+        },
+        {
+          "pct": 4,
+          "price": 1365.52,
+          "label": "R4 (+4%)"
+        },
+        {
+          "pct": 5,
+          "price": 1378.65,
           "label": "R5 (+5%)"
         }
       ]
