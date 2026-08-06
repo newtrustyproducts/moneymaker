@@ -1,5 +1,5 @@
 {
-  "scan_time": "09:33",
+  "scan_time": "09:41",
   "phase": 3,
   "date": "06 Aug 2026",
   "min_price": 250.0,
@@ -2350,6 +2350,40 @@
           "label": "R5 (+5%)"
         }
       ]
+    },
+    {
+      "symbol": "INDUSINDBK",
+      "price": 1020.0,
+      "fc_high": 1017.9,
+      "fc_vol": 13349.0,
+      "fc_vol_fmt": "13K",
+      "resistance": [
+        {
+          "pct": 1,
+          "price": 1030.2,
+          "label": "R1 (+1%)"
+        },
+        {
+          "pct": 2,
+          "price": 1040.4,
+          "label": "R2 (+2%)"
+        },
+        {
+          "pct": 3,
+          "price": 1050.6,
+          "label": "R3 (+3%)"
+        },
+        {
+          "pct": 4,
+          "price": 1060.8,
+          "label": "R4 (+4%)"
+        },
+        {
+          "pct": 5,
+          "price": 1071.0,
+          "label": "R5 (+5%)"
+        }
+      ]
     }
   ],
   "sell": [
@@ -2791,6 +2825,40 @@
         {
           "pct": 5,
           "price": 370.21,
+          "label": "S5 (-5%)"
+        }
+      ]
+    },
+    {
+      "symbol": "DLF",
+      "price": 637.45,
+      "fc_low": 641.9,
+      "fc_vol": 135797.0,
+      "fc_vol_fmt": "136K",
+      "support": [
+        {
+          "pct": 1,
+          "price": 631.08,
+          "label": "S1 (-1%)"
+        },
+        {
+          "pct": 2,
+          "price": 624.7,
+          "label": "S2 (-2%)"
+        },
+        {
+          "pct": 3,
+          "price": 618.33,
+          "label": "S3 (-3%)"
+        },
+        {
+          "pct": 4,
+          "price": 611.95,
+          "label": "S4 (-4%)"
+        },
+        {
+          "pct": 5,
+          "price": 605.58,
           "label": "S5 (-5%)"
         }
       ]
