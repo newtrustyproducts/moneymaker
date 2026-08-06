@@ -1,5 +1,5 @@
 {
-  "scan_time": "09:25",
+  "scan_time": "09:33",
   "phase": 3,
   "date": "06 Aug 2026",
   "min_price": 250.0,
@@ -2177,6 +2177,176 @@
         {
           "pct": 5,
           "price": 1344.63,
+          "label": "R5 (+5%)"
+        }
+      ]
+    },
+    {
+      "symbol": "OFSS",
+      "price": 11752.0,
+      "fc_high": 11695.0,
+      "fc_vol": 4414.0,
+      "fc_vol_fmt": "4K",
+      "resistance": [
+        {
+          "pct": 1,
+          "price": 11869.52,
+          "label": "R1 (+1%)"
+        },
+        {
+          "pct": 2,
+          "price": 11987.04,
+          "label": "R2 (+2%)"
+        },
+        {
+          "pct": 3,
+          "price": 12104.56,
+          "label": "R3 (+3%)"
+        },
+        {
+          "pct": 4,
+          "price": 12222.08,
+          "label": "R4 (+4%)"
+        },
+        {
+          "pct": 5,
+          "price": 12339.6,
+          "label": "R5 (+5%)"
+        }
+      ]
+    },
+    {
+      "symbol": "COFORGE",
+      "price": 1769.4,
+      "fc_high": 1764.9,
+      "fc_vol": 104382.0,
+      "fc_vol_fmt": "104K",
+      "resistance": [
+        {
+          "pct": 1,
+          "price": 1787.09,
+          "label": "R1 (+1%)"
+        },
+        {
+          "pct": 2,
+          "price": 1804.79,
+          "label": "R2 (+2%)"
+        },
+        {
+          "pct": 3,
+          "price": 1822.48,
+          "label": "R3 (+3%)"
+        },
+        {
+          "pct": 4,
+          "price": 1840.18,
+          "label": "R4 (+4%)"
+        },
+        {
+          "pct": 5,
+          "price": 1857.87,
+          "label": "R5 (+5%)"
+        }
+      ]
+    },
+    {
+      "symbol": "CROMPTON",
+      "price": 267.5,
+      "fc_high": 266.5,
+      "fc_vol": 22626.0,
+      "fc_vol_fmt": "23K",
+      "resistance": [
+        {
+          "pct": 1,
+          "price": 270.18,
+          "label": "R1 (+1%)"
+        },
+        {
+          "pct": 2,
+          "price": 272.85,
+          "label": "R2 (+2%)"
+        },
+        {
+          "pct": 3,
+          "price": 275.53,
+          "label": "R3 (+3%)"
+        },
+        {
+          "pct": 4,
+          "price": 278.2,
+          "label": "R4 (+4%)"
+        },
+        {
+          "pct": 5,
+          "price": 280.88,
+          "label": "R5 (+5%)"
+        }
+      ]
+    },
+    {
+      "symbol": "BAJFINANCE",
+      "price": 1154.3,
+      "fc_high": 1151.5,
+      "fc_vol": 54681.0,
+      "fc_vol_fmt": "55K",
+      "resistance": [
+        {
+          "pct": 1,
+          "price": 1165.84,
+          "label": "R1 (+1%)"
+        },
+        {
+          "pct": 2,
+          "price": 1177.39,
+          "label": "R2 (+2%)"
+        },
+        {
+          "pct": 3,
+          "price": 1188.93,
+          "label": "R3 (+3%)"
+        },
+        {
+          "pct": 4,
+          "price": 1200.47,
+          "label": "R4 (+4%)"
+        },
+        {
+          "pct": 5,
+          "price": 1212.02,
+          "label": "R5 (+5%)"
+        }
+      ]
+    },
+    {
+      "symbol": "ICICIBANK",
+      "price": 1452.0,
+      "fc_high": 1449.0,
+      "fc_vol": 122139.0,
+      "fc_vol_fmt": "122K",
+      "resistance": [
+        {
+          "pct": 1,
+          "price": 1466.52,
+          "label": "R1 (+1%)"
+        },
+        {
+          "pct": 2,
+          "price": 1481.04,
+          "label": "R2 (+2%)"
+        },
+        {
+          "pct": 3,
+          "price": 1495.56,
+          "label": "R3 (+3%)"
+        },
+        {
+          "pct": 4,
+          "price": 1510.08,
+          "label": "R4 (+4%)"
+        },
+        {
+          "pct": 5,
+          "price": 1524.6,
           "label": "R5 (+5%)"
         }
       ]
