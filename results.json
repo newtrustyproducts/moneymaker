@@ -1,5 +1,5 @@
 {
-  "scan_time": "09:41",
+  "scan_time": "09:49",
   "phase": 3,
   "date": "06 Aug 2026",
   "min_price": 250.0,
@@ -2381,6 +2381,40 @@
         {
           "pct": 5,
           "price": 1071.0,
+          "label": "R5 (+5%)"
+        }
+      ]
+    },
+    {
+      "symbol": "BAJAJHLDNG",
+      "price": 11550.0,
+      "fc_high": 11467.0,
+      "fc_vol": 6630.0,
+      "fc_vol_fmt": "7K",
+      "resistance": [
+        {
+          "pct": 1,
+          "price": 11665.5,
+          "label": "R1 (+1%)"
+        },
+        {
+          "pct": 2,
+          "price": 11781.0,
+          "label": "R2 (+2%)"
+        },
+        {
+          "pct": 3,
+          "price": 11896.5,
+          "label": "R3 (+3%)"
+        },
+        {
+          "pct": 4,
+          "price": 12012.0,
+          "label": "R4 (+4%)"
+        },
+        {
+          "pct": 5,
+          "price": 12127.5,
           "label": "R5 (+5%)"
         }
       ]
