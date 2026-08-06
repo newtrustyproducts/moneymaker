@@ -1,5 +1,5 @@
 {
-  "scan_time": "15:03",
+  "scan_time": "15:11",
   "phase": 3,
   "date": "06 Aug 2026",
   "min_price": 250.0,
@@ -2894,6 +2894,40 @@
           "label": "R5 (+5%)"
         }
       ]
+    },
+    {
+      "symbol": "HYUNDAI",
+      "price": 2213.0,
+      "fc_high": 2208.0,
+      "fc_vol": 39555.0,
+      "fc_vol_fmt": "40K",
+      "resistance": [
+        {
+          "pct": 1,
+          "price": 2235.13,
+          "label": "R1 (+1%)"
+        },
+        {
+          "pct": 2,
+          "price": 2257.26,
+          "label": "R2 (+2%)"
+        },
+        {
+          "pct": 3,
+          "price": 2279.39,
+          "label": "R3 (+3%)"
+        },
+        {
+          "pct": 4,
+          "price": 2301.52,
+          "label": "R4 (+4%)"
+        },
+        {
+          "pct": 5,
+          "price": 2323.65,
+          "label": "R5 (+5%)"
+        }
+      ]
     }
   ],
   "sell": [
@@ -3505,6 +3539,74 @@
         {
           "pct": 5,
           "price": 1532.82,
+          "label": "S5 (-5%)"
+        }
+      ]
+    },
+    {
+      "symbol": "FEDERALBNK",
+      "price": 352.0,
+      "fc_low": 352.85,
+      "fc_vol": 74224.0,
+      "fc_vol_fmt": "74K",
+      "support": [
+        {
+          "pct": 1,
+          "price": 348.48,
+          "label": "S1 (-1%)"
+        },
+        {
+          "pct": 2,
+          "price": 344.96,
+          "label": "S2 (-2%)"
+        },
+        {
+          "pct": 3,
+          "price": 341.44,
+          "label": "S3 (-3%)"
+        },
+        {
+          "pct": 4,
+          "price": 337.92,
+          "label": "S4 (-4%)"
+        },
+        {
+          "pct": 5,
+          "price": 334.4,
+          "label": "S5 (-5%)"
+        }
+      ]
+    },
+    {
+      "symbol": "PRESTIGE",
+      "price": 1571.5,
+      "fc_low": 1585.0,
+      "fc_vol": 23788.0,
+      "fc_vol_fmt": "24K",
+      "support": [
+        {
+          "pct": 1,
+          "price": 1555.79,
+          "label": "S1 (-1%)"
+        },
+        {
+          "pct": 2,
+          "price": 1540.07,
+          "label": "S2 (-2%)"
+        },
+        {
+          "pct": 3,
+          "price": 1524.36,
+          "label": "S3 (-3%)"
+        },
+        {
+          "pct": 4,
+          "price": 1508.64,
+          "label": "S4 (-4%)"
+        },
+        {
+          "pct": 5,
+          "price": 1492.92,
           "label": "S5 (-5%)"
         }
       ]
