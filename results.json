@@ -1,5 +1,5 @@
 {
-  "scan_time": "12:54",
+  "scan_time": "13:02",
   "phase": 3,
   "date": "06 Aug 2026",
   "min_price": 250.0,
@@ -2755,6 +2755,40 @@
         {
           "pct": 5,
           "price": 1360.59,
+          "label": "R5 (+5%)"
+        }
+      ]
+    },
+    {
+      "symbol": "NBCC",
+      "price": 96.85,
+      "fc_high": 95.95,
+      "fc_vol": 144174.0,
+      "fc_vol_fmt": "144K",
+      "resistance": [
+        {
+          "pct": 1,
+          "price": 97.82,
+          "label": "R1 (+1%)"
+        },
+        {
+          "pct": 2,
+          "price": 98.79,
+          "label": "R2 (+2%)"
+        },
+        {
+          "pct": 3,
+          "price": 99.76,
+          "label": "R3 (+3%)"
+        },
+        {
+          "pct": 4,
+          "price": 100.72,
+          "label": "R4 (+4%)"
+        },
+        {
+          "pct": 5,
+          "price": 101.69,
           "label": "R5 (+5%)"
         }
       ]
