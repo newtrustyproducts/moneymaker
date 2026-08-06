@@ -1,5 +1,5 @@
 {
-  "scan_time": "15:11",
+  "scan_time": "15:20",
   "phase": 3,
   "date": "06 Aug 2026",
   "min_price": 250.0,
@@ -3607,6 +3607,40 @@
         {
           "pct": 5,
           "price": 1492.92,
+          "label": "S5 (-5%)"
+        }
+      ]
+    },
+    {
+      "symbol": "BSE",
+      "price": 3435.0,
+      "fc_low": 3451.1,
+      "fc_vol": 204078.0,
+      "fc_vol_fmt": "204K",
+      "support": [
+        {
+          "pct": 1,
+          "price": 3400.65,
+          "label": "S1 (-1%)"
+        },
+        {
+          "pct": 2,
+          "price": 3366.3,
+          "label": "S2 (-2%)"
+        },
+        {
+          "pct": 3,
+          "price": 3331.95,
+          "label": "S3 (-3%)"
+        },
+        {
+          "pct": 4,
+          "price": 3297.6,
+          "label": "S4 (-4%)"
+        },
+        {
+          "pct": 5,
+          "price": 3263.25,
           "label": "S5 (-5%)"
         }
       ]
