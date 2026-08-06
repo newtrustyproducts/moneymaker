@@ -1,5 +1,5 @@
 {
-  "scan_time": "14:07",
+  "scan_time": "14:15",
   "phase": 3,
   "date": "06 Aug 2026",
   "min_price": 250.0,
@@ -2823,6 +2823,40 @@
         {
           "pct": 5,
           "price": 261.08,
+          "label": "R5 (+5%)"
+        }
+      ]
+    },
+    {
+      "symbol": "CANBK",
+      "price": 130.4,
+      "fc_high": 129.7,
+      "fc_vol": 579984.0,
+      "fc_vol_fmt": "580K",
+      "resistance": [
+        {
+          "pct": 1,
+          "price": 131.7,
+          "label": "R1 (+1%)"
+        },
+        {
+          "pct": 2,
+          "price": 133.01,
+          "label": "R2 (+2%)"
+        },
+        {
+          "pct": 3,
+          "price": 134.31,
+          "label": "R3 (+3%)"
+        },
+        {
+          "pct": 4,
+          "price": 135.62,
+          "label": "R4 (+4%)"
+        },
+        {
+          "pct": 5,
+          "price": 136.92,
           "label": "R5 (+5%)"
         }
       ]
