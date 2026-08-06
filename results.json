@@ -1,5 +1,5 @@
 {
-  "scan_time": "13:43",
+  "scan_time": "13:51",
   "phase": 3,
   "date": "06 Aug 2026",
   "min_price": 250.0,
@@ -2789,6 +2789,40 @@
         {
           "pct": 5,
           "price": 101.69,
+          "label": "R5 (+5%)"
+        }
+      ]
+    },
+    {
+      "symbol": "BANKBARODA",
+      "price": 248.65,
+      "fc_high": 247.7,
+      "fc_vol": 514068.0,
+      "fc_vol_fmt": "514K",
+      "resistance": [
+        {
+          "pct": 1,
+          "price": 251.14,
+          "label": "R1 (+1%)"
+        },
+        {
+          "pct": 2,
+          "price": 253.62,
+          "label": "R2 (+2%)"
+        },
+        {
+          "pct": 3,
+          "price": 256.11,
+          "label": "R3 (+3%)"
+        },
+        {
+          "pct": 4,
+          "price": 258.6,
+          "label": "R4 (+4%)"
+        },
+        {
+          "pct": 5,
+          "price": 261.08,
           "label": "R5 (+5%)"
         }
       ]
