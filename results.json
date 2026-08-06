@@ -1,5 +1,5 @@
 {
-  "scan_time": "14:23",
+  "scan_time": "14:31",
   "phase": 3,
   "date": "06 Aug 2026",
   "min_price": 250.0,
@@ -2857,6 +2857,40 @@
         {
           "pct": 5,
           "price": 136.92,
+          "label": "R5 (+5%)"
+        }
+      ]
+    },
+    {
+      "symbol": "LTM",
+      "price": 4564.3,
+      "fc_high": 4518.7,
+      "fc_vol": 18473.0,
+      "fc_vol_fmt": "18K",
+      "resistance": [
+        {
+          "pct": 1,
+          "price": 4609.94,
+          "label": "R1 (+1%)"
+        },
+        {
+          "pct": 2,
+          "price": 4655.59,
+          "label": "R2 (+2%)"
+        },
+        {
+          "pct": 3,
+          "price": 4701.23,
+          "label": "R3 (+3%)"
+        },
+        {
+          "pct": 4,
+          "price": 4746.87,
+          "label": "R4 (+4%)"
+        },
+        {
+          "pct": 5,
+          "price": 4792.52,
           "label": "R5 (+5%)"
         }
       ]
