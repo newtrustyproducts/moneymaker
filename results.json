@@ -1,5 +1,5 @@
 {
-  "scan_time": "09:49",
+  "scan_time": "09:57",
   "phase": 3,
   "date": "06 Aug 2026",
   "min_price": 250.0,
@@ -2415,6 +2415,108 @@
         {
           "pct": 5,
           "price": 12127.5,
+          "label": "R5 (+5%)"
+        }
+      ]
+    },
+    {
+      "symbol": "COCHINSHIP",
+      "price": 1463.2,
+      "fc_high": 1430.8,
+      "fc_vol": 208571.0,
+      "fc_vol_fmt": "209K",
+      "resistance": [
+        {
+          "pct": 1,
+          "price": 1477.83,
+          "label": "R1 (+1%)"
+        },
+        {
+          "pct": 2,
+          "price": 1492.46,
+          "label": "R2 (+2%)"
+        },
+        {
+          "pct": 3,
+          "price": 1507.1,
+          "label": "R3 (+3%)"
+        },
+        {
+          "pct": 4,
+          "price": 1521.73,
+          "label": "R4 (+4%)"
+        },
+        {
+          "pct": 5,
+          "price": 1536.36,
+          "label": "R5 (+5%)"
+        }
+      ]
+    },
+    {
+      "symbol": "MAZDOCK",
+      "price": 2436.5,
+      "fc_high": 2401.8,
+      "fc_vol": 137546.0,
+      "fc_vol_fmt": "138K",
+      "resistance": [
+        {
+          "pct": 1,
+          "price": 2460.87,
+          "label": "R1 (+1%)"
+        },
+        {
+          "pct": 2,
+          "price": 2485.23,
+          "label": "R2 (+2%)"
+        },
+        {
+          "pct": 3,
+          "price": 2509.6,
+          "label": "R3 (+3%)"
+        },
+        {
+          "pct": 4,
+          "price": 2533.96,
+          "label": "R4 (+4%)"
+        },
+        {
+          "pct": 5,
+          "price": 2558.33,
+          "label": "R5 (+5%)"
+        }
+      ]
+    },
+    {
+      "symbol": "GLENMARK",
+      "price": 2282.0,
+      "fc_high": 2270.2,
+      "fc_vol": 20618.0,
+      "fc_vol_fmt": "21K",
+      "resistance": [
+        {
+          "pct": 1,
+          "price": 2304.82,
+          "label": "R1 (+1%)"
+        },
+        {
+          "pct": 2,
+          "price": 2327.64,
+          "label": "R2 (+2%)"
+        },
+        {
+          "pct": 3,
+          "price": 2350.46,
+          "label": "R3 (+3%)"
+        },
+        {
+          "pct": 4,
+          "price": 2373.28,
+          "label": "R4 (+4%)"
+        },
+        {
+          "pct": 5,
+          "price": 2396.1,
           "label": "R5 (+5%)"
         }
       ]
