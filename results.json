@@ -1,5 +1,5 @@
 {
-  "scan_time": "14:55",
+  "scan_time": "15:03",
   "phase": 3,
   "date": "06 Aug 2026",
   "min_price": 250.0,
@@ -3471,6 +3471,40 @@
         {
           "pct": 5,
           "price": 1525.61,
+          "label": "S5 (-5%)"
+        }
+      ]
+    },
+    {
+      "symbol": "ADANIENSOL",
+      "price": 1613.5,
+      "fc_low": 1625.0,
+      "fc_vol": 50241.0,
+      "fc_vol_fmt": "50K",
+      "support": [
+        {
+          "pct": 1,
+          "price": 1597.37,
+          "label": "S1 (-1%)"
+        },
+        {
+          "pct": 2,
+          "price": 1581.23,
+          "label": "S2 (-2%)"
+        },
+        {
+          "pct": 3,
+          "price": 1565.1,
+          "label": "S3 (-3%)"
+        },
+        {
+          "pct": 4,
+          "price": 1548.96,
+          "label": "S4 (-4%)"
+        },
+        {
+          "pct": 5,
+          "price": 1532.82,
           "label": "S5 (-5%)"
         }
       ]
