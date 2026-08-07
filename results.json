@@ -1,5 +1,5 @@
 {
-  "scan_time": "11:11",
+  "scan_time": "11:17",
   "phase": 3,
   "date": "07 Aug 2026",
   "min_price": 250.0,
@@ -1401,34 +1401,34 @@
     },
     {
       "symbol": "PGEL",
-      "price": 630.25,
+      "price": 636.3,
       "fc_high": 627.45,
-      "fc_vol": 596580.0,
-      "fc_vol_fmt": "597K",
+      "fc_vol": 914678.0,
+      "fc_vol_fmt": "915K",
       "resistance": [
         {
           "pct": 1,
-          "price": 636.55,
+          "price": 642.66,
           "label": "R1 (+1%)"
         },
         {
           "pct": 2,
-          "price": 642.86,
+          "price": 649.03,
           "label": "R2 (+2%)"
         },
         {
           "pct": 3,
-          "price": 649.16,
+          "price": 655.39,
           "label": "R3 (+3%)"
         },
         {
           "pct": 4,
-          "price": 655.46,
+          "price": 661.75,
           "label": "R4 (+4%)"
         },
         {
           "pct": 5,
-          "price": 661.76,
+          "price": 668.12,
           "label": "R5 (+5%)"
         }
       ]
