@@ -1,5 +1,5 @@
 {
-  "scan_time": "15:06",
+  "scan_time": "15:11",
   "phase": 3,
   "date": "07 Aug 2026",
   "min_price": 250.0,
@@ -2619,6 +2619,40 @@
         {
           "pct": 5,
           "price": 1069.95,
+          "label": "R5 (+5%)"
+        }
+      ]
+    },
+    {
+      "symbol": "PIIND",
+      "price": 2784.3,
+      "fc_high": 2783.0,
+      "fc_vol": 4942.0,
+      "fc_vol_fmt": "5K",
+      "resistance": [
+        {
+          "pct": 1,
+          "price": 2812.14,
+          "label": "R1 (+1%)"
+        },
+        {
+          "pct": 2,
+          "price": 2839.99,
+          "label": "R2 (+2%)"
+        },
+        {
+          "pct": 3,
+          "price": 2867.83,
+          "label": "R3 (+3%)"
+        },
+        {
+          "pct": 4,
+          "price": 2895.67,
+          "label": "R4 (+4%)"
+        },
+        {
+          "pct": 5,
+          "price": 2923.52,
           "label": "R5 (+5%)"
         }
       ]
