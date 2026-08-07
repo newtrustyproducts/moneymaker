@@ -1,5 +1,5 @@
 {
-  "scan_time": "11:17",
+  "scan_time": "11:26",
   "phase": 3,
   "date": "07 Aug 2026",
   "min_price": 250.0,
@@ -2551,6 +2551,40 @@
         {
           "pct": 5,
           "price": 1350.4,
+          "label": "R5 (+5%)"
+        }
+      ]
+    },
+    {
+      "symbol": "M&M",
+      "price": 3460.1,
+      "fc_high": 3457.0,
+      "fc_vol": 185021.0,
+      "fc_vol_fmt": "185K",
+      "resistance": [
+        {
+          "pct": 1,
+          "price": 3494.7,
+          "label": "R1 (+1%)"
+        },
+        {
+          "pct": 2,
+          "price": 3529.3,
+          "label": "R2 (+2%)"
+        },
+        {
+          "pct": 3,
+          "price": 3563.9,
+          "label": "R3 (+3%)"
+        },
+        {
+          "pct": 4,
+          "price": 3598.5,
+          "label": "R4 (+4%)"
+        },
+        {
+          "pct": 5,
+          "price": 3633.11,
           "label": "R5 (+5%)"
         }
       ]
