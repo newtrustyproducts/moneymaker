@@ -1,5 +1,5 @@
 {
-  "scan_time": "09:59",
+  "scan_time": "10:04",
   "phase": 3,
   "date": "07 Aug 2026",
   "min_price": 250.0,
@@ -2245,6 +2245,40 @@
         {
           "pct": 5,
           "price": 2388.22,
+          "label": "R5 (+5%)"
+        }
+      ]
+    },
+    {
+      "symbol": "MPHASIS",
+      "price": 2493.8,
+      "fc_high": 2472.0,
+      "fc_vol": 29588.0,
+      "fc_vol_fmt": "30K",
+      "resistance": [
+        {
+          "pct": 1,
+          "price": 2518.74,
+          "label": "R1 (+1%)"
+        },
+        {
+          "pct": 2,
+          "price": 2543.68,
+          "label": "R2 (+2%)"
+        },
+        {
+          "pct": 3,
+          "price": 2568.61,
+          "label": "R3 (+3%)"
+        },
+        {
+          "pct": 4,
+          "price": 2593.55,
+          "label": "R4 (+4%)"
+        },
+        {
+          "pct": 5,
+          "price": 2618.49,
           "label": "R5 (+5%)"
         }
       ]
