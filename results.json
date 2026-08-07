@@ -1,5 +1,5 @@
 {
-  "scan_time": "11:26",
+  "scan_time": "11:31",
   "phase": 3,
   "date": "07 Aug 2026",
   "min_price": 250.0,
@@ -3267,6 +3267,40 @@
         {
           "pct": 5,
           "price": 373.82,
+          "label": "S5 (-5%)"
+        }
+      ]
+    },
+    {
+      "symbol": "SUNPHARMA",
+      "price": 1929.0,
+      "fc_low": 1933.0,
+      "fc_vol": 146090.0,
+      "fc_vol_fmt": "146K",
+      "support": [
+        {
+          "pct": 1,
+          "price": 1909.71,
+          "label": "S1 (-1%)"
+        },
+        {
+          "pct": 2,
+          "price": 1890.42,
+          "label": "S2 (-2%)"
+        },
+        {
+          "pct": 3,
+          "price": 1871.13,
+          "label": "S3 (-3%)"
+        },
+        {
+          "pct": 4,
+          "price": 1851.84,
+          "label": "S4 (-4%)"
+        },
+        {
+          "pct": 5,
+          "price": 1832.55,
           "label": "S5 (-5%)"
         }
       ]
