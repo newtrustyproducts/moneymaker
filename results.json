@@ -1,5 +1,5 @@
 {
-  "scan_time": "15:01",
+  "scan_time": "15:06",
   "phase": 3,
   "date": "07 Aug 2026",
   "min_price": 250.0,
@@ -2585,6 +2585,40 @@
         {
           "pct": 5,
           "price": 3633.11,
+          "label": "R5 (+5%)"
+        }
+      ]
+    },
+    {
+      "symbol": "INDUSINDBK",
+      "price": 1019.0,
+      "fc_high": 1017.9,
+      "fc_vol": 203430.0,
+      "fc_vol_fmt": "203K",
+      "resistance": [
+        {
+          "pct": 1,
+          "price": 1029.19,
+          "label": "R1 (+1%)"
+        },
+        {
+          "pct": 2,
+          "price": 1039.38,
+          "label": "R2 (+2%)"
+        },
+        {
+          "pct": 3,
+          "price": 1049.57,
+          "label": "R3 (+3%)"
+        },
+        {
+          "pct": 4,
+          "price": 1059.76,
+          "label": "R4 (+4%)"
+        },
+        {
+          "pct": 5,
+          "price": 1069.95,
           "label": "R5 (+5%)"
         }
       ]
