@@ -1,5 +1,5 @@
 {
-  "scan_time": "10:24",
+  "scan_time": "10:29",
   "phase": 3,
   "date": "07 Aug 2026",
   "min_price": 250.0,
@@ -2279,6 +2279,40 @@
         {
           "pct": 5,
           "price": 2618.49,
+          "label": "R5 (+5%)"
+        }
+      ]
+    },
+    {
+      "symbol": "PREMIERENE",
+      "price": 1050.4,
+      "fc_high": 1043.7,
+      "fc_vol": 106909.0,
+      "fc_vol_fmt": "107K",
+      "resistance": [
+        {
+          "pct": 1,
+          "price": 1060.9,
+          "label": "R1 (+1%)"
+        },
+        {
+          "pct": 2,
+          "price": 1071.41,
+          "label": "R2 (+2%)"
+        },
+        {
+          "pct": 3,
+          "price": 1081.91,
+          "label": "R3 (+3%)"
+        },
+        {
+          "pct": 4,
+          "price": 1092.42,
+          "label": "R4 (+4%)"
+        },
+        {
+          "pct": 5,
+          "price": 1102.92,
           "label": "R5 (+5%)"
         }
       ]
