@@ -1,5 +1,5 @@
 {
-  "scan_time": "15:11",
+  "scan_time": "15:16",
   "phase": 3,
   "date": "07 Aug 2026",
   "min_price": 250.0,
@@ -3539,6 +3539,40 @@
         {
           "pct": 5,
           "price": 1370.94,
+          "label": "S5 (-5%)"
+        }
+      ]
+    },
+    {
+      "symbol": "MCX",
+      "price": 2639.0,
+      "fc_low": 2662.5,
+      "fc_vol": 60058.0,
+      "fc_vol_fmt": "60K",
+      "support": [
+        {
+          "pct": 1,
+          "price": 2612.61,
+          "label": "S1 (-1%)"
+        },
+        {
+          "pct": 2,
+          "price": 2586.22,
+          "label": "S2 (-2%)"
+        },
+        {
+          "pct": 3,
+          "price": 2559.83,
+          "label": "S3 (-3%)"
+        },
+        {
+          "pct": 4,
+          "price": 2533.44,
+          "label": "S4 (-4%)"
+        },
+        {
+          "pct": 5,
+          "price": 2507.05,
           "label": "S5 (-5%)"
         }
       ]
