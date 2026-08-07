@@ -1,5 +1,5 @@
 {
-  "scan_time": "13:56",
+  "scan_time": "14:01",
   "phase": 3,
   "date": "07 Aug 2026",
   "min_price": 250.0,
@@ -3403,6 +3403,40 @@
         {
           "pct": 5,
           "price": 2241.81,
+          "label": "S5 (-5%)"
+        }
+      ]
+    },
+    {
+      "symbol": "HDFCBANK",
+      "price": 730.6,
+      "fc_low": 732.0,
+      "fc_vol": 305236.0,
+      "fc_vol_fmt": "305K",
+      "support": [
+        {
+          "pct": 1,
+          "price": 723.29,
+          "label": "S1 (-1%)"
+        },
+        {
+          "pct": 2,
+          "price": 715.99,
+          "label": "S2 (-2%)"
+        },
+        {
+          "pct": 3,
+          "price": 708.68,
+          "label": "S3 (-3%)"
+        },
+        {
+          "pct": 4,
+          "price": 701.38,
+          "label": "S4 (-4%)"
+        },
+        {
+          "pct": 5,
+          "price": 694.07,
           "label": "S5 (-5%)"
         }
       ]
