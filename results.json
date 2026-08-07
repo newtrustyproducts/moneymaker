@@ -1,5 +1,5 @@
 {
-  "scan_time": "10:34",
+  "scan_time": "10:39",
   "phase": 3,
   "date": "07 Aug 2026",
   "min_price": 250.0,
@@ -2347,6 +2347,40 @@
         {
           "pct": 5,
           "price": 184.84,
+          "label": "R5 (+5%)"
+        }
+      ]
+    },
+    {
+      "symbol": "AUROPHARMA",
+      "price": 1610.0,
+      "fc_high": 1607.5,
+      "fc_vol": 61533.0,
+      "fc_vol_fmt": "62K",
+      "resistance": [
+        {
+          "pct": 1,
+          "price": 1626.1,
+          "label": "R1 (+1%)"
+        },
+        {
+          "pct": 2,
+          "price": 1642.2,
+          "label": "R2 (+2%)"
+        },
+        {
+          "pct": 3,
+          "price": 1658.3,
+          "label": "R3 (+3%)"
+        },
+        {
+          "pct": 4,
+          "price": 1674.4,
+          "label": "R4 (+4%)"
+        },
+        {
+          "pct": 5,
+          "price": 1690.5,
           "label": "R5 (+5%)"
         }
       ]
