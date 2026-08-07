@@ -1,5 +1,5 @@
 {
-  "scan_time": "12:01",
+  "scan_time": "12:06",
   "phase": 3,
   "date": "07 Aug 2026",
   "min_price": 250.0,
@@ -3301,6 +3301,40 @@
         {
           "pct": 5,
           "price": 1832.55,
+          "label": "S5 (-5%)"
+        }
+      ]
+    },
+    {
+      "symbol": "GODREJCP",
+      "price": 1053.3,
+      "fc_low": 1054.7,
+      "fc_vol": 328069.0,
+      "fc_vol_fmt": "328K",
+      "support": [
+        {
+          "pct": 1,
+          "price": 1042.77,
+          "label": "S1 (-1%)"
+        },
+        {
+          "pct": 2,
+          "price": 1032.23,
+          "label": "S2 (-2%)"
+        },
+        {
+          "pct": 3,
+          "price": 1021.7,
+          "label": "S3 (-3%)"
+        },
+        {
+          "pct": 4,
+          "price": 1011.17,
+          "label": "S4 (-4%)"
+        },
+        {
+          "pct": 5,
+          "price": 1000.63,
           "label": "S5 (-5%)"
         }
       ]
