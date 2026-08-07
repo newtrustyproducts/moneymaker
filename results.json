@@ -1,5 +1,5 @@
 {
-  "scan_time": "14:31",
+  "scan_time": "14:36",
   "phase": 3,
   "date": "07 Aug 2026",
   "min_price": 250.0,
@@ -3437,6 +3437,40 @@
         {
           "pct": 5,
           "price": 694.07,
+          "label": "S5 (-5%)"
+        }
+      ]
+    },
+    {
+      "symbol": "ASTRAL",
+      "price": 1443.1,
+      "fc_low": 1444.0,
+      "fc_vol": 1913.0,
+      "fc_vol_fmt": "2K",
+      "support": [
+        {
+          "pct": 1,
+          "price": 1428.67,
+          "label": "S1 (-1%)"
+        },
+        {
+          "pct": 2,
+          "price": 1414.24,
+          "label": "S2 (-2%)"
+        },
+        {
+          "pct": 3,
+          "price": 1399.81,
+          "label": "S3 (-3%)"
+        },
+        {
+          "pct": 4,
+          "price": 1385.38,
+          "label": "S4 (-4%)"
+        },
+        {
+          "pct": 5,
+          "price": 1370.94,
           "label": "S5 (-5%)"
         }
       ]
