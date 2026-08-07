@@ -1,5 +1,5 @@
 {
-  "scan_time": "12:11",
+  "scan_time": "12:16",
   "phase": 3,
   "date": "07 Aug 2026",
   "min_price": 250.0,
@@ -3335,6 +3335,40 @@
         {
           "pct": 5,
           "price": 1000.63,
+          "label": "S5 (-5%)"
+        }
+      ]
+    },
+    {
+      "symbol": "ANGELONE",
+      "price": 289.95,
+      "fc_low": 290.05,
+      "fc_vol": 221188.0,
+      "fc_vol_fmt": "221K",
+      "support": [
+        {
+          "pct": 1,
+          "price": 287.05,
+          "label": "S1 (-1%)"
+        },
+        {
+          "pct": 2,
+          "price": 284.15,
+          "label": "S2 (-2%)"
+        },
+        {
+          "pct": 3,
+          "price": 281.25,
+          "label": "S3 (-3%)"
+        },
+        {
+          "pct": 4,
+          "price": 278.35,
+          "label": "S4 (-4%)"
+        },
+        {
+          "pct": 5,
+          "price": 275.45,
           "label": "S5 (-5%)"
         }
       ]
