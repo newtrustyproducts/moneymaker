@@ -1,5 +1,5 @@
 {
-  "scan_time": "09:29",
+  "scan_time": "09:34",
   "phase": 3,
   "date": "07 Aug 2026",
   "min_price": 250.0,
@@ -2723,6 +2723,74 @@
         {
           "pct": 5,
           "price": 373.82,
+          "label": "S5 (-5%)"
+        }
+      ]
+    },
+    {
+      "symbol": "NHPC",
+      "price": 77.08,
+      "fc_low": 77.25,
+      "fc_vol": 256756.0,
+      "fc_vol_fmt": "257K",
+      "support": [
+        {
+          "pct": 1,
+          "price": 76.31,
+          "label": "S1 (-1%)"
+        },
+        {
+          "pct": 2,
+          "price": 75.54,
+          "label": "S2 (-2%)"
+        },
+        {
+          "pct": 3,
+          "price": 74.77,
+          "label": "S3 (-3%)"
+        },
+        {
+          "pct": 4,
+          "price": 74.0,
+          "label": "S4 (-4%)"
+        },
+        {
+          "pct": 5,
+          "price": 73.23,
+          "label": "S5 (-5%)"
+        }
+      ]
+    },
+    {
+      "symbol": "VOLTAS",
+      "price": 1292.7,
+      "fc_low": 1295.5,
+      "fc_vol": 19439.0,
+      "fc_vol_fmt": "19K",
+      "support": [
+        {
+          "pct": 1,
+          "price": 1279.77,
+          "label": "S1 (-1%)"
+        },
+        {
+          "pct": 2,
+          "price": 1266.85,
+          "label": "S2 (-2%)"
+        },
+        {
+          "pct": 3,
+          "price": 1253.92,
+          "label": "S3 (-3%)"
+        },
+        {
+          "pct": 4,
+          "price": 1240.99,
+          "label": "S4 (-4%)"
+        },
+        {
+          "pct": 5,
+          "price": 1228.07,
           "label": "S5 (-5%)"
         }
       ]
