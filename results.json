@@ -1,5 +1,5 @@
 {
-  "scan_time": "13:36",
+  "scan_time": "13:41",
   "phase": 3,
   "date": "07 Aug 2026",
   "min_price": 250.0,
@@ -3369,6 +3369,40 @@
         {
           "pct": 5,
           "price": 275.45,
+          "label": "S5 (-5%)"
+        }
+      ]
+    },
+    {
+      "symbol": "LUPIN",
+      "price": 2359.8,
+      "fc_low": 2368.1,
+      "fc_vol": 75882.0,
+      "fc_vol_fmt": "76K",
+      "support": [
+        {
+          "pct": 1,
+          "price": 2336.2,
+          "label": "S1 (-1%)"
+        },
+        {
+          "pct": 2,
+          "price": 2312.6,
+          "label": "S2 (-2%)"
+        },
+        {
+          "pct": 3,
+          "price": 2289.01,
+          "label": "S3 (-3%)"
+        },
+        {
+          "pct": 4,
+          "price": 2265.41,
+          "label": "S4 (-4%)"
+        },
+        {
+          "pct": 5,
+          "price": 2241.81,
           "label": "S5 (-5%)"
         }
       ]
