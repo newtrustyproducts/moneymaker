@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MoneyMaker7867 — Free Money Management Tool</title>
+<title>ATOZ STOCKS — Free Money Management Tool</title>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Bebas+Neue&display=swap" rel="stylesheet">
 <style>
 :root{--gold:#F0B429;--bg:#0A0A0A;--card:#111111;--card2:#161616;--border:#222222;--text:#F0EDE6;--muted:#555;--green:#22C55E;--red:#EF4444;--amber:#F59E0B;}
@@ -271,7 +271,7 @@ footer a{color:var(--gold);text-decoration:none;}
 <!-- ═══════════ LOGIN SCREEN ═══════════ -->
 <div class="login-screen" id="login-screen">
   <div class="login-card">
-    <div class="login-logo">MM PRO</div>
+    <div class="login-logo">ATOZ STOCKS</div>
     <div class="login-sub">Apna account mein login karo</div>
     <div class="inp-wrap">
       <input class="inp" type="text" id="li-user" placeholder="Username" autocomplete="username">
@@ -290,7 +290,7 @@ footer a{color:var(--gold);text-decoration:none;}
 <div id="main-page" style="display:none">
 <div class="hero">
   <div class="hero-tag">Traders Ke Liye — 100% Free</div>
-  <h1 class="hero-title">MONEY<br><span>MANAGER</span><br>PRO</h1>
+  <h1 class="hero-title">ATOZ<br><span>STOCKS</span></h1>
   <p class="hero-sub">Live scanner signals + professional money management — ek jagah. Capital protect karo, risk control karo.</p>
   <div class="hero-badge">Free Access — Sirf 3 Steps Mein</div>
   <div class="scroll-hint"><span>NICHE DEKHO</span><div class="arrow"></div></div>
@@ -368,13 +368,13 @@ footer a{color:var(--gold);text-decoration:none;}
     <div class="tool-header-bar">
       <div>
         <div class="sec-label" id="welcome-msg">Welcome!</div>
-        <h2 class="sec-title" style="margin-bottom:0">Money Manager Pro</h2>
+        <h2 class="sec-title" style="margin-bottom:0">ATOZ Stocks</h2>
       </div>
       <button class="logout-btn" onclick="doLogout()">Logout</button>
     </div>
     <div class="tabs">
       <button class="tab active" onclick="switchTab('scanner')">📊 Signals</button>
-      <button class="tab" onclick="switchTab('calc')">💰 Calculator</button>
+      <button class="tab" onclick="switchTab('atoz')">🎯 ATOZ</button>
       <button class="tab" onclick="switchTab('rules')">📋 Rules</button>
     </div>
 
@@ -412,29 +412,36 @@ footer a{color:var(--gold);text-decoration:none;}
       </div>
     </div>
 
-    <!-- CALCULATOR -->
-    <div class="panel" id="panel-calc">
+    <!-- ATOZ -->
+    <div class="panel" id="panel-atoz">
       <div class="tcard">
-        <div class="card-title">Capital & Risk Setup</div>
-        <div class="slider-row"><span class="slider-label">Total Capital</span><input type="range" min="50000" max="500000" step="10000" value="100000" id="capital" oninput="calc()"><span class="slider-val gold-c" id="cap-out">₹1,00,000</span></div>
-        <div class="slider-row"><span class="slider-label">Max stocks ek saath</span><input type="range" min="1" max="15" step="1" value="5" id="stocks" oninput="calc()"><span class="slider-val" id="stocks-out">5</span></div>
-        <div class="slider-row"><span class="slider-label">Risk per trade</span><input type="range" min="0.5" max="3" step="0.5" value="1" id="risk" oninput="calc()"><span class="slider-val" id="risk-out">1%</span></div>
-        <div class="slider-row"><span class="slider-label">Stop Loss %</span><input type="range" min="0.3" max="2" step="0.1" value="0.5" id="sl" oninput="calc()"><span class="slider-val" id="sl-out">0.5%</span></div>
-        <div class="slider-row" style="margin-bottom:0"><span class="slider-label">Risk : Reward</span><select id="rr" onchange="calc()"><option value="1.5">1:1.5</option><option value="2" selected>1:2</option><option value="2.5">1:2.5</option><option value="3">1:3</option></select><span class="slider-val green" id="rr-out">1:2</span></div>
+        <div class="scan-status">
+          <div class="card-title" style="margin-bottom:0">ATOZ Signals</div>
+          <div class="scan-dot">
+            <div class="dot" id="atoz-live-dot"></div>
+            <span class="scan-time" id="atoz-scan-time">Fetch ho raha hai...</span>
+          </div>
+        </div>
+        <div style="font-size:11px;color:var(--muted);margin-bottom:4px" id="atoz-scan-date"></div>
+        <div style="font-size:10px;color:rgba(240,180,41,.4);margin-bottom:12px">Tap any stock to view levels </div>
+        <div class="signal-grid">
+          <div class="signal-box">
+            <div class="signal-box-title buy" id="atoz-buy-title">📈 BULLISH (0)</div>
+            <div id="atoz-buy-list"><div class="no-signal">Scanner se results ka wait karo</div></div>
+          </div>
+          <div class="signal-box">
+            <div class="signal-box-title sell" id="atoz-sell-title">📉 BEARISH (0)</div>
+            <div id="atoz-sell-list"><div class="no-signal">Scanner se results ka wait karo</div></div>
+          </div>
+        </div>
+        <div style="font-size:11px;color:var(--muted);text-align:center;margin-bottom:6px" id="atoz-auto-msg">Har 30 sec mein auto-refresh</div>
+        <button class="refresh-btn" onclick="fetchAtozResults()">🔄 Abhi Refresh Karo</button>
       </div>
-      <div class="metrics">
-        <div class="metric-box"><div class="metric-label">Per trade</div><div class="metric-val gold-c" id="per-trade">₹20,000</div></div>
-        <div class="metric-box"><div class="metric-label">Max loss/trade</div><div class="metric-val red" id="max-loss">₹1,000</div></div>
-        <div class="metric-box"><div class="metric-label">Target/trade</div><div class="metric-val green" id="target">₹2,000</div></div>
-        <div class="metric-box"><div class="metric-label">Daily limit</div><div class="metric-val red" id="daily-loss">₹2,000</div></div>
-        <div class="metric-box"><div class="metric-label">Best case</div><div class="metric-val green" id="best-case">+₹10,000</div></div>
-        <div class="metric-box"><div class="metric-label">Qty (₹500 stock)</div><div class="metric-val" id="qty">40</div></div>
-      </div>
-      <div class="tcard">
-        <div class="card-title">Summary</div>
-        <div class="sum-row"><span>Saare targets hit hon toh</span><span class="green" id="s-best">+₹10,000</span></div>
-        <div class="sum-row"><span>Saare SL hit hon toh</span><span class="red" id="s-worst">-₹5,000</span></div>
-        <div class="sum-row"><span>Daily stop trading limit</span><span class="amber" id="s-limit">-₹2,000</span></div>
+      <div class="tcard" style="font-size:12px;color:var(--muted);line-height:1.8">
+        <div class="card-title">Kaise Use Karein</div>
+        📈 Bullish = Daily EMA/Bollinger setup pass + prev-day last-45-min high break<br>
+        📉 Bearish = Mirror setup + prev-day last-45-min low break<br>
+        Stock pe tap karo → Qty daalo → SL pe kitna loss, T1–T5 pe kitna profit automatically dikhega
       </div>
     </div>
 
@@ -600,10 +607,10 @@ function showTool(username){
   document.getElementById('welcome-msg').textContent='Welcome, '+username+'!';
   document.getElementById('tool').classList.add('show');
   window.scrollTo(0,0);
-  calc();
   fetchResults();
+  fetchAtozResults();
   if(fetchInterval) clearInterval(fetchInterval);
-  fetchInterval=setInterval(fetchResults,30000);
+  fetchInterval=setInterval(function(){fetchResults();fetchAtozResults();},30000);
 }
 
 // ==========================================
@@ -617,7 +624,7 @@ function r2(n){return Math.round(n*100)/100;}
 // TABS
 // ==========================================
 function switchTab(name){
-  var names=['scanner','calc','rules'];
+  var names=['scanner','atoz','rules'];
   document.querySelectorAll('.tab').forEach(function(t,i){t.classList.toggle('active',names[i]===name);});
   document.querySelectorAll('.panel').forEach(function(p){p.classList.remove('active');});
   document.getElementById('panel-'+name).classList.add('active');
@@ -663,6 +670,47 @@ function fetchResults(){
   .catch(function(){
     document.getElementById('scan-time').textContent='Scanner band hai';
     document.getElementById('live-dot').classList.remove('live');
+  });
+}
+
+// ==========================================
+// ATOZ (EMA/Bollinger + last-45-min) SCANNER FETCH
+// ==========================================
+function fetchAtozResults(){
+  fetch('https://raw.githubusercontent.com/newtrustyproducts/moneymaker/main/results_atoz.json?t='+Date.now())
+  .then(function(r){return r.json();})
+  .then(function(data){
+    document.getElementById('atoz-live-dot').classList.add('live');
+    document.getElementById('atoz-scan-time').textContent='Last scan: '+data.scan_time;
+    document.getElementById('atoz-scan-date').textContent=data.date;
+    document.getElementById('atoz-buy-title').textContent='📈 BULLISH ('+data.buy.length+')';
+    document.getElementById('atoz-sell-title').textContent='📉 BEARISH ('+data.sell.length+')';
+
+    document.getElementById('atoz-buy-list').innerHTML=data.buy.length===0
+      ?'<div class="no-signal">Koi Bullish signal nahi</div>'
+      :data.buy.map(function(s){
+        return '<div class="signal-item" onclick=\'openModal('+JSON.stringify(s)+',"buy")\'>'
+          +'<span class="sym">'+s.symbol+'</span>'
+          +'<span style="display:flex;align-items:center;gap:3px">'
+          +'<span class="price">₹'+s.price+'</span>'
+          +'<span class="arr">›</span></span></div>';
+      }).join('');
+
+    document.getElementById('atoz-sell-list').innerHTML=data.sell.length===0
+      ?'<div class="no-signal">Koi Bearish signal nahi</div>'
+      :data.sell.map(function(s){
+        return '<div class="signal-item" onclick=\'openModal('+JSON.stringify(s)+',"sell")\'>'
+          +'<span class="sym">'+s.symbol+'</span>'
+          +'<span style="display:flex;align-items:center;gap:3px">'
+          +'<span class="price">₹'+s.price+'</span>'
+          +'<span class="arr">›</span></span></div>';
+      }).join('');
+
+    document.getElementById('atoz-auto-msg').textContent='Auto-refresh: har 30 sec · '+new Date().toLocaleTimeString('en-IN');
+  })
+  .catch(function(){
+    document.getElementById('atoz-scan-time').textContent='Scanner band hai';
+    document.getElementById('atoz-live-dot').classList.remove('live');
   });
 }
 
