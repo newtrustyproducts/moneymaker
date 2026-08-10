@@ -1,5 +1,5 @@
 {
-  "scan_time": "11:36",
+  "scan_time": "11:41",
   "date": "10 Aug 2026",
   "buy": [
     {
@@ -702,6 +702,38 @@
         {
           "pct": 5,
           "price": 1600.41,
+          "label": "R5 (+5%)"
+        }
+      ]
+    },
+    {
+      "symbol": "RELIANCE",
+      "price": 1331.6,
+      "fc_high": 1332.8,
+      "resistance": [
+        {
+          "pct": 1,
+          "price": 1344.92,
+          "label": "R1 (+1%)"
+        },
+        {
+          "pct": 2,
+          "price": 1358.23,
+          "label": "R2 (+2%)"
+        },
+        {
+          "pct": 3,
+          "price": 1371.55,
+          "label": "R3 (+3%)"
+        },
+        {
+          "pct": 4,
+          "price": 1384.86,
+          "label": "R4 (+4%)"
+        },
+        {
+          "pct": 5,
+          "price": 1398.18,
           "label": "R5 (+5%)"
         }
       ]
